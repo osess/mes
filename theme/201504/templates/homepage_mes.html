@@ -1,0 +1,45 @@
+{% extends "banner_base.html" %}
+
+{% load i18n %}
+{% load ifsetting_tag %}
+{% load staticfiles %}
+
+{% block head_title %}{% trans "Welcome" %}{% endblock %}
+
+
+{% block body_class %}bs-docs-home{% endblock %}
+
+{% block extra_head %}
+
+{% endblock %}
+
+{% block main_class %}bs-masthead{% endblock %}
+
+{% block body_base %}
+
+<div class="container">
+    <h1><img class="carbonad-image carbonad-img" src='{% static "images/kc_logo.jpg" %}' alt="上海康春" border="0" width="130" height="100">&nbsp;{% trans SITE_NAME %}</h1>
+    <p class="lead">简单、高效的生产流程管理与质量控制系统。</p>
+    <p>
+      <a href="#" class="btn btn-outline-inverse btn-lg" onclick="" pointer="none">Version {{version}}</a>
+      {% if not user.is_authenticated %}
+      <a href="{% url acct_login %}" class="btn btn-outline-inverse btn-lg" onclick="">现在登录</a>
+      {% endif %}
+    </p>
+
+	<!--div class="row">
+		<div class="col-md-3">
+			
+		</div>
+		<div class="col-md-9" role="main">
+			{% block center_area %}
+			{% endblock %}
+		</div>
+	</div-->
+</div>
+{% endblock %}
+
+{% block footer_ads %}
+  <div id="carbonads-container"><div class="carbonad"><div id="azcarbon"><span class="carbonad-image"><a href="#" target="_blank"><!--img class="carbonad-image carbonad-img" src='{% static "images/kc_logo.jpg" %}' alt="上海康春" border="0" width="130" height="100"--></a> </span><span class="carbonad-text">如有任何问题，请联系我们 public@octopusinfo.com</span><span class="carbonad-tag"> 技术支持： <a href="http://octopusinfo.com/">上海远途信息</a></span><!--img src="Bootstrap3_files/i.gif" border="0" width="0px" height="0px"--></div><!--script>var z = document.createElement("script"); z.async = true; z.src = "http://engine.carbonads.com/z/32341/azcarbon_2_1_0_HORIZ"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(z, s);</script--></div></div>
+{% endblock %}
+

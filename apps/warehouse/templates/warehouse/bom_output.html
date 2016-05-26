@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %} {% trans "warhouse" %} {% endblock %}
+
+{% block center_area %}
+<div>
+	<h2>{% trans "output success" %}</h2>
+
+
+	
+	<h2>{% trans "inventory" %}</h2>
+	<table border="3">
+	  	<tr>
+		    <th>code</th>
+		    <th>product</th>
+	  	</tr>
+		{% for inventory_item in inventory_item_list %}
+	  	<tr>
+	  		
+		    <td>{{inventory_item.item}}</td>	
+		 
+		    	 
+		    <td>{{inventory_item.qty}}</td>
+
+	  	</tr>
+	  	{% endfor %}
+	</table>
+	<button class="btn" id="btn_back" name="back">
+			<a href="{% url bom_list %}">{% trans "back" %}
+			</a>
+	</button>
+</div>
+{% endblock %}

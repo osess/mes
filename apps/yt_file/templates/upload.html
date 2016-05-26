@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load bootstrap_tags %}
+{% block title %} {% trans "upload" %} {% endblock %}
+{% block container %}
+	<legend>
+		<h1>{% trans "upload file" %}</h1>
+	</legend>
+	<form action="{% url uploadfile contenttype_id object_id%}?next={{ redirecturl }}" method="post" enctype="multipart/form-data">
+		{% csrf_token %}
+		{{ form|as_bootstrap }}
+		<input type="submit" class="btn " value={% trans "upload file" %}>
+	</form>
+
+{% endblock %}

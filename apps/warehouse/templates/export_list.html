@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{#% extends "xadmin/base_site.html" %#}
+{% load i18n %}
+{% block title %} {% trans "export list" %} {% endblock %}
+
+{% block center_area %}
+<div class="container">
+
+    <h1>{% trans "export list" %}</h1>
+
+    <div class="bs-yuankong">
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>{% trans "物品类型" %}</th>
+            <th>{% trans "出入库" %}</th>   
+            <th>{% trans "创建时间" %}</th> 
+            <th>{% trans "创建人" %}</th>         
+            <th>{% trans "状态" %}</th>       
+        </tr>
+        </thead>
+
+        {% for export_list in export_lists %}
+        <tr>
+            <td>
+            <a href="{% url export_detail export_list.id %}?next={{request.path}}">
+                {{export_list.get_list_category_display}}
+            </a>
+
+            </td>
+            <td>
+            {{export_list.get_transport_category_display}}
+            </td>
+
+            <td>
+            {{export_list.created_at}}
+            </td>       
+
+            <td>
+            {{export_list.updated_by}}
+            </td>   
+
+            <td>
+            {{export_list.get_state_display}}
+            </td>   
+        </tr>
+        {% endfor %}
+
+    </table>
+    </div>
+</div>
+{% endblock %}

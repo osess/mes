@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %} {% trans "excessive_qa_records_list" %} {% endblock %}
+
+{% block center_area %}
+<div class="container">
+  {% if perms.manufactureplan.quality_dispaly %}
+
+  {% if title %}
+    <h1> {{ title }} </h1>
+  {% else %}
+    <h1>{% trans 'blank no passed list' %}</h1>
+  {% endif %}
+
+  <div class="search">
+      <form method="POST" action="" class="form-inline">
+        {% csrf_token %}
+        <div class="form-group">
+          <label class="sr-only" for="id-search"></label>
+          <div class="input-group">
+            <input type="text" class="form-control" id="id-search" placeholder='{% trans "ManufactureItem code" %}' name="q" value="{{ q }}">
+          </div>
+        </div>
+        <button type="submit" class="btn btn-sm btn-primary"> {% trans "search" %}</button>
+      </form>
+  </div>
+  <hr />
+
+
+  <div class="bs-yuankong">
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>{% trans "manufacture_item" %}</th>
+        </tr>
+      </thead>
+      {% for mi in mis %}
+      <tr>
+        <td>
+          <h3>{{ mi }}</h3>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+  {% else %}
+    <h1 class="text-danger">您没有权限访问此页面。</h1>
+  {% endif %}
+</div>
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+});
+</script>
+
+{% endblock %}

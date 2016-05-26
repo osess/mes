@@ -1,0 +1,240 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load technologies_tags %}
+{% block title %} {% trans object.name %} {% endblock %}
+
+{% block center_area %}
+
+<link rel="stylesheet" type="text/css" href="/site_media/xadmin/css/themes/bootstrap-xadmin.css" />
+<link href="/site_media/xadmin/vendor/font-awesome/css/font-awesome.css" type="text/css" media="screen" rel="stylesheet" />
+<link href="/site_media/xadmin/css/xadmin.main.css" type="text/css" media="screen" rel="stylesheet" />
+<link href="/site_media/xadmin/css/xadmin.responsive.css" type="text/css" media="screen" rel="stylesheet" />
+<link href="/site_media/xadmin/css/xadmin.form.css" type="text/css" media="screen" rel="stylesheet" />
+
+<div class="container">
+    <h1>{{ object.name }}{% trans '  审核流程' %}</h1>
+    <a class="btn btn-default active" href="{{redirecturl}}">{% trans '返回' %}</a>
+        {% if object.T_file %}
+            <a class="pull-right btn btn-primary active" href="{% url download_directory_file object.T_file.id %}">下载工艺文件</a>
+        {% else %}
+            <a class="pull-right btn btn-default active" disabled="disabled">没有工艺文件</a>
+        {% endif %}
+        {% if object.technology_workflow_status == 2 or object.technology_workflow_approved %}
+            <a class='pull-right btn btn-default active' disabled='disabled'>上传工艺文件</a>
+        {% else %}
+            <a id='upload_btn' class='pull-right btn btn-primary active' data-toggle="modal" href="#UploadModal">上传工艺文件</a>
+        {% endif %}
+
+    <div class="bs-yuankong">
+        {% technology_workflow object %}
+        {% if approve_permission %}
+        <button id='btn_approve' type="button" data-toggle="modal" href="#modal_approve" class="btn btn-primary">{% trans 'Approve' %}</button>
+        {% endif %}
+        {% if refusal_permission %}
+        <button id='btn_refusal' type="button" data-toggle="modal" href="#modal_refusal" class="btn btn-danger">{% trans 'Refusal' %}</button>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Modal:ManufactureplanDetail -->
+<div id="UploadModal" class="modal fade detail-modal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 id="UploadModalTitle" class="modal-title">上传工艺文件</h4>
+      </div>
+      <div id="UploadModalBody" class="modal-body">
+      </div>
+      <div class="modal-footer">
+        <button id="close_upload_modal" class="btn btn-default" data-dismiss="modal" aria-hidden="true">{% trans 'Close' %}</button>
+        <input type="submit" class="btn btn-primary active" value="上传" />
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal:ApproveModal -->
+<div class="modal fade" id="modal_approve" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="modal_approve_label">{% trans "please fill the approve note" %}</h4>
+            </div>
+            <div class="modal-body">
+                <textarea id="approve_note" name="note" class="form-control" rows="5"> </textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="btn_refusal_cancel" name="cancel">{% trans "cancel" %}</button>
+                <button type="button" class="btn btn-primary" id="btn_approve_ok" name="ok">{% trans "ok" %}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal:RefusalModal -->
+<div class="modal fade" id="modal_refusal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="modal_refusal_label">{% trans "please fill the refusal note" %}</h4>
+            </div>
+            <div class="modal-body">
+                <textarea id="refusal_note" name="note" class="form-control" rows="5"> </textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="btn_refusal_cancel" name="cancel">{% trans "cancel" %}</button>
+                <button type="button" class="btn btn-primary" id="btn_refusal_ok" name="ok">{% trans "ok" %}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal:WorkflowLogModal -->
+<div class="modal fade" id="workflow_log" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">{% trans "this note is :" %}</h4>
+      </div>
+      <div class="modal-body">
+        <h4 id='workflow_log_note'></h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">{% trans "Close" %}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal:WarningModal -->
+<div class="modal fade" id="warning" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="warningLabel">{% trans "Warning :" %}</h4>
+      </div>
+      <div class="modal-body">
+        <h4 id='warning_note'></h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">{% trans "Close" %}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+
+    $.ajaxSetup({ 
+         beforeSend: function(xhr, settings) {
+             function getCookie(name) {
+                 var cookieValue = null;
+                 if (document.cookie && document.cookie != '') {
+                     var cookies = document.cookie.split(';');
+                     for (var i = 0; i < cookies.length; i++) {
+                         var cookie = jQuery.trim(cookies[i]);
+                         // Does this cookie string begin with the name we want?
+                     if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                         cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                         break;
+                     }
+                 }
+             }
+             return cookieValue;
+             }
+             if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+                 // Only send the token to relative URLs i.e. locally.
+                 xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+             }
+         } 
+    });
+
+    $('#modal_approve').on('shown.bs.modal', function () {
+        $('#approve_note').focus();
+    })
+    
+    $('#modal_refusal').on('shown.bs.modal', function () {
+        $('#refusal_note').focus();
+    })
+    
+    $(".workflow_log").click(function(event) {
+        note = $(this).attr("hide")
+        $('#workflow_log_note').html(note)
+        $('#workflow_log').modal('show');
+    });
+
+    $("#btn_approve_ok").click(function(event) {
+        $.ajax({
+            type: "POST",
+            url: "{% url ajax_technology_workflow_approve content_type.id object.id %}",
+            dataType: "jsonp",
+            jsonp: "callback",
+            jsonpCallback:"yuankong",
+            data: {note:$("#approve_note").val()},
+            success: function(data) {
+                $('#modal_approve').modal('hide');
+                if (data.result == 0){
+                    window.location.replace(window.location.pathname+window.location.search);
+                }else{
+                    $('#warning_note').html(data.msg);
+                    $('#warning').modal('show');
+                }
+            },
+
+            error: function () {
+                alert('fail:'+data.result+' | '+data.msg);
+            }
+        });
+    });
+
+    $("#btn_refusal_ok").click(function(event) {
+        $.ajax({
+            type: "POST",
+            url: "{% url ajax_technology_workflow_refusal content_type.id object.id %}",
+            dataType: "jsonp",
+            jsonp: "callback",
+            jsonpCallback:"yuankong",
+            data: {note:$("#refusal_note").val()},
+            success: function(data) {
+                $('#modal_refusal').modal('hide');
+                if (data.result == 0){
+                    window.location.replace(window.location.pathname+window.location.search);
+                }else{
+                    $('#warning_note').html(data.msg);
+                    $('#warning').modal('show');
+                }
+            },
+
+            error: function () {
+                alert('fail:'+data.result+' | '+data.msg);
+            }
+        });
+    });
+
+    $("#upload_btn").click(function(event) {
+        var manufactureplan_id = $(this).attr('hide');
+        var mname = $(this).attr('mname');
+        $.ajax({
+            type: "GET",
+            url: "/file/upload/ct_id/o_id/?_format=html".replace ("ct_id", "{{content_type.id}}").replace ("o_id", "{{object.id}}"),
+            success: function(data) {
+              $("#UploadModalBody").html(data);
+            },
+            error: function () {
+                alert('fail');
+            }
+        });
+    });
+    $("#close_upload_modal").click(function(event) {
+        $("#UploadModalBody").html("");
+    });
+
+</script>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "banner_base.html" %}
+
+{% load i18n %}
+{% load ifsetting_tag %}
+
+{% block head_title %}{% trans "Welcome" %}{% endblock %}
+
+
+{% block body_class %}bs-docs-home{% endblock %}
+
+{% block extra_head %}
+
+{% endblock %}
+
+{% block main_class %}bs-masthead{% endblock %}
+
+{% block body_base %}
+
+<div class="container" style="color:#000;">
+    <h2>公司简介</h2>
+    <p>
+	上海康春机械有限公司(shanghai kangchun Machinery Co., Ltd)座落在亚洲文化金融中心-上海，位于上海市浦东新区航头镇，距浦东国际机场和虹桥交通枢纽20公里，占地2400平方米。
+	</p>
+	<p>现有专业技术及操作员工40余人,加工设备齐全:</p>
+	<ul>
+		<li>意大利DKSH3000*1800*850mm高速桥式五轴龙门立式加工中心</li>
+		<li>台湾凯柏三轴4000*1600mm、四轴3000*1600mm、三轴2000*1600mm龙门卧式加工中心</li>
+		<li>AKB-11卧式镗铣加工中心</li>
+		<li>海克斯康3000*1500*1000mm三坐标</li>
+	</ul>
+	等80余台生产及检测设备，具有较强的技术攻关能力。
+
+	<p>机械加工工艺成熟,制造和测试装备先进，是一支具有优秀的技术、管理和生产的团队,是主要从事航空航天、机械装备、汽车等行业的大中型零部件加工和生产制造民营企业。</p>
+
+</div>
+{% endblock %}
+

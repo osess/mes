@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %} {% trans "persons list" %} {% endblock %}
+{% block container %}
+	<legend>
+		<h1>{{ file_name }}</h1>
+	</legend>
+
+	{% if imgtag %}
+	<img style='display:block; ' id='base64image' src="{{file_data}}"/>
+	{% else %}
+	{{ content }}
+	{% endif %}
+{% endblock %}

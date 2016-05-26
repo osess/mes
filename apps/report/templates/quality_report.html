@@ -1,0 +1,188 @@
+{% extends "empty_page.html" %}
+
+{% load i18n %}
+{% block title %} {% trans "quality report" %} {% endblock %}
+
+{% block body %}
+<head>
+    <style type="text/css">
+
+        .report {font-size: 85%;
+                width:80%;
+                height:40%;
+                margin: 0 auto; 
+                
+                }
+        
+        td      {
+                text-align:center;
+
+                }
+        table{
+                border-collapse:collapse;
+
+            }
+
+        #my_td {
+            border-bottom: medium none !important; 
+        }
+    </style>
+</head>
+
+<div class="report">
+<a class="btn btn-sm btn-success pull-right" href="{% url generate_quality_pdf productionline.id %}" target="_blank">{% trans 'pdf' %}</a><br>
+<table class="table table-bordered" cellpadding="0">
+
+    <tr>
+        <td rowspan="2" colspan="2">康春机械</td>
+        <td colspan="2">任务编号</td>
+        <td rowspan="2" colspan="4">产品生产质量控制记录卡（首页）</td>
+        <td colspan="3">合格证编号</td>
+        <td colspan="6"></td>
+    </tr>
+
+    <tr>
+        <td colspan="2">{{ productionline.manu_item_groups.all.0.task_code|default_if_none:"&nbsp;" }}</td>
+        <td colspan="3">质控卡编号</td>
+        <td colspan="6"></td>
+    </tr>
+
+    <tr>
+        <td colspan="2">型号</td>
+        <td colspan="2">图号</td>
+        <td>名称</td>
+        <td>计划数量</td>
+        <td>投产数量</td>      
+        <td>产 品 交 接 路 线</td>
+        <td colspan="3">进度</td>
+        <td colspan="2">备注</td>
+        <td colspan="4"></td>
+      </tr>
+
+    <tr>
+        <td colspan="2">{{ productionline.product.symbol }}</td>
+        <td colspan="2">{{ productionline.product.cad_code }}</td>
+        <td>{{ productionline.product.name }}</td>
+        <td>{{ productionline.manu_item_groups.all.0.quantity }}</td>
+        <td></td>
+        <td></td>
+        <td colspan="3"></td>
+        <td colspan="2"></td>
+        <td colspan="4"></td>
+
+    </tr>
+
+
+    <tr>
+        <td colspan="2">区分</td>
+        <td>材料牌号</td>
+        <td>供应状态</td>
+        <td>技术条件</td>
+        <td>规格尺寸</td>      
+        <td colspan="2">材料、非金属材料、锻、铸件</td>
+        <td colspan="3">代料单号</td>
+        <td>单位</td>
+        <td>数量</td>
+        <td colspan="2">领料员</td>
+        <td colspan="2"></td>
+    </tr>
+
+    <tr>
+        <td colspan="2">请领</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>合格证编号<br>（非金属制造日期）</td>
+        <td >炉批号或复检报告编号<br>（保管期、周转期）</td>
+        <td colspan="3"></td>
+        <td>件</td>
+        <td>2</td>
+        <td colspan="2">发料员</td>
+        <td colspan="2"</td>
+      
+
+    </tr>
+
+    <tr>
+        <td rowspan="2" colspan="2">实发</td>
+        <td rowspan="2"></td>
+        <td rowspan="2"></td>
+        <td rowspan="2"></td>
+        <td rowspan="2" colspan="1"></td>
+        <td>&nbsp;</td>
+        <td>{{ productionline.manu_item_groups.all.0.furnace_batch|default_if_none:"&nbsp;" }}</td>
+        <td rowspan="2"  colspan="3"></td>
+        <td rowspan="2"></td>
+        <td rowspan="2"></td>
+        <td rowspan="2" colspan="2">检验员</td>
+        <td rowspan="2" colspan="2"></td>
+      
+    </tr>
+
+    <tr>
+       
+        <td>&nbsp;</td>
+        <td></td>
+      
+    </tr>
+    <tr>
+        <td rowspan="2">工序</td>
+        <td rowspan="2">工种</td>
+        <td rowspan="2" colspan="2">首件<br>检验合格</td>
+        <td rowspan="2" colspan="2">操作者</td>
+        <td rowspan="2">互检</td>
+        <td rowspan="2">检验员</td>
+        <td colspan="7">检 验 结 果 质 量 等 级 评 定</td>
+        <td rowspan="2" colspan="3">军代表</td>
+    </tr>
+    <tr>
+        <td>合格</td>
+        <td>超差</td>
+        <td>报废</td>
+        <td colspan="4">备注</td>
+    </tr>
+    {% for oper_group_record in productionline.first_child_productionline.oper_group_records.all%}
+    <tr>
+        <td rowspan="2">{{oper_group_record.operation_group.order}}&nbsp;</td>
+        <td rowspan="2">{{oper_group_record.operation_group.Job|default_if_none:""}}&nbsp;</td>
+        <td colspan="2">&nbsp;</td>
+        <td colspan="2">{{oper_group_record.last_operation_record.qa_first_self.employee.user}}&nbsp;</td>
+        <td>{{oper_group_record.last_operation_record.qa_first_double.employee.user}}&nbsp;</td>
+        <td>{{oper_group_record.last_operation_record.qa_first_inspector.employee.user}}&nbsp;</td>      
+        <td rowspan="2">{{oper_group_record.last_operation_record.qa_first_inspector.created_at}}&nbsp;</td>
+        <td rowspan="2">&nbsp;</td>
+        <td rowspan="2">&nbsp;</td>
+        <td rowspan="2" colspan="4">&nbsp;</td>
+        <td rowspan="2" colspan="3">&nbsp;</td>
+    </tr>
+    <tr>
+        <td colspan="2">&nbsp;</td>
+        <td colspan="2">&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+    </tr>
+    {% endfor %}
+
+    <tr>
+        <td >编制</td>
+        <td></td>
+        <td >校对</td>
+        <td></td>
+        <td >更改标记</td>
+        <td></td>
+        <td>签名</td>
+        <td></td>
+        <td >时间</td>
+        <td></td>
+        <td >更改标记</td>
+        <td colspan="2"></td>
+        <td >共  页</td>
+        <td></td>
+        <td >第  页</td>
+        <td></td>
+    </tr>
+</table>
+</div>
+
+{% endblock %}

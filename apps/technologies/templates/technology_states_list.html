@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load technologies_tags %}
+{% block title %} {% trans technology.name %} {% endblock %}
+
+{% block center_area %}
+<div class="container">
+  <h1>{% trans 'technology:' %}{{ technology.name }}</h1>
+  <a class="btn btn-default active" href="{% url technologies_list %}">{% trans 'technologies_list' %}</a>
+  <div class="bs-yuankong">
+    <table class='table table-bordered'>
+      {% for operation_groups in operation_groups_list %}
+      <tr>
+      {% for operation_group in operation_groups %}
+        <td>
+          <table class='table table-bordered'>
+            <thead>
+              <tr>
+                <th>
+                  {{ operation_group.order }}.{{ operation_group.name }}
+                  {% comment %}
+                  <a class="pull-right" href="{% url generate_technology_subpicture_pdf operation_group.id %}" target="_blank"><span class="label label-success">pdf</span></a><br>
+                  {% endcomment %}
+                  <a class="pull-right" href="{% url generate_technology_subpicture operation_group.id %}?next={{ request.path }}" target="_blank">{% trans '工艺附图卡' %}</a>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for operation in operation_group.operations.all %}
+              <tr>
+                <td>{{ operation.order }}.{{ operation.name }}</td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </td>
+      {% endfor %}
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% load i18n %}
+{% load ifsetting_tag %}
+
+<ul class="nav navbar-nav navbar-right">
+    {% if user.is_authenticated %}
+        <li id="tab_inbox"><a href="">{% trans "Inbox" %}</a></li>
+        <li id="tab_notices"><a href="{% url notification_notices %}">{% trans "Notices" %}{% if notice_unseen_count %} ({{ notice_unseen_count }}){% endif %}</a></li>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                {# { user } #}
+                {% if user.last_name or user.first_name %}
+                    {{user.last_name}} {{user.first_name}}
+                {% else %}
+                    {{ user }} 
+                {% endif %}
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="{% url acct_email %}"><i class="icon-user"></i> {% trans "Account" %}</a></li>
+                <li id="tab_profile"><a href="{% url profile_detail user.username %}">{% trans "Profile" %}</a></li>
+                {% if perms.companydepartment.view_department %}
+                <li><a href="{% url admin:companydepartment_department_changelist %}">部门管理</a></li>
+                {% endif %}
+                {% if perms.auth.view_user %}
+                  <li><a href="{% url admin:auth_user_changelist %}?_p_is_superuser__exact=0&_p_is_active__exact=1">{% trans 'user' %}</a></li>
+                {% endif %}
+                {% if request.user.is_superuser %}
+                  <li><a href="{% url admin:actstream_action_changelist %}">{% trans 'actstream action log' %}</a></li>
+                {% endif %}
+                {% if user.is_staff %}
+                    <li><a href="{% url admin:index %}"><i class="icon-cog"></i> {% trans "Admin" %}</a></li>
+                {% endif %}
+                <li class="divider"></li>
+                <li><a href="{% url acct_logout %}"><i class="icon-off"></i> {% trans "Log out" %}</a></li>
+            </ul>
+        </li>
+    {% else %}
+        <li><a href="{% url acct_login %}">{% trans "Log In" %}</a></li>
+        {% ifsetting ACCOUNT_OPEN_SIGNUP %}
+        {% comment %}
+        <li><p>or</p></li>
+        <li><a href="{% url acct_signup %}">{% trans "Sign Up" %}</a></li>
+        {% endcomment %}
+        {% endifsetting %}
+    {% endif %}
+</ul>

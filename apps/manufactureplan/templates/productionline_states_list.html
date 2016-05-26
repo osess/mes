@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %} {% trans productionline.name %} {% endblock %}
+{% block center_area %}
+<div class="container">
+  <h1>{% trans 'productionline:' %}{{ productionline.name }}</h1>
+  <a class="btn btn-default active" href="{{redirecturl}}">{% trans '返回' %}</a>
+  <div class="all-manu-items pull-right">
+      {% for mig in productionline.manu_item_groups.all %}
+          {% for mi in mig.manufacture_items.all %}
+              <span class="label-primary"> {{ mi.code }} </span> &nbsp;
+          {% endfor %}
+      {% endfor %}
+  </div>
+  <div class="bs-yuankong">
+    <table class='table table-bordered'>
+      {% for oper_group_records in oper_group_records_list %}
+      <tr>
+      {% for oper_group_record in oper_group_records %}
+        <td>
+          <table class='table table-bordered'>
+            <thead>
+              <tr>
+                <th>{{ oper_group_record.operation_group.order }}. {{ oper_group_record }}</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for operation_record in oper_group_record.operation_records.all %}
+              {% if operation_record.is_status_working %}
+                <tr bgcolor='#FFFF00'>
+              {% elif operation_record.is_status_qa_self_record %}
+                <tr bgcolor='#0000FF'>
+              {% elif operation_record.is_status_qa_double_record %}
+                <tr bgcolor='#0000FF'>
+              {% elif operation_record.is_status_qa_inspector_record %}
+                <tr bgcolor='#0000FF'>
+              {% elif operation_record.is_status_error %}
+                <tr bgcolor='#00FF00'>
+              {% else %}
+                <tr>
+              {% endif %}
+                <td>{{ operation_record.operation.order }}. {{ operation_record.operation.description }}
+                {% if operation_record.self_manufacture_items_count %}
+                  <span class="label label-info">{{ operation_record.self_manufacture_items_count }}/{{ operation_record.all_manufacture_items_count }}</span>
+                {% endif %}
+                </td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </td>
+      {% endfor %}
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+</div>
+{% endblock %}

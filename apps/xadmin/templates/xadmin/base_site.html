@@ -1,0 +1,195 @@
+{% extends 'xadmin/base.html' %}
+{% load i18n xadmin_tags terminal_services_tag %}
+{% load url from future %}
+
+{% block title %}{{ title }} | {{ site_title }}{% endblock %}
+
+{% block body %}
+
+{% terminal_services as tm%}
+{% if tm %}
+  <!-- Header -->
+  <header class="navbar navbar-inverse navbar-fixed-top" role="banner"> <!-- bs-docs-nav -->
+    <div class="container">
+      {% block topbar %}
+      <div class="navbar-header">
+        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a href="/" class="navbar-brand">{% block branding %}{% trans SITE_NAME %}{% endblock %}</a>
+      </div>
+      {% endblock %}
+
+      <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+          <ul class="nav navbar-nav">
+              {% block nav %}
+                {% include "includes/yt_menu.html" %}
+                {% include "includes/yt_notification.html" %}
+              {% endblock %}
+          </ul>
+          {% block account_bar %}
+
+
+          {% include "includes/_account_bar.html" %}
+          {% comment %}
+          <ul class="nav navbar-nav navbar-right">
+            {#% view_block 'top_navmenu' %#}
+            {% if user.is_active and user.is_staff %}
+              <li class="dropdown">
+                <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">
+                <strong><!--{% trans 'Welcome,' %} --> {% filter force_escape %}{# % firstof user.last_name user.username % #}{% if user.last_name or user.first_name %}
+                                    {{user.last_name}} {{user.first_name}}
+                              {% else %}
+                                    {{user.username}} 
+                              {% endif %}
+                 {% endfilter %}</strong> <span class="caret"></span></a>
+                <ul id="g-account-menu" class="dropdown-menu" role="menu">
+                  {% view_block 'top_account_menu' %}
+                </ul>
+              </li>
+            {% endif %}
+            <li><a href="{% url 'admin:logout' %}"><i class="show-sm icon-signout"></i><span class="hide-sm">{% trans 'Log out' %}</span></a></li>
+          </ul>
+          {% endcomment %}
+
+          {% view_block 'top_navbar' %}
+          {% endblock %}
+
+      </nav>
+    </div>
+  </header>
+
+
+  {% comment %}
+  <div id="top-nav" class="navbar navbar-xs navbar-inverse navbar-fixed-top">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">{% block branding %}{{ site_title }}{% endblock %}</a>
+    </div>
+
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        {% include "includes/yt_menu.html" %}
+      </ul>
+
+
+      <ul class="nav navbar-nav navbar-right">
+        {% view_block 'top_navmenu' %}
+        {% if user.is_active and user.is_staff %}
+          <li class="dropdown">
+            <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">
+            <strong><!--{% trans 'Welcome,' %} --> {% filter force_escape %}{% firstof user.first_name user.username %}{% endfilter %}</strong> <span class="caret"></span></a>
+            <ul id="g-account-menu" class="dropdown-menu" role="menu">
+              {% view_block 'top_account_menu' %}
+            </ul>
+          </li>
+        {% endif %}
+        <li><a href="{% url 'admin:logout' %}"><i class="show-sm icon-signout"></i><span class="hide-sm">{% trans 'Log out' %}</span></a></li>
+      </ul>
+      {% view_block 'top_navbar' %}
+    </div>
+  </div>
+  {% endcomment %}
+
+  <div id="body-content" class="clearfix row">
+
+    {% if perms.request.is_superuser %}
+    <div id="left-side" class="col-sm-1 col-md-2">
+        {% block navbar %}
+        {% if nav_menu %}
+          {% include menu_template %}
+        {% else %}
+          <p>{% trans "You don't have permission to edit anything." %}</p>
+        {% endif %}
+      {% endblock %}
+    </div>
+
+    <div id="content-block" class="col-sm-11 col-md-10">
+    <!-- div id="content-block" class="col-md-12 col-sm-12 full-content" -->
+    <!-- <div id="content-block" class="container"> -->
+    {% else %}
+      {% include "includes/_yt_main_left_menu.html" %}
+
+
+    <div id="content-block" class="col-md-10 col-sm-10 full-content">
+    {% endif %}
+    {#% hide_left_menu %#}
+      {% block breadcrumbs %}
+      <ul class="breadcrumb">
+      {% if breadcrumbs %}
+      {% for bc in breadcrumbs %}
+      <li>
+        {% if forloop.last or not bc.url %}{% trans bc.title %}
+        {% else %}<a href="{{bc.url}}">{% trans bc.title %}</a>{% endif %}
+      </li>
+      {% endfor %}
+      {% else %}
+      <li><a href="{% url 'admin:index' %}">{% trans 'Home' %}</a></li>
+      {% if title %}{% trans title %}{% endif %}
+      {% endif %}
+      </ul>
+      {% endblock %}
+
+      {% block content-nav %}
+      <div class="navbar navbar-inverse content-navbar navbar-default navbar-xs" data-toggle="breakpoint"
+        data-class-xs="navbar content-navbar navbar-inverse navbar-xs"
+        data-class-sm="navbar content-navbar navbar-default navbar-xs">
+        <div class="navbar-header">
+          {% view_block 'nav_toggles' %}
+          {% block nav_toggles %}
+          {% include "xadmin/includes/toggle_back.html" %}
+          {% endblock %}
+
+          <a class="navbar-brand" data-toggle="collapse" data-target="#top-nav .navbar-collapse">
+            {% block nav_title %}{% endblock %}
+          </a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            {% view_block 'nav_menu' %}
+          </ul>
+          {% view_block 'nav_form' %}
+          {% block nav_form %}{% endblock %}
+          <div class="navbar-btn navbar-right hide-xs">
+            {% view_block 'nav_btns' %}
+            {% block nav_btns %}{% endblock %}
+          </div>
+        </div>
+      </div>
+      {% endblock %}
+
+      {% block messages %}
+      {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-dismissable{% if message.tags %} {% if message.tags == 'error' %}alert-danger{% else %}alert-{{ message.tags }}{% endif %}{% endif %}">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          {{ message|safe }}
+        </div>
+        {% endfor %}
+      {% endif %}
+      {% endblock messages %}
+
+      {% block content %}
+      {{ content }}
+      {% endblock %}
+    </div>
+  </div>
+
+  {% block footer %}
+  <div id="footer">
+    <hr/>
+    <footer class="text-center">
+      <p>&copy; {% trans SITE_NAME %} 2014</p>
+    </footer>
+  </div>
+  {% endblock %}
+
+{% else %}
+
+您的系统使用权限已经到期,请通过 info@octopusinfo.com 联系我们.
+
+{% endif %}
+
+{% endblock body %}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load file_tags %}
+{% block title %} {% trans "files list" %} {% endblock %}
+{% block container %}
+	<legend>
+		<h1>{% trans "files list" %}</h1>
+	</legend>
+	<table class="table table-bordered table-hover">
+		<thead>
+			<th> {% trans "type" %} </th><th> {% trans "name" %} </th><th> {% trans "owner" %} </th><th> {% trans "operate" %} </th>
+		</thead>
+		{% if perms.file.open_file %}
+		{% for file in files %}
+		<tr>
+			<td>{{ file.content_type.name }}</a></td>
+			<td>
+				{% if file.imgtag %}
+				    <p><a href="{% url fileshow file.id %}"> <i class="icon-picture"></i> {{ file.name }} </a></p>
+				{% else %}
+				    <p><a href="{% url fileshow file.id %}"> <i class="icon-file"></i> {{ file.name }} </a></p>
+		        {% endif %}
+			</td>
+			<td>{{ file|file_owner_name }}</a></td>
+			<td><a href="{% url filedelete file.id %}?next={{request.path}}">  delete </a></td>
+		</tr>
+		{% endfor %}
+		{% endif %}
+	</table>
+	</div>
+{% endblock %}
+{% block jsblock %}
+{% endblock %}

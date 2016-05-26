@@ -1,0 +1,28 @@
+{% extends "djangovoice/base.html" %}
+
+{% load trans from i18n %}
+{% load url from future %}
+
+{% block title %}{% trans "Feedback" %}{% endblock %}
+
+{% block navbottom %}
+  {% include "djangovoice/includes/navbottom.html" with active_tab='new_feedback' %}
+{% endblock %}
+
+{% block content %}
+  <div id="submit" class="content-spaces">
+    <h1 class="page-title">{% trans "Submit your feedback" %}</h1>
+
+    <form action="" method="post" class="form-horizontal">
+      {% csrf_token %}
+
+      {% for field in form %}
+        {% include "djangovoice/includes/field.html" %}
+      {% endfor %}
+
+      <div class="controls">
+        <button type="submit" class="btn" tabindex="100">{% trans "Submit" %}</button>
+      </div>
+    </form>
+  </div>
+{% endblock %}

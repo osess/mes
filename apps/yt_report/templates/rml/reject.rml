@@ -1,0 +1,166 @@
+<!DOCTYPE document SYSTEM "rml.dtd">
+<document filename="example_08.pdf">
+<template showBoundary="0" 
+pageSize="(29.7cm, 21cm)"
+>
+<pageTemplate id="main">
+    <frame id="first" x1="2cm" y1="1cm" width="26.7cm" height="19cm"/>
+</pageTemplate>
+</template>
+<stylesheet>
+
+    <blockTableStyle id="myBlockTableStyle">
+      <blockFont name="DejaVuSans" size="8"/>
+      <blockTextColor colorName="black"/>
+      <lineStyle kind="GRID" colorName="black"/>
+    </blockTableStyle>
+
+    <blockTableStyle id="myBlockTableStyle1">
+      <blockSpan start="10,3" stop="14,4"/>
+      <blockFont name="DejaVuSans" size="8"/>
+      <blockTextColor colorName="black"/>
+      <lineStyle kind="GRID" colorName="black"/>
+    </blockTableStyle>
+
+    <blockTableStyle id="myBlockTableStyle2">
+      <blockFont name="DejaVuSans" size="8"/>
+      <blockTextColor colorName="black"/>
+      <!-- <lineStyle kind="GRID" colorName="black"/> -->
+    </blockTableStyle>
+
+    <paraStyle name="textstyle1"
+    fontName="DejaVuSans"
+    fontSize="14"
+    textColor="black"/>
+
+</stylesheet>
+<story>
+
+    <!-- <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h3><h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;质 量 记 录</h3> <h3>{{ code }}</h3> -->
+
+    <blockTable style="myBlockTableStyle2"
+    colWidths="22cm"
+    rowHeights="1cm, 1cm, 0.5cm">
+        <tr>
+            <td><para style="textstyle1">质 量 记 录</para></td>
+
+
+        </tr>
+        <tr>
+            <td><para style="textstyle1">{{ code }}</para></td>
+        </tr>
+        <tr>
+            <td></td>
+        </tr>
+    </blockTable>
+
+
+    <blockTable style="myBlockTableStyle"
+    colWidths = "2cm,2cm,2cm,2cm,4cm,4cm,2cm,2cm,2cm"
+    >
+        <tr>
+            <td>编号</td>
+            <td>零件</td>
+            <td>工序</td>
+            <td>工种</td>
+            <td>质 量 问 题</td>
+            <td>原 因 分 析</td>
+            <td>处 理 结 果</td>
+            <td>检验员</td>
+            <td>时间</td>
+        </tr>
+        {% for reject_product_record in reject_product_records %}
+        <tr>
+            <td>{{reject_product_record.code}}&nbsp;</td>
+            <td>{{reject_product_record.qa_record.manufacture_item}}&nbsp;</td>
+            <td>{{reject_product_record.qa_record.operation_record.oper_group_record.operation_group.name}}&nbsp;</td>
+            <td>{{reject_product_record.qa_record.operation_record.oper_group_record.operation_group.Job.position}}&nbsp;</td>
+            <td>{{reject_product_record.quality_problems}}&nbsp;</td>
+            <td>{{reject_product_record.reason_analysis}}&nbsp;</td>
+            <td>{{reject_product_record.processing_result}}&nbsp;</td>
+            <td>{{reject_product_record.qa_record.decider|default_if_none:""}}&nbsp;</td>
+            <td>{{reject_product_record.date_added.date|date:"Y-m-d"}}&nbsp;</td>
+        </tr>
+        {% endfor %}
+    </blockTable>
+
+
+<para style="textstyle1">&nbsp;<br /></para>
+{% if productionline %}
+    <!-- <h3>超差件编号记录</h3> -->
+
+    <blockTable style="myBlockTableStyle2"
+    colWidths="22cm"
+    rowHeights="1.5cm, 0.5cm">
+        <tr>
+            <td><para style="textstyle1">超 差 件 编 号 记 录</para></td>
+        </tr>
+        <tr>
+            <td></td>
+        </tr>
+
+
+    </blockTable>
+
+    <blockTable  style="myBlockTableStyle"
+    colWidths = "2cm,2cm,2cm,2cm,2cm,2cm,2cm,2cm,2cm,2cm,2cm"
+    >
+        <tr>
+            <td>超差件编号</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+
+        <tr>
+            <td>质疑单号</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>超差件编号</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+
+        <tr>
+            <td>质疑单号</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </blockTable>
+{% endif %}
+
+</story>
+</document>

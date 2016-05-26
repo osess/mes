@@ -1,0 +1,146 @@
+{% load blocktrans trans from i18n %}
+{% load url from future %}
+{% load voting_script from qhonuskan_votes %}
+
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width">
+
+    <title>{% block title %}{% endblock %}{% block title_default %} | {% trans "DjangoVoice" %}{% endblock %}</title>
+    <link rel="alternate" type="application/rss+xml" title="{% trans "Latest feedback" %}" href="{% url 'feeds_latest' %}" />
+
+    {% block styles %}
+      {# if you want to use your custom style, use `styles` block to reset default theme. #}
+      <link rel="stylesheet" href="{{ STATIC_URL }}djangovoice/css/bootstrap.min.css" />
+      <link rel="stylesheet" href="{{ STATIC_URL }}djangovoice/css/style.css" />
+    {% endblock %}
+
+    <script src="{{ STATIC_URL }}djangovoice/js/libs/modernizr-2.5.3-respond-1.1.0.min.js "></script>
+  </head>
+
+  <body>
+    <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+    <header>
+      <div class="navtop navbar-static-top">
+        <div class="container-fluid">
+          <ul class="nav pull-right">
+            {% if user.is_authenticated %}
+              <li>
+                <span>
+                  <a href="#">{{ user.username }}</a>
+                </span>
+              </li>
+              <li>
+                <a href="{% url 'djangovoice_submit' %}">
+                  {% trans "Submit feedback" %}
+                </a>
+              </li>
+              <li>
+                <a href="{% url 'acct_logout' %}?next={% url 'djangovoice_home' %}">
+                  {% trans "Sign out" %}
+                </a>
+              </li>
+            {% else %}
+              <li>
+                <a href="{% url 'djangovoice_signin' %}?next={% url 'djangovoice_home' %}">
+                  {% trans "Sign in" %}
+                </a>
+              </li>
+            {% endif %}
+          </ul>
+
+          <ul class="nav">
+            {% block navigation %}
+              <li><a href="/">返回系统</a></li>
+              <li><a href="{% url 'djangovoice_list' list='all' %}">{% trans "all" %}</a></li>&emsp;
+              <li><a href="{% url 'djangovoice_list' list='open' %}">{% trans "open" %}</a></li>
+              <li><a href="{% url 'djangovoice_list' list='closed' %}">{% trans "closed" %}</a></li>
+              <li><a href="{% url 'djangovoice_list' list='mine' %}">{% trans "mine" %}</a></li>
+            {% endblock %}
+          </ul>
+        </div>
+      </div>
+
+      <div class="navbar navbar-static-top">
+        <div class="navbar-inner">
+          <div class="container-fluid">
+            <a class="brand" href="{% url brand_view %}">
+              {#{ site.name }#} {% trans "Feedback" %}
+            </a>
+          </div>
+          {% block navbottom %}
+            {% include "djangovoice/includes/navbottom.html" %}
+          {% endblock %}
+        </div>
+      </div>
+    </header>
+
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span8">
+          <div id="feedback">
+            {% for message in messages %}
+              <div class="alert-message{% if message.tags %} {{ message.tags }}{% endif %}">
+                <a class="close" href="#">×</a>
+                <p>{{ message }}</p>
+              </div>
+            {% endfor %}
+
+            {% block content %}{% endblock %}
+
+            {% if page_obj %}
+              <div class="pagination">
+                <span class="step-links">
+                  {% if page_obj.has_previous %}
+                    <a href="?page={{ page_obj.previous_page_number }}">
+                      {% trans "previous" %}
+                    </a>
+                  {% endif %}
+
+                  <span class="current">
+                    {% blocktrans with number=page_obj.number pages=paginator.num_pages %}
+                      Page {{ number }} of {{ pages }}.
+                    {% endblocktrans %}
+                  </span>
+
+                  {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">
+                      {% trans "next" %}
+                    </a>
+                  {% endif %}
+                </span>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+
+        <div class="span4">
+          <div id="sidebar">
+            {% block sidebar %}{% endblock %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="container-fluid">
+        <p>
+          <a href="http://www.octopusinfo.com/">{% trans "Powered by YuanToo Tech. Ltd." %}</a>
+        </p>
+      </div>
+    </footer>
+
+    <!--script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script-->
+    <script src="{{ STATIC_URL }}js/jquery-1.8.3.min.js"></script>
+    <script>window.jQuery || document.write('<script src="{{ STATIC_URL }}djangovoice/js/libs/jquery-1.8.3.min.js"><\/script>')</script>
+    <script src="{{ STATIC_URL }}djangovoice/js/libs/bootstrap.min.js"></script>
+    {% voting_script %}
+    {% block scripts %}{% endblock %}
+  </body>
+</html>

@@ -1,0 +1,51 @@
+{% load i18n %}
+{% load bootstrap_tags %}
+{% block container %}
+
+<div class="form-container row clearfix" >
+    <div id="column-0" class="formColumn column form-column full col col-sm-12 form-horizontal"  horizontal="True" span="12">
+        <div class="panel panel-default fieldset unsort no_title" id="box-0" >
+            <div class="panel-body " >
+                {% csrf_token %}
+                {% for f in form %}
+                <div id="div_id_cad_code" class="value form-group row">
+                    <div class="control-label">{{f.label}}</div>
+                    <div class="controls">
+                        <p class="form-control-static ">{{f}}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+    $('input[type=file]').change(function(){
+
+        var hide = $('input[type=file]').last().parent().parent().parent().parent().parent().parent().parent().parent().attr("hide");
+        var file_name = $('input[type=file]').last().val();
+        var prefix = hide + '_';
+
+        if (file_name.search(' ') == -1) {
+            if (file_name.search(prefix) != -1) {   
+                $('input[type=submit]').attr("disabled",false);
+            } else {
+                $('input[type=submit]').attr("disabled",true);
+                alert("请修改为标准文件名再上传(以 " + hide + " 为前缀)");
+            }  
+
+        } else {
+            $('input[type=submit]').attr("disabled",true);
+            alert("去除文件名中的空格再上传");
+        }
+    });
+
+
+});
+
+</script>
+
+{% endblock %}

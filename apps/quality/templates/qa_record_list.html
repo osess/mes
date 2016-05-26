@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %} {% trans "excessive_qa_records_list" %} {% endblock %}
+
+{% block center_area %}
+<div class="container">
+  {% if perms.manufactureplan.quality_dispaly %}
+  {% if title %}
+    <h1> {{ title }} </h1>
+  {% else %}
+    <h1>{% trans 'qa records search' %}</h1>
+  {% endif %}
+
+  <div class="search">
+      <form method="POST" action="" class="form-inline">
+        {% csrf_token %}
+        <div class="form-group">
+          <label class="sr-only" for="id-search"></label>
+          <div class="input-group">
+            <input type="text" class="form-control" id="id-search" placeholder='{% trans "ManufactureItem code" %}' name="q" value="{{ q }}">
+          </div>
+        </div>
+        <button type="submit" class="btn btn-sm btn-primary"> {% trans "search" %}</button>
+      </form>
+  </div>
+  <hr />
+
+  <div class="bs-yuankong">
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>{% trans "manufacture_item" %}</th>
+          <th>{% trans "qa_records" %}</th>
+        </tr>
+      </thead>
+      {% for mi in mis %}
+      <tr>
+        <td>
+          <h3>{{ mi }}</h3>
+          <a class="btn btn-primary active" href="{% url generate_single_reject_project_report mi.id %}" target="_blank">{% trans "质量记录报表" %}</a>
+        </td>
+        <td>
+          {% if mi.self_records.all %}
+            <ul>
+              {% for excessive_qa_record in mi.self_records.all %}
+                {% if excessive_qa_record.item_wait %}
+                  <li>
+                      <a class="btn btn-warning active" href="{% url excessive_qa_record_view excessive_qa_record.id %}?next={{request.path}}">
+                          {{ excessive_qa_record }}
+                      </a>
+                  </li>
+                {% endif %}
+                {% if excessive_qa_record.item_pass %}
+                    <li>
+                        <a class="btn btn-success active" href="{% url excessive_qa_record_view excessive_qa_record.id %}?next={{request.path}}">
+                            {{ excessive_qa_record }}
+                        </a>
+                    </li>
+                {% endif %}
+                {% if excessive_qa_record.item_fail %}
+                  <li>
+                      <a class="btn btn-danger active" href="{% url excessive_qa_record_view excessive_qa_record.id %}?next={{request.path}}">
+                          {{ excessive_qa_record }}
+                      </a>
+                    {% with todo_type=mi.excessive_qa_record.reject_product_record.all.0.todo_type %}
+                      <span class='label label-{% ifequal todo_type 1 %}default{% endifequal %}{% ifequal todo_type 2 %}success{% endifequal %}{% ifequal todo_type 3 %}warning{% endifequal %}{% ifequal todo_type 4 %}danger{% endifequal %}'>{{ mi.excessive_qa_record.reject_product_record.all.0.get_todo_type_display }}</span>
+                    {% endwith %}
+                  </li>
+                {% endif %}
+              {% endfor %}
+            </ul>
+          {% else %}
+             没有检验记录
+          {% endif %}
+
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+  {% else %}
+    <h1 class="text-danger">您没有权限访问此页面。</h1>
+  {% endif %}
+</div>
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+});
+</script>
+
+{% endblock %}

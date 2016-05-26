@@ -1,0 +1,144 @@
+{% load staticfiles %}
+{% load i18n %}
+{% load terminal_services_tag %}
+
+
+{% terminal_services as tm%}
+{% if tm %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>{% block head_title_base %}{% if SITE_NAME %}{% trans SITE_NAME %} : {% endif %}{% block head_title %}{% endblock %}{% endblock %}</title>
+
+<!-- Bootstrap core CSS -->
+<link href="{% static "bootstrap/css/bootstrap.css" %}" rel="stylesheet">
+<!--link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"-->
+
+<!-- Documentation extras -->
+<link href="{% static "css/yuankong.css" %}" rel="stylesheet">
+<link href="{% static "css/normalize.css" %}" rel="stylesheet">
+<link href="{% static "font_awesome_420/css/font-awesome.min.css" %}" rel="stylesheet">
+
+{% block extra_style %}{% endblock %}
+<!--[if lt IE 9]><script src="./docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->
+
+<!-- Favicons -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://getbootstrap.com/docs-assets/ico/apple-touch-icon-144-precomposed.png">
+<link rel="shortcut icon" href="{% static "images/favicon.png" %}">
+<script src="{% static "js/jquery-2.0.0.min.js" %}"></script>
+<script src="{% static "js/bootstrap.js" %}"></script>
+<script src="{% static "js/holder.min.js" %}"></script>
+
+{% block extra_script %}{% endblock %}
+
+        {% block extra_head_base %}
+            {% block extra_head %}{% endblock %}
+        {% endblock %}
+</head>
+  <body class="metro {% block body_class %}{% endblock %}" id="{% block body_id %}{% endblock %}">
+    <a class="sr-only" href="#content">Skip to main content</a>
+        {% block topbar_base %}
+        <header class="navbar navbar-inverse navbar-fixed-top" role="banner"> <!-- bs-docs-nav -->
+          <div class="container">
+            {% block topbar %}
+            <div class="navbar-header">
+              <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a href="/" class="navbar-brand">{% block branding %}{% trans SITE_NAME %}{% endblock %}</a>
+            </div>
+            {% endblock %}
+
+            <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+                <ul class="nav navbar-nav">
+                    {% block nav %}
+
+                    {% endblock %}
+                </ul>
+                {% block account_bar %}
+                    {% include "includes/_account_bar.html" %}
+                {% endblock %}
+
+            </nav>
+          </div>
+        </header>
+        {% endblock %}
+
+        <main class="{% block main_class %}bs-masthead{% endblock %}" id="content" role="main">
+        {% block body_base %}
+            {% block left-menu-bar %}
+            {% if user.is_authenticated %}
+                {% include "includes/_yt_main_left_menu.html" %}
+            {% endif %}
+
+            {% endblock %}
+
+            <div class="container">
+                {% block container %}
+                {% endblock %}
+                {% block body %}
+                {% endblock %}
+            </div>
+        {% endblock %}
+        </main>
+    <!--main class="bs-masthead" id="content" role="main">
+      <div class="container">
+        <h1>Bootstrap</h1>
+        <p class="lead">Sleek, intuitive, and powerful mobile first front-end framework for faster and easier web development.</p>
+        <p>
+          <a href="https://github.com/twbs/bootstrap/releases/download/v3.0.3/bootstrap-3.0.3-dist.zip" class="btn btn-outline-inverse btn-lg" onclick="_gaq.push(['_trackEvent', 'Jumbotron actions', 'Download', 'Download 3.0.3']);">Download Bootstrap</a>
+          <a href="https://github.com/twbs/bootstrap/archive/v3.0.3.zip" class="btn btn-outline-inverse btn-lg" onclick="_gaq.push(['_trackEvent', 'Jumbotron actions', 'Download', 'Download 3.0.3']);">Download source</a>
+        </p>
+      </div>
+    </main-->
+
+    <footer class="container" role="contentinfo">
+        {% block footer_ads %}
+        {% endblock %}
+
+        {% block footer %}
+
+        {% endblock %}
+    </footer>
+    
+
+    {% block extra_body_base %}
+        {% block extra_body %}{% endblock %}
+    {% endblock %}    
+    {% block extra_footer %} {% endblock %}
+    {% block jsblock %} {% endblock %}
+
+
+    <!-- JS and analytics only. -->
+    <!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+
+<!--script src="Bootstrap3_files/holder.js"></script>
+
+<script src="Bootstrap3_files/application.js"></script-->
+
+
+</body></html>
+
+{% else %}
+
+您的系统使用权限已经到期,请通过 info@octopusinfo.com 联系我们.
+
+{% endif %}

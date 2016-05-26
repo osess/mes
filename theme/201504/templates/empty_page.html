@@ -1,0 +1,30 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="{% static "bootstrap/css/bootstrap.css" %}" rel="stylesheet">
+    <link href="{% static "css/yuankong.css" %}" rel="stylesheet">
+
+
+    <script src="{{ STATIC_URL }}js/jquery-2.0.0.min.js"></script>
+    <script src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
+
+	{% block extra_style %}{% endblock %}
+	{% block extra_script %}{% endblock %}
+
+    {% block extra_head_base %}
+        {% block extra_head %}{% endblock %}
+    {% endblock %}
+    <title>
+        {% block title %}
+        {% endblock %}
+    </title>
+
+</head>
+
+<body>
+{% block body %}
+
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,58 @@
+{% load trans from i18n %}
+{% load url from future %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}djangovoice/css/dialog.css" />
+    </head>
+    <body>
+        <h1>{% trans "Feedback" %}</h1>
+
+        <ul class="messages">
+            {% if messages %}
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+            {% else %}
+            <li class="info">{% trans "Share your thoughts with us." %}</li>
+            {% endif %}
+        </ul>
+
+        <div id="content">
+            {% if user.is_authenticated %}
+            <form action="{% url 'djangovoice_widget' %}" method="post">
+                {% csrf_token %}
+                <ul>
+                    <li><input id="id_title" type="text" name="title" placeholder="{% trans "Title (required)" %}" /></li>
+                    <li>
+                        <textarea id="id_description" name="description"
+                                  placeholder="{% trans "Write your feedback here." %}"></textarea>
+                    </li>
+                    <li>
+                        <ul>
+                            <li>
+                                {{ form.type.label }}
+                                {{ form.type }}
+                            </li>
+                            <li>
+                                {{ form.anonymous.label }}
+                                {{ form.anonymous }}
+                            </li>
+                            <li>
+                                {{ form.private.label }}
+                                {{ form.private }}
+                            </li>
+                            <li>
+                                <input type="submit" value="{% trans "Submit" %}" />
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </form>
+            {% else %}
+            <p>{% trans "Please login to use feedback application." %}</p>
+            {% endif %}
+        </div>
+    </body>
+</html>

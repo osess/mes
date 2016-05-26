@@ -1,0 +1,120 @@
+{% extends "djangovoice/base.html" %}
+
+{% load blocktrans trans from i18n %}
+{% load url from future %}
+{% load comments %}
+{% load vote_buttons_for from qhonuskan_votes %}
+{% load get_user_image display_name from djangovoice_tags %}
+
+{% block title %}{% trans "Feedback" %}{% endblock %}
+
+{% block content %}
+  <span class="feedback-type feedback-type-{{ feedback.type.slug }} pull-right">
+    {% trans feedback.type.title %}
+  </span>
+  <span class="feedback-status feedback-status-{{ feedback.status.slug }} pull-right">
+    {% trans feedback.status.title %}
+  </span>
+
+  {% if feedback.duplicate %}
+    <div id="feedback-duplicate">
+      {% trans "Duplicate of" %} <a href="{{ feedback.duplicate.get_absolute_url }}">{{ feedback.duplicate.title }}</a>
+    </div>
+  {% endif %}
+
+  <div class="votes pull-left">
+    {% vote_buttons_for feedback "djangovoice/includes/vote_buttons.html" %}
+  </div>
+
+  <h3 class="feedback-title content-spaces">{{ feedback.title }}</h3>
+
+  <p class="meta">
+    <span class="feedback-user">
+      {% if feedback.user %}
+        {% trans "Submitted by:" %}
+        <a href="{{ feedback.user.get_absolute_url }}" title="{% trans "View profile" %}">
+          {{ feedback.user|display_name }}
+        </a>
+      {% else %}
+        {% trans "Submitted anonymously" %}
+      {% endif %}
+    </span>
+    <span class="feedback-date">
+      , {% trans "on" %} {{ feedback.created|date:"d M Y" }}
+    </span>
+  </p>
+
+  {% if feedback.description %}
+    <p class="content-spaces">{{ feedback.description|urlize|linebreaksbr }}</p>
+  {% endif %}
+
+  <div class="feedback-comments">
+    {% get_comment_count for feedback as comment_count %}
+    {% get_comment_list for feedback as comment_list %}
+
+    <h4 class="content-spaces feedback-title">
+      {% blocktrans %}Comments ({{ comment_count }}){% endblocktrans %}
+    </h4>
+
+    {% if comment_list %}
+      {% for comment in comment_list %}
+        <div class="message{% if comment.user.is_staff %} staff{% endif %}">
+          <a name="{{ comment.id }}"></a>
+
+          <div class="content">
+            <!--div class="avatar">{% get_user_image comment.user 40 %}</div-->
+
+            {% if comment.user.is_staff %}
+              <div class="staff">{% trans "Staff" %}</div>
+            {% endif %}
+
+            <div class="message-content">
+              <div class="details">
+                {% trans "From:" %}
+
+                <strong>
+                  {% if user == comment.user %}
+                    {% trans "you" %}
+                  {% else %}
+                    <a href="{{ comment.user.get_absolute_url }}">
+                      {{ comment.user|display_name }}
+                    </a>
+                  {% endif %}
+                </strong>
+
+                {% trans "on" %} {{ comment.submit_date|date:"M d Y" }} {% trans "at" %} {{ comment.submit_date|date:"fA" }}
+              </div>
+
+              <p>{{ comment.comment|urlize|linebreaksbr }}</p>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+
+    {% else %}
+      <p class="content-spaces">{% trans "No one has commented. Have your say." %}</p>
+    {% endif %}
+
+    {% if user.is_authenticated %}
+      <div class="content-spaces comment-form">
+        <h4>{% trans "Leave a comment" %}</h4>
+        {% get_comment_form for feedback as form %}
+        <form action="{% comment_form_target %}" method="POST">
+          {% csrf_token %}
+          <input type="hidden" name="next" value="{{ feedback.get_absolute_url }}" />
+          {{ form.comment }}
+          {{ form.honeypot }}
+          {{ form.content_type }}
+          {{ form.object_pk }}
+          {{ form.timestamp }}
+          {{ form.security_hash }}
+          <input type="submit" value="{% trans "Post comment" %}" id="id_submit" class="btn btn-primary" />
+        </form>
+      </div>
+    {% endif %}
+  </div>
+{% endblock %}
+
+{% block sidebar %}
+  {% include "djangovoice/includes/sidebar_actions.html" %}
+{% endblock %}

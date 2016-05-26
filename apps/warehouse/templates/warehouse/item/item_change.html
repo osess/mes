@@ -1,0 +1,18 @@
+
+{% load i18n %}
+{% block title %} {% trans "operation_working_timing" %} {% endblock %}
+
+{% block center_area %}
+
+
+<table class="warehouse_items_table">
+{% for item in item_list %}
+  <tr>
+    <td><a href="{{ item.get_absolute_url }}"></a></td>
+    <td>{{item.description}}</td>
+  </tr>
+{% endfor %}
+</table>
+
+
+{% endblock %}

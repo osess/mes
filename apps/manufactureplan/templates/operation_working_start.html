@@ -1,0 +1,468 @@
+
+{% extends "base.html" %}
+{% load i18n %}
+{% load permissions_tags %}
+{% load manufactureplan_tags %}
+{% block title %} {% trans "operation_working_start" %} {% endblock %}
+
+{% block center_area %}
+
+<link rel="stylesheet" type="text/css" href="/site_media/xadmin/css/themes/bootstrap-xadmin.css" />
+<link href="/site_media/xadmin/vendor/font-awesome/css/font-awesome.css" type="text/css" media="screen" rel="stylesheet" />
+<link href="/site_media/xadmin/css/xadmin.main.css" type="text/css" media="screen" rel="stylesheet" />
+<link href="/site_media/xadmin/css/xadmin.responsive.css" type="text/css" media="screen" rel="stylesheet" />
+<link href="/site_media/xadmin/css/xadmin.form.css" type="text/css" media="screen" rel="stylesheet" />
+
+
+<div class="container">
+  <h1>{% if device_item.id %}{{ device_item }}{% else %}{{ page_title }}{% endif %}</h1>
+  <div class="bs-yuankong">
+    <table class="table table-bordered nowrap-table">
+      <tr>
+        <th>{% trans "productionline" %}</th>
+        <th>{% trans "manufacture_item" %}</th>
+      </tr>
+      {% for one_node in current_productionlines %}
+      {% with one_node.productionline as productionline %}
+      <tr>
+        <td class="col-md-2">
+          {# 申请入库与申请出库，在右上角显示 start #}
+          <div class="dropdown pull-right">
+            <button class="btn btn-xs dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            {% if productionline.can_import %}
+              <li>
+                  <a name="to_import" hide="{{productionline.id}}" class="btn btn-warning">
+                      申请入库
+                  </a>
+              </li>
+            {% else %}
+              <li>
+                  <a disabled="true" class="btn">申请入库</a>
+              </li>
+            {% endif %}
+            <li role="separator" class="divider"></li>
+            {% if productionline.can_export %}
+                <li>
+                    <a name="to_export" hide="{{productionline.id}}" class="btn btn-warning">
+                        申请出库
+                    </a>
+                </li>
+            {% else %}
+              <li>
+                  <a disabled="true" class="btn">申请出库</a>
+              </li>
+            {% endif %}
+            </ul>
+          </div>
+          {# 申请入库与申请出库，在右上角显示 end #}
+          {{ productionline }}
+          <br /><br />
+          <a name="show_manufactureplan_modal" hide="{{productionline.manufactureplan.id}}" mname="{{productionline.manufactureplan}}" class="btn btn-primary btn-sm" data-toggle="modal" href="#ManufactureplanDetail">查看生产通知单</a>
+          <hr>
+          {% with technology=productionline.technology %}
+            <a href="{% url generate_technology_report technology.id %}" target="_blank">机械加工过程卡</a><br>
+            {% if technology.T_file %}
+              <a class="btn btn-primary btn-sm" href="{% url download_directory_file technology.T_file.id %}">下载工艺文件</a>
+            {% else %}
+              <a class="btn btn-default btn-sm" disabled="disabled">没有工艺文件</a>
+            {% endif %}
+            {% if technology.D2_file %}
+              <a class="btn btn-primary btn-sm" href="{% url download_directory_file technology.D2_file.id %}">下载二维图</a>
+            {% else %}
+              <a class="btn btn-default btn-sm" disabled="disabled">没有二维图</a>
+            {% endif %}
+            <br>
+            {% if technology.P_file %}
+              <a class="btn btn-primary btn-sm" href="{% url download_directory_file technology.P_file.id %}">下载程式文件</a>
+            {% else %}
+              <a class="btn btn-default btn-sm" disabled="disabled">没有程式文件</a>
+            {% endif %}
+            {% if technology.D3_file %}
+              <a class="btn btn-primary btn-sm" href="{% url download_directory_file technology.D3_file.id %}">下载三维图</a>
+            {% else %}
+              <a class="btn btn-default btn-sm" disabled="disabled">没有三维图</a>
+            {% endif %}
+          {% endwith %}
+        </td>
+        <td>
+          {# 显示完成度 进度条 #}
+          <div class="progress" style="height:10px; background-color:#FFF;">
+            <div class="progress-bar progress-bar-success" data-toggle="tooltip" title="完成{{ productionline.manu_item_group.current_state_percent }}%" style="width: {{ productionline.manu_item_group.current_state_percent }}%; height:8px;"></div>
+            <!--div class="progress-bar progress-bar-warning" style="width: 20%"></div>
+            <div class="progress-bar progress-bar-danger" style="width: 50%"></div-->
+          </div>
+          {# 显示完成度 进度条 end #}
+          <div class="">
+              {% if productionline.is_importing %}
+                {% trans "正在入库" %}
+              {% elif productionline.is_exporting %}
+                {% trans "正在出库" %}
+              {% endif %}
+          </div>
+
+        {# 遍历每一个工件 #}
+        {% for manufacture_item in one_node.manufacture_items %}
+<!-- ------------------------------------------------------------------------------------------- -->
+          {# { manufacture_item.id } #}
+          {% if manufacture_item.is_batch %}
+            <div class="panel panel-primary col-lg-3" style="padding:0;height:175px;width:250px;">
+              <div class="panel-heading">
+                <h3 class="panel-title">
+                    工步 {{ manufacture_item.current_operation_record.operation.operation_group.order }}/{{ manufacture_item.num_of_operation_group }},工序 {{ manufacture_item.current_operation_record.operation.order }}/{{ manufacture_item.num_of_current_operation }}
+                </h3>
+              </div>
+
+              <div class="panel-body">
+                <div class="row" >
+                    <div class="col-lg-2" >
+                      批次号: {{ manufacture_item.manu_item_group.batch_code }}
+                      数  量: {{ manufacture_item.manu_item_group.quantity }}
+                    </div>
+                </div>
+          {% else %}
+            <div class="panel panel-success col-lg-2" style="padding:0;height:175px;width:160px;">
+              <div class="panel-heading">
+                <h3 class="panel-title">
+                    工步 {{ manufacture_item.current_operation_record.operation.operation_group.order }}/{{ manufacture_item.num_of_operation_group }},工序 {{ manufacture_item.current_operation_record.operation.order }}/{{ manufacture_item.num_of_current_operation }}
+                </h3>
+              </div>
+
+              <div class="panel-body">
+                <div class="row" >
+                    <div class="col-lg-2" >
+                    {{ manufacture_item.code }}
+                    </div>
+                </div>
+          {% endif %}
+
+            {% if manufacture_item.is_batch %}
+              {% if productionline.can_import %}
+                {% ifequal manufacture_item.current_operation_record.status 6 %}
+                  <a class="btn btn-sm btn-success" disabled="disabled">{{ manufacture_item.current_operation_record.get_status_display }}</a>
+                {% else %}
+                  {% if device_item %}
+                  <a class="btn btn-sm btn-warning" href="{% url operation_working_timing device_item.id manufacture_item.id %}?next={{request.path}}">{{ manufacture_item.current_operation_record.get_status_display }}</a>
+                  {% else %}
+                  <a class="btn btn-sm btn-warning" href="{% url operation_working_timing 0 manufacture_item.id %}?next={{request.path}}">{{ manufacture_item.current_operation_record.get_status_display }}</a>
+                  {% endif %}
+
+                  {% if device_item %}
+                  <a class="btn btn-sm btn-warning" href="{% url operation_working_timing device_item.id manufacture_item.id %}?next={{request.path}}">{{ manufacture_item.current_operation_record.get_status_display }}</a>
+                  {% else %}
+                  <a class="btn btn-sm btn-warning" href="{% url operation_working_timing 0 manufacture_item.id %}?next={{request.path}}">{{ manufacture_item.current_operation_record.get_status_display }}</a>
+                  {% endif %}
+                {% endifequal %}
+              {% else %}
+                <a class="btn btn-sm btn-warning" disabled="disabled">{{ manufacture_item.current_operation_record.get_status_display }}</a>
+              {% endif %}
+            {% else %}
+
+              {% if manufacture_item.excessive %}
+                {# mi.qa_excessive_status  != 1 时#}
+                {# 已经存在 自检，互检 #}
+                {% if manufacture_item.is_new_check_flow_qa_self_item_wait and manufacture_item.is_new_check_flow_qa_double_item_wait %}
+                <a class="btn btn-sm btn-danger" name="qa_record_label" hide="{{manufacture_item.excessive_qa_record.id}}">{{ manufacture_item.current_operation_record.get_status_display }}</a>
+                {% else %}
+                  {% if device_item %}
+                  <a class="btn btn-sm btn-warning" href="{% url operation_working_timing device_item.id manufacture_item.id %}?next={{request.path}}">
+                            {{ manufacture_item.current_operation_record.get_status_display }}
+                  </a>
+                  {% else %}
+                    <a class="btn btn-sm btn-warning" href="{% url operation_working_timing 0 manufacture_item.id %}?next={{request.path}}">
+                          {{ manufacture_item.current_operation_record.get_status_display }}
+                        </a>
+                  {% endif %}
+                {% endif %}
+              {% else %}
+                {% if productionline.can_import %}
+                  {% if manufacture_item.current_operation_record.is_status_waiting %}
+                      <a class="btn btn-sm btn-default" disabled="disabled">
+                          {{ manufacture_item.current_operation_record.get_status_display }}
+                      </a>
+                  {% elif manufacture_item.current_operation_record.is_status_qa_inspector_record %}
+                      {% if perms.manufactureplan.quality_manufactureitem %}
+                        {% if device_item %}
+                        <a class="btn btn-sm btn-warning" href="{% url operation_working_timing device_item.id manufacture_item.id %}?next={{request.path}}">
+                            {{ manufacture_item.current_operation_record.get_status_display }}
+                        </a>
+                        {% else %}
+                        <a class="btn btn-sm btn-warning" href="{% url operation_working_timing 0 manufacture_item.id %}?next={{request.path}}">
+                            {{ manufacture_item.current_operation_record.get_status_display }}
+                        </a>
+                        {% endif %}
+
+                      {% else %}
+                        <a class="btn btn-sm btn-warning" disabled="disabled">
+                            {{ manufacture_item.current_operation_record.get_status_display }}
+                        </a>
+                      {% endif %}
+                  {% elif manufacture_item.current_operation_record.is_status_finished %}
+                      {# 已完成 #}
+                      <a class="btn btn-sm btn-success" disabled="disabled">
+                          {{ manufacture_item.current_operation_record.get_status_display }}
+                      </a>
+                  {% else %}
+                      {% if device_item %}
+                        <a class="btn btn-sm btn-warning" href="{% url operation_working_timing device_item.id manufacture_item.id %}?next={{request.path}}">
+                          {{ manufacture_item.current_operation_record.get_status_display }}
+                        </a>
+                      {% else %}
+                        <a class="btn btn-sm btn-warning" href="{% url operation_working_timing 0 manufacture_item.id %}?next={{request.path}}">
+                          {{ manufacture_item.current_operation_record.get_status_display }}
+                        </a>
+                      {% endif %}
+                  {% endif %}
+                {% else %}
+                  <a class="btn btn-sm btn-warning" disabled="disabled">
+                      {{ manufacture_item.current_operation_record.get_status_display }}
+                  </a>
+                {% endif %}
+              {% endif %}
+
+            {% endif %}
+
+            {% if use_new_qa_modal %}
+                <a class="btn btn-sm btn-info new_qa_modal" data-target="{% url show_new_qa_modal manufacture_item.id %}" title='{% trans "qa note" %}'>
+                    <i class="glyphicon glyphicon-list-alt"></i>
+                </a>
+            {% else %}
+              {% for qa_record in manufacture_item.self_records.all %}
+                {% if qa_record.item_wait %}
+                  <img data-src="holder.js/20x20/lava/text: " name="qa_record_label" data-toggle="tooltip" hide="{{qa_record.id}}" class="img-round" alt="..." title="{{ qa_record.get_type_display }} {{ qa_record.operation_record.code }} {{ manufacture_item.current_operation_record.operation.name }}" >
+                {% elif qa_record.item_pass %}
+                  <img data-src="holder.js/20x20/vine/text:  " name="qa_record_label" data-toggle="tooltip" hide="{{qa_record.id}}" class="img-round" alt="..." title="{{ qa_record.get_type_display }} {{ qa_record.operation_record.code }} {{ manufacture_item.current_operation_record.operation.name }}">
+                {% elif qa_record.item_fail %}
+                  <img data-src="holder.js/20x20/#FF0000:#FFF/text: " name="qa_record_label" data-toggle="tooltip" hide="{{qa_record.id}}" class="img-round" alt="..." title="{{ qa_record.get_type_display }} {{ qa_record.operation_record.code }} {{ manufacture_item.current_operation_record.operation.name }}">
+                {% else %}
+                  <img data-src="holder.js/20x20/#EC971F:#FFF/text: " name="qa_record_label" data-toggle="tooltip" hide="{{qa_record.id}}" class="img-round" alt="..." title="{{ qa_record.get_type_display }} {{ qa_record.operation_record.code }} {{ manufacture_item.current_operation_record.operation.name }}">
+                {% endif %}
+              {% endfor %}
+          {% endif %}
+
+          <p style="margin:4px;"></p>
+          <a class="btn btn-warning btn-sm" role="button" href="{% url generate_first_item_report manufacture_item.productionline.id %}?next={{request.path}}">
+              三检卡
+          </a>
+
+          </div>
+        </div>
+<!-- ------------------------------------------------------------------------------------------- -->
+        {% endfor %}
+
+        {% comment %}
+        {# 批量处理  条件：1. productionline 允许批量操作  2. 视图允许批量操作#}
+        {% if productionline.is_batch_handle_allowed and is_batch_handle_allowed %}
+        <div class="batch_handle pull-right">
+            <a class="btn btn-default batch-handle" data-target="{% url batch_handle productionline.id %}?source={{ source }}">
+                批量处理
+            </a>
+        </div>
+        {% endif %}
+        {% endcomment %}
+
+        <div class="action pull-right">
+            {% if productionline.is_batch_handle_allowed and is_batch_handle_allowed %}
+            <a class="btn btn-default batch-handle" data-target="{% url batch_handle productionline.id %}?source={{ source }}">
+                  {% if is_batch_check %}
+                    毛坯批量检验
+                  {% else %}
+                    批量处理
+                  {% endif %}
+            </a>
+            {% endif %}
+        </div>
+
+        </td>
+      </tr>
+      {% endwith %}
+      {% endfor %}
+    </table>
+  </div>
+</div>
+
+
+{# 批量处理，显示的modal #}
+<div id="id-modal-result">
+</div>
+
+<div id="id-modal-result-new-qa">
+</div>
+
+
+<!-- Modal:ManufactureplanDetail -->
+<div id="ManufactureplanDetail" class="modal fade detail-modal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 id="ManufactureplanDetailTitle" class="modal-title"></h4>
+      </div>
+      <div id="ManufactureplanDetailBody" class="modal-body">
+      </div>
+      <div class="modal-footer">
+        <button id="close_manufactureplan_modal" class="btn btn-default" data-dismiss="modal" aria-hidden="true">{% trans "Close" %}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal:attributes_modal -->
+<div class="modal fade" id="attributes_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="attributes_modal_label">{% trans "the manufacture_item attributes" %}</h4>
+      </div>
+      <div class="modal-body">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>{% trans "attribute name" %}</th>
+              <th>{% trans "ought" %}</th>
+              <th>{% trans "real" %}</th>
+            </tr>
+          </thead>
+          <tbody id="attributes_modal_content"></tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" id="btn_cancel" name="cancel">{% trans "cancel" %}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+
+    $("[name='show_manufactureplan_modal']").click(function(event) {
+        var manufactureplan_id = $(this).attr('hide');
+        var mname = $(this).attr('mname');
+        $.ajax({
+            type: "GET",
+            url: "{% url admin:manufactureplan_manufactureplan_changelist %}"+manufactureplan_id+"/detail/?_format=html",
+            success: function(data) {
+              $("#ManufactureplanDetailTitle").html(mname);
+              $("#ManufactureplanDetailBody").html(data);
+            },
+            error: function () {
+                alert('fail');
+            }
+        });
+    });
+    $("#close_manufactureplan_modal").click(function(event) {
+        $("#ManufactureplanDetailTitle").html("");
+        $("#ManufactureplanDetailBody").html("");
+    });
+
+    $('.panel-body').tooltip({
+      selector: "[data-toggle=tooltip]",
+      container: "body"
+    });
+
+    $('.progress').tooltip({
+      selector: "[data-toggle=tooltip]",
+      container: "body"
+    });
+
+    $("[name='qa_record_label']").click(function(event) {
+        var qa_record_id = $(this).attr('hide');
+        $.ajax({
+            type: "POST",
+            url: "{% url ajax_get_qa_record_attributes_modal_content %}",
+            dataType: "jsonp",
+            jsonp: "callback",
+            jsonpCallback:"yuankong",
+            data: {qa_record_id:qa_record_id},
+            success: function(data) {
+                if (data.result == 0){
+                    $("#attributes_modal_label").html(data.title)
+                    $("#attributes_modal_content").html(data.content)
+                    $('#attributes_modal').modal('show');
+                }else{
+                    alert(data.result+' | '+data.msg);
+                }
+            },
+            error: function () {
+                alert('fail');
+            }
+        });
+    });
+
+    $("[name='to_import']").click(function(event) {
+        var productionline_id = $(this).attr('hide');
+        $('#loading_modal').modal('show');
+        $.ajax({
+            type: "POST",
+            url: "{% url ajax_import_manufacture_items %}",
+            dataType: "jsonp",
+            jsonp: "callback",
+            jsonpCallback:"yuankong",
+            data: {productionline_id:productionline_id},
+            success: function(data) {
+                if (data.result == 0){
+                    window.location.replace(window.location.pathname+window.location.search);
+                }else{
+                    alert(data.result+' | '+data.msg);
+                }
+                $('#loading_modal').modal('hide');
+            },
+            error: function () {
+                $('#loading_modal').modal('hide');
+                alert('fail');
+            }
+        });
+    });
+
+    $("[name='to_export']").click(function(event) {
+        var productionline_id = $(this).attr('hide');
+        $('#loading_modal').modal('show');
+        $.ajax({
+            type: "POST",
+            url: "{% url ajax_export_manufacture_items %}",
+            dataType: "jsonp",
+            jsonp: "callback",
+            jsonpCallback:"yuankong",
+            data: {productionline_id:productionline_id},
+            success: function(data) {
+                if (data.result == 0){
+                    window.location.replace(window.location.pathname+window.location.search);
+                }else{
+                    alert(data.result+' | '+data.msg);
+                }
+                $('#loading_modal').modal('hide');
+            },
+            error: function () {
+                $('#loading_modal').modal('hide');
+                alert('fail');
+            }
+        });
+    });
+
+    // 批量处理
+    $('.batch-handle').click(function(e){
+        e.preventDefault();
+        var url = $(this).data('target');
+        $('#id-modal-result').load(url,function(response){
+            // console.log(response);
+            $('#id-modal-batch').modal({show:true});
+        });
+    });
+
+    // 加载检验记录
+    $('.new_qa_modal').click(function(e){
+        e.preventDefault();
+        var url = $(this).data('target');
+        $('#id-modal-result-new-qa').load(url,function(response){
+            // console.log(response);
+            $('#id-modal-new-qa').modal({show:true});
+        });
+    });
+
+</script>
+
+
+{% endblock %}

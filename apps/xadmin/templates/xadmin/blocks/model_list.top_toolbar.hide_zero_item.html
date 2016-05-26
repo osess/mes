@@ -1,0 +1,83 @@
+{% load i18n %}
+
+
+
+{% if 'content_type__model__exact=device' in request.get_full_path %}
+
+<div class="btn-group export">
+  <a class="dropdown-toggle btn btn-default btn-sm" data-toggle="dropdown" href="#">
+    <i class="icon-share"></i> {% trans "Hide or Show zero item" %} <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+      <li><a href="{% url admin:warehouse_deviceentry_changelist %}?_p_journal__id__exact=1&_p_item__content_type__model__exact=device" ><i class="icon-circle-arrow-down"></i> {{ show_or_hidden.0 }}</a></li>
+
+      <li><a href="{% url admin:warehouse_deviceentry_changelist %}?_p_journal__id__exact=1&_p_item__content_type__model__exact=device&_p_qty__gt=0" ><i class="icon-circle-arrow-down"></i> {{ show_or_hidden.1 }}</a></li>
+  </ul>
+</div>
+{% endif %}
+
+
+{% if 'content_type__model__exact=knife' in request.get_full_path %}
+
+<div class="btn-group export">
+  <a class="dropdown-toggle btn btn-default btn-sm" data-toggle="dropdown" href="#">
+    <i class="icon-share"></i> {% trans "Hide or Show zero item" %} <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+      <li><a href="{% url admin:warehouse_deviceentry_changelist %}?_p_journal__id__exact=1&_p_item__content_type__model__exact=knife" ><i class="icon-circle-arrow-down"></i> {{ show_or_hidden.0 }}</a></li>
+
+      <li><a href="{% url admin:warehouse_deviceentry_changelist %}?_p_journal__id__exact=1&_p_item__content_type__model__exact=knife&_p_qty__gt=0" ><i class="icon-circle-arrow-down"></i> {{ show_or_hidden.1 }}</a></li>
+  </ul>
+</div>
+{% endif %}
+
+
+
+
+
+{% if 'content_type__model__exact=tool' in request.get_full_path %}
+
+<div class="btn-group export">
+  <a class="dropdown-toggle btn btn-default btn-sm" data-toggle="dropdown" href="#">
+    <i class="icon-share"></i> {% trans "Hide or Show zero item" %} <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+      <li><a href="{% url admin:warehouse_deviceentry_changelist %}?_p_journal__id__exact=1&_p_item__content_type__model__exact=tool" ><i class="icon-circle-arrow-down"></i> {{ show_or_hidden.0 }}</a></li>
+
+      <li><a href="{% url admin:warehouse_deviceentry_changelist %}?_p_journal__id__exact=1&_p_item__content_type__model__exact=tool&_p_qty__gt=0" ><i class="icon-circle-arrow-down"></i> {{ show_or_hidden.1 }}</a></li>
+  </ul>
+</div>
+{% endif %}
+
+
+{% if 'content_type__model__exact=material' in request.get_full_path %}
+
+<div class="btn-group export">
+  <a class="dropdown-toggle btn btn-default btn-sm" data-toggle="dropdown" href="#">
+    <i class="icon-share"></i> {% trans "Hide or Show zero item" %} <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+      <li><a href="{% url admin:warehouse_deviceentry_changelist %}?_p_journal__id__exact=1&_p_item__content_type__model__exact=material" ><i class="icon-circle-arrow-down"></i> {{ show_or_hidden.0 }}</a></li>
+
+      <li><a href="{% url admin:warehouse_deviceentry_changelist %}?_p_journal__id__exact=1&_p_item__content_type__model__exact=material&_p_qty__gt=0" ><i class="icon-circle-arrow-down"></i> {{ show_or_hidden.1 }}</a></li>
+  </ul>
+</div>
+{% endif %}
+
+
+{% if 'content_type__model__exact=product' in request.get_full_path %}
+
+<div class="btn-group export">
+  <a class="dropdown-toggle btn btn-default btn-sm" data-toggle="dropdown" href="#">
+    <i class="icon-share"></i> {% trans "Hide or Show zero item" %} <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+      <li><a href="{% url admin:warehouse_deviceentry_changelist %}?_p_journal__id__exact=1&_p_item__content_type__model__exact=product" ><i class="icon-circle-arrow-down"></i> {{ show_or_hidden.0 }}</a></li>
+
+      <li><a href="{% url admin:warehouse_deviceentry_changelist %}?_p_journal__id__exact=1&_p_item__content_type__model__exact=product&_p_qty__gt=0" ><i class="icon-circle-arrow-down"></i> {{ show_or_hidden.1 }}</a></li>
+  </ul>
+</div>
+{% endif %}
+
+
+

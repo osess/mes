@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load static %}
+{% load url from future %}
+{% load activity_tags %}
+{% load i18n %}
+
+{% block head_title %} {% trans "actstream" %} {% endblock %}
+
+{% block center_area %}
+    {% if request.user.is_superuser %}
+    {% block something %}{% endblock %}
+    <h2>{% block content_title %}{% endblock %}</h2>
+    {% block content %}{% endblock %}
+    {% endif %}
+{% endblock %}

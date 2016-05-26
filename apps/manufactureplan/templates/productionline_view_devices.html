@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load manufactureplan_tags %}
+{% block title %} {% trans productionline.name %} {% endblock %}
+
+{% block center_area %}
+<div class="container">
+    <h3>{{ productionline }}</h3>
+    <a class="btn btn-default active" href="{% url productionlines_list %}">{% trans 'back' %}</a>
+    <div class="bs-yuankong col-xs-12">
+        <table id='form' class="table table-bordered">
+            <tr>
+                <th class="col-md-6">{% trans "oper_group_record" %}</th>
+                <th class="col-md-5">{% trans "Device" %}</th>
+                <th class="col-md-1">{% trans "action" %}</th>
+            </tr>
+            {% for oper_group_record in productionline.oper_group_records.all %}
+            <tr>
+                <td class="col-md-6">
+                    {% with operation_group=oper_group_record.operation_group %}
+                        {{ operation_group.order }}. 
+                        {{ operation_group.name|default_if_none:"" }}: 
+                        {{ operation_group.description|default_if_none:"" }}
+                        {% for operation in operation_group.operations.all %}
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;
+                            {{ operation.order }}. 
+                            {{ operation.description|default_if_none:"" }}
+                        {% endfor %}
+                    {% endwith %}
+                </td>
+                <td class="col-md-5">
+                    {% for device_item in oper_group_record.device_items.all|dictsort:'id' %}
+                        {% ifequal device_item.id 0 %}
+                        无<br>
+                        {% else %}
+                            {{ device_item }}<br>
+                        {% endifequal %}
+                    {% endfor %}
+                </td>
+                <td class="col-md-1">
+                    <a name="show_select_devices_modal" hide="{{oper_group_record.id}}" mname="{{ oper_group_record.operation_group.order }}.{{oper_group_record.operation_group.name|default_if_none:''}}" data-toggle="modal" href="#SelectDevices">{% trans 'edit' %}</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+<!-- Modal:SelectDevices -->
+<div id="SelectDevices" class="modal fade detail-modal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 id="SelectDevicesTitle" class="modal-title"></h4>
+      </div>
+      <div id="SelectDevicesBody" class="modal-body">
+      </div>
+      <div class="modal-footer">
+        <button id="ok_select_devices_modal" class="btn btn-primary" data-dismiss="modal" aria-hidden="true">{% trans "ok" %}</button>
+        <button id="close_select_devices_modal" class="btn btn-default" data-dismiss="modal" aria-hidden="true">{% trans "Close" %}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+var oper_group_record_id
+    $("[name='show_select_devices_modal']").click(function(event) {
+        oper_group_record_id = $(this).attr('hide');
+        var mname = $(this).attr('mname');
+        $.ajax({
+            type: "GET",
+            url: "{% url ajax_oper_group_record_get_can_applied_devices 999 %}".replace(999, oper_group_record_id),
+            success: function(data) {
+              $("#SelectDevicesTitle").html(mname);
+              $("#SelectDevicesBody").html(data);
+            },
+            error: function () {
+                alert('请求失败: ajax_oper_group_record_get_can_applied_devices');
+            }
+        });
+    });
+    $("#close_select_devices_modal").click(function(event) {
+        $("#SelectDevicesTitle").html("");
+        $("#SelectDevicesBody").html("");
+    });
+
+    $("#ok_select_devices_modal").click(function(event) {
+        items = document.getElementById("SelectDevicesBody").getElementsByTagName("option");
+        var device_select_values = new Array();
+        for(var i=0;i<items.length;i++){
+            if(items[i].selected == true){
+                device_select_values.push(items[i].getAttribute("value"));
+            }
+        }
+        var json_str = JSON.stringify(device_select_values);
+        $.ajax({
+            type: "POST",
+            url: "{% url ajax_oper_group_record_set_applied_devices 999 %}".replace(999, oper_group_record_id),
+            dataType: "jsonp",
+            jsonp: "callback",
+            jsonpCallback:"yuankong",
+            data: {device_entries:json_str},
+            success: function(data) {
+              window.location.replace(window.location.pathname+window.location.search);
+            },
+            error: function () {
+                alert('ajax_oper_group_record_set_applied_devices --fail--');
+            }
+        });
+    });
+
+</script>
+{% endblock %}

@@ -1,0 +1,341 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-07-01 13:30-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+
+#: models.py:7
+msgctxt "status"
+msgid "Open"
+msgstr "Açık"
+
+#: models.py:8
+msgctxt "status"
+msgid "Closed"
+msgstr "Kapalı"
+
+#: models.py:17
+msgid "New feedback will have this status"
+msgstr "Yeni geri bildirim bu duruma sahip olacak"
+
+#: models.py:37
+msgid "status"
+msgstr "durum"
+
+#: models.py:38
+msgid "statuses"
+msgstr "durumlar"
+
+#: models.py:50 templates/djangovoice/sidebar.html:13
+msgid "Type"
+msgstr "Tip"
+
+#: models.py:51
+msgid "Title"
+msgstr "Başlık"
+
+#: models.py:53
+msgid "Description"
+msgstr "Açıklama"
+
+#: models.py:55
+msgid ""
+"This will be viewable by other people - do not include any private details "
+"such as passwords or phone numbers here."
+msgstr ""
+"Bu, herkes tarafından görünür olacak. O yüzden telefon numaraları, parolalar "
+"gibi gizli bilgileri paylaşmayınız."
+
+#: models.py:58
+msgid "Anonymous"
+msgstr "İsimsiz"
+
+#: models.py:59
+msgid "Do not show who sent this"
+msgstr "Bunu kimin gönderdiğini gizle"
+
+#: models.py:61
+msgid "Private"
+msgstr "Gizli"
+
+#: models.py:63
+msgid ""
+"Hide from public pages. Only site administrators will be able to view and "
+"respond to this"
+msgstr ""
+"Sadece site yöneticileri görebilme ve yanıtlama yetkisine sahip olsun"
+
+#: models.py:66
+msgid "User"
+msgstr "Kullanıcı"
+
+#: models.py:68 templates/djangovoice/sidebar.html:3
+msgid "Status"
+msgstr "Durum"
+
+#: models.py:70
+msgid "Duplicate"
+msgstr "Çift"
+
+#: models.py:92 models.py:93 templates/djangovoice/tags/widget.html:17
+msgid "feedback"
+msgstr "geri bildirim"
+
+#: views.py:49
+msgid "Open Feedback"
+msgstr "Açık Geri Bildirimler"
+
+#: views.py:52
+msgid "Closed Feedback"
+msgstr "Kapalı Geri Bildirimler"
+
+#: views.py:55
+msgid "My Feedback"
+msgstr "Benim Geri Bildirimlerim"
+
+#: views.py:58 templates/djangovoice/detail.html:4
+#: templates/djangovoice/feedback_base.html:16
+#: templates/djangovoice/submit.html:4 templates/djangovoice/submit.html:9
+#: templates/djangovoice/widget.html:9
+msgid "Feedback"
+msgstr "Geri Bildirim"
+
+#: views.py:111
+msgid "Thanks for feedback."
+msgstr "Geri bildirim için teşekkürler."
+
+#: views.py:117
+msgid "Form is invalid."
+msgstr "Form geçersiz."
+
+#: templates/djangovoice/container.html:12
+msgid "DjangoVoice"
+msgstr "DjangoVoice"
+
+#: templates/djangovoice/delete.html:4 templates/djangovoice/detail.html:9
+msgid "Delete"
+msgstr "Sil"
+
+#: templates/djangovoice/delete.html:7
+msgid ""
+"Are you sure you wish to delete this feedback item completely, and all of "
+"the comments associated with it?"
+msgstr ""
+"Bu geri bildirim öğesini yorumlarıyla beraber silmek istediğinizden "
+"emin misiniz?"
+
+#: templates/djangovoice/delete.html:8
+msgid "There is <strong>no way to undo this!</strong>"
+msgstr "Bunu daha sonra <strong>geri alamazsınız!</strong>"
+
+#: templates/djangovoice/delete.html:12
+msgid "Delete Permenantly"
+msgstr "Kalıcı Olarak Sil"
+
+#: templates/djangovoice/delete.html:12
+msgid "or"
+msgstr "ya da"
+
+#: templates/djangovoice/delete.html:12
+msgid "leave everything as it is"
+msgstr "olduğu gibi bırak"
+
+#: templates/djangovoice/detail.html:8 templates/djangovoice/edit.html:4
+msgid "Edit"
+msgstr "Düzenle"
+
+#: templates/djangovoice/detail.html:16
+msgid "Duplicate of"
+msgstr "Tekrarı:"
+
+#: templates/djangovoice/detail.html:24
+#, python-format
+msgid ""
+"\n"
+"        from %(score.num_votes)s Vote%(score.num_votes|pluralize)s\n"
+"        "
+msgstr ""
+
+#: templates/djangovoice/detail.html:53 templates/djangovoice/list.html:44
+msgid "Submitted by:"
+msgstr "Gönderen:"
+
+#: templates/djangovoice/detail.html:54 templates/djangovoice/detail.html:55
+#: templates/djangovoice/list.html:45
+msgid "View profile"
+msgstr "Profili görüntüle"
+
+#: templates/djangovoice/detail.html:57 templates/djangovoice/list.html:51
+msgid "Submitted anonymously"
+msgstr "Göndereni gizli"
+
+#: templates/djangovoice/detail.html:60 templates/djangovoice/detail.html:98
+msgid "on"
+msgstr ""
+
+#: templates/djangovoice/detail.html:69
+#, python-format
+msgid ""
+"\n"
+"    Comments (%(comment_count)s)\n"
+"    "
+msgstr ""
+
+#: templates/djangovoice/detail.html:86
+msgid "Staff"
+msgstr "Personel"
+
+#: templates/djangovoice/detail.html:91
+msgid "From:"
+msgstr "Kimden:"
+
+#: templates/djangovoice/detail.html:93
+msgid "you"
+msgstr "siz"
+
+#: templates/djangovoice/detail.html:98
+msgid "at"
+msgstr ""
+
+#: templates/djangovoice/detail.html:108
+msgid "No one has commented. Have your say."
+msgstr "Henüz yorum yok."
+
+#: templates/djangovoice/detail.html:112
+msgid "Leave a comment"
+msgstr "Yorum yaz"
+
+#: templates/djangovoice/detail.html:123
+msgid "Post comment"
+msgstr "Yorumu gönder"
+
+#: templates/djangovoice/edit.html:15
+msgid "Save"
+msgstr "Kaydet"
+
+#: templates/djangovoice/feedback_base.html:8
+msgid "Latest feedback"
+msgstr "En son geri bildirim"
+
+#: templates/djangovoice/feedback_base.html:19
+#: templates/djangovoice/sidebar.html:7 templates/djangovoice/sidebar.html:17
+msgid "All"
+msgstr "Hepsi"
+
+#: templates/djangovoice/feedback_base.html:20
+msgid "Open"
+msgstr "Açık"
+
+#: templates/djangovoice/feedback_base.html:21
+msgid "Closed"
+msgstr "Kapalı"
+
+#: templates/djangovoice/feedback_base.html:22
+msgid "Mine"
+msgstr "Benimkiler"
+
+#: templates/djangovoice/feedback_base.html:24
+msgid "Subscribe to the feedback RSS feed"
+msgstr "Geri bildirimleri RSS üzerinden takip et"
+
+#: templates/djangovoice/feedback_base.html:39
+msgid "Back to mainpage"
+msgstr "Ana sayfaya geri dön"
+
+#: templates/djangovoice/feedback_base.html:44
+msgid "Sign out"
+msgstr "Çıkış yap"
+
+#: templates/djangovoice/feedback_base.html:51
+msgid "Sign in"
+msgstr "Giriş yap"
+
+#: templates/djangovoice/feedback_base.html:64
+msgid "Submit feedback"
+msgstr "Geri bildirim gönder"
+
+#: templates/djangovoice/feedback_base.html:99
+msgid "Powered by django-voice"
+msgstr "Gücünü django-voice uygulamasından alır"
+
+#: templates/djangovoice/list.html:38
+#, python-format
+msgid "comment%(comment_count|pluralize)s"
+msgstr ""
+
+#: templates/djangovoice/list.html:56
+#, python-format
+msgid "on %(create_date)s"
+msgstr ""
+
+#: templates/djangovoice/list.html:62
+msgid "PRIVATE"
+msgstr "GİZLİ"
+
+#: templates/djangovoice/list.html:71
+msgid "first"
+msgstr "ilk"
+
+#: templates/djangovoice/list.html:72
+msgid "previous"
+msgstr "önceki"
+
+#: templates/djangovoice/list.html:76
+msgid "Page"
+msgstr "Sayfa"
+
+#: templates/djangovoice/list.html:76
+msgid "of"
+msgstr ""
+
+#: templates/djangovoice/list.html:80
+msgid "next"
+msgstr "sonraki"
+
+#: templates/djangovoice/list.html:81
+msgid "last"
+msgstr "son"
+
+#: templates/djangovoice/list.html:86
+msgid ""
+"No one has contributed any feedback yet. Be the first and submit some "
+"feedback!"
+msgstr ""
+
+#: templates/djangovoice/submit.html:20 templates/djangovoice/widget.html:46
+msgid "Submit"
+msgstr "Gönder"
+
+#: templates/djangovoice/widget.html:17
+msgid "Share your thoughts with us."
+msgstr "Düşüncelerini bizimle paylaş."
+
+#: templates/djangovoice/widget.html:26
+msgid "Title (required)"
+msgstr "Başlık (gerekli)"
+
+#: templates/djangovoice/widget.html:29
+msgid "Write your feedback here."
+msgstr "Buraya geri bildiriminizi yazın."
+
+#: templates/djangovoice/widget.html:53
+msgid "Please login to use feedback application."
+msgstr "Geri bildirimde bulunabilmek için lütfen giriş yapın."
+
+#: templates/djangovoice/includes/fields.html:8
+msgid "required"
+msgstr "gerekli"

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block head_title %} {% trans "technology files list" %} {% endblock %}
+
+{% block center_area %}
+<div class="container">
+	<h1>{% trans "technology files list" %}</h1>
+    <div class="bs-yuankong">
+	<table class="table table-bordered table-striped">
+		<thead>
+			<tr>
+				<th> {% trans "file name" %} </th>
+				<th> {% trans "file path" %} </th>
+				<th> {% trans "action" %} </th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for file in files %}
+			<tr>
+	            <td> {{ file.name }} </td>
+	            <td> {{ file.path }} </td>
+	            <td><a href=""> {% trans "remove" %} </a></td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	<a class="btn btn-primary active" href=""> {% trans "upload" %} </a>
+	</div>
+</div>
+{% endblock %}

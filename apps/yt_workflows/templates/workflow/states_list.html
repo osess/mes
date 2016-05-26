@@ -1,0 +1,67 @@
+{% extends "hr/base.html" %}
+{% load i18n %}
+{% load workflow_tags %}
+{% load dict_value_tags %}
+{% block title %} {% trans workflow.name %} {% endblock %}
+
+{% block header_js %}
+{% endblock %}
+
+{% block extjs_center_area %}
+<div class="container-fluid">
+	<legend>
+		<h1>{% trans workflow.name %}</h1>
+	</legend>
+	<h4>workflow object:{{object.name}}</h4>
+    <div class="container-fluid">
+    	<div class="model row-fluid">
+    	{% if 1 %}
+		<form id="state_form" action="{% url stateslist workflow.id object.id %}" method="post">
+			{% csrf_token %}
+    	        <label>current_state: {{current_state.name}}</label>
+    	        <div style="overflow: auto;">
+    	        <table class="table table-bordered">
+    		    <tr>
+		        {% for state in workflow_states %}
+		            {% if state != workflow_states.0 %}<td>===></td>{% endif %}
+		            {% if current_state.id == state.id %}
+		            <td bgcolor='#00FF00'>{{state.name}}</td>
+		            {% else %}
+                    <td>{{state.name}}</td>
+                    {% endif %}
+		        {% endfor %}
+		        </tr>
+    		    <tr>
+		        {% for state in workflow_states %}
+		        
+		            {% if state != workflow_states.0 %}<td>&nbsp;</td>{% endif %}
+		            <td>
+			            {% state_users state %}
+		            </td>
+		        {% endfor %}
+		        </tr>
+		        </table>
+		        </div>
+		        <input id='transition_id' type='hidden' name='transition_id' value=''>
+		        {% for transition in transitions %}
+    	            <input id='{{ transition.id }}' class="btn" value='{{ transition.name }}' onclick="form_submit(this.id)"/>
+    	        {% endfor %}
+		</form>
+    	{% endif %}
+    	流程图：
+    	<img style='display:block; ' id='base64image' src="{{file_data}}"/>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+{% block jsblock %}
+<script type="text/javascript">
+	function form_submit(id)
+	{
+		document.getElementById( "transition_id" ).value = id
+		//alert("---"+transition_id.value);
+	    document.getElementById("state_form").submit();
+	}
+</script>
+{% endblock %}

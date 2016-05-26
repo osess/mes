@@ -1,0 +1,28 @@
+{% extends "subnav_base.html" %}
+{% load i18n %}
+{% load url from future %} 
+{% block bodyclass %}about{% endblock %}
+
+{% block body %}
+{% comment %}
+<ul class="subnavilist">
+    <li><a href="{% url 'messages_inbox' %} ">{% trans "Inbox" %}</a></li>
+    <li><a href="{% url 'messages_outbox' %} ">{% trans "Sent Messages" %}</a></li>
+    <li><a href="{% url 'messages_compose' %} ">{% trans "New Message" %}</a></li>
+    <li><a href="{% url 'messages_trash' %} ">{% trans "Trash" %}</a></li>
+    <li><a href="{% url 'messages_to_all' 0 %} ">{% trans "messages_to_all" %}</a></li>    
+</ul>
+{% endcomment %}
+<div class="btn-group">
+  <a href="{% url 'messages_inbox' %}"><button type="button" class="btn btn-default" >{% trans "Inbox" %}</button></a>
+  <a href="{% url 'messages_outbox' %} "><button type="button" class="btn btn-default">{% trans "Sent Messages" %}</button></a>
+  <a href="{% url 'messages_compose' %} "><button type="button" class="btn btn-default">{% trans "New Message" %}</button></a>
+  <a href="{% url 'messages_trash' %} "><button type="button" class="btn btn-default">{% trans "Trash" %}</button></a>
+  <a href="{% url 'messages_to_all' 0 %} "><button type="button" class="btn btn-default">{% trans "messages_to_all" %}</button></a>
+</div>
+
+{% block content %}  
+{% endblock %}
+
+{% endblock %}
+

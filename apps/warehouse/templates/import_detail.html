@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %} {% trans "import detail" %} {% endblock %}
+
+{% block center_area %}
+<div class="container">
+    <h1>{% trans "import list" %}</h1>
+    <div class="bs-yuankong">
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>{% trans "item" %}</th>   
+            <th>{% trans "internal_code" %}</th>
+            <th>{% trans "unit" %}</th>
+            <th>{% trans "qty" %}</th>        
+        </tr>
+        </thead>
+        {% for transport_list_detail in transport_list_details%}
+        <tr>
+            <td>
+            {{transport_list_detail.item}}
+            </td>   
+
+            <td>
+            {{transport_list_detail.item_entry_code}}
+            </td>    
+
+            <td>
+            {{transport_list_detail.unit}}
+            </td>    
+
+            <td>
+            {{transport_list_detail.qty}}
+            </td> 
+        </tr>
+        {% endfor %}
+    </table>
+
+    {% if import_list.state == 1 %}
+        <a class="btn btn-default active" href="{% url import_to_warehouse import_list_id %}">{% trans "import all" %}</a>
+    {% endif %}
+    <a class="btn btn-default active" href="{{redirecturl}}">{% trans "back" %}</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load manufactureplan_tags %}
+{% block title %} {% trans productionline.name %} {% endblock %}
+
+{% block center_area %}
+<script src="/site_media/static/js/validate.min.js"></script>
+<script src="/site_media/static/js/validate_helper.min.js"></script>
+
+<div class="container">
+    <h3>{{ productionline.name }}{% trans ' 刀具申请' %}</h3>
+    <div class="bs-yuankong">
+            {% csrf_token %}
+            <table id='form' class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>{% trans "oper_group_record" %}</th>
+                        <th>{% trans "operation_record" %}</th>
+                        <th>{% trans "Knifes" %}</th>
+                    </tr>
+                </thead>
+                {% for oper_group_record in productionline.oper_group_records.all %}
+                <tr>
+                    <td>
+                        {{ oper_group_record.code }}
+                    </td>
+                    <td colspan='2'>
+                    {% for operation_record in oper_group_record.operation_records.all %}
+                    <table class="table table-bordered">
+                    <tr>
+                        <td>
+                            {{ operation_record.code }}
+                        </td>
+                        <td id="{{ operation_record.id }}" name="knifes">
+                            <div style="overflow-x: auto; overflow-y: auto; height: 100px;">
+                                {% for knife_item in knife_items %}
+                                    <label class="checkbox">
+                                        <input type="checkbox" id="{{knife_item.id}}" value="{{knife_item.id}}">
+                                        {{ knife_item }}
+                                    </label>
+                                {% endfor %}
+                            </div>
+                        </td>
+                    </tr>
+                    </table>
+                    {% endfor %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+            <br />
+            <a id='btn_submit' class="btn btn-default active" value="Confirm">{% trans 'Confirm' %}</a>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+            function getCookie(name) {
+                var cookieValue = null;
+                if (document.cookie && document.cookie != '') {
+                    var cookies = document.cookie.split(';');
+                    for (var i = 0; i < cookies.length; i++) {
+                        var cookie = jQuery.trim(cookies[i]);
+                        // Does this cookie string begin with the name we want?
+                        if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+            if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+                // Only send the token to relative URLs i.e. locally.
+                xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+            }
+        }
+    });
+    
+
+    $("#btn_submit").click(function() {
+        var forms_value = new Array();
+        $("[name='knifes']").each(function(){
+            var operation_record_id = $(this).attr('id');
+            $(this).find("[type='checkbox']").each(function(){
+                if($(this).prop("checked")){
+                    forms_value.push({"operation_record_id":operation_record_id, "knife_item_id":$(this).attr('id')});
+                }
+            });
+        });
+        var json_str = JSON.stringify(forms_value);
+        $.ajax({
+            type: "POST",
+            url: "{% url ajax_productionline_apply_knifes productionline.id %}",
+            dataType: "jsonp",
+            jsonp: "callback",
+            jsonpCallback:"yuankong",
+            data: {attributes:json_str,},
+            success: function(data) {
+                if (data.result != 0){
+                    alert(data.msg);
+                }else{
+                    window.location.replace('{{redirecturl}}');
+                }
+            },
+
+            error: function () {
+                alert('fail');
+            }
+        });
+    });
+
+</script>
+{% endblock %}

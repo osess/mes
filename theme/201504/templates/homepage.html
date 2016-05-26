@@ -1,0 +1,85 @@
+{% extends "banner_base.html" %}
+
+{% load i18n %}
+{% load ifsetting_tag %}
+
+{% block head_title %}{% trans "Welcome" %}{% endblock %}
+
+
+{% block body_class %}bs-docs-home{% endblock %}
+
+{% block extra_head %}
+
+{% endblock %}
+
+{% block main_class %}bs-masthead{% endblock %}
+
+{% block body_base %}
+
+<div class="container">
+
+<div class="row">
+{% if perms.manufactureplan.view_order %}
+  <div class="col-xs-6 col-md-2">
+      <a href="#hr_basic" class="thumbnail" role="button" data-toggle="modal">
+        <img data-src="holder.js/152x140/sky/text:市场/size:20" alt="">
+      </a>
+  </div>
+{% endif %}
+{% if perms.manufactureplan.view_productionline %}
+  <div class="col-xs-6 col-md-2">
+      <a href="#hr_basic" class="thumbnail" role="button" data-toggle="modal">
+        <img data-src="holder.js/152x140/social/text:生产/size:20" alt="">
+      </a>
+  </div>
+{% endif %}
+{% if perms.manufactureplan.quality_dispaly %}
+  <div class="col-xs-6 col-md-2">
+          <a href="#hr_vocation" class="thumbnail" data-toggle="modal">
+            <img data-src="holder.js/152x140/vine/text:质量部/size:20" alt="">
+          </a>
+  </div>
+{% endif %}
+
+{% if perms.technologies.view_technology %}
+  <div class="col-xs-6 col-md-2">
+          <a href="#hr_benefit" class="thumbnail" data-toggle="modal">
+            <img data-src="holder.js/152x140/#f35:#fff/text:技术部/size:20" alt="">
+          </a>
+  </div>
+{% endif %}
+{% if perms.warehouse.view_itementry %}
+  <div class="col-xs-6 col-md-2">
+          <a href="#hr_performance" class="thumbnail" data-toggle="modal">
+            <img data-src="holder.js/152x140/#d7fc05:#000/text:仓库/size:20" alt="">
+          </a>
+  </div>
+{% endif %}
+
+{% if perms.auth.view_user %}
+      <div class="col-xs-6 col-md-2">
+          <a href="#hr_contract" class="thumbnail" data-toggle="modal">
+            <img data-src="holder.js/152x140/#33F:#fff/text:报表/size:20" alt="">
+          </a>
+  </div>
+{% endif %}
+    <!--div class="bs-example bs-example-images">
+      <img data-src="holder.js/140x140" class="img-rounded" alt="A generic square placeholder image with rounded corners">
+      <img data-src="holder.js/140x140" class="img-circle" alt="A generic square placeholder image where only the portion within the circle circumscribed about said square is visible">
+      <img data-src="holder.js/140x140" class="img-thumbnail" alt="A generic square placeholder image with a white border around it, making it resemble a photograph taken with an old instant camera">
+    </div-->
+</div>
+
+
+
+</div>
+
+
+{% endblock %}
+
+{% comment %}
+{% block footer_ads %}
+  <div id="carbonads-container"><div class="carbonad"><div id="azcarbon"><span class="carbonad-image"><a href="#" target="_blank"><!--img class="carbonad-image carbonad-img" src="Bootstrap3_files/G6NDC27ICWAI627UFT7LYK7UCKBILKJMC6YIE.png" alt="上海远途" border="0" width="130" height="100"--></a> </span><span class="carbonad-text">如有任何问题，请联系我们 info@octopusinfo.com</span><span class="carbonad-tag"> 技术支持： <a href="http://octopusinfo.com/">上海远途信息</a></span><!--img src="Bootstrap3_files/i.gif" border="0" width="0px" height="0px"--></div><!--script>var z = document.createElement("script"); z.async = true; z.src = "http://engine.carbonads.com/z/32341/azcarbon_2_1_0_HORIZ"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(z, s);</script--></div></div>
+{% endblock %}
+{% endcomment %}
+

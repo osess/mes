@@ -1,0 +1,159 @@
+{% extends "ext_base.html" %}
+
+{% load i18n %}
+{% load staticfiles %}
+{% load pagination_tags %}
+{% load crispy_forms_tags %}
+
+{% block extjs_center_area %}
+    <div class="well well-sm" style="padding:4px;">
+        <select id="selected_list_category" style="width:200px;">
+            <option value='3'>{% trans "knife" %}</option>
+        </select>
+        <select id="selected_year" style="width:200px;">
+        {% for year in years %}
+            <option value="{{ year }}">{{ year }}{% trans "year" %}</option>
+        {% endfor %}
+        </select>
+    </div>
+    <div id="display_area"></div>
+{% endblock %}
+
+{% block jsblock %}
+    <script type="text/javascript">
+
+        Ext.onReady(function(){
+            Ext.getCmp('center-panel').child('#hr').setTitle('{{title}}');
+            Ext.getCmp('west-panel').child('#menu_warehouse').expand();
+            
+            var year = $("#selected_year option:selected").val();
+            var url = '{% url json_ext_warehouse_inventory 999 %}'.replace (999, year);
+
+            var Grid1Store = new Ext.data.JsonStore({
+                pageSize: 20,
+                fields: [ '0', '1', '2', '3', '4','5','6','7','8','9','10','11','12' ],
+                //autoLoad: true,
+                sorters: [{
+                    property : 'i',
+                    direction:'ASC'
+                }],
+                proxy:{
+                    type:'ajax',
+                    url:url,
+                    reader:{
+                        root:'data',
+                        totalProperty: 'totalCount'
+                    }
+                }
+            });
+
+            var grid = Ext.create('Ext.grid.Panel', {
+                renderTo : 'display_area', 
+                title: '{{title}}',
+                store: Grid1Store,
+                columns: [
+                    {text: "{% trans "item entry" %}", flex: 1, dataIndex: '0', sortable: true},
+                    {text: "1{% trans "month" %}", flex: 1, dataIndex: '1', sortable: true},
+                    {text: "2{% trans "month" %}", flex: 1, dataIndex: '2', sortable: true},
+                    {text: "3{% trans "month" %}", flex: 1, dataIndex: '3', sortable: true},
+                    {text: "4{% trans "month" %}", flex: 1, dataIndex: '4', sortable: true},
+                    {text: "5{% trans "month" %}", flex: 1, dataIndex: '5', sortable: true},
+                    {text: "6{% trans "month" %}", flex: 1, dataIndex: '6', sortable: true},
+                    {text: "7{% trans "month" %}", flex: 1, dataIndex: '7', sortable: true},
+                    {text: "8{% trans "month" %}", flex: 1, dataIndex: '8', sortable: true},
+                    {text: "9{% trans "month" %}", flex: 1, dataIndex: '9', sortable: true},
+                    {text: "10{% trans "month" %}", flex: 1, dataIndex: '10', sortable: true},
+                    {text: "11{% trans "month" %}", flex: 1, dataIndex: '11', sortable: true},
+                    {text: "12{% trans "month" %}", flex: 1, dataIndex: '12', sortable: true},
+                ],
+                //forceFit: true,
+
+                bbar: Ext.create('Ext.PagingToolbar', {
+                    store: Grid1Store,
+                    displayInfo: true,
+                    displayMsg: '{0} - {1} of {2}',
+                    emptyMsg: "No topics to display"
+                }),
+                region: 'north'
+            });
+            Grid1Store.loadPage(1);
+
+            $("#selected_year").change(function() {
+                var year = $("#selected_year option:selected").val();
+                var url = '{% url json_ext_warehouse_inventory 999 %}'.replace (999, year);
+                grid.getStore().getProxy().url = url;
+                grid.getStore().reload();
+            }).change();
+
+
+                var year = $("#selected_year option:selected").val();
+                var url = '{% url json_ext_warehouse_inventory 999 %}?func=2'.replace (999, year);
+                var store2 = new Ext.data.JsonStore({
+                  fields: [{name:'month', type: 'string'}, {name:'cNum', type:'int'}],
+                  autoLoad: true,
+                  proxy:{
+                        type:'ajax',
+                        url:url,
+                        reader:{
+                             root:''
+                        }
+                    }
+                });
+                var chart_inventory = new Ext.chart.Chart({
+                    width: 800,
+                    height: 500,
+                    animate: true,
+                    store: store2,
+                    shadow: true,
+                    axes: [{
+                        type: 'Numeric',
+                        position: 'left',
+                        fields: ['cNum'],
+                        label: {
+                            renderer: Ext.util.Format.numberRenderer('0,0')
+                        },
+                        title: '{% trans "Inventory" %}',
+                        grid: true,
+                        minimum: 0
+                    }, {
+                        type: 'Category',
+                        position: 'bottom',
+                        fields: ['month'],
+                        title: '{% trans "Month" %}'
+                    }],
+                    series: [{
+                        type: 'column',
+                        axis: 'bottom',
+                        highlight: true,
+                        xField: 'month',
+                        yField: 'cNum',
+                        tips: {
+                          trackMouse: true,
+                          width: 190,
+                          height: 28,
+                          renderer: function(storeItem, item) {
+                            var total = 0;
+                            store2.each(function(rec) {
+                                total += rec.get('cNum');
+                            });
+                            this.setTitle(storeItem.get('month') + '(' + storeItem.get('cNum') + ') : '+ Math.round(storeItem.get('cNum') / total * 100) + '%');
+                          }
+                        },
+                    }]
+                });
+
+                var panel_employee = Ext.create('widget.panel', {
+                    width: 800,
+                    height: 600,
+                    title: '{{title}}{% trans "Chart" %}',
+                    layout: 'fit',
+                    items: chart_inventory
+                });
+                Ext.getCmp('center-panel').insert(0, panel_employee);
+
+
+
+        });
+
+    </script>
+{% endblock %}

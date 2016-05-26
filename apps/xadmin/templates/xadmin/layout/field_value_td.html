@@ -1,0 +1,8 @@
+{% load xadmin_tags %}
+<td class="field{% if field.field.name %} field-{{ field.field.name }}{% endif %}  table-trans">
+     {{ result|trans_to_table|safe }}
+</td>
+
+
+
+

@@ -1,0 +1,43 @@
+
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %} {% trans "operation_working_start" %} {% endblock %}
+
+{% block center_area %}
+<div class="container">
+  <h1>设备列表</h1>
+  <div class="bs-yuankong">
+    {% for device_item in device_items %}
+      <a href="{% url operation_working_start device_item.id %}"><img data-src="holder.js/200x80/social/text:{{ device_item.internal_code }}" class="img-rounded" alt="..." style="margin:5px;"></a>
+    {% endfor %}
+    <hr />
+    {# 检验， 去毛刺，热处理，装箱，时效  #}
+    <div>
+        {% if is_contains_batch_check %}
+        {% if perms.manufactureplan.quality_dispaly %}
+        {# 需要 settings 开启该功能 #}
+        <a href="{% url operation_working_check %}">
+            <img data-src='holder.js/200x80/social/text:{% trans "check" %}' class="img-rounded" alt="..." style="margin:5px;">
+        </a>
+        {% endif %}
+        {% endif %}
+        <a href="{% url operation_working_wipe_burr %}">
+            <img data-src='holder.js/200x80/social/text:{% trans "wipe burr" %}' class="img-rounded" alt="..." style="margin:5px;">
+        </a>
+        <a href="{% url operation_working_heattreatment %}">
+            <img data-src='holder.js/200x80/social/text:{% trans "heattreatment" %}' class="img-rounded" alt="..." style="margin:5px;">
+        </a>
+        <a href="{% url operation_working_incasement %}">
+            <img data-src='holder.js/200x80/social/text:{% trans "incasement" %}' class="img-rounded" alt="..." style="margin:5px;">
+        </a>
+        <a href="{% url operation_working_period %}">
+            <img data-src='holder.js/200x80/social/text:{% trans "period" %}' class="img-rounded" alt="..." style="margin:5px;">
+        </a>
+        {# 其它 #}
+        <a href="{% url operation_working_other %}">
+            <img data-src='holder.js/200x80/social/text:{% trans "other" %}' class="img-rounded" alt="..." style="margin:5px;">
+        </a>
+      </div>
+  </div>
+</div>
+{% endblock %}

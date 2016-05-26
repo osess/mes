@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %} {% trans "productionline of first item report" %} {% endblock %}
+
+{% block body %}
+<div>
+    <h2>{% trans "productionline list" %}</h2>
+    <table border="1">
+        <tr>
+            <th>{% trans "productionline" %}</th>            
+            
+        </tr>
+        {% for productionline in productionline_objects %}
+        <tr>
+            <td>
+            <a href="{% url generate_first_item_report productionline.id %}">{{productionline}}</a>    
+            </td>        
+            
+        </tr>
+        {% endfor %}
+    </table>
+
+</div>
+
+{% endblock %}

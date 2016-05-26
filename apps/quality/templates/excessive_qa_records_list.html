@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %} {% trans "excessive_qa_records_list" %} {% endblock %}
+
+{% block center_area %}
+<div class="container">
+  {% if perms.manufactureplan.quality_dispaly %}
+  <h1>{% trans 'excessive_qa_records_list' %}</h1>
+  <div class="bs-yuankong">
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>{% trans "manufacture_item" %}</th>
+          <th>{% trans "qa_records" %}</th>
+        </tr>
+      </thead>
+      {% for manufacture_item in manufacture_items %}
+      <tr>
+        <td>
+          <h3>{{ manufacture_item }}</h3><hr>
+          <a class="btn btn-primary active" href="{% url generate_single_reject_project_report manufacture_item.id %}" target="_blank">{% trans "质量记录报表" %}</a>
+        </td>
+        <td>
+          <ul>
+          {% for excessive_qa_record in manufacture_item.excessive_qa_records %}
+            {% if excessive_qa_record.item_wait %}
+              <li><a class="btn btn-warning active" href="{% url excessive_qa_record_view excessive_qa_record.id %}?next={{request.path}}">{{ excessive_qa_record }}</a></li>
+            {% endif %}
+            {% if excessive_qa_record.item_pass %}
+              <li><a class="btn btn-success active" href="{% url excessive_qa_record_view excessive_qa_record.id %}?next={{request.path}}">{{ excessive_qa_record }}</a></li>
+            {% endif %}
+            {% if excessive_qa_record.item_fail %}
+              <li><a class="btn btn-danger active" href="{% url excessive_qa_record_view excessive_qa_record.id %}?next={{request.path}}">{{ excessive_qa_record }}</a>
+              {% with todo_type=manufacture_item.excessive_qa_record.reject_product_record.all.0.todo_type %}
+                <span class='label label-{% ifequal todo_type 1 %}default{% endifequal %}{% ifequal todo_type 2 %}success{% endifequal %}{% ifequal todo_type 3 %}warning{% endifequal %}{% ifequal todo_type 4 %}danger{% endifequal %}'>{{ manufacture_item.excessive_qa_record.reject_product_record.all.0.get_todo_type_display }}</span>
+              {% endwith %}</li>
+            {% endif %}
+          {% endfor %}
+          </ul>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+  {% else %}
+    <h1 class="text-danger">您没有权限访问此页面。</h1>
+  {% endif %}
+</div>
+{% endblock %}

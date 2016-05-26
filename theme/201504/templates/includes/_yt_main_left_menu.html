@@ -1,0 +1,165 @@
+{% load i18n %}
+<div class="col-md-1" style="padding:0 170px 0 0;">
+<nav>
+    <ul class="mcd-menu">
+      <li>
+        <a href="/">
+          <i class="fa fa-home"></i>
+          <strong>总览</strong>
+        </a>
+      </li>
+  {% if perms.productcatalog.view_product or perms.companydepartment.view_department %}
+    {% if perms.customer.view_customer %}
+    <li><a href="{% url admin:customer_customer_changelist %}"><i class="fa fa-building-o fa-lg"></i><strong>客户分类</strong></a></li>
+    {% endif %}
+    {% if perms.productcatalog.view_product %}
+    <li><a href="{% url admin:productcatalog_product_changelist %}?_p_type__exact=1&kind_of_category=product&is_kind=true"><i class="fa fa-tags fa-lg"></i><strong>产品目录</strong></a></li>
+    {% endif %}
+    {% if perms.person.view_employee %}
+    <li><a href="{% url admin:person_employee_changelist %}"><i class="fa fa-group fa-lg"></i><strong>员工信息</strong></a></li>
+    {% endif %}
+
+  {% endif %}
+
+
+{% if perms.manufactureplan.view_order %}
+      <li class="{{ l_m_marketing_active }}">
+        <a href="">
+          <i class="fa fa-signal fa-lg"></i>
+          <strong>市场部<i class="fa fa-caret-down pull-right"></i></strong>
+        </a>
+        <ul>
+
+          {% if perms.manufactureplan.view_order %}
+            <li><a href='{% url admin:manufactureplan_order_changelist %}?_p_status__exact=1'>{% trans 'orders' %}</a></li>
+          {% endif %}
+          {% if perms.manufactureplan.view_manufactureplan %}
+            <li><a href='{% url admin:manufactureplan_manufactureplan_changelist %}?_p_status__exact=1'>{% trans 'manufacture_plan' %}</a></li>
+          {% endif %}
+          {% if perms.manufactureplan.view_manufactureitemgroup %}
+            <li><a href='{% url admin:manufactureplan_manufactureitemgroup_changelist %}'>{% trans 'productionline' %}</a></li>
+          {% endif %}
+          {% if perms.manufactureplan.view_manufactureitem %}
+            <li><a href='{% url admin:manufactureplan_manufactureitem_changelist %}'>工件</a></li>
+          {% endif %}
+        </ul>
+      </li>
+{% endif %}
+
+
+{% if perms.manufactureplan.view_productionline %}
+      <li class="{{ l_m_manufacture_active }}">
+        <a href="">
+          <i class="fa fa-gavel fa-lg"></i>
+          <strong>生产部<i class="fa fa-caret-down pull-right"></i></strong>
+        </a>
+        <ul>
+          <li><a href='{% url operation_working_device_items_list %}'>{% trans 'working dashboard' %}</a></li>
+          {% if perms.manufactureplan.change_productionline %}
+            <li><a href='{% url productionlines_list %}'>{% trans 'productionlines list' %}</a></li>
+          {% endif %}
+          {% if perms.manufactureplan.monitor_productionLine %}
+            <li><a href='{% url productionlines_monitoring %}'>生产监控</a></li>
+          {% endif %}
+        </ul>
+
+      </li>
+{% endif %}
+
+
+{% if perms.manufactureplan.quality_dispaly %}
+      <li class="{{ l_m_manufacture_active }}">
+        <a href="">
+          <i class="fa fa-dot-circle-o fa-lg"></i>
+          <strong>质量部<i class="fa fa-caret-down pull-right"></i></strong>
+        </a>
+        <ul>
+          <li><a href='{% url excessive_qa_records_list %}'>{% trans 'excessive_qa_records_list' %}</a></li>
+          <li><a href='{% url wait_excessive_qa_records_list %}'>{% trans '待处理' %}</a></li>
+          <li><a href='{% url pass_excessive_qa_records_list %}'>{% trans '通过单(检验员)' %}</a></li>
+          <li><a href='{% url fail_excessive_qa_records_list %}'>{% trans '不通过单(检验员)' %}</a></li>
+          <li><a href='{% url blank_no_passed_list %}'>{% trans 'blank no passed list' %}</a></li>
+          <li><a href='{% url qa_record_list %}'>{% trans 'qa records search' %}</a></li>
+        </ul>
+    </li>
+{% endif %}
+
+{% if perms.warehouse.view_itementry %}
+      <li class="{{ l_m_manufacture_active }}">
+        <a href="">
+          <i class="fa fa-cubes fa-lg"></i>
+          <strong>仓库<i class="fa fa-caret-down pull-right"></i></strong>
+        </a>
+        <ul>
+          <li>
+              <a href='{% url admin:warehouse_itementry_changelist %}?_p_journal__id__exact=1&_p_item__content_type__model__exact=product&_p_location__type__exact=1'>产品信息</a>
+          </li>
+          <li>
+              <a href='{% url admin:warehouse_deviceentry_changelist %}?_p_journal__id__exact=1&_p_item__content_type__model__exact=device&_p_location__type__exact=1'>设备信息</a>
+          </li>
+          <li>
+              <a href='{% url admin:warehouse_deviceentry_changelist %}?_p_journal__id__exact=1&_p_item__content_type__model__exact=knife&_p_location__type__exact=1'>刀具信息</a>
+          </li>
+          <li>
+              <a href='{% url admin:warehouse_deviceentry_changelist %}?_p_journal__id__exact=1&_p_item__content_type__model__exact=tool&_p_location__type__exact=1'>工具信息</a>
+          </li>
+          <li>
+              <a href='{% url admin:warehouse_itementry_changelist %}?_p_journal__id__exact=1&_p_item__content_type__model__exact=material&_p_location__type__exact=1'>材料信息</a>
+          </li>
+          <li class="divider"><hr /></li>
+      {% if perms.warehouse.add_transportlist %}
+      <li><a href='{% url applications_list %}'>需求列表</a></li>
+      {% endif %}
+      <li><a href='{% url admin:maintenance_maintenance_changelist %}'>维护记录</a></li>
+      <li><a href='{% url admin:productcatalog_attribute_changelist %}'>属性列表</a></li>
+      <li><a href='{% url admin:warehouse_location_changelist %}'>库位设置</a></li>
+      <li><a href='{% url admin:warehouse_electricitycharge_changelist %}'>电量使用</a></li>
+    </ul>
+  </li>
+{% endif %}
+
+{% if perms.technologies.view_technology %}
+      <li class="{{ l_m_manufacture_active }}">
+        <a href="">
+          <i class="fa fa-tasks fa-lg"></i>
+          <strong>技术部<i class="fa fa-caret-down pull-right"></i></strong>
+        </a>
+        <ul>
+    {% if perms.technologies.view_technology %}
+      <li><a href='{% url admin:technologies_technology_changelist %}?_p_status__exact=1'>{% trans 'technology' %}</a></li>
+    {% endif %}
+    {% if perms.technologies.view_operationgroup %}
+      <li><a href='{% url admin:technologies_operationgroup_changelist %}'>{% trans 'operation group' %}</a></li>
+    {% endif %}
+    {% if perms.technologies.view_operation %}
+      <li><a href='{% url admin:technologies_operation_changelist %}'>{% trans 'operation' %}</a></li>
+    {% endif %}
+    {% if perms.technologies.view_technology %}
+      <li><a href='{% url technologies_list %}'>{% trans 'technologies list' %}</a></li>
+    {% endif %}
+    </ul>
+  </li>
+{% endif %}
+
+{% if perms.auth.view_user %}
+    <li class="{{ l_m_report_active }}">
+      <a href="{% url ext_manufactureitem_working_time %}" style="width:100%;"><strong>报表中心</strong></a>
+    </li>
+{% endif %}
+
+    </ul>
+  </nav>
+</div>
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $('[data-toggle="popover"]').popover({
+        placement : 'right',
+        html: true
+    });
+    //$('[data-toggle="popover"]').on('click',function(e){
+    //    $('[data-toggle="popover"]').not(this).popover('hide');
+    //});
+});
+</script>

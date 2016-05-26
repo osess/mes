@@ -1,0 +1,202 @@
+{% extends base_template %}
+{% load i18n %}
+{% load url from future %}
+{% load xadmin_tags %}
+
+{% block extrastyle %}
+<style type="text/css">
+  .btn-toolbar{margin-top: 0;}
+  #content-block.full-content{margin-left: 0;}
+  /*.table-col-hidden is add by lxy*/
+  .table-col-hidden{ 
+              display: none; 
+          }
+</style>
+{% endblock %}
+{% block bodyclass %}change-list{% endblock %}
+
+{% block nav_title %}{% if brand_icon %}<i class="icon-{{brand_icon}}"></i> {% endif %}{% trans brand_name %}{% endblock %}
+
+{% block nav_toggles %}
+{% include "xadmin/includes/toggle_menu.html" %}
+{% if has_add_permission %}
+  <a href="{{add_url}}" class="navbar-toggle pull-right"><i class="icon-plus icon-white"></i></a>
+{% endif %}
+<button class="navbar-toggle pull-right" data-toggle="collapse" data-target=".content-navbar .navbar-collapse">
+  <i class="icon-filter icon-white"></i>
+</button>
+{% endblock %}
+
+{% block nav_btns %}
+  {% if has_add_permission %}
+    <a href="{{add_url}}" class="btn btn-info btn-sm pull-right" role="button"><i class="icon-plus icon-white"></i> 
+    {#% trans "Add" %#} {#% trans cl.opts.verbose_name %#}</a>
+  {% endif %}
+{% endblock nav_btns %}
+
+{% block content %}
+  <div class="content-toolbar btn-toolbar pull-right clearfix">
+    {% view_block 'top_toolbar' %}
+    {% block toolbar_columes %}
+    <div class="btn-group">
+      <a class="dropdown-toggle btn btn-default btn-sm" data-toggle="dropdown" href="#">
+        <i class="icon-list-alt"></i> {% trans "Columns" %} <span class="caret"></span>
+      </a>
+      <ul class="dropdown-menu model_fields pull-right" role="menu" aria-labelledby="dLabel">
+        <li><a href="{{clean_select_field_url}}"><i class="icon-refresh"></i> {% trans "Restore Selected" %}</a></li>
+        <li class="divider"></li>
+        {% for f, selected, flink in model_fields %}
+        <li><a href="{{flink}}">
+          {% if selected %}<i class="icon-check"></i>{% else %}<i class="icon-blank"></i>{% endif %}
+          {{f.verbose_name}}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+    <!--{#{% endblock toolbar_columes %}
+    {% block toolbar_layouts %}
+    <div class="btn-group layout-btns" data-toggle="buttons">
+      <label class="btn btn-default btn-sm layout-normal active">
+        <input type="radio"> <i class="icon-th-large"></i>
+      </label>
+      <label class="btn btn-default btn-sm layout-condensed">
+        <input type="radio"> <i class="icon-th"></i>
+      </label>
+      {% view_block 'top_layout_btns' %}
+    </div>
+    {% endblock toolbar_layouts %}#}-->
+    <!-- lxy -->
+    {% if perms.request.is_superuser %}
+    {% block toolbar_fullscreen %} 
+    <div class="btn-group layout-btns" data-toggle="buttons-checkbox">
+      <button type="button" class="btn btn-default btn-sm layout-full"><i class="icon-fullscreen"></i></button>
+      {% view_block 'top_check_btns' %}
+    </div>
+    {% endblock toolbar_fullscreen %}
+    {% endif %}
+
+    {% view_block 'top_btns' %}
+  </div>
+
+  <ul class="pagination pagination-sm pagination-left pagination-inline">
+    {% view_block 'pagination' 'small' %}
+  </ul>
+  
+  <form id="changelist-form" action="" method="post"{% view_block 'result_list_form' %}>{% csrf_token %}
+  {% view_block 'results_top' %}
+  <div class="results table-responsive">
+  {% if results %}
+  {% block results_grid %}
+  <table class="table table-bordered table-striped table-hover table-condensed table-col-hidden"> <!-- table-col-hidden class is added by lxy -->
+    {% block results_grid_head %}
+    <thead>
+      <tr>{% for o in result_headers.cells %}
+        <th {{o.tagattrs}}>
+          {% if o.btns %}
+            <div class="pull-right">
+              {% for b in o.btns %}
+                {{b|safe}}
+              {% endfor %}
+            </div>
+          {% endif %}
+          {% if o.menus %}
+            <div class="dropdown pull-left">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                {{ o.label }}
+              </a>
+              <ul class="dropdown-menu" role="menu">
+                {% for m in o.menus %}
+                  {{m|safe}}
+                {% endfor %}
+              </ul>
+            </div>
+          {% else %}
+            {% trans o.label %}
+          {% endif %}
+        </th>{% endfor %}
+      </tr>
+      {% view_block 'result_head' %}
+    </thead>
+    {% endblock results_grid_head %}
+    {% block results_grid_body %}
+    <tbody>
+    {% for row in results %}
+      <tr class="grid-item{% if row.css_class %} {{row.css_class}}{%endif%}">{% for o in row.cells %}
+        <td {{o.tagattrs}}>
+          {% if o.btns %}
+            <div class="btn-group pull-right">
+              {% for b in o.btns %}
+                {{b|safe}}
+              {% endfor %}
+            </div>
+          {% endif %}
+          {% if o.menus %}
+            <div class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                {{ o.label }}
+              </a>
+              <ul class="dropdown-menu">
+                {% for m in o.menus %}
+                  {{m|safe}}
+                {% endfor %}
+              </ul>
+            </div>
+          {% else %}
+            {{ o.label }}
+          {% endif %}
+        </td>
+      {% endfor %}</tr>
+      {% view_block 'result_row' row %}
+    {% endfor %}
+    </tbody>
+    {% endblock results_grid_body %}
+  </table>
+  {% endblock results_grid %}
+  {% else %}
+    <p class="well">{% trans "Empty list" %}</p>
+  {% endif %}
+  </div>
+  {% view_block 'results_bottom' %}
+  </form>
+
+  <ul class="pagination">
+    {% view_block 'pagination' %}
+  </ul>
+
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+    function getUrlVars()
+    {
+        var vars = [], hash;
+        var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+        for(var i = 0; i < hashes.length; i++)
+        {
+            hash = hashes[i].split('=');
+            vars.push(hash[0]);
+            vars[hash[0]] = hash[1];
+        }
+        return vars;
+    }
+
+    $('table').removeClass('table-col-hidden');
+    var thead = $('.table-condensed thead tr');
+    var tbody = $('.table-condensed tbody tr');
+    var amountOfTh = thead.find('th').length;
+    var listCategory = getUrlVars()['_p_item__content_type__model__exact'];
+    
+    if (listCategory == 'device' || listCategory == 'tool') {
+
+      $('.table-condensed thead tr th').each(function(index, value){
+
+        if (index >= 3 && index < amountOfTh - 6) {
+            thead.find('th:eq(' + index +')').hide();
+            tbody.find('td:eq(' + index +')').hide(); 
+        }
+      });
+    }    
+});
+
+</script>
+{% endblock %}

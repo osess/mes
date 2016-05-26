@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+{#% extends "xadmin/base_site.html" %#}
+{% load i18n %}
+{% block title %} {% trans "applications_list" %} {% endblock %}
+
+{% block center_area %}
+
+<link rel="stylesheet" type="text/css" href="/site_media/xadmin/css/themes/bootstrap-xadmin.css" />
+<link href="/site_media/xadmin/vendor/font-awesome/css/font-awesome.css" type="text/css" media="screen" rel="stylesheet" />
+<link href="/site_media/xadmin/css/xadmin.main.css" type="text/css" media="screen" rel="stylesheet" />
+<link href="/site_media/xadmin/css/xadmin.responsive.css" type="text/css" media="screen" rel="stylesheet" />
+<link href="/site_media/xadmin/css/xadmin.form.css" type="text/css" media="screen" rel="stylesheet" />
+
+<div class="container">
+    <h1>{% trans "applications_list" %}</h1>
+    <div class="bs-yuankong">
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>{% trans "manufactureplan" %}</th>
+            <th>{% trans "cad_code" %}</th>
+            <th>{% trans "files management" %}</th>
+            <th>物品准备</th>
+            <th>{% trans "manufacture_plan_start_time" %}</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for application_list in manufactureplans_list %}
+        <tr>
+          <td rowspan="{{application_list.manu_item_groups.count}}">
+            {% if application_list.is_item_entries_ready %}
+              <a name="show_manufactureplan_modal" hide="{{application_list.id}}" mname="{{application_list}}" class="btn btn-primary btn-sm active" data-toggle="modal" href="#ManufactureplanDetail">{{application_list}}</a>
+            {% else %}
+              <a name="show_manufactureplan_modal" hide="{{application_list.id}}" mname="{{application_list}}" class="btn btn-warning btn-sm active" data-toggle="modal" href="#ManufactureplanDetail">{{application_list}}</a>
+            {% endif %}
+          </td>
+          {% for manu_item_group in application_list.manu_item_groups.all %}
+            {% if not forloop.first %}<tr>{% endif %}
+            <td>
+                {{manu_item_group.productionline.technology.product.cad_code}}
+            </td>
+            <td>
+          {% with technology=manu_item_group.productionline.technology %}
+            {% if technology.T_file %}
+              <a class="btn btn-primary btn-sm active" href="{% url download_directory_file technology.T_file.id %}">下载工艺文件</a>
+            {% else %}
+              <a class="btn btn-default btn-sm active" disabled="disabled">没有工艺文件</a>
+            {% endif %}
+            {% if technology.P_file %}
+              <a class="btn btn-primary btn-sm active" href="{% url download_directory_file technology.P_file.id %}">下载程式文件</a>
+            {% else %}
+              <a class="btn btn-default btn-sm active" disabled="disabled">没有程式文件</a>
+            {% endif %}
+          {% endwith %}
+            </td>
+            <td name="td_item_entries_ready">
+              {% if manu_item_group.is_item_entries_ready %}
+                <span name="item_entries_ready">已通知生产部</span>
+              {% else %}
+                <a name="btn_set_manu_item_group_item_entries_ready" class="btn btn-primary btn-sm active" hide="{{manu_item_group.id}}">物品准备就绪</a>
+              {% endif %}
+            </td>
+            <td name="start_time">
+              {{ application_list.start_time }}
+            </td>
+            {% if not forloop.last %}</tr>{% endif %}
+          {% endfor %}
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+</div>
+
+<!-- Modal:ManufactureplanDetail -->
+<div id="ManufactureplanDetail" class="modal fade detail-modal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 id="ManufactureplanDetailTitle" class="modal-title"></h4>
+      </div>
+      <div id="ManufactureplanDetailBody" class="modal-body">
+      </div>
+      <div class="modal-footer">
+        <button id="close_manufactureplan_modal" class="btn btn-default" data-dismiss="modal" aria-hidden="true">{% trans "Close" %}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+    $("[name='show_manufactureplan_modal']").click(function(event) {
+        var manufactureplan_id = $(this).attr('hide');
+        var mname = $(this).attr('mname');
+        $.ajax({
+            type: "GET",
+            url: "{% url admin:manufactureplan_manufactureplan_changelist %}"+manufactureplan_id+"/detail/?_format=html",
+            success: function(data) {
+              $("#ManufactureplanDetailTitle").html(mname);
+              $("#ManufactureplanDetailBody").html(data);
+            },
+            error: function () {
+                alert('fail');
+            }
+        });
+    });
+    $("#close_manufactureplan_modal").click(function(event) {
+        $("#ManufactureplanDetailTitle").html("");
+        $("#ManufactureplanDetailBody").html("");
+    });
+
+    $("[name='btn_set_manu_item_group_item_entries_ready']").click(function(event) {
+        var manu_item_group_id = $(this).attr('hide');
+        var dom_item_entries_ready = $(this).parent()
+        $.ajax({
+            type: "POST",
+            url: "{% url ajax_set_manu_item_group_item_entries_ready %}",
+            dataType: "jsonp",
+            jsonp: "callback",
+            jsonpCallback:"yuankong",
+            data: {manu_item_group_id:manu_item_group_id},
+            success: function(data) {
+                dom_item_entries_ready.html("已通知生产部");
+            },
+            error: function () {
+                alert('fail');
+            }
+        });
+    });
+
+</script>
+{% endblock %}

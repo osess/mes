@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load manufactureplan_tags %}
+{% block title %} {% trans productionline.name %} {% endblock %}
+
+{% block center_area %}
+<script src="/site_media/static/js/validate.min.js"></script>
+<script src="/site_media/static/js/validate_helper.min.js"></script>
+
+<div class="container">
+	<h3>{{ productionline }}</h3>
+    <a class="btn btn-default active" href="{{redirecturl}}">{% trans 'back' %}</a>
+    <div class="bs-yuankong col-xs-12">
+        {% csrf_token %}
+        <table id='form' class="table table-bordered table-striped">
+            <tr>
+                <th class="col-md-8">{% trans "oper_group_record" %}</th>
+                <th class="col-md-4">{% trans "Device" %}</th>
+                <th class="col-md-4">{% trans "action" %}</th>
+            </tr>
+            {% for oper_group_record in productionline.oper_group_records.all %}
+            <tr>
+                <td class="col-md-6">
+                    {% with operation_group=oper_group_record.operation_group %}
+                        {{ operation_group.order }}. 
+                        {{ operation_group.name|default_if_none:"" }}: 
+                        {{ operation_group.description|default_if_none:"" }}
+                        {% for operation in operation_group.operations.all %}
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;
+                            {{ operation.order }}. 
+                            {{ operation.name|default_if_none:"" }}: 
+                            {{ operation.description|default_if_none:"" }}
+                        {% endfor %}
+                    {% endwith %}
+                </td>
+                <td class="col-md-4">
+                    {% for device_item in oper_group_record.device_items.all %}
+                        {% ifequal device_item.id 0 %}
+                        {% else %}
+                            {{ device_item }}: 
+                        {% endifequal %}
+                    {% endfor %}
+                </td>
+                <td class="col-md-2">
+                    <a name="show_select_devices_modal" hide="{{oper_group_record.id}}" mname="{{oper_group_record.name|default_if_none:''}}" data-toggle="modal" href="#SelectDevices">{% trans 'add' %}</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <br />
+        <a id="confirm" class="btn btn-primary active" %}>{% trans "Confirm" %}</a>
+    </div>
+</div>
+
+<!-- Modal:SelectDevices -->
+<div id="SelectDevices" class="modal fade detail-modal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 id="SelectDevicesTitle" class="modal-title"></h4>
+      </div>
+      <div id="SelectDevicesBody" class="modal-body">
+      </div>
+      <div class="modal-footer">
+        <button id="close_select_devices_modal" class="btn btn-default" data-dismiss="modal" aria-hidden="true">{% trans "Close" %}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+
+    $("[name='show_select_devices_modal']").click(function(event) {
+        var oper_group_record_id = $(this).attr('hide');
+        var mname = $(this).attr('mname');
+        $.ajax({
+            type: "GET",
+            url: "{% url ajax_oper_group_record_get_can_applied_devices 999 %}".replace(999, oper_group_record_id),
+            success: function(data) {
+              $("#SelectDevicesTitle").html(mname);
+              $("#SelectDevicesBody").html(data);
+            },
+            error: function () {
+                alert('fail');
+            }
+        });
+    });
+    $("#close_select_devices_modal").click(function(event) {
+        $("#SelectDevicesTitle").html("");
+        $("#SelectDevicesBody").html("");
+    });
+
+
+    $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+            function getCookie(name) {
+                var cookieValue = null;
+                if (document.cookie && document.cookie != '') {
+                    var cookies = document.cookie.split(';');
+                    for (var i = 0; i < cookies.length; i++) {
+                        var cookie = jQuery.trim(cookies[i]);
+                        // Does this cookie string begin with the name we want?
+                        if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+            if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+                // Only send the token to relative URLs i.e. locally.
+                xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+            }
+        }
+    });
+
+
+    $("#confirm").click(function(){
+        var device_select_values = new Array();
+        $("[name='device_select']").each(function(){
+            device_select_values.push({"id":$(this).attr("id") ,"value":$(this).val()});
+        });
+        var json_str = JSON.stringify(device_select_values);
+        $.ajax({
+            type: "POST",
+            url: "{% url ajax_productionline_apply_devices productionline.id %}",
+            dataType: "jsonp",
+            jsonp: "callback",
+            jsonpCallback:"yuankong",
+            data: {attributes:json_str,},
+            success: function(data) {
+                if (data.result != 0){
+                    alert(data.msg);
+                }else{
+                    window.location.replace('{{redirecturl}}');
+                }
+            },
+
+            error: function () {
+                alert('fail');
+            }
+        });
+    });
+
+</script>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block head_title %} {% trans "productionlines monitoring" %} {% endblock %}
+
+{% block center_area %}
+<div class="container">
+	<h1>{% trans "productionlines monitoring" %}</h1>
+	<div class="bs-yuankong">
+	<table class="table table-bordered table-condensed">
+		<thead>
+			<tr>
+				<th> {% trans "productionline name" %} </th>
+				<th> {% trans "operate" %} </th>
+				<th>
+					{% trans "ManufactureItem code" %}
+				</th>
+				<th>
+					{% for STATUS in CHOICE_STATE_STATUS %}
+						{% ifequal STATUS.0 6 %}
+							<img data-src="holder.js/20x20/{{STATUS.2}}/text:{{STATUS.1}}" class="img-circle" alt="...">
+						{% else %}
+							<img data-src="holder.js/40x20/{{STATUS.2}}/text:{{STATUS.1}}" class="img-rounded" alt="...">
+						{% endifequal %}
+					{% endfor %}
+				</th>
+			</tr>
+		</thead>
+		{% for manu_item_group in manu_item_groups %}
+		<tr>
+			<td class="col-md-2">{{ manu_item_group.productionline.name }}</td>
+			<td class="col-md-1">
+				<a href="{% url productionline_states_list manu_item_group.productionline.id %}?next={{request.path}}"> {% trans "view" %} </a>
+			</td>
+			<td>
+				{# 显示所有工件编号 #}
+				{% for manu_item in manu_item_group.manufacture_items.all %}
+					<span class="label label-primary"> {{ manu_item.code }} </span> &nbsp;
+				{% endfor %}
+			</td>
+			<td>
+			{% for manufacture_item in manu_item_group.manufacture_items.all %}
+				{% ifequal manufacture_item.status 6 %}
+					<img data-src="holder.js/30x30/{{manufacture_item.holderjs_color_name}}/text:{{manufacture_item.current_operation_group_percent}}" class="img-circle" alt="..." data-toggle="tooltip" title="当前工序为 {{ manufacture_item.current_operation_record.oper_group_record }}">
+				{% else %}
+					<img data-src="holder.js/70x30/{{manufacture_item.holderjs_color_name}}/text:{{manufacture_item.current_operation_group_percent}}" class="img-rounded" alt="..." data-toggle="tooltip" title="当前工序为 {{ manufacture_item.current_operation_record.oper_group_record }}">
+				{% endifequal %}
+			{% endfor %}
+			</td>
+		</tr>
+		{% endfor %}
+	</table>
+	</div>
+</div>
+{% endblock %}

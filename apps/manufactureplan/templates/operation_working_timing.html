@@ -1,0 +1,926 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load permissions_tags %}
+{% block title %} {% trans "operation_working_timing" %} {% endblock %}
+
+{% block center_area %}
+
+<div class="container">
+  <h1>{{ manufacture_item }}</h1>
+
+  <div class="row" style="padding-left:15px;">
+      <a role="button" class="btn btn-md btn-primary col-lg-2 col-md-2" href="{{redirecturl}}">
+          {% trans 'back' %}
+      </a>
+      <h1 class="col-lg-8 col-md-8">
+          工序：{{ manufacture_item.productionline.current_operation_record.oper_group_record.operation_group.name }}
+      </h1>
+  </div>
+  
+  
+    {% ifequal has_relation 3 %}
+        {% ifequal manufacture_relation.from_employee.id employee.id %}
+            <h1 class="text-warning">您发起的交接被{{manufacture_relation.to_employee}}拒绝，请重新发起交接</h1>
+        {% else %}
+            <h1 class="text-danger">您没有权限操作此零件，请与{{manufacture_relation.from_employee}}联系</h1>
+        {% endifequal %}
+    {% endifequal %}
+
+  <div class="bs-yuankong">
+    <a class="pull-right" href="{% url generate_technology_subpicture manufacture_item.productionline.current_operation_record.oper_group_record.operation_group.id %}" target="_blank">{% trans '工艺附图卡' %}</a>
+    <h4>完成{{ manufacture_item.productionline.current_state_percent }}%, 工序: {{ manufacture_item.productionline.current_operation_record.oper_group_record.operation_group.order }}/{{ manufacture_item.num_of_operation_group }}, 工步: {{manufacture_item.current_operation_record.operation.order}}/{{ manufacture_item.num_of_current_operation }}</h4>
+    <div class="progress" style="height:10px; background-color:#FFF;">
+        <div class="progress-bar progress-bar-success" data-toggle="tooltip" title="完成{{ manufacture_item.productionline.current_state_percent }}%, 当前工序为: {{ manufacture_item.productionline.current_operation_record.oper_group_record.operation_group.name }}, 当前工步为: {{manufacture_item.current_operation_record.operation.name}}" style="width: {{ manufacture_item.productionline.current_state_percent }}%; height:8px;"></div>
+    </div>
+    <h5>{{ manufacture_item.current_operation_record.operation.description }}</h5>
+    <br>
+    {# 是否使用新的流程 #}
+    {% if use_new_check_flow %}
+        {% if is_qa_inspector %}
+            {# 如果是毛培检验，只有合格和不合格 #}
+                <button class="btn btn-primary" id="btn_work" name="work">
+                    {% trans "work" %}
+                </button>
+                <button class="btn btn-primary" id="btn_rest" name="rest" >
+                    {% trans "rest" %}
+                </button>
+                <button class="btn btn-primary" id="btn_relation" name="relation" data-toggle="modal">
+                    {% trans "relation" %}
+                </button>
+                {# 不合格 #}
+                <button class="btn btn-danger checked_qualified" data-value="2">
+                    {% trans "unqualified" %}
+                </button>
+                <button class="btn btn-primary checked_qualified" data-value="1">
+                    {% trans "qualified" %}
+                </button>
+        {% else %}
+            {% if manufacture_item.current_operation_record.is_status_working %}
+                {# 默认数据 #}
+                <button class="btn btn-primary" id="btn_work" name="work">
+                    {% trans "work" %}
+                </button>
+                <button class="btn btn-primary" id="btn_rest" name="rest" >
+                    {% trans "rest" %}
+                </button>
+                <button class="btn btn-primary" id="btn_relation" name="relation" data-toggle="modal">
+                    {% trans "relation" %}
+                </button>
+                {# 直接完成 #}
+                {% if manufacture_item.is_new_check_flow_qa_self_item_wait or manufacture_item.is_new_check_flow_qa_double_item_wait %}
+                    <button type="button" class="btn btn-primary" disabled="disabled" id="id_btn_finish_operation" title='{% trans "need qa dept confirm" %}'>
+                        {% trans "finish" %}
+                    </button>
+                {% else %}
+                    <button class="btn btn-primary" id="id_btn_finish_operation">
+                        {% trans "finish" %}
+                    </button>
+                {% endif %}
+
+                {% if product_attributes %}
+                    {# 自检和互检可以同时存在 #}
+                    <div class="new_check pull-right">
+                    {% if manufacture_item.is_new_check_flow_qa_self_item_wait %}
+                        {# 需要质量部确认 #}
+                        <button type="button" class="btn btn-primary" disabled="disabled" id="btn_qa_self_record" data-mi-id="{{ manufacture_item.id }}">
+                            {% trans "QASelfRecord" %}
+                        </button>
+                    {% else %}
+                        <button class="btn btn-primary" id="btn_qa_self_record" data-mi-id="{{ manufacture_item.id }}">
+                            {% trans "QASelfRecord" %}
+                        </button>
+                    {% endif %}
+
+                    {% if manufacture_item.is_new_check_flow_qa_double_item_wait %}
+                        {# 需要质量部确认 #}
+                        <button type="button" class="btn btn-primary" disabled="disabled" id="btn_qa_double_check_record" data-mi-id="{{ manufacture_item.id }}">
+                            {% trans "DoubleCheck" %}
+                        </button>
+                    {% else %}
+                        <button class="btn btn-primary" id="btn_qa_double_check_record" data-mi-id="{{ manufacture_item.id }}">
+                            {% trans "DoubleCheck" %}
+                        </button>
+                    {% endif %}
+                    </div>
+                {% endif %}
+            {% elif manufacture_item.current_operation_record.is_status_qa_self_record or manufacture_item.current_operation_record.is_status_qa_double_record or manufacture_item.current_operation_record.is_status_qa_inspector_record %}
+                {# 正常情况下只有上面一种状态，和结束状态 #}
+                {# 默认数据 #}
+                <button class="btn btn-primary" id="btn_work" name="work">
+                    {% trans "work" %}
+                </button>
+                <button class="btn btn-primary" id="btn_rest" name="rest" >
+                    {% trans "rest" %}
+                </button>
+                <button class="btn btn-primary" id="btn_relation" name="relation" data-toggle="modal">
+                    {% trans "relation" %}
+                </button>
+                {# 直接完成 #}
+                <button class="btn btn-primary" id="id_btn_finish_operation">
+                    {% trans "finish" %}
+                </button>
+            {% endif %}
+        {% endif %}
+    {% else %}
+    {# 使用原有流程 #}
+    {% ifequal manufacture_item.current_operation_record.status 2 %}
+    	<button class="btn btn-primary" id="btn_work" name="work">{% trans "work" %}</button>
+    	<button class="btn btn-primary" id="btn_rest" name="rest" >{% trans "rest" %}</button>
+    	<button class="btn btn-primary" id="btn_relation" name="relation" data-toggle="modal">{% trans "relation" %}</button>
+    	<button class="btn btn-primary" id="btn_finish" name="finish">
+            {% if product_attributes %}
+                {% trans "QASelfRecord" %}
+            {% else %}
+                {% trans "finish" %}
+            {% endif %}
+        </button>
+    {% endifequal %}
+    {% ifequal manufacture_item.current_operation_record.status 3 %}
+        <button class="btn btn-primary" id="btn_work" name="work">{% trans "work" %}</button>
+        <button class="btn btn-primary" id="btn_rest" name="rest" >{% trans "rest" %}</button>
+        <button class="btn btn-primary" id="btn_relation" name="relation" data-toggle="modal">{% trans "relation" %}</button>
+        <button class="btn btn-primary" id="btn_finish" name="finish">{% if product_attributes %}{% trans "QASelfRecord" %}{% else %}{% trans "finish" %}{% endif %}</button>
+    {% endifequal %}
+    {% ifequal manufacture_item.current_operation_record.status 4 %}
+        <button class="btn btn-primary" id="btn_work" name="work">{% trans "work" %}</button>
+        <button class="btn btn-primary" id="btn_rest" name="rest" >{% trans "rest" %}</button>
+        <button class="btn btn-primary" id="btn_double_qa_fill" name="qa_fill" data-toggle="modal">{% trans "DoubleCheck" %}</button>
+    {% endifequal %}
+    {% ifequal manufacture_item.current_operation_record.status 5 %}
+        {% if perms.manufactureplan.quality_manufactureitem %}
+            <button class="btn btn-primary" id="btn_work" name="work">{% trans "work" %}</button>
+            <button class="btn btn-primary" id="btn_rest" name="rest" >{% trans "rest" %}</button>
+            <button class="btn btn-primary" id="btn_inspector_qa_fill" name="qa_fill" data-toggle="modal">{% trans "Inspector" %}</button>
+        {% else %}
+            <h4>您没有检验的权限</h4>
+        {% endif %}
+    {% endifequal %}
+    {% endif %}
+    <br>
+	<h2 id="start_time"></h2>
+  </div>
+</div>
+
+
+
+
+<!-- Modal:RelationStart -->
+<div data-backdrop="static" class="modal fade" id="RelationStart" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="RelationStartLabel">{% trans "please fill the relation note" %}</h4>
+            </div>
+            <div class="modal-body">
+			  <textarea id="note" name="note" class="form-control" rows="5"></textarea>
+		    </div>
+            <div class="modal-footer">
+            	<button type="button" class="btn btn-default" data-dismiss="modal" id="btn_cancel" name="cancel">{% trans "cancel" %}</button>
+                <button type="button" class="btn btn-primary" id="btn_relation_start" name="ok">{% trans "ok" %}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal:RelationEnd -->
+<div class="modal fade" id="RelationEnd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="RelationEndLabel">{% trans "please end the relation" %}</h4>
+            </div>
+            <div class="modal-body">
+				{% trans "from manufacture_record:" %}
+				{{ manufacture_relation.from_manufacture_record }}
+				<br>
+				{% trans "from employee:" %}
+				{{ manufacture_relation.from_employee }}
+				<br>
+				{% trans "note:" %}
+				{{ manufacture_relation.note }}
+		    </div>
+            <div class="modal-footer">
+            	<button type="button" class="btn btn-primary" id="btn_relation_accept" name="btn_relation_handle" hide="2" value="{{manufacture_relation.id}}">{% trans "accept" %}</button>
+                <button type="button" class="btn btn-primary" id="btn_relation_reject" name="btn_relation_handle" hide="3" value="{{manufacture_relation.id}}">{% trans "reject" %}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal:SelfFill -->
+<div class="modal fade" id="SelfFill" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="SelfFillLabel">{% trans "please fill the product attributes" %}</h4>
+            </div>
+            <div class="modal-body">
+			  <table class="table table-bordered table-striped">
+                <thead>
+				  <tr>
+                    <th>{% trans "attribute name" %}</th>
+                    <th>{% trans "ought" %}</th>
+                    <th>{% trans "real" %}</th>
+                  </tr>
+                </thead>
+				{% for product_attribute in product_attributes %}
+				<tr>
+					<td>{{ product_attribute.attribute.name }}({{ product_attribute.attribute.unit }})</td>
+					<td>{{ product_attribute.absolute_value }}({{ product_attribute.upper_deviation }}, {{ product_attribute.lower_deviation }})</td>
+					<td><input name="qa_fill" id="qa_fill{{ product_attribute.attribute.id }}" type="text" class="form-control" value=""/></td>
+				</tr>
+				{% endfor %}
+		      </table>
+		    </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="btn_cancel" name="cancel">{% trans "cancel" %}</button>
+                <button type="button" class="btn btn-primary" name="btn_qa_fill" hide="1">{% trans "ok" %}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal:DoubleFill -->
+<div class="modal fade" id="DoubleFill" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="DoubleFillLabel">{% trans "please fill the product attributes" %}</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table table-bordered table-hover">
+                <thead>
+                  <tr>
+                    <th>{% trans "attribute name" %}</th>
+                    <th>{% trans "ought" %}</th>
+                    <th>{% trans "real" %}</th>
+                  </tr>
+                </thead>
+                {% for product_attribute in product_attributes %}
+                <tr>
+                    <td>{{ product_attribute.attribute.name }}({{ product_attribute.attribute.unit }})</td>
+                    <td>{{ product_attribute.absolute_value }}({{ product_attribute.upper_deviation }}, {{ product_attribute.lower_deviation }})</td>
+                    <td><input name="qa_fill" id="qa_fill{{ product_attribute.attribute.id }}" type="text" class="form-control" value=""/></td>
+                </tr>
+                {% endfor %}
+              </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="btn_cancel" name="cancel">{% trans "cancel" %}</button>
+                <button type="button" class="btn btn-primary" name="btn_qa_fill" hide="2">{% trans "ok" %}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal:InspectorFill -->
+<div class="modal fade" id="InspectorFill" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="InspectorFillLabel">{% trans "please fill the product attributes" %}</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table table-bordered table-hover">
+                <thead>
+                  <tr>
+                    <th>{% trans "name" %}</th>
+                    <th>{% trans "ought" %}</th>
+                    <th>{% trans "real" %}</th>
+                  </tr>
+                </thead>
+                {% for product_attribute in product_attributes %}
+                <tr>
+                    <td>{{ product_attribute.attribute.name }}({{ product_attribute.attribute.unit }})</td>
+                    <td>{{ product_attribute.absolute_value }}({{ product_attribute.upper_deviation }}, {{ product_attribute.lower_deviation }})</td>
+                    <td><input name="qa_fill" id="qa_fill{{ product_attribute.attribute.id }}" type="text" class="form-control" value=""/></td>
+                </tr>
+                {% endfor %}
+              </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="btn_cancel" name="cancel">{% trans "cancel" %}</button>
+                <button type="button" class="btn btn-primary" name="btn_qa_fill" hide="3">{% trans "ok" %}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ----------------------------------------------------------------------- -->
+{# 新流程使用的modal ，start #}
+{# 1. 自检 #}
+<div class="modal fade" id="id-modal-qa-self-record" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="id-modal-title-qa-self-record">
+                    {% trans "please fill the product attributes" %}
+                </h4>
+            </div>
+            <div class="modal-body">
+              <table class="table table-bordered table-hover" id="id-table-qa-self-record">
+                <thead>
+                  <tr>
+                    <th>{% trans "attribute name" %}</th>
+                    <th>{% trans "ought" %}</th>
+                    <th>{% trans "real" %}</th>
+                  </tr>
+                </thead>
+                {% for product_attribute in product_attributes %}
+                <tr>
+                    <td>{{ product_attribute.attribute.name }}({{ product_attribute.attribute.unit }})</td>
+                    <td>{{ product_attribute.absolute_value }}({{ product_attribute.upper_deviation }}, {{ product_attribute.lower_deviation }})</td>
+                    <td>
+                        <input name="qa_fill" data-attribute-id="{{ product_attribute.attribute.id }}" type="text" class="form-control" value=""/>
+                    </td>
+                </tr>
+                {% endfor %}
+              </table>
+              <div class="note">
+                {# note 备注 #}
+                <div class="title"> {% trans "qa note" %} </div>
+                <div class="content">
+                    <textarea name="qa_note" class="form-control" rows="3"></textarea>
+                </div>
+              </div>
+              <div class="surveyor">
+                  {# surveyor 检验人 #}
+                  <div class="title"> {% trans "surveyor" %}(*) </div>
+                  <input type="text" name="surveyor" class="form-control" />
+              </div>
+              <div class="report_to_qa_dept">
+                  {# 报告到质量部 #}
+                  <p>
+                  <label>
+                      <input type="checkbox" name="report_to_qa_dept" /> {% trans "report to qa dept" %}
+                  </label>
+                  </p>
+              </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="btn_cancel" name="cancel">
+                    {% trans "cancel" %}
+                </button>
+                {# 自检的 type 为1 #}
+                <button type="button" class="btn btn-primary submit-qa-new-check-flow" data-type="1">
+                    {% trans "ok" %}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{# 2. 互检 #}
+<div class="modal fade" id="id-modal-qa-double-check-record" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="id-modal-title-qa-double-check-record">
+                    {% trans "please fill the product attributes" %}
+                </h4>
+            </div>
+            <div class="modal-body">
+              <table class="table table-bordered table-hover">
+                <thead>
+                  <tr>
+                    <th>{% trans "attribute name" %}</th>
+                    <th>{% trans "ought" %}</th>
+                    <th>{% trans "real" %}</th>
+                  </tr>
+                </thead>
+                {% for product_attribute in product_attributes %}
+                <tr>
+                    <td>{{ product_attribute.attribute.name }}({{ product_attribute.attribute.unit }})</td>
+                    <td>{{ product_attribute.absolute_value }}({{ product_attribute.upper_deviation }}, {{ product_attribute.lower_deviation }})</td>
+                    <td>
+                        <input name="qa_fill" data-attribute-id="{{ product_attribute.attribute.id }}" type="text" class="form-control" value=""/>
+                    </td>
+                </tr>
+                {% endfor %}
+              </table>
+              <div class="note">
+                {# note 备注 #}
+                <div class="title"> {% trans "qa note" %} </div>
+                <div class="content">
+                    <textarea name="qa_note" class="form-control" rows="3"></textarea>
+                </div>
+              </div>
+              <div class="surveyor">
+                  {# surveyor 检验人 #}
+                  <div class="title"> {% trans "surveyor" %}(*) </div>
+                  <input type="text" name="surveyor" class="form-control" />
+              </div>
+              <div class="report_to_qa_dept">
+                  {# 报告到质量部 #}
+                  <p>
+                  <label>
+                      <input type="checkbox" name="report_to_qa_dept" /> {% trans "report to qa dept" %}
+                  </label>
+                  </p>
+              </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="btn_cancel" name="cancel">
+                    {% trans "cancel" %}
+                </button>
+                {# 互检的 type 为2 #}
+                <button type="button" class="btn btn-primary submit-qa-new-check-flow" data-type="2">
+                    {% trans "ok" %}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{# 新流程使用的modal ，end #}
+<!-- ----------------------------------------------------------------------- -->
+
+
+<script type="text/javascript">
+
+    //has_relation : [(1:"wait"),(2:"ok"),(3:"reject")]
+    $(document).ready(function(){
+    	if('{{ has_relation }}' == 1){
+            //TODO:cannot close this modal,when not decied
+    		$('#RelationEnd').modal('show');
+    	}
+    });
+
+    $("#btn_work").click(function() {
+        switch ('{{ has_relation }}')
+        {
+            case '1':
+            {
+                $('#RelationEnd').modal('show');
+            }
+            break;
+            case '3':
+            {
+                if('{{ manufacture_relation.from_employee.id }}' != '{{ employee.id }}'){
+                    break;
+                }
+            }
+            case '0':
+            case '2':
+            {
+                $('#loading_modal').modal('show');
+                $.ajax({
+                    type: "POST",
+                    url: "{% url item_working_work %}",
+                    dataType: "jsonp",
+                    jsonp: "callback",
+                    jsonpCallback:"yuankong",
+                    data: {item_code:'{{ manufacture_item.code }}',status:2,device_entry_id:'{{ device_entry.id }}'},
+                    success: function(data) {
+                        $("#start_time").html('开始工作: <br>'+data.date);
+                        if (data.result !=0){
+                            alert(data.state);
+                        }
+                        $('#loading_modal').modal('hide');
+                    },
+
+                    error: function () {
+                        alert('item_working_work --fail--');
+                        $('#loading_modal').modal('hide');
+                    }
+                });
+            }
+            break;
+        }
+    });
+	$("#btn_rest").click(function(){
+        switch ('{{ has_relation }}')
+        {
+            case '1':
+            {
+                $('#RelationEnd').modal('show');
+            }
+            break;
+            case '3':
+            {
+                if('{{ manufacture_relation.from_employee.id }}' != '{{ employee.id }}'){
+                    break;
+                }
+            }
+            case '0':
+            case '2':
+            {
+                $('#loading_modal').modal('show');
+                $.ajax({
+                    type: "POST",
+                    url: "{% url item_working_rest %}",
+                    dataType: "jsonp",
+                    jsonp: "callback",
+                    jsonpCallback:"yuankong",
+                    data: {item_code:'{{ manufacture_item.code }}',device_entry_id:'{{ device_entry.id }}'},
+                    success: function(data) {
+                        $("#start_time").html('开始休息： <br>'+data.date);
+                        if (data.result !=0){
+                            alert(data.state);
+                        }
+                        $('#loading_modal').modal('hide');
+                    },
+
+                    error: function () {
+                        alert('item_working_rest --fail--');
+                        $('#loading_modal').modal('hide');
+                    }
+                });
+            }
+            break;
+        }
+	});
+
+
+	$("#btn_relation_start").click(function() {
+        switch ('{{ has_relation }}')
+        {
+            case '1':
+            {
+                $('#RelationEnd').modal('show');
+            }
+            break;
+            case '3':
+            {
+                if('{{ manufacture_relation.from_employee.id }}' != '{{ employee.id }}'){
+                    break;
+                }
+            }
+            case '0':
+            case '2':
+            {
+                var note = $(this).parent().parent().find("#note").val();
+                {% if is_relation_note_required %}
+                    {# 质检存在问题时，备注是必填项 #}
+                    if($.trim(note).length === 0){
+                        alert('{% trans "qa self record or qa double check need confirm,so note must be required" %}');
+                        return;
+                    }
+                {% endif %}
+                $.ajax({
+                    type: "POST",
+                    url: "{% url item_working_relation_start %}",
+                    dataType: "jsonp",
+                    jsonp: "callback",
+                    jsonpCallback:"yuankong",
+                    data: {item_code:'{{ manufacture_item.code }}',note:note,device_entry_id:'{{ device_entry.id }}'},
+                    success: function(data) {
+                        $('#RelationStart').modal('hide');
+                        if(data.result != 0){
+                            alert(data.state);
+                        }else{
+                            window.location.replace('{{redirecturl}}');
+                        }
+                    },
+
+                    error: function () {
+                        alert('fail');
+                    }
+                });
+            }
+            break;
+        }
+	});
+
+    $("[name='btn_relation_handle']").click(function() {
+        var status = $(this).attr("hide")
+        $.ajax({
+	        type: "POST",
+	        url: "{% url item_working_relation_handle %}",
+	        dataType: "jsonp",
+	        jsonp: "callback",
+	        jsonpCallback:"yuankong",
+	        data: {
+                item_code:'{{ manufacture_item.code }}',
+                status:status,
+                relation_id:$(this).attr("value"),
+                device_entry_id:'{{ device_entry.id }}'
+            },
+	        success: function(data) {
+	        	$('#RelationEnd').modal('hide');
+				if (data.result != 0){
+				    alert(data.state);
+				}else{
+                    if(status == 3){
+                        window.location.replace('{{redirecturl}}');
+                    }else{
+                        window.location.replace(window.location.pathname+window.location.search);
+                    }
+                }
+	        },
+
+	        error: function () {
+	            alert('item_working_relation_handle --fail--');
+	        }
+	    });
+    });
+
+    $("#btn_finish").click(function(event) {
+        switch ('{{ has_relation }}')
+        {
+            case '1':
+            {
+                $('#RelationEnd').modal('show');
+            }
+            break;
+            case '3':
+            {
+                if('{{ manufacture_relation.from_employee.id }}' != '{{ employee.id }}'){
+                    break;
+                }
+            }
+            case '0':
+            case '2':
+            {
+                if ('{{ product_attributes }}' != '[]'){
+                    $('#SelfFill').modal('show');
+                }else{
+                    if (!$(this).hasClass('disabled')) {
+                        $(this)[0].setAttribute("disabled","disabled");
+                        $(this).html("正在执行");
+                    }
+                    $('#loading_modal').modal('show');
+                    $.ajax({
+                        type: "POST",
+                        url: "{% url item_working_finish %}",
+                        dataType: "jsonp",
+                        jsonp: "callback",
+                        jsonpCallback:"yuankong",
+                        data: {item_code:'{{ manufacture_item.code }}',type:6,device_entry_id:'{{ device_entry.id }}'},
+                        success: function(data) {
+                            if (data.result !=0 ){
+                                alert(data.state);
+                            }else{
+                                window.location.replace('{{redirecturl}}');
+                            }
+                            $('#loading_modal').modal('hide');
+                        },
+
+                        error: function () {
+                            alert('fail');
+                            $('#loading_modal').modal('hide');
+                        }
+                    });
+                }
+            }
+            break;
+        }
+    });
+
+	$("[name='btn_qa_fill']").click(function(){
+        if (!$(this).hasClass('disabled')) {
+            $(this)[0].setAttribute("disabled","disabled");
+            $(this).html("正在执行");
+        }
+		var self_record_values = new Array()
+		$(this).parent().parent().find("table").find("[name='qa_fill']").each(function(){
+    	    self_record_values.push({"id":$(this).attr("id") ,"value":$(this).val()});
+        });
+		var json_str = JSON.stringify(self_record_values);
+		var modal_dialog = $(this).parent().parent().parent().parent();
+		$.ajax({
+	        type: "POST",
+	        url: "{% url item_working_finish %}",
+	        dataType: "jsonp",
+	        jsonp: "callback",
+	        jsonpCallback:"yuankong",
+	        data: {
+                item_code:'{{ manufacture_item.code }}',
+                attributes:json_str,
+                type:$(this).attr("hide"),
+                device_entry_id:'{{ device_entry.id }}'
+            },
+	        success: function(data) {
+	        	modal_dialog.modal('hide');
+	        	if (data.result != 0){
+					alert(data.state);
+				}else{
+                    window.location.replace('{{redirecturl}}');
+				}
+	        },
+
+	        error: function () {
+	            alert('fail');
+	        }
+	    });
+	});
+
+    $("[name='relation']").click(function(){
+        switch ('{{ has_relation }}')
+        {
+            case '1':
+            {
+                $('#RelationEnd').modal('show');
+            }
+            break;
+            case '3':
+            {
+                if('{{ manufacture_relation.from_employee.id }}' != '{{ employee.id }}'){
+                    break;
+                }
+            }
+            case '0':
+            case '2':
+            {
+                $('#RelationStart').modal('show');
+            }
+            break;
+        }
+    });
+
+    $("#btn_double_qa_fill").click(function(){
+        switch ('{{ has_relation }}')
+        {
+            case '1':
+            {
+                $('#RelationEnd').modal('show');
+            }
+            break;
+            case '3':
+            {
+                if('{{ manufacture_relation.from_employee.id }}' != '{{ employee.id }}'){
+                    break;
+                }
+            }
+            case '0':
+            case '2':
+            {
+                $('#DoubleFill').modal('show');
+            }
+            break;
+        }
+    });
+    
+    $("#btn_inspector_qa_fill").click(function(){
+        switch ('{{ has_relation }}')
+        {
+            case '1':
+            {
+                $('#RelationEnd').modal('show');
+            }
+            break;
+            case '3':
+            {
+                if('{{ manufacture_relation.from_employee.id }}' != '{{ employee.id }}'){
+                    break;
+                }
+            }
+            case '0':
+            case '2':
+            {
+                $('#InspectorFill').modal('show');
+            }
+            break;
+        }
+    });
+
+////////////////////////////////////////////////////////////////////////////////
+    // 显示自检的 modal
+    $('#btn_qa_self_record').click(function(){
+        $('#id-modal-qa-self-record').modal('show');
+    });
+    // 显示互检的 modal
+    $('#btn_qa_double_check_record').click(function(){
+        $('#id-modal-qa-double-check-record').modal('show');
+    });
+    // 直接结束
+    $('#id_btn_finish_operation').click(function(){
+        if (!$(this).hasClass('disabled')) {
+            $(this)[0].setAttribute("disabled","disabled");
+            $(this).html("正在执行");
+        }
+        $('#loading_modal').modal('show');
+        $.ajax({
+            type: "POST",
+            url: "{% url handle_operation_finish %}",
+            dataType: "jsonp",
+            jsonp: "callback",
+            jsonpCallback:"yuankong",
+            data: {
+                item_code:'{{ manufacture_item.code }}',
+                type:6,
+                device_entry_id:'{{ device_entry.id }}'
+            },
+            success: function(data) {
+                if (data.result !=0 ){
+                    alert(data.state);
+                }else{
+                    window.location.replace('{{redirecturl}}');
+                }
+                $('#loading_modal').modal('hide');
+            },
+
+            error: function () {
+                alert('fail');
+                $('#loading_modal').modal('hide');
+            }
+        });
+    });
+    // 提交自检/互检数据
+    $('.submit-qa-new-check-flow').click(function(){
+        {# qa_record 类型为自检 #}
+        var type = $(this).data('type');
+        {# 获取自检数据 #}
+        var qa_record_values = new Array();
+        $(this).closest('.modal-content').find("table").find("[name='qa_fill']").each(function(){
+            qa_record_values.push({
+                "attribute_id":$(this).data("attribute-id"),
+                "value":$(this).val()
+            });
+        });
+        var json_str = JSON.stringify(qa_record_values);
+        var note = $(this).closest('.modal-content').find("textarea[name='qa_note']").val();
+        var surveyor = $(this).closest('.modal-content').find("input[name='surveyor']").val();
+        var report_to_qa_dept = $(this).closest('.modal-content').find("input[name='report_to_qa_dept']").prop("checked");
+
+        var is_report_to_qa_dept;
+        if(report_to_qa_dept){
+            is_report_to_qa_dept = 1; // true
+        }
+        else{
+            is_report_to_qa_dept = 0; // false
+        }
+
+        if($.trim(surveyor).length ===0){
+            alert('{% trans "surveyor must be required" %}');
+            return;
+        }
+        // alert(json_str);
+        // alert(note);
+        // alert(surveyor);
+        // alert(is_report_to_qa_dept);
+        // return;
+
+        $.ajax({
+            type: "POST",
+            url: "{% url handle_new_flow_check_qa_record %}",
+            dataType: "jsonp",
+            jsonp: "callback",
+            jsonpCallback:"yuankong",
+            data: {
+                mi_id:'{{ manufacture_item.id }}',
+                qa_type:type,
+                attributes:json_str,
+                note:note,
+                surveyor:surveyor,
+                is_report_to_qa_dept:is_report_to_qa_dept,
+            },
+            success: function(data) {
+                if (data.result !=0 ){
+                    alert(data.state);
+                }else{
+                    window.location.replace('{{redirecturl}}');
+                }
+                $('#id-modal-qa-self-record').modal('hide');
+            },
+
+            error: function () {
+                alert('fail');
+                $('#id-modal-qa-self-record').modal('hide');
+            }
+        });
+    });
+    // 合格/不合格
+    $('.checked_qualified').click(function(){
+            var val = $(this).data('value');
+
+            $.ajax({
+                type: "POST",
+                url: "{% url handle_qualified %}",
+                dataType: "jsonp",
+                jsonp: "callback",
+                jsonpCallback:"yuankong",
+                data: {
+                    mi_id:'{{ manufacture_item.id }}',
+                    value:val,
+                },
+                success: function(data) {
+                    if (data.result !=0 ){
+                        alert(data.state);
+                    }else{
+                        window.location.replace('{{redirecturl}}');
+                    }
+                },
+                error: function () {
+                    alert('fail');
+                }
+            });
+    });
+////////////////////////////////////////////////////////////////////////////////
+
+</script>
+
+{% endblock %}
+
+

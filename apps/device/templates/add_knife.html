@@ -1,0 +1,62 @@
+{% extends "empty_page.html" %}
+{% load i18n %}
+{% block title %} {% trans "first item" %} {% endblock %}
+
+{% block body %}
+
+
+<form class="form-horizontal">
+    <fieldset>
+      <div id="legend" class="">
+        <legend class="">表单名</legend>
+      </div>
+    <div class="control-group">
+
+          <!-- Text input-->
+          <label class="control-label" for="input01">{% trans "knife name" %}</label>
+          <div class="controls">
+            <input type="text" placeholder="placeholder" class="input-xlarge">
+            <p class="help-block">Supporting help text</p>
+          </div>
+        </div>
+
+          <!-- Text input-->
+          <label class="control-label" for="input01">{% trans "knife code" %}</label>
+          <div class="controls">
+            <input type="text" placeholder="placeholder" class="input-xlarge">
+            <p class="help-block">Supporting help text</p>
+          </div>
+        </div><div class="control-group">
+
+          <!-- Text input-->
+          <label class="control-label" for="input01">{% trans "quantity" %}</label>
+          <div class="controls">
+            <input type="text" placeholder="placeholder" class="input-xlarge">
+            <p class="help-block">Supporting help text</p>
+          </div>
+        </div>
+
+    <div class="control-group">
+          <label class="control-label">Button</label>
+
+          <!-- Button -->
+          <div class="controls">
+            <a href="{% url bom_detail bom.productionline.id %}">
+              <button class="btn btn-success">Button</button>
+            </a>
+          </div>
+        </div>
+
+    <div class="control-group">
+          <label class="control-label">Button</label>
+
+          <!-- Button -->
+          <div class="controls">
+            <button class="btn btn-success">Button</button>
+          </div>
+        </div>
+
+    </fieldset>
+</form>
+
+{% endblock %}

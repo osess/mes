@@ -1,0 +1,327 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load staticfiles %}
+{% load manufactureplan_tags %}
+{% block title %} {% trans "transportlists list" %} {% endblock %}
+
+{% block center_area %}
+
+<link rel="stylesheet" type="text/css" href="/site_media/xadmin/css/themes/bootstrap-xadmin.css" />
+<link href="/site_media/xadmin/vendor/font-awesome/css/font-awesome.css" type="text/css" media="screen" rel="stylesheet" />
+<link href="/site_media/xadmin/css/xadmin.main.css" type="text/css" media="screen" rel="stylesheet" />
+<link href="/site_media/xadmin/css/xadmin.responsive.css" type="text/css" media="screen" rel="stylesheet" />
+  <link href="/site_media/xadmin/vendor/bootstrap/css/bootstrap.css" type="text/css" media="screen" rel="stylesheet" />
+  
+  <link rel="stylesheet" type="text/css" href="/site_media/xadmin/css/themes/bootstrap-xadmin.css" />
+  
+  <link href="/site_media/xadmin/vendor/font-awesome/css/font-awesome.css" type="text/css" media="screen" rel="stylesheet" />
+<link href="/site_media/xadmin/css/xadmin.main.css" type="text/css" media="screen" rel="stylesheet" />
+<link href="/site_media/xadmin/css/xadmin.plugins.css" type="text/css" media="screen" rel="stylesheet" />
+<link href="/site_media/xadmin/css/xadmin.responsive.css" type="text/css" media="screen" rel="stylesheet" />
+  <link href="/site_media/xadmin/css/xadmin.form.css" type="text/css" media="screen" rel="stylesheet" />
+<link href="/site_media/xadmin/vendor/bootstrap-datepicker/css/datepicker.css" type="text/css" media="screen" rel="stylesheet" />
+<link href="/site_media/xadmin/vendor/select2/select2.css" type="text/css" media="screen" rel="stylesheet" />
+<link href="/site_media/xadmin/vendor/selectize/selectize.css" type="text/css" media="screen" rel="stylesheet" />
+<link href="/site_media/xadmin/vendor/selectize/selectize.bootstrap3.css" type="text/css" media="screen" rel="stylesheet" />
+<link href="/site_media/xadmin/css/xadmin.plugins.css" type="text/css" media="screen" rel="stylesheet" />
+  <!-- <link rel="stylesheet" type="text/css" href="/site_media/css/yuankong.css" /> -->
+
+  
+
+<!-- lxy -->
+<script type="text/javascript" src="/site_media/js/warehouse_nav_bar_query.js"></script>
+
+<div class="btn-group">
+    <label class="navbar-brand"  id="display-label"  >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+    <a href="{% url admin:warehouse_deviceentry_changelist %}?_p_journal__id__exact=1&_p_item__content_type__model__exact=list_category&_p_location__type__exact=1" class="btn btn-primary btn-sm" id="inventory-button">{% trans "Inventory" %}</a>
+
+
+    <a href="{% url admin:warehouse_deviceentry_changelist %}?_p_journal__id__exact=1&_p_item__content_type__model__exact=list_category&_p_location__type__exact=2" class="btn btn-primary btn-sm" id="in-use-button">{% trans "使用中" %}</a>
+
+    <a href="{% url admin:warehouse_deviceentry_changelist %}?_p_journal__id__exact=1&_p_item__content_type__model__exact=list_category&_p_location__type__exact=3" class="btn btn-primary btn-sm" id="scrap-button">{% trans "Scrap" %}</a>
+
+    <a href="/xadmin/category_model/list_category?kind_of_category=list_category&is_kind=true" class="btn btn-primary btn-sm" id="kind-button">{% trans "类型" %}</a>
+
+
+<li class="btn-group">
+  <a class="dropdown-toggle btn btn-primary btn-sm" data-toggle="dropdown" href="#" id="transport-button">
+    <i class="icon-share"></i> {% trans "进出库" %} <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu transports-dropdown" role="menu" aria-labelledby="dLabel">
+      <li><a href="{% url transportlists_list 123 1 %}?kind_of_category=list_category" class=""><i class="icon-circle-arrow-down"></i> 出库</a></li>
+
+      <li><a href="{% url transportlists_list 123 2 %}?kind_of_category=list_category" ><i class="icon-circle-arrow-down"></i> 入库</a></li>
+
+      <li><a href="{% url transportlists_list 123 4 %}?kind_of_category=list_category" ><i class="icon-circle-arrow-down"></i> 借出</a></li>
+
+      <li><a href="{% url transportlists_list 123 5 %}?kind_of_category=list_category" ><i class="icon-circle-arrow-down"></i> 归还</a></li>
+
+      <li><a href="{% url transportlists_list 123 3 %}?kind_of_category=list_category" ><i class="icon-circle-arrow-down"></i> 报废</a></li>
+  </ul>
+</li>
+
+<li class="btn-group">
+  <a class="dropdown-toggle btn btn-primary btn-sm" data-toggle="dropdown" href="#" id="note-button">
+    <i class="icon-share"></i> {% trans "Note" %} <span class="caret"></span>
+  </a>
+<ul class="dropdown-menu note-dropdown" role="menu" aria-labelledby="dLabel">
+      <li id="export-note" class=""><a href="{% url admin:warehouse_transportdetailrecord_changelist %}?_p_transport_list_detail__transport_list__transport_category=1&_p_transport_list_detail__item__content_type__model__exact=list_category"><i class="icon-circle-arrow-down"></i> 出库记录</a></li>
+
+      <li id="import-note"><a href="{% url admin:warehouse_transportdetailrecord_changelist %}?_p_transport_list_detail__transport_list__transport_category=2&_p_transport_list_detail__item__content_type__model__exact=list_category" ><i class="icon-circle-arrow-down"></i> 入库记录</a></li>
+
+      <li id="borrow-note" ><a href="{% url admin:warehouse_transportdetailrecord_changelist %}?_p_transport_list_detail__transport_list__transport_category=4&_p_transport_list_detail__item__content_type__model__exact=list_category" ><i class="icon-circle-arrow-down"></i> 借出记录</a></li>
+
+      <li id="return-note"><a href="{% url admin:warehouse_transportdetailrecord_changelist %}?_p_transport_list_detail__transport_list__transport_category=5&_p_transport_list_detail__item__content_type__model__exact=list_category" ><i class="icon-circle-arrow-down"></i> 归还记录</a></li>
+
+
+      <li id="scrap-note"><a href="{% url admin:warehouse_transportdetailrecord_changelist %}?_p_transport_list_detail__transport_list__transport_category=3&_p_transport_list_detail__item__content_type__model__exact=list_category" ><i class="icon-circle-arrow-down"></i> 报废记录</a></li>
+  </ul>
+</li>
+</div>
+<!-- lxy end -->
+
+<div class="container">
+
+{% for LIST_CATEGORY in CHOICE_LIST_CATEGORY %}
+  {% if LIST_CATEGORY.0 == list_category_number %}
+      {% for TRANSPORT_CATEGORY in LIST_CATEGORY.3 %}
+          {% if TRANSPORT_CATEGORY.0 == transport_category %}
+            <h3>{{LIST_CATEGORY.1}}{{TRANSPORT_CATEGORY.1}}单</h3>
+        {% endif %}
+      {% endfor %} 
+  {% endif %}
+{% endfor %}  
+
+  <div class="tab-content">
+    <div id="verification"></div>
+    {% for LIST_CATEGORY in CHOICE_LIST_CATEGORY %}
+    {% if LIST_CATEGORY.0 == list_category_number %}
+    <div name="tab_content" class="tab-pane active in">
+      <div>
+      {% for TRANSPORT_CATEGORY in LIST_CATEGORY.3 %}
+        {% if TRANSPORT_CATEGORY.0 == transport_category %}
+          <a id="" class="btn btn-primary btn-sm pull-right create-transport-detail" href="{% url create_transportlist list_category_number TRANSPORT_CATEGORY.0 %}?next={{request.path}}?kind_of_category=list_category">创建{{TRANSPORT_CATEGORY.1}}单</a>
+          <br/>
+
+        {% endif %}
+      {% endfor %}
+
+<div class="tabs">
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#list" data-toggle="tab" >等待</a></li>
+    <li><a href="#record" data-toggle="tab">已完成</a></li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="list">
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>{% trans "transport_category" %}</th>
+            <th>出/入库单号</th>
+            <th>{% trans "productionline" %}</th>
+            <th>{% trans "created at" %}</th>
+            <th>{% trans "status" %}</th>
+            <th>{% trans "applicant" %}</th>
+            <th>{% trans "action" %}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for transportlist in LIST_CATEGORY.2 %}
+            {% if transportlist.get_state_display == '等待' %}
+              <tr>
+                <td>{{ transportlist.get_transport_category_display }}</td>
+                <td>{{ transportlist.internal_code|default_if_none:"" }}</td>
+                <td>{{ transportlist.productionline.manu_item_group|default_if_none:"" }}</td>
+                <td>{{ transportlist.created_at }}</td>
+                <td>{{ transportlist.get_state_display }}</td>
+                <td>{{ transportlist.applicat }}</td>
+                <td>
+                {% ifequal transportlist.state 1 %}
+                  <a name="do_transport" hide="{{transportlist.id}}">{% trans "execute" %}</a>
+                {% else %}
+                  已执行
+                {% endifequal %}
+                {{ transportlist.details|safe }}
+                </td>
+              </tr>
+            {% endif %}
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <div class="tab-pane" id="record">
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>{% trans "transport_category" %}</th>
+            <th>出/入库单号</th>
+            <th>{% trans "productionline" %}</th>
+            <th>{% trans "created at" %}</th>
+            <th>{% trans "status" %}</th>
+            <th>{% trans "applicant" %}</th>
+            <th>{% trans "action" %}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for transportlist in LIST_CATEGORY.2 %}
+            {% if transportlist.get_state_display != '等待' %}
+            <tr>
+              <td>{{ transportlist.get_transport_category_display }}</td>
+              <td>{{ transportlist.internal_code|default_if_none:"" }}</td>
+              <td>{{ transportlist.productionline.manu_item_group|default_if_none:""  }}</td>
+              <td>{{ transportlist.created_at }}</td>
+              <td>{{ transportlist.get_state_display }}</td>
+              <td>{{ transportlist.applicat }}</td>
+              <td>
+              {% ifequal transportlist.state 1 %}
+                <a name="do_transport" hide="{{ transportlist.id }}">{% trans "execute" %}</a>
+              {% else %}
+                已执行
+              {% endifequal %}
+              {{ transportlist.details|safe }}
+              </td>
+            </tr>
+            {% endif %}
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+
+      </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+<!-- Modal:TransportListDetail -->
+<div id="TransportListDetail" class="modal fade detail-modal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 id="TransportListDetailTitle" class="modal-title"></h4>
+      </div>
+      <div id="TransportListDetailBody" class="modal-body">
+      </div>
+      <div class="modal-footer">
+        <button id="close_transportlist_modal" class="btn btn-default" data-dismiss="modal" aria-hidden="true">{% trans "Close" %}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+    $("[name='show_transportlist_modal']").click(function(event) {
+        var transportlist_id = $(this).attr('hide');
+        var model_title = $(this).attr('model_title');
+        $.ajax({
+            type: "GET",
+            url: "{% url admin:warehouse_transportlist_changelist %}"+transportlist_id+"/detail/?_format=html",
+            success: function(data) {
+              $("#TransportListDetailTitle").html(model_title);
+              $("#TransportListDetailBody").html(data);
+            },
+            error: function () {
+                alert('fail');
+            }
+        });
+    });
+    $("#close_transportlist_modal").click(function(event) {
+        $("#TransportListDetailTitle").html("");
+        $("#TransportListDetailBody").html("");
+    });
+
+    $.ajaxSetup({
+      beforeSend: function(xhr, settings) {
+        function getCookie(name) {
+          var cookieValue = null;
+          if (document.cookie && document.cookie != '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+              var cookie = jQuery.trim(cookies[i]);
+              // Does this cookie string begin with the name we want?
+              if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+              }
+            }
+          }
+          return cookieValue;
+        }
+        if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+          // Only send the token to relative URLs i.e. locally.
+          xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+        }
+      }
+    });
+
+    $("[name='do_transport']").click(function(event) {
+      var transport_list_id = $(this).attr('hide');
+      $.ajax({
+        type: "POST",
+        url: "{% url ajax_do_transport_verification %}",
+        dataType: "jsonp",
+        jsonp: "callback",
+        jsonpCallback:"yuankong",
+        data: {transport_list_id:transport_list_id},
+        success: function(data) {
+          if(data.result==0){
+            $.ajax({
+              type: "POST",
+              url: "{% url ajax_do_transport %}",
+              dataType: "jsonp",
+              jsonp: "callback",
+              jsonpCallback:"yuankong",
+              data: {transport_list_id:transport_list_id},
+              success: function(data) {
+                if(data.result==0){
+                  window.location.replace("{{redirecturl}}");
+                }else{
+                  alert(data.msg)
+                }
+              },
+              error: function () {
+                alert('fail');
+              },
+            });
+          }else{
+            $("#verification").html("<div class='alert alert-danger alert-dismissable'>" + "<button type='button' class='close' data-dismiss='alert'>&times;</button>" + data.msg + "</div>");
+          }
+        },
+        error: function () {
+          alert('fail');
+        },
+      });
+
+    });
+
+
+$(document).ready(function(){
+
+    function getUrlVars()
+    {
+        var vars = [], hash;
+        var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+        for(var i = 0; i < hashes.length; i++)
+        {
+            hash = hashes[i].split('=');
+            vars.push(hash[0]);
+            vars[hash[0]] = hash[1];
+        }
+        return vars;
+    }
+
+    listCategory = getUrlVars()['kind_of_category'];
+    var url = $(".create-transport-detail").attr("href");
+    url = url.replace("list_category", listCategory);
+    $(".create-transport-detail").attr("href", url);
+
+});
+
+</script>
+{% endblock %}

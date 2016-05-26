@@ -1,0 +1,9 @@
+<label class="checkbox{% if inline %} inline{% endif %}">
+  <input type="checkbox"> {{ field.label }}
+
+  {% if field.help_text %}
+    <a href="#" rel="tooltip" title="{{ field.help_text }}">
+      <i class="icon-question-sign"></i>
+    </a>
+  {% endif %}
+</label>

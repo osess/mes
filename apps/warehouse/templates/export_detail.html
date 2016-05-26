@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %} {% trans "export detail" %} {% endblock %}
+
+{% block center_area %}
+<div class="container">
+    <h1>{% trans "export list" %}</h1>
+    <a class="btn btn-default active" href="{{redirecturl}}"> {% trans "back" %}</a>
+    <div class="bs-yuankong">
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>{% trans "item" %}</th>   
+            <th>{% trans "internal_code" %}</th>
+            <th>{% trans "unit" %}</th>
+            <th>{% trans "qty" %}</th>
+            <th>{% trans "库存" %}</th>
+        </tr>
+        </thead>
+        {% for transport_list_detail in transport_list.transport_list_details.all %}
+        <tr>
+            <td>{{transport_list_detail.item}}</td>
+            <td>{{transport_list_detail.item_entry_code}}</td>
+            <td>{{transport_list_detail.unit}}</td>
+            <td>{{transport_list_detail.qty}}</td>
+            <td>{{transport_list_detail.inventory}}</td> 
+        </tr>
+        {% endfor %}
+    </table>
+
+    {% ifequal transport_list.list_category 6 %}
+        {% if transport_list.file %}
+            <a class="btn btn-primary active" href="{% url download_directory_file transport_list.file.id %}">下载工艺程式单</a>
+        {% else %}
+            <a class="btn btn-primary active" disabled="disabled">没有程式单</a>
+        {% endif %}
+    {% else %}
+        {% if transport_list.state == 1 %}
+            {% if not transport_list.is_applied %}
+                {% if transport_list.is_enough %}
+                    <a id="btn_auto_apply" hide="{{transport_list.id}}" class="btn btn-primary active"> {% trans "自动分配" %}</a>
+                {% else %}
+                    {% trans "库存不足，请先补充" %}
+                {% endif %}
+            {% else %}
+                {% if transport_list.is_enough %}
+                    <a id="btn_output" href="{% url export_to_warehouse export_list_id %}" class="btn btn-primary active"> {% trans "export all" %}</a>
+                {% else %}
+                    <h1 class="text-danger">库存不足，请先补充</h1>
+                {% endif %}
+            {% endif %}
+        {% endif %}
+    {% endifequal %}
+
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+    $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+            function getCookie(name) {
+                var cookieValue = null;
+                if (document.cookie && document.cookie != '') {
+                    var cookies = document.cookie.split(';');
+                    for (var i = 0; i < cookies.length; i++) {
+                        var cookie = jQuery.trim(cookies[i]);
+                        // Does this cookie string begin with the name we want?
+                        if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+            if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+                // Only send the token to relative URLs i.e. locally.
+                xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+            }
+        }
+    });
+
+    $("#btn_auto_apply").click(function(event) {
+        var mydata = {transport_list_id:"{{ transport_list.id }}", items:""};
+        {% for ai in applied_items %}
+            //mydata.item{{ item.id }} = item.id
+            mydata.items += {{ ai.id }} + ','
+        {% endfor %}
+
+        $.ajax({
+            type: "POST",
+            url: "{% url ajax_auto_apply_item_entries %}",
+            dataType: "jsonp",
+            jsonp: "callback",
+            jsonpCallback:"yuankong",
+            data: mydata,
+            success: function(data) {
+                if (data.result !=0 ){
+                    alert(data.state);
+                }else{
+                    window.location.replace(window.location.pathname);
+                }
+            },
+
+            error: function () {
+                alert('fail');
+            }
+        });
+    });
+
+</script>
+
+{% endblock %}

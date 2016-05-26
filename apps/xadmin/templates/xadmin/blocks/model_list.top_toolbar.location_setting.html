@@ -1,0 +1,11 @@
+{% load i18n %}
+
+{% if 'content_type__model__exact=knife' in request.get_full_path %}
+
+<div class="btn-group">
+
+      <a href="{% url admin:warehouse_location_changelist %}" class="btn btn-default btn-sm">{% trans "location setting" %}</a>
+
+</div>
+
+{% endif %}

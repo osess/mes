@@ -1,0 +1,98 @@
+{% extends "empty_page.html" %}
+
+{% load i18n %}
+{% block title %} {% trans "report" %} {% endblock %}
+
+{% block body %}
+
+<head>
+    <style type="text/css">
+
+        .report {font-size: 85%;
+                width:80%;
+                height:40%;
+                margin: 0 auto; 
+                
+                }
+        
+        td      {
+                text-align:center;
+
+                }
+        th      {
+                text-align:center;
+
+                }
+        table{
+                border-collapse:collapse;
+            }
+    </style>
+</head>
+<div class="report">
+<table class="table table-bordered">
+    <tr>
+        <td>code</td>
+        <td>{{code}}</td>
+
+    </tr>
+    <tr>
+        <th>序号</th>
+        <th>客户名</th>
+        <th>产品名称</th>
+        <th>规格型号/图号</th>
+        <th>合同编号</th>
+        <th>数  量</th>
+        <th>完成日期</th>
+    <tr>
+
+    {% for product_item in product_item_list %}
+    <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{product_item.order.customer}}</td>
+        <td>{{product_item.product.name}}</td>
+        <td>{{product_item.product.cad_code}}</td>
+        <td>合同编号</td>
+        <td>{{product_item.quantity}}</td>
+        <td>{{product_item.order.finish_time}}</td>
+    <tr>
+    {% endfor %}
+
+    <tr>
+        <td rowspan="2" colspan="2">备注</td>
+        <td rowspan="2" colspan="5"></td>
+    </tr>
+
+    <tr>
+    </tr>
+
+    <tr>
+        <td colspan="2">下达部门</td>
+        <td>市场部</td>
+        <td>接受部门</td>
+        <td>生产部</td>
+        <td>技术部</td>
+        <td>质量部</td>
+
+    </tr>
+
+    <tr>
+        <td colspan="2">下达人</td>
+        <td></td>
+        <td>接受人</td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td colspan="2">下达日期</td>
+        <td></td>
+        <td>接受日期</td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+
+</table>
+<div>
+{% endblock %}

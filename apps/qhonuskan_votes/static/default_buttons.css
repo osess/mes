@@ -1,0 +1,44 @@
+div.vote_buttons{
+    overflow:auto;
+    border-radius:3px;
+    background:#ddd;
+    margin:0;
+    padding:0 4px 4px 4px;
+}
+div.vote_buttons a.upVote,div.vote_buttons a.downVote,div.vote_buttons div.score{
+    height:10px;
+}
+div.vote_buttons a.upVote{
+    width:0;
+    height:0;
+    border-left:8px solid transparent;
+    border-right:8px solid transparent;
+    border-bottom:8px solid #888;margin:0;float:left;
+}
+div.vote_buttons a.downVote{
+    width:0;
+    height:0;
+    border-left:8px solid transparent;
+    border-right:8px solid transparent;
+    border-top:8px solid #888;
+    margin:0;
+    float:right;
+}
+div.vote_buttons a.upVote.voted{
+    border-bottom-color:#222;
+}
+div.vote_buttons a.downVote.voted{
+    border-top-color:#222;
+}
+div.vote_buttons div.score{
+    text-align:center;
+    vertical-align:center;
+    font-size:13px;
+    font-weight:bold;
+    color:#888;
+    border-radius:2px;
+    margin:0 0;
+    padding:0 0 5px 0;
+    display:block;
+    clear:both;
+}

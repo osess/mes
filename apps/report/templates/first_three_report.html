@@ -1,0 +1,88 @@
+{% extends "homepage.html" %}
+{% load i18n %}
+{% block title %} {% trans "warhouse" %} {% endblock %}
+
+{% block center_area %}
+
+
+<table class="table table-bordered">
+    <thead>
+      <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td rowspan='2'>工序</td>
+        <td rowspan='2'>工种</td>
+        <td colspan='8'>三件实测数值记录</td>
+        <td rowspan='2' colspan='2'>检测人</td>
+      </tr>
+      <tr>          
+        <td>要求值</td>
+        <td>实测值</td>
+        <td>要求值</td>
+        <td>实测值</td>
+        <td>要求值</td>
+        <td>实测值</td>
+        <td>要求值</td>
+        <td>实测值</td>
+      </tr>
+
+      <tr>          
+        <td rowspan='3'>7</td>
+        <td rowspan='3'>飞面</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>自检</td>
+        <td></td>
+      </tr>
+
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>互检</td>
+        <td></td>
+      </tr>
+
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>检验</td>
+        <td></td>
+      </tr>
+
+      
+      
+    </tbody>
+ </table>
+
+{% endblock %}

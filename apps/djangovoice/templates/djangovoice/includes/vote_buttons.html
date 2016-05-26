@@ -1,0 +1,19 @@
+{% load qhonuskan_votes %}
+
+<div class="vote_buttons pull-left" x:model="{{ vote_model }}" x:id="{{ object.id }}">
+  <div class="btn-group btn-group-vertical">
+    <a href="#"
+       class="upVote btn btn-mini{% if object|is_up_voted_by:user %} voted{% endif %}"
+       x:value="1">
+      <i class="icon-chevron-up"></i>
+    </a>
+
+    <span class="btn disabled score">{{ object.vote_score|default:'0' }}</span>
+
+    <a href="#"
+       class="downVote btn btn-mini{% if object|is_down_voted_by:user %} voted{% endif %}"
+       x:value="-1">
+      <i class="icon-chevron-down"></i>
+    </a>
+  </div>
+</div>

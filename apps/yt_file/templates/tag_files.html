@@ -1,0 +1,15 @@
+{% for file in files %}
+{% ifequal file.status 1 %}
+    {% if file.imgtag %}
+        <p>
+            <a href="{% url fileshow file.id %}"> <i class="icon-picture"></i> {{ file.name }} </a>
+            <a class="pull-right" href="{% url fileremove file.id %}?next={{request.path}}">  移除 </a>
+        </p>
+    {% else %}
+        <p>
+            <a href="{% url fileshow file.id %}"> <i class="icon-file"></i> {{ file.name }} </a>
+            <a class="pull-right" href="{% url fileremove file.id %}?next={{request.path}}">  移除 </a>
+        </p>
+    {% endif %}
+{% endifequal %}
+{% endfor %}

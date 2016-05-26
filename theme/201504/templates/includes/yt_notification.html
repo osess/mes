@@ -1,0 +1,90 @@
+{% load i18n %}
+<script type="text/javascript">
+
+    $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+            function getCookie(name) {
+                var cookieValue = null;
+                if (document.cookie && document.cookie != '') {
+                    var cookies = document.cookie.split(';');
+                    for (var i = 0; i < cookies.length; i++) {
+                        var cookie = jQuery.trim(cookies[i]);
+                        // Does this cookie string begin with the name we want?
+                        if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+            if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+                // Only send the token to relative URLs i.e. locally.
+                xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+            }
+        }
+    });
+
+    function notifyMe(msg) {
+      // Let's check if the browser supports notifications
+      if (!("Notification" in window)) {
+        alert("This browser does not support desktop notification");
+      }
+
+      // Let's check if the user is okay to get some notification
+      else if (Notification.permission === "granted") {
+        // If it's okay let's create a notification
+        var notification = new Notification(msg);
+        setTimeout(notification.close, 15000);
+      }
+
+      // Otherwise, we need to ask the user for permission
+      // Note, Chrome does not implement the permission static property
+      // So we have to check for NOT 'denied' instead of 'default'
+      else if (Notification.permission !== 'denied') {
+        Notification.requestPermission(function (permission) {
+
+          // Whatever the user answers, we make sure we store the information
+          if(!('permission' in Notification)) {
+            Notification.permission = permission;
+          }
+
+          // If the user is okay, let's create a notification
+          if (permission === "granted") {
+            var notification = new Notification(msg);
+            setTimeout(notification.close, 15000);
+          }
+        });
+      }
+
+      // At last, if the user already denied any notification, and you 
+      // want to be respectful there is no need to bother him any more.
+    }
+
+    function get_data(){
+        $.ajax({
+            type: "POST",
+            url: "{% url ajax_get_notice_data %}",
+            dataType: "jsonp",
+            jsonp: "callback",
+            jsonpCallback:"yuankong",
+            success: function(data) {
+                if(data.result == 0){
+                    notifyMe(data.msg.replace(/<\/?[^>]*>/g,''));
+                    if(data.notice_unseen_count == 0){
+                        notice_string = "";
+                    }else{
+                        notice_string = "("+data.notice_unseen_count+")";
+                        $("#tab_notices").find("a").html("{% trans 'Notices' %}"+notice_string);
+                    }
+                }
+            },
+            error: function () {
+                alert('notice fail ,' + data.msg);
+            }
+        });
+    }
+    // setTimeout(function(){get_data();}, 5000);
+    setInterval("get_data()",1000*60*31);
+
+</script>

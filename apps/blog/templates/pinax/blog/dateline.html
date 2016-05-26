@@ -1,0 +1,8 @@
+{% load i18n %}
+
+<p class="post_dateline">
+    <span class="date">{% if post.published %}{{ post.published|date:"Y M j" }}{% else %}Not published yet{% endif %}</span>
+    <br />
+    {% trans "Author" %}: <span class="author"><a href="http://twitter.com/{{ post.author.username }}" title="@{{ post.author.username }}">{{ post.author.get_full_name }}</a></span> {% trans "Section" %}:
+    <a href="{% url blog_section post.section_slug %}"><span class="section">{% trans post.get_section_display|capfirst %}</span></a>
+</p>

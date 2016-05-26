@@ -1,0 +1,130 @@
+{% extends "empty_page.html" %}
+{% load i18n %}
+{% load first_item_content %}
+{% block title %} 
+    {% if productionline.is_item %}
+    {{ productionline.manufacture_items.all.0.code }}
+    三检实测数值记录卡
+    {% else %}
+    {% trans "first item" %}
+    {% endif %}
+{% endblock %}
+
+{% block extra_head %}
+    <style type="text/css">
+
+        .report {
+            font-size: 85%;
+            margin: 20px 40px;
+        }
+        
+        td {
+            text-align:center;
+        }
+
+    </style>
+
+{% endblock %}
+
+
+{% block body %}
+
+<div class="report">
+
+    {# 返回上一页 #}
+    {% if redirecturl %}
+    <a href="{{ redirecturl }}" class="btn btn-default btn-sm" role="button">
+        {% trans "return back" %}
+    </a>
+    {% endif %}
+
+
+    <a class="btn btn-sm btn-success pull-right" href="{% url generate_first_item_pdf productionline.id %}" target="_blank">{% trans 'pdf' %}</a><br>
+    <table class="table table-bordered">
+        <tbody>
+
+          <tr>
+            <td colspan="2" rowspan="2"><h3 style="font-weight:bold;">康春机械</h3></td>
+            <td colspan="2">任务编号</td>
+            <td colspan="4" rowspan="2">
+                <h3>
+                {% if productionline.is_item %}{{ productionline.manufacture_items.all.0.code }}<br />
+                三检实测数值记录卡
+                {% else %}
+                工序首件三检实测数值记录卡
+                {% endif %}
+                </h3>
+            </td>
+            <td colspan="2">质控卡编号</td>
+            <td colspan="5"></td>
+          </tr>
+
+          <tr>
+            <td colspan="2">
+            {% if productionline.is_item %}
+                {{ productionline.manufacture_items.all.0.manu_item_group.task_code|default_if_none:"&nbsp;" }}
+            {% else %}
+                {{ productionline.manu_item_groups.all.0.task_code|default_if_none:"&nbsp;" }}
+            {% endif %}
+            </td>
+            <td colspan="2">合格证编号</td>
+            <td colspan="5"></td>
+          </tr>
+
+          <tr>
+            <td>型号</td>
+            <td colspan="2">{{ productionline.product.symbol }}</td>
+            <td>图号</td>
+            <td colspan="2">{{ productionline.product.cad_code }}</td>
+            <td>名称</td>
+            <td colspan="2">{{ productionline.product.name }}</td>
+            <td>数量</td>
+            <td colspan="5">
+                {% if productionline.is_item %}
+                1
+                {% else %}
+                {{ productionline.manu_item_groups.all.0.quantity }}
+                {% endif %}
+            </td>
+          </tr>
+          <tr>
+            <td rowspan='2' width="3%">工序</td>
+            <td rowspan='2' width="3%">工种</td>
+            <td colspan='8'>三件实测数值记录</td>
+            <td rowspan='2' colspan='5'>检测人</td>
+          </tr>
+          <tr>
+            <td colspan='1'>要求值</td>
+            <td colspan='1'>实测值</td>
+            <td colspan='1'>要求值</td>
+            <td colspan='1'>实测值</td>
+            <td colspan='1'>要求值</td>
+            <td colspan='1'>实测值</td>
+            <td colspan='1'>要求值</td>
+            <td colspan='1'>实测值</td>
+          </tr>
+        {% get_first_item_content productionline %}
+        <tr>
+            <td>编制</td>
+            <td></td>
+            <td>更改标记</td>
+            <td></td>
+            <td>签名</td>
+            <td></td>
+            <td>时间</td>
+            <td ></td>
+            <td>更改标记</td>
+            <td></td>
+            <td>签名</td>
+            <td></td>
+            <td>时间</td>
+            <td></td>
+            <td>共&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;页</td>
+        </tr>
+
+        </tbody>
+     </table>
+
+</div>
+{% endblock %}
+

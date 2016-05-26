@@ -1,0 +1,290 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block head_title %} {% trans "create operation_group" %} {% endblock %}
+
+{% block center_area %}
+
+<script src="{{ STATIC_URL }}js/holder.min.js"></script>
+
+<head>
+
+    <style type="text/css">
+
+        .report {font-size: 85%;
+                width:200%;
+                margin: 0 auto;
+                }
+        
+        td      {
+                text-align:center;
+
+                }
+        table{
+                border-collapse:collapse;
+            }
+
+        #nritem {
+            text-align: center;
+            border: #cbcbcc solid 1px;
+        }
+        #nritem ul {
+            margin: 0px;
+            padding: 0px;
+            list-style-type: none;
+        }
+        #nritem ul li {
+            float:left;
+            display: inline;
+            margin-left:5px;
+            margin-right:5px;
+        }
+        #nritem ul img
+        {
+            display:block;
+            margin:0 auto; 
+            border:0;
+        }
+        #break{
+            clear:both;
+        }
+    </style>
+</head>
+
+
+<div class="report">
+<div id="verification"></div>
+    <a id='technology' class="btn btn-primary active" value="Technology" href="{% url view_technology operation_group.technology.id %}">{% trans 'technology' %}</a>
+<table class="table table-bordered" cellpadding ="0">
+    <tr>
+        <td colspan='2' rowspan="2">康春机械</td>
+        <td colspan='3' rowspan="2">机械加工工艺过程卡</td>
+        <td colspan='2'>产品代号</td>
+        <td colspan='2'>图号</td>
+        <td colspan='2'>零、部、组(整体)件名称</td>
+        <td>工序号</td>
+        <td>工序名称</td>
+        <td colspan='2'>工艺文件编号</td>
+    </tr>
+
+    <tr>
+        <td colspan='2'>{{ operation_group.technology.product.symbol }}</td>
+        <td colspan='2'>{{ operation_group.technology.product.cad_code }}</td>
+        <td colspan='2'>{{ operation_group.technology.product.name }}</td>
+        <td>{{ operation_group.order }}</td>
+        <td>{{ operation_group.name }}</td>
+        <td colspan='2'>{{ operation_group.technology.file_code }}</td>
+    </tr>
+
+    <tr>
+        <td colspan='11' rowspan="8" id="nritem">
+            <ul>
+            <li>
+            {% if operation_group.TU1_file %}
+                <img src="{{ MEDIA_URL }}{{ operation_group.TU1_file.data }}" width='180' height='150'>
+            {% else %}
+                <img src="holder.js/180x150/">
+            {% endif %}
+            </li>
+            <li>
+            {% if operation_group.TU2_file %}
+                <img src="{{ MEDIA_URL }}{{ operation_group.TU2_file.data }}" width='180' height='150'>
+            {% else %}
+                <img src="holder.js/180x150/">
+            {% endif %}
+            </li>
+            <li>
+            {% if operation_group.TU3_file %}
+                <img src="{{ MEDIA_URL }}{{ operation_group.TU3_file.data }}" width='180' height='150'>
+            {% else %}
+                <img src="holder.js/180x150/">
+            {% endif %}
+            </li>
+            </ul>
+        </td>
+        <td colspan='4'>
+            设备编号
+            <tr><td colspan='4'>
+                <select id="device_type" name="operation_group_level" class="form-control">
+                <option value="0">无</option>
+                {% for device in devices %}
+                    <option value="{{ device.id }}">{{ device.type }}</option>
+                {% endfor %}
+                </select>
+            </td></tr>
+            <tr><td colspan='4'>冷却液</td></tr>
+            <tr><td colspan='4'><input class="form-control" type="text" id="coolant" name="operation_group_level" /></td></tr>
+            <tr><td colspan='4'>材料牌号</td></tr>
+            <tr><td colspan='4'><input class="form-control" type="text" id="material_mark" name="operation_group_level" /></td></tr>
+            <tr><td colspan='4'>夹具</td></tr>
+            <tr><td colspan='4'><input class="form-control" type="text" id="fixture" name="operation_group_level" /></td></tr>
+        </td>
+    </tr>
+
+    <tr>
+        <td class="col-md-1" colspan='1'>工步号</td>
+        <td class="col-md-2" colspan='3'>工步名称</td>
+        <td class="col-md-5" colspan='7'>工步内容</td>
+        <td class="col-md-3" colspan='3'>工艺装备</td>
+        <td class="col-md-1"><a id="add-row" href="javascript:void(0)">添加行</a></td>
+    </tr>
+
+    <tbody id="O_body">
+    <tr class="operation_field" name="operation_level">
+        <td colspan='1'><input class="form-control" type="text" name="GB_GBH" /></td>
+        <td colspan='3' style="text-align:center;vertical-align:middle;"><input class="form-control" type="text" name="GB_GBM" /></td>
+        <td colspan='7' style="text-align:center;vertical-align:middle;"><input class="form-control" type="text" name="GB_GBNR" /></td>
+        <td colspan='3'><input class="form-control" type="text" name="GB_GYZB" /></td>
+        <td class="col-md-1"><a name="del-row" href="javascript:void(0)" style="display: none;">删除行</a></td>
+    </tr>
+    </tbody>
+
+    <tr>
+        <td>描图</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>阶段标记</td>
+    </tr>
+
+    <tr>
+        <td rowspan='2'>描较</td>
+        <td rowspan='2'></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>编制</td>
+        <td>审核</td>
+        <td>标准化</td>
+        <td>会签</td>
+        <td>批准</td>
+        <td></td>
+    </tr>
+
+    <tr>
+      
+        <td>&nbsp;</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td></td>
+        <td>更改标记</td>
+        <td>更改单号</td>
+        <td>签名</td>
+        <td>日期</td>
+        <td>更改标记</td>
+        <td>更改单号</td>
+        <td>签名</td>
+        <td>日期</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+
+</table>
+    <a id='btn_submit' class="pull-right btn btn-primary active" value="Confirm">{% trans 'Confirm' %}</a>
+</div>
+
+
+<script type="text/javascript">
+  $("#add-row").click(function(event) {
+    operation_field = $(this).parent().parent().parent().parent().find('.operation_field').first();
+    new_operation = operation_field.clone(true).appendTo("#O_body");
+    new_operation.find("input").val('');
+    new_operation.find("[name='del-row']")[0].removeAttribute("style");
+  });
+  $("[name='del-row']").click(function(event) {
+    new_operation = $(this).parent().parent();
+    new_operation.remove();
+  });
+
+  $("#btn_submit").click(function(event) {
+    var operation_group_value = {};
+    $("[name='operation_group_level']").each(function(){
+      operation_group_value[$(this).attr('id')] = $(this).val();
+    });
+    var operations_value = new Array();
+    $("[name='operation_level']").each(function(){
+      var operation_a = {};
+      $(this).find("input").each(function(){
+        operation_a[$(this).attr('name')] = $(this).val();
+      });
+      operations_value.push(operation_a);
+    });
+    var operation_group_value_str = JSON.stringify(operation_group_value);
+    var operations_value_str = JSON.stringify(operations_value);
+
+    $.ajax({
+      type: "POST",
+      url: "{% url ajax_create_operation_group_verification %}",
+      dataType: "jsonp",
+      jsonp: "callback",
+      jsonpCallback:"yuankong",
+      data: {
+        operation_group_value_str:operation_group_value_str,
+        operations_value_str:operations_value_str,
+      },
+      success: function(data) {
+        if(data.result==0){
+          $.ajax({
+            type: "POST",
+            url: "{% url ajax_create_operation_group operation_group.id %}",
+            dataType: "jsonp",
+            jsonp: "callback",
+            jsonpCallback:"yuankong",
+            data: {
+              operation_group_value_str:operation_group_value_str,
+              operations_value_str:operations_value_str,
+            },
+            success: function(data) {
+              if(data.result==0){
+                window.location.replace("{% url view_operation_group operation_group.id %}");
+              }else{
+                alert(data.msg)
+              }
+            },
+            error: function () {
+              alert('fail');
+            },
+          });
+        }else{
+          $("#verification").html("<div class='alert alert-danger alert-dismissable'>" + "<button type='button' class='close' data-dismiss='alert'>&times;</button>" + data.msg + "</div>");
+        }
+      },
+      error: function () {
+        alert('fail');
+      },
+    });
+
+  });
+</script>
+
+{% endblock %}

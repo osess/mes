@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %} {% trans "bom list" %} {% endblock %}
+
+{% block center_area %}
+<div class="container">
+	<h1>{% trans "bom list" %}</h1>
+	<div class="bs-yuankong">
+	<table class="table table-bordered table-striped">
+		<thead>
+	  	<tr>
+		    <th>{% trans "manu_plan" %}</th>
+		    <th>{% trans "finish time" %}</th>
+		    <th>{% trans "all output" %}</th>
+	  	</tr>
+	    </thead>
+		{% for bom in bom_productionline_list %}
+		{% if bom.bom_category == 1%}
+	  	<tr>
+	  		<td>
+		    <a href="{% url bom_detail bom.productionline.id %}?next={{request.path}}">{{bom.productionline.manufactureplan}}</a>
+		    </td>
+		    <td>{{bom.finish_time}}</td>
+		    {% if bom.productionline.manufactureplan_output_status == 'all_output' %}
+    			<td>{% trans "all output" %}</td>
+			{% endif %}
+
+    		{% if bom.productionline.manufactureplan_output_status == 'waitting' %}
+    			<td>{% trans "Waitting" %}</td>
+			{% endif %}
+
+			{% if bom.productionline.manufactureplan_output_status == 'some_bom_output' %}
+    			<td>{% trans "some bom output" %}</td>
+			{% endif %}
+	  	</tr>
+	  	{% endif %}
+	  	{% endfor %}
+	</table>
+    </div>
+</div>
+
+{% endblock %}

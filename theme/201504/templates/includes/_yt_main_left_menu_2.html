@@ -1,0 +1,119 @@
+{% load i18n %}   
+<div class="col-sm-1 col-md-2 sidebar page-sidebar">
+  <ul class="nav nav-sidebar">
+    <li><a class="btn btn-default" href="/">总览 <span class="sr-only">(current)</span></a></li>
+  </ul>
+
+  {% if perms.productcatalog.view_product or perms.companydepartment.view_department %}
+  <ul class="nav nav-sidebar">
+    {% if perms.customer.view_customer %}
+    <li><a class="btn btn-default" href="{% url admin:customer_customer_changelist %}">客户分类</a></li>
+    {% endif %}
+    {% if perms.productcatalog.view_product %}
+    <li><a class="btn btn-default" href="{% url admin:productcatalog_product_changelist %}?_p_type__exact=1&kind_of_category=product&is_kind=true">产品目录</a></li>
+    {% endif %}
+    {% if perms.person.view_employee %}
+    <li><a class="btn btn-default" href="{% url admin:person_employee_changelist %}">员工信息</a></li>
+    {% endif %}
+  </ul>
+  {% endif %}
+  
+  <ul class="nav nav-sidebar">
+
+{% if perms.manufactureplan.view_order %}
+    <li class="sticker sticker-color-blue">
+      <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="right" data-content="
+    {% if perms.manufactureplan.view_order %}
+      <a href='{% url admin:manufactureplan_order_changelist %}?_p_status__exact=1'>{% trans 'orders' %}</a>&emsp;
+    {% endif %}
+    {% if perms.manufactureplan.view_manufactureplan %}
+      <a href='{% url admin:manufactureplan_manufactureplan_changelist %}?_p_status__exact=1'>{% trans 'manufacture_plan' %}</a>&emsp;
+    {% endif %}
+    {% if perms.manufactureplan.view_manufactureitemgroup %}
+      <a href='{% url admin:manufactureplan_manufactureitemgroup_changelist %}'>{% trans 'productionline' %}</a>&emsp;
+    {% endif %}
+    {% if perms.manufactureplan.view_manufactureitem %}
+      <a href='{% url admin:manufactureplan_manufactureitem_changelist %}'>工件</a>
+    {% endif %}" style="width:100%;">市场部</button>
+    </li>
+{% endif %}
+
+{% if perms.manufactureplan.view_productionline %}
+  <li>
+      <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="right" data-content="
+      <a href='{% url operation_working_device_items_list %}'>{% trans 'working dashboard' %}</a>&emsp;
+      {% if perms.manufactureplan.change_productionline %}
+        <a href='{% url productionlines_list %}'>{% trans 'productionlines list' %}</a>&emsp;
+      {% endif %}
+      {% if perms.manufactureplan.monitor_productionLine %}
+        <a href='{% url productionlines_monitoring %}'>生产任务监控</a>&emsp;
+      {% endif %}" style="width:100%;">生产部</button>
+
+  </li>
+{% endif %}
+
+{% if perms.manufactureplan.quality_dispaly %}
+    <li>
+      <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="right" data-content="
+      <a href='{% url excessive_qa_records_list %}'>{% trans 'excessive_qa_records_list' %}</a>&emsp;
+      <a href='{% url wait_excessive_qa_records_list %}'>{% trans '待处理' %}</a>
+      <br />
+      <a href='{% url pass_excessive_qa_records_list %}'>{% trans '检验通过单(检验员)' %}</a>&emsp;
+      <a href='{% url fail_excessive_qa_records_list %}'>{% trans '检验不通过单(检验员)' %}</a>" style="width:100%;">质量部</button>
+    </li>
+{% endif %}
+
+{% if perms.warehouse.view_itementry %}
+    <li><button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="right" data-content="<a href='{% url admin:warehouse_itementry_changelist %}?_p_journal__id__exact=1&_p_item__content_type__model__exact=product&_p_location__type__exact=1'>产品信息</a>&emsp;
+      <a href='{% url admin:warehouse_deviceentry_changelist %}?_p_journal__id__exact=1&_p_item__content_type__model__exact=device&_p_location__type__exact=1'>设备信息</a>&emsp;
+      <a href='{% url admin:warehouse_deviceentry_changelist %}?_p_journal__id__exact=1&_p_item__content_type__model__exact=knife&_p_location__type__exact=1'>刀具信息</a><br />
+      <a href='{% url admin:warehouse_deviceentry_changelist %}?_p_journal__id__exact=1&_p_item__content_type__model__exact=tool&_p_location__type__exact=1'>工具信息</a>&emsp;
+      <a href='{% url admin:warehouse_itementry_changelist %}?_p_journal__id__exact=1&_p_item__content_type__model__exact=material&_p_location__type__exact=1'>材料信息</a><hr />
+      {% if perms.warehouse.add_transportlist %}
+      <a href='{% url applications_list %}'>需求列表</a>&emsp;
+      {% endif %}
+      <a href='{% url admin:maintenance_maintenance_changelist %}'>维护记录</a>&emsp;
+      <a href='{% url admin:productcatalog_attribute_changelist %}'>属性列表</a><br />
+      <a href='{% url admin:warehouse_location_changelist %}'>库位设置</a>&emsp;
+      <a href='{% url admin:warehouse_electricitycharge_changelist %}'>电量使用</a>" style="width:100%;">仓库</button></li>
+{% endif %}
+
+{% if perms.technologies.view_technology %}
+    <li><button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="right" data-content="
+    {% if perms.technologies.view_technology %}
+      <a href='{% url admin:technologies_technology_changelist %}?_p_status__exact=1'>{% trans 'technology' %}</a>&emsp;
+    {% endif %}
+    {% if perms.technologies.view_operationgroup %}
+      <a href='{% url admin:technologies_operationgroup_changelist %}'>{% trans 'operation group' %}</a>&emsp;
+    {% endif %}
+    {% if perms.technologies.view_operation %}
+      <a href='{% url admin:technologies_operation_changelist %}'>{% trans 'operation' %}</a>&emsp;
+    {% endif %}
+    {% if perms.technologies.view_technology %}
+      <a href='{% url technologies_list %}'>{% trans 'technologies list' %}</a>
+    {% endif %}
+      " style="width:100%;">技术部</button></li>
+{% endif %}
+
+
+
+  </ul>
+  <ul class="nav nav-sidebar">
+{% if perms.auth.view_user %}
+    <li>
+      <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="right" data-content="
+            <a href='{% url ext_manufactureitem_working_time %}'>{% trans 'report center' %}</a>
+            " style="width:100%;">报表中心</button>
+    </li>
+{% endif %}
+  </ul>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $('[data-toggle="popover"]').popover({
+        placement : 'right',
+        html: true
+    });
+});
+</script>

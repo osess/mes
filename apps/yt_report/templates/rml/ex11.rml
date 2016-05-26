@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<!DOCTYPE document SYSTEM "../rml_1_0.dtd">
+<document filename="example_10.pdf">
+	<template>
+		<pageTemplate id="main">
+			<pageGraphics>
+				<image x="30" y="150" width="600" height="250" src="{{ barchart }}"/>
+				<!-- header -->
+				<image x="27" y="780" width="300" height="35" src="{{ header }}"/>
+				<!-- booter -->
+				<lines>2cm 3.2cm 19cm 3.2cm</lines>
+                <drawCentredString x="300" y="70">版权所有：上海市远途信息技术有限公司</drawCentredString>
+				<image x="27" y="25" width="300" height="27" src="{{ booter }}"/>
+			</pageGraphics>
+			<frame id="first" x1="72" y1="72" width="451" height="698"/>
+		</pageTemplate>
+		<pageTemplate id="second">
+			<pageGraphics>
+				<image x="72" y="300" src="{{ piechart }}"/>
+			</pageGraphics>
+		</pageTemplate>
+
+
+
+	</template>
+	<stylesheet>
+		<blockTableStyle id="myBlockTableStyle">
+			<!-- This sets a font for every cell from the start of the -->
+			<!-- second row down to the bottom right hand corner                   -->
+			<blockFont name="DejaVuSans" start="0,1" stop="-1,-1"/>
+			<!-- This sets a font for the first row           -->
+			<blockFont name="DejaVuSans-Bold" size="14" start="0,0" stop="3,0"/>
+			<blockBottomPadding length="10" start="0,0" stop="3,0"/>
+			<!-- This sets a textColor for all the text in the table -->
+			<blockTextColor colorName="black"/>
+			<!-- This sets a textColor for the first row             -->
+			<!-- (Since it comes after the above setting, -->
+			<!-- it overides it for this row) -->
+			<blockTextColor colorName="white" start="0,0" stop="3,0"/>
+			<!-- This sets a background color for the first row              -->
+			<blockBackground colorName="red" start="0,0" stop="3,0"/>
+			<!-- This sets a background color for the rest of the table -->
+			<blockBackground colorName="cornsilk" start="0,1" stop="-1,-1"/>
+			<lineStyle kind="GRID" colorName="darkred"/>
+		</blockTableStyle>
+	</stylesheet>
+	<story>
+		<title>EXAMPLE: persons list table</title>
+		<spacer length="1cm"/>
+
+
+		<blockTable style="myBlockTableStyle" rowHeights="{{ personsrowHeights }}" colWidths="{{ personscolWidths }}">
+			{% for persondata in personsdata %}
+			<tr>
+				{% for cell in persondata %}
+				<td>{{ cell }}</td>
+				{% endfor %}
+			</tr>
+			{% endfor %}
+		</blockTable>
+
+		<place x="0" y="0" width="0" height="0" origin="page">
+			<illustration width="0" height="0">
+				<catchForms pdfFile="chart.pdf" pfx="CHART"/>
+				<saveState/>
+				<translate dx="2in" dy="-5in"/>
+				<doForm name="CHART0"/>
+				<restoreState/>
+			</illustration>
+		</place>
+
+	</story>
+</document>
+

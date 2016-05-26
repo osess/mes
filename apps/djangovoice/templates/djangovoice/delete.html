@@ -1,0 +1,16 @@
+{% extends "djangovoice/base.html" %}
+{% load trans from i18n %}
+
+{% block title %}{% trans "Delete" %}{% endblock %}
+
+{% block content %}
+  <div class="content-spaces">
+    <p>{% trans "Are you sure you wish to delete this feedback item completely, and all of the comments associated with it?" %}</p>
+    <p>{% trans "There is <strong>no way to undo this!</strong>" %}</p>
+
+    <form action="" method="post">
+      {% csrf_token %}
+      <p><input type="submit" value="{% trans "Delete Permenantly" %}" class="btn btn-primary" /> {% trans "or" %} <a href='../'>{% trans "leave everything as it is" %}</a>.</p>
+    </form>
+  </div>
+{% endblock %}

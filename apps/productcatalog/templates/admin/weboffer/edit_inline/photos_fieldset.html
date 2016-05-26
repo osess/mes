@@ -1,0 +1,28 @@
+{% load imageprocess %}
+<fieldset class="module aligned {{ fieldset.classes }}">
+  {% if fieldset.name %}<h2>{{ fieldset.name }}</h2>{% endif %}
+  {% if fieldset.description %}<div class="description">{{ fieldset.description|safe }}</div>{% endif %}
+  {% with fieldset.form.initial.image as thumbnail_path %}
+  {% if thumbnail_path %}
+  <div class="photo">
+      <img src="{{ MEDIA_URL }}{% thumbnail_url thumbnail_path 80 80 %}" alt="{{ thumbnail_path }}" />
+  </div>
+  {% endif %}
+  {% endwith %}
+  {% for line in fieldset %}
+      <div class="form-row{% if line.errors %} errors{% endif %} {% for field in line %}{{ field.field.name }} {% endfor %} ">
+      {{ line.errors }}
+      {% for field in line %}
+      <div{% if not line.fields|length_is:"1" %} class="field-box"{% endif %}>
+          {% if field.is_checkbox %}
+              {{ field.field }}{{ field.label_tag }}
+          {% else %}
+              {{ field.label_tag }}{{ field.field }}
+          {% endif %}
+          {% if field.field.field.help_text %}<p class="help">{{ field.field.field.help_text|safe }}</p>{% endif %}
+      </div>
+      {% endfor %}
+      </div>
+  {% endfor %}
+</fieldset>
+

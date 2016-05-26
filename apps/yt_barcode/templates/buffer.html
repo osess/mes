@@ -1,0 +1,18 @@
+{% extends "homepage.html" %}
+{% load i18n %}
+{% block title %} {% trans "barcode" %} {% endblock %}
+
+
+{% block center_area %}
+
+<div>
+	<h2>{% trans "barcode list" %}</h2>
+	<button class="btn" id="btn_display" name="display">
+		<a href="{% url display_barcode productionline_id %}">{% trans "output all" %}
+		</a>
+	</button>
+
+</div>
+
+{% endblock %}
+

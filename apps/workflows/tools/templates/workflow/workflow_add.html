@@ -1,0 +1,19 @@
+{% extends "hr/base.html" %}
+{% load i18n %}
+{% block title %} {% trans "workflow add" %} {% endblock %}
+{% block extjs_center_area %}
+<div class="container-fluid">
+	<legend>
+		<h1>{% trans "workflow add" %}</h1>
+	</legend>
+	<div class="model row-fluid">
+		<div class="control-group span4 offset4">
+			<form class="form-horizontal" action="{% url addworkflow %}" method="post" enctype="multipart/form-data">
+				{% csrf_token %}
+				{{ form }}
+				<input type="submit" class="btn btn-primary" value="add a workflow">
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}

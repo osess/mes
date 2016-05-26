@@ -1,0 +1,78 @@
+{% extends "xadmin/edit_inline/base.html" %}
+{% load i18n xadmin_tags crispy_forms_tags %}
+
+{% block box_content_class %}nopadding{% endblock box_content_class %}
+{% block box_content_attrs %}{% endblock box_content_attrs %}
+
+{% block formset_content %}
+
+<!-- table-col-hidden is added by lxy -->
+  <table class="table table-col-hidden">
+    <thead>
+    <!-- by lxy -->
+    {% if fields.0.label == '产品' or fields.0.label == '订单'%}
+      <th class='hide-th'>{% trans 'product name' %}</th>
+      <th class='hide-th'>{% trans 'cad_code' %}</th>
+      <th class='hide-th'>{% trans 'norm_code' %}</th> 
+    {% endif %}   
+    <!-- <by lyx end -->
+   {% for field in fields %}
+     {% if not field.widget.is_hidden %}
+       <th{% if field.required %} class="required"{% endif %}>{{ field.label|capfirst }}
+       {% if field.help_text %}&nbsp;<a title="{{ field.help_text|striptags }}" /><i class="icon icon-question-sign"></i></a>{% endif %}
+       </th>
+     {% endif %}
+   {% endfor %}
+   {% for field in readonly_fields %}
+       <th>{{ field.label }}</th>
+   {% endfor %}
+   {% if formset.formset.can_delete %}<th>&nbsp;</th>{% endif %}
+    </thead>
+    <tbody class="formset-content" data-prefix="{{ prefix }}" data-style="stacked">
+      {% for fs in formset.formset %}
+      
+      <tr class="formset-row">
+        {% crispy fs formset.formset.helper %}
+
+        {% for r_o_f in fs.readonly_fields %}
+            <td>{{ r_o_f.contents|safe }}</td>
+        {% endfor %}
+        {% if formset.formset.can_delete %}
+          <td><a class="delete-row"><i class="icon icon-remove"></i></a></td>
+        {% endif %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+    $('table').removeClass('table-col-hidden');
+    $('.hide-th').hide();
+    var myTh = $('.hide-th').parents('div.modal-body').html();
+    var origTh = $('.required').first();
+
+    if (typeof myTh != 'undefined') {
+        $('.hide-th').show();
+        origTh.html("{% trans 'symbol' %}");
+    } else {
+        $('.hide-th').hide();
+    }
+});
+    
+</script>
+
+
+{% endblock formset_content %}
+
+{% block formset_empty %}
+  <tr class="formset-row">
+    {% crispy formset.formset.empty_form formset.formset.helper %}
+    {% if formset.formset.can_delete %}
+      <td><a class="delete-row"><i class="icon icon-remove"></i></a></td>
+    {% endif %}
+  </tr>
+{% endblock formset_empty %}
+
+

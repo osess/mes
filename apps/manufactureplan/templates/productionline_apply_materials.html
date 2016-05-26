@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load manufactureplan_tags %}
+{% block title %} {% trans productionline.name %} {% endblock %}
+
+{% block center_area %}
+<script src="/site_media/static/js/validate.min.js"></script>
+<script src="/site_media/static/js/validate_helper.min.js"></script>
+
+<div class="container">
+	<h3>{% trans 'BOM Entries for manufactureplan:' %}{{ manufactureplan.name }}</h3>
+    <a class="btn btn-default active" href="{{redirecturl}}">{% trans 'back' %}</a>
+    <div class="bs-yuankong">
+        <form class="form-horizontal span12" action='{% url productionline_apply_materials productionline.id %}' method="post">
+            {% csrf_token %}
+            {% trans 'finish_time: ' %}{{ finish_time }}
+            <br>
+            <a id='add_form' class='btn btn-primary active'>{% trans 'add BOM Entry' %}</a>
+            <table id='form' class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th class="span4">{% trans "Item" %}</th>
+                        <th class="span3">{% trans "数量" %}</th>
+                        <th class="span5">{% trans "Note" %}</th>
+                    </tr>
+                </thead>
+                <tr class='form_field'>
+                    <td>
+                        <select name="item" id="id_item" class="form-control">
+                        {% if items %}
+                            {% for item in items %}
+                            <option value="{{ item.id }}">{{ item }}</option>
+                            {% endfor %}
+                        {% endif %}
+                        </select> 
+                    </td>
+                    <td><input name="qty" id='id_qty' type="text" class="form-control" value=""/></td>
+                    <td><input name="note" id='id_note' type="text" class="form-control" value=""/></td>
+                </tr>
+            </table>
+            
+            <br />
+            <a id='btn_submit' class="btn btn-primary active" value="Confirm">{% trans 'Confirm' %}</a>
+        </form>
+	</div>
+</div>
+
+<script type="text/javascript">
+    $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+            function getCookie(name) {
+                var cookieValue = null;
+                if (document.cookie && document.cookie != '') {
+                    var cookies = document.cookie.split(';');
+                    for (var i = 0; i < cookies.length; i++) {
+                        var cookie = jQuery.trim(cookies[i]);
+                        // Does this cookie string begin with the name we want?
+                        if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+            if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+                // Only send the token to relative URLs i.e. locally.
+                xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+            }
+        }
+    });
+    
+    var $my_form = $("#form")
+    $my_form.validate(function($form, e){ alert("submitted") })
+
+    $("#add_form").click(function(event) {
+        form_fields = $(this).next().find('.form_field').first();
+        new_fields = form_fields.clone(true).appendTo("#form");
+        new_fields.find('#id_qty').val('')
+        new_fields.find('#id_note').val('')
+    });
+
+    $("#btn_submit").click(function() {
+        var forms_value = new Array()
+        $(this).parent().find("#form").find(".form_field").each(function(){
+            var item = $(this).find("#id_item option:selected");
+            var qty = $(this).find("#id_qty");
+            var note = $(this).find("#id_note");
+            forms_value.push({"item_id":item.val(), "qty_val":qty.val(), "note_val":note.val()});
+        });
+        var json_str = JSON.stringify(forms_value);
+        
+        $.ajax({
+            type: "POST",
+            url: "{% url ajax_create_bom_entries productionline.id %}",
+            dataType: "jsonp",
+            jsonp: "callback",
+            jsonpCallback:"yuankong",
+            data: {bom_entry_values:json_str},
+            success: function(data) {
+                if(data.result==0){
+                    window.location.replace("{{redirecturl}}");
+                }else{
+                    alert(data.state)
+                }
+                
+            },
+
+            error: function () {
+                alert('fail');
+            },
+        });
+    });
+
+</script>
+{% endblock %}

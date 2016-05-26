@@ -1,0 +1,34 @@
+{% extends "hr/base.html" %}
+{% load i18n %}
+{% block title %} {% trans "workflows list" %} {% endblock %}
+
+{% block header_js %}
+{% endblock %}
+
+{% block extjs_center_area %}
+<div class="container-fluid">
+	<legend>
+		<h1>{% trans "workflows list" %}</h1>
+	</legend>
+	
+	<a class="btn" href="{% url addworkflow %}"><i class="icon-plus"></i>{% trans "add new workflow" %}</a>
+	<table class="table table-bordered table-hover">
+		<thead bgColor=#dddddd>
+			<th> {% trans "name" %} </th><th> {% trans "operate" %} </th>
+		</thead>
+		{% for workflow in workflows %}
+		<tr>
+			<td><a href="{% url workflowshow workflow.id %}"> {{workflow.name}} </a></td>
+			<td>
+				<a href="{% url workflowobjectslist workflow.id %}"> {% trans "objects" %} </a>
+			    <a href="{% url workflowsetpermission workflow.id %}"> {% trans "set permission" %} </a>
+			</td>
+		</tr>
+		{% endfor %}
+	</table>
+	
+</div>
+{% endblock %}
+
+{% block jsblock %}
+{% endblock %}

@@ -1,0 +1,45 @@
+<script type="text/javascript">
+    function show_not_authenticated_error() {
+	    alert("you are not authenticated");
+    }
+    $(document).ready(function() {
+	    $(".vote_buttons").bind("vote", function(event, value) {
+	        var vote_el = $(this);
+	 	    $.ajax({
+	            type:'POST',
+		        url: '{{ vote_url }}',
+		        data: {
+	                'vote_model': vote_el.attr("x:model"),
+	                'object_id': vote_el.attr("x:id"),
+	                'value': value
+                },
+                dataType: "json",
+		        success : function(data, textStatus, jqXHR) {
+                    vote_el.find(".score").html(data['score']);
+                    switch (data.voted_as) {
+                        case 0:
+	                        vote_el.find("a.upVote, a.downVote").removeClass("voted");
+                        break;
+                        case 1:
+   	                        vote_el.find("a.upVote").addClass("voted");
+                            vote_el.find("a.downVote").removeClass("voted");
+                       break;
+                        case -1:
+  	                        vote_el.find("a.upVote").removeClass("voted");
+                            vote_el.find("a.downVote").addClass("voted");
+                       break;
+                    }
+		        },
+	            statusCode: {
+	                401:  function() {
+	                    show_not_authenticated_error();
+	                }
+	            }
+	        });
+	    });
+	    $('.upVote, .downVote').click(function(){
+	        $(this).parent().trigger("vote", $(this).attr("x:value"));
+            return false;
+	    });
+	});
+</script>

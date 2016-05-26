@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %} {% trans "technology list" %} {% endblock %}
+
+{% block body %}
+<div>
+    <h2>{% trans "technology list" %}</h2>
+    <table border="1">
+        <tr>
+            <th>{% trans "technology" %}</th>            
+            
+        </tr>
+        {% for technology in technology_objects %}
+        <tr>
+            <td>
+            <a href="{% url generate_technology_report technology.id %}">{{technology}}</a>    
+            </td>        
+            
+        </tr>
+        {% endfor %}
+    </table>
+
+</div>
+
+{% endblock %}

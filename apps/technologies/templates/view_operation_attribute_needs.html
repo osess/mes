@@ -1,0 +1,100 @@
+{% load i18n %}
+
+<div class="modal fade" id="id-attribute-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document" style="width:70%;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">
+            {% trans "operations need add attribute" %}
+        </h4>
+      </div>
+      <div class="modal-body">
+          <table class="table table-bordered">
+            <tr>
+              <td>
+                  {% trans "operation group order" %}
+              </td>
+              <td>
+                  {% trans "operation_group_name" %}
+              </td>
+              <td>
+                  {% trans "operation order" %}
+              </td>
+              <td>
+                  {% trans "description" %}
+              </td>
+              <td>
+                {% trans "action" %}
+              </td>
+            </tr>
+            {% for operation in operations %}
+            <tr class="number-of-operation">
+              <td>
+                {{ operation.operation_group.order }}
+              </td>
+              <td>
+                {{ operation.operation_group.name }}
+              </td>
+              <td>
+                {{ operation.order }}
+              </td>
+              <td>
+                {{ operation.description }}
+              </td>
+              <td>
+                  <a href="{% url admin:technologies_operation_change operation.id %}" target="blank">
+                    {% trans "add attribute" %}
+                  </a>
+                  {# 如果可以忽略，则显示忽略按钮，并设置为忽略 #}
+                  <a class="action-ignore-add-attribute" data-operation-id="{{ operation.id }}">
+                      {% trans "ignore"%}
+                  </a>
+              </td>
+            </tr>
+            {% endfor %}
+          </table>
+      </div>
+      <div class="modal-footer">
+          <button class="btn btn-default" data-dismiss="modal">{% trans "Close" %}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $('.action-ignore-add-attribute').click(function(){
+        var id = $(this).data('operation-id');
+        
+        $table_row = $(this).closest('tr');
+
+        // ajax 忽略该项并移除该行
+        $.ajax({
+            url:"{% url ajax_set_operation_not_required %}",
+            type:"post",
+            data:{'operation_id':id,'csrfmiddlewaretoken': '{{ csrf_token }}'},
+            dataType:"json",
+            success:function(response){
+                if(response.code == '0'){
+                    $table_row.hide('slow', function(){
+                        $table_row.remove();
+
+                      // 如果没有内容了，直接关闭 modal, 并刷新页面
+                      if( $('.number-of-operation').length == 0){
+                          $('#id-attribute-modal').modal('hide');
+                          window.location.replace('{% url technologies_list %}');
+                      }
+                    });
+                }
+                else{
+                    alert(response.msg);
+                }
+            },
+            error:function(e){
+                alert(e.msg);
+            }
+        });
+    });
+});
+</script>

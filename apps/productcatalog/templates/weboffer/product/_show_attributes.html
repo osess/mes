@@ -1,0 +1,7 @@
+<dl class="specification">
+{% for pa in product.productattribute_set.published %}
+    <dt>{{ pa.attribute }}:</dt>
+    <dd>{{ pa.display_value }}</dd>
+{% endfor %}
+</dl>
+

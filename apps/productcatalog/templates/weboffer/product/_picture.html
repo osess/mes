@@ -1,0 +1,2 @@
+{% load imageprocess %}
+<img src="{{ MEDIA_URL }}{% thumbnail_url product.photo.image|default:"images/nophoto.gif" image_width|default:100 image_height|default:100 %}" alt="{{ product.name }}" />

@@ -1,0 +1,12 @@
+{% extends "weboffer/base_site.html" %}
+{% load widgets %}
+
+{% block content %}
+
+<h2>Oferta - lista produktów</h2>
+
+{% include_widget WebofferCategoryInfo category %}
+{% include_widget WebofferCategoryList subcategories %}
+{% include_widget ProductList page.object_list %}
+
+{% endblock %}

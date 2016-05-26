@@ -1,0 +1,20 @@
+{% extends "hr/base.html" %}
+{% load i18n %}
+{% block title %} {% trans "company edit" %} {% endblock %}
+{% block extjs_center_area %}
+<div class="container-fluid">
+	<legend>
+		<h1>{% trans "company edit" %}</h1>
+	</legend>
+	<a class="btn" href="{% url companyslist %}"><i class="icon-list"></i> {% trans "companys list" %} </a>
+	<div class="model row-fluid">
+		<div class="control-group span4 offset4">
+			<form class="form-horizontal" action="{% url companyedit company_id %}" method="post">
+				{% csrf_token %}
+				{{ form }}
+				<input type="submit" class="btn btn-primary " value={% trans "edit the company" %}>
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}

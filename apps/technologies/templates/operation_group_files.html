@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load file_tags %}
+{% block head_title %} {% trans "operation_group files list" %} {% endblock %}
+
+{% block center_area %}
+<div class="container">
+	<h1>{% trans "operation_group CAD files list" %}</h1>
+    <div class="bs-yuankong">
+	<table class="table table-bordered table-striped">
+		<thead>
+			<tr>
+				<th> {% trans "file name" %} </th>
+				<th> {% trans "operate" %} </th>
+			</tr>
+		</thead>
+		<tr>
+            <td> {% files_for_object operation_group %} </td>
+			<td><a href="{% url uploadfile contenttype_id operation_group.id %}?next={{request.path}}"> {% trans "upload" %} </a></td>
+		</tr>
+	</table>
+	</div>
+</div>
+{% endblock %}

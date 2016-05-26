@@ -1,0 +1,40 @@
+{#% extends "hr/base.html" %#}
+{% load i18n %}
+{#% load upload_tags %#}
+{% block title %} {% trans "report management" %} {% endblock %}
+{% block extjs_center_area %}
+<div class="container-fluid">
+	<legend>
+		<h1>{% trans "report management" %}</h1>
+	</legend>
+    <ul>
+    	<li>
+    		<a class="btn" href="{% url personlisttable %}">Person Table</a>
+    	</li>
+        <li>
+            <a class="btn" href="{% url generate_technology_pdf 1 %}">Technology Table</a>
+        </li>        
+        <li>
+            <a class="btn" href="{% url generate_technology_subpicture_pdf 1 %}">Technology Subpicture</a>
+        </li>
+        
+        <li>
+            <a class="btn" href="{% url generate_first_item_pdf 1 %}">First Item pdf</a>
+        </li>
+
+        <li>
+            <a class="btn" href="{% url generate_reject_project_pdf 1 %}">Reject Project pdf</a>
+        </li>
+        <li>
+            <a class="btn" href="{% url generate_quality_pdf 1 %}">Quality pdf</a>
+        </li>
+
+        <li>
+            <a class="btn" href="{% url merge_pdf 1 %}">Merge pdf</a>
+        </li>
+    </ul>
+	</div>
+</div>
+{% endblock %}
+{% block jsblock %}
+{% endblock %}

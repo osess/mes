@@ -1,0 +1,6191 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-01-23 10:37+0800\n"
+"PO-Revision-Date: 2015-08-12 18:18+0800\n"
+"Last-Translator: \n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 1.5.4\n"
+
+msgid "Create"
+msgstr "创建"
+
+msgid "please fill operation order"
+msgstr "请填写工步号"
+
+msgid "please add operation"
+msgstr "请添加工步"
+
+msgid "operation orders is not sorted"
+msgstr "请按顺序填写工步号"
+
+msgid "device is not found"
+msgstr "设备没有找到"
+
+msgid "product %s is not found"
+msgstr "产品 %s 没有找到"
+
+msgid "technology %s is already exist"
+msgstr "工艺 %s 已经存在"
+
+msgid "please fill operation group order"
+msgstr "请填写工序号"
+
+msgid "please fill operation group job"
+msgstr "请选择工种"
+
+msgid "operation_group %d : %s, job not found"
+msgstr "工序：%d - %s，没有找到工种"
+
+msgid "please add operation group"
+msgstr "请填加工序"
+
+msgid "operation group orders is not sorted"
+msgstr "请按顺序填写工序号"
+
+msgid "detail"
+msgstr "详细信息"
+
+msgid "%s cannot be empty"
+msgstr "%s不可为空"
+
+msgid "%s should be right"
+msgstr "请检查%s值是否存在"
+
+msgid "product %s not exist"
+msgstr "图号%s对应的产品并不存在,请先创建..."
+
+msgid "device_type"
+msgstr "设备类型"
+
+msgid "job_id"
+msgstr "工种"
+
+msgid "operation_group_name"
+msgstr "工序名称"
+
+msgid "operation_order"
+msgstr "工序"
+
+msgid "Batch barcode"
+msgstr "批量生成二维码"
+
+msgid "pdf"
+msgstr "pdf"
+
+msgid "download pdf"
+msgstr "下载pdf"
+
+msgid "download single pdf"
+msgstr "下载单个pdf"
+
+msgid "download all pdf"
+msgstr "下载全部pdf"
+
+msgid "Old Rev"
+msgstr "老版本"
+
+msgid "rev order"
+msgstr "版本号"
+
+msgid "rev note"
+msgstr "版本记录"
+
+msgid "parent technology"
+msgstr "父工艺"
+
+msgid "child technology"
+msgstr "子工艺"
+
+msgid "rev code"
+msgstr "更改单号"
+
+msgid "Manuafctureitem Quantity"
+msgstr "零件数量"
+
+msgid "Manuafctureitem Quality"
+msgstr "零件质量"
+
+msgid "one piece"
+msgstr "单件"
+
+msgid "complete set"
+msgstr "全套"
+
+msgid "each product"
+msgstr "每个产品"
+
+msgid "spare part"
+msgstr "备件"
+
+msgid "total"
+msgstr "总计"
+
+msgid "task code"
+msgstr "任务编号"
+
+msgid "furnace batch"
+msgstr "炉批号"
+
+msgid "display order"
+msgstr "序号"
+
+msgid "manufactureitem name"
+msgstr "零件名称"
+
+msgid "manufactureplan code"
+msgstr "生产通知单号"
+
+#: models.py:13
+msgid "log out"
+msgstr "注销"
+
+#: templates/base.html:21
+msgid "index"
+msgstr "主页"
+
+#: templates/base.html:29
+msgid "Active users"
+msgstr "在线用户"
+
+#: templates/base.html:35
+msgid "stop following"
+msgstr "取消订阅"
+
+#: templates/base.html:37
+msgid "follow"
+msgstr "订阅"
+
+#: actions.py:43
+msgid "started following"
+msgstr "已经订阅"
+
+#: actions.py:64
+msgid "stopped following"
+msgstr "取消订阅"
+
+#: models.py:114
+#, python-format
+msgid "%(actor)s %(verb)s %(action_object)s on %(target)s %(timesince)s ago"
+msgstr "%(actor)s %(verb)s %(action_object)s 在 %(target)s %(timesince)s 以前"
+
+#: models.py:115
+#, python-format
+msgid "%(actor)s %(verb)s %(target)s %(timesince)s ago"
+msgstr "%(actor)s %(verb)s %(target)s %(timesince)s 以前"
+
+#: models.py:117
+#, python-format
+msgid "%(actor)s %(verb)s %(action_object)s %(timesince)s ago"
+msgstr "%(actor)s %(verb)s %(action_object)s %(timesince)s 以前"
+
+#: models.py:118
+#, python-format
+msgid "%(actor)s %(verb)s %(timesince)s ago"
+msgstr "%(actor)s %(verb)s %(timesince)s 以前"
+
+#: templates/actstream/action.html:13
+msgid "ago"
+msgstr "以前"
+
+#: templates/actstream/actor.html:17 templates/actstream/actor.html.py:18
+msgid "Your feed"
+msgstr "你的日志"
+
+#: templates/actstream/actor.html:21
+msgid "RSS"
+msgstr "订阅"
+
+#: templates/actstream/actor.html:22
+msgid "ATOM"
+msgstr "ATOM"
+
+#: templates/actstream/actor.html:25
+msgid "UNFOLLOW"
+msgstr "取消订阅"
+
+#: templates/actstream/actor.html:26
+msgid "FOLLOW"
+msgstr "订阅"
+
+#: templates/actstream/actor.html:33
+msgid "View my actions"
+msgstr "查看我的日志"
+
+#: templates/actstream/actor.html:39
+msgid "No actions yet"
+msgstr "还没有日志"
+
+#: templates/actstream/detail.html:3
+#, python-format
+msgid "On %(date)s at %(time)s"
+msgstr "在 %(date)s %(time)s"
+
+#: templates/actstream/followers.html:2
+#, python-format
+msgid "Users following %(actor)s"
+msgstr "用户订阅了 %(actor)s"
+
+#: templates/actstream/following.html:2
+#, python-format
+msgid "Actors that %(user)s follows"
+msgstr "该用户被 %(user)s 订阅了"
+
+msgid "manufactureitem_working_time_detail %s"
+msgstr "%s 加工时间"
+
+msgid "time"
+msgstr "时间"
+
+msgid "show password"
+msgstr "查看密码"
+
+msgid "actstream action log"
+msgstr "事件记录"
+
+msgid "%d month"
+msgstr "%d 月"
+
+msgid "Working time of Employees"
+msgstr "员工工作时间"
+
+msgid "Month"
+msgstr "月份"
+
+msgid "Chart"
+msgstr "图"
+
+msgid "scrap qty"
+msgstr "报废数量"
+
+msgid "inventory qty"
+msgstr "库存数量"
+
+msgid "TransportDetailRecord"
+msgstr "进出库记录"
+
+msgid "TransportDetailRecords"
+msgstr "进出库记录"
+
+msgid "component name"
+msgstr "零件名称"
+
+msgid "amount"
+msgstr "数量"
+
+msgid "transport note"
+msgstr "备注"
+
+msgid "transport list number"
+msgstr "出\\入库单号"
+
+msgid "transport list detail"
+msgstr "出\\入库单"
+
+msgid "manufactureitem_working_time"
+msgstr "工件加工时间表"
+
+msgid "employee_worked_manufactureitem"
+msgstr "员工加工零件个数表"
+
+msgid "employee_worked_detail %s"
+msgstr "%s 详情表"
+
+msgid "device_working_time"
+msgstr "设备工作时间表"
+
+msgid "device_working_time_detail %s"
+msgstr "%s 详情表"
+
+msgid "warehouse_inventory"
+msgstr "库存量表"
+
+msgid "warehouse_inventory_detail %s"
+msgstr "%s 库存量表"
+
+msgid "knife_scraped"
+msgstr "刀具报废表"
+
+msgid "ext_knife_scraped_detail %s"
+msgstr "%s 刀具报废表"
+
+msgid "report center"
+msgstr "报表中心"
+
+msgid "working_time"
+msgstr "工作时间"
+
+msgid "norm"
+msgstr "规格"
+
+msgid "coolant"
+msgstr "冷却剂"
+
+msgid "material_mark"
+msgstr "材料牌号"
+
+msgid "fixture"
+msgstr "夹具"
+
+msgid "equipment"
+msgstr "工艺装备"
+
+msgid "applicat"
+msgstr "申请人"
+
+msgid "Applicat"
+msgstr "申请人"
+
+msgid "Normal"
+msgstr "正常"
+
+msgid "Invalid"
+msgstr "作废"
+
+msgid "knife attribute"
+msgstr "属性顺序"
+
+msgid "location setting"
+msgstr "库位设置"
+
+msgid "Product Category"
+msgstr "类别"
+
+msgid "join_date"
+msgstr "职位上岗时间"
+
+msgid "EntryLog"
+msgstr "备注"
+
+msgid "EntryLogs"
+msgstr "备注"
+
+msgid "entry log"
+msgstr "备注"
+
+msgid "product | cad_code | norm_code | symbol"
+msgstr "产品名称 | 产品图号 | 规格型号 | 产品代号"
+
+msgid "Hide or Show zero item"
+msgstr "零库存"
+
+msgid "show zero item"
+msgstr "显示"
+
+msgid "hide zero item"
+msgstr "隐藏"
+
+msgid "upper_deviation"
+msgstr "上偏差"
+
+msgid "lower_deviation"
+msgstr "下偏差"
+
+msgid "applicant"
+msgstr "申请人"
+
+msgid "current_operation_record"
+msgstr "当前工步"
+
+msgid "SrapInventory"
+msgstr "报废物品"
+
+msgid "Already Scrap"
+msgstr "已报废"
+
+msgid "transportlists list"
+msgstr "出入库单列表"
+
+msgid "create transportlist"
+msgstr "创建出入库单"
+
+msgid "thumbnails"
+msgstr "缩略图"
+
+msgid "technology_file"
+msgstr "工艺文件"
+
+msgid "program_file"
+msgstr "程式文件"
+
+msgid "D2_file"
+msgstr "二维图"
+
+msgid "D3_file"
+msgstr "三维图"
+
+msgid "Electricity Charge Report"
+msgstr "电费表"
+
+msgid "The username and/or password you specified are not correct."
+msgstr "用户名/密码不正确."
+
+msgid "execute"
+msgstr "执行"
+
+msgid "detail_values"
+msgstr "详细信息"
+
+msgid "Batch barcode %(verbose_name_plural)s"
+msgstr "批量生成 %(verbose_name_plural)s"
+
+msgid "product_name | cad_code | norm_code | symbol"
+msgstr "产品名称 | 图号 | 规格 | 产品代号"
+
+msgid "origin place"
+msgstr "产地"
+
+msgid "material owner"
+msgstr "所有者"
+
+msgid "material furnace_batch"
+msgstr "炉批号"
+
+msgid "material mark"
+msgstr "牌号"
+
+msgid "material norm"
+msgstr "规格"
+
+msgid "technology file code"
+msgstr "工艺文件编号"
+
+msgid "operation equipment"
+msgstr "工艺装配"
+
+msgid "No messages."
+msgstr "没有消息."
+
+msgid "parent company"
+msgstr "上级公司"
+
+msgid "messages"
+msgstr "消息"
+
+msgid "Remember Me"
+msgstr "记住我"
+
+msgid "If checked you will stay logged in for 3 weeks"
+msgstr "保持登录状态3周"
+
+msgid "messages_to_all"
+msgstr "群发消息"
+
+msgid "messages to all"
+msgstr "群发消息"
+
+msgid "Maintenance"
+msgstr "维护"
+
+msgid "maintenance date"
+msgstr "维护日期"
+
+msgid "maintenance project"
+msgstr "维护项目"
+
+msgid "maintenance status"
+msgstr "维护状态"
+
+msgid "maintainer"
+msgstr "维护人"
+
+msgid "maintenance applicat"
+msgstr "验收人"
+
+msgid "Borrow"
+msgstr "借出"
+
+msgid "Return"
+msgstr "归还"
+
+msgid "Sharpen"
+msgstr "打磨"
+
+msgid "applicat transfer_list"
+msgstr "物品清单申请人"
+
+msgid "accept_date transfer_list"
+msgstr "物品清单申请时间"
+
+msgid "transfer_category"
+msgstr "物品清单类型"
+
+msgid "transfer_list state"
+msgstr "物品清单状态"
+
+msgid "device_entries"
+msgstr "物品"
+
+msgid "updated_by transfer_list"
+msgstr "物品清单操作人"
+
+msgid "TransferList"
+msgstr "物品清单"
+
+msgid "company belongs to"
+msgstr "所属公司"
+
+msgid "parent department"
+msgstr "上级部门"
+
+msgid "zip code"
+msgstr "邮政编码"
+
+msgid "TransferLists"
+msgstr "物品清单"
+
+msgid "is_item_entries_ready"
+msgstr "物品是否准备好"
+
+msgid "manufacture_plan order"
+msgstr "合同编号"
+
+msgid "contactor name"
+msgstr "联系人"
+
+msgid "contactor description"
+msgstr "职务"
+
+msgid "tel"
+msgstr "电话"
+
+msgid "phone"
+msgstr "手机"
+
+msgid "contactor note"
+msgstr "备注"
+
+msgid "applications_list"
+msgstr "需求列表"
+
+msgid "manufacture_plan_start_time"
+msgstr "下单时间"
+
+msgid "Program"
+msgstr "程式单"
+
+msgid "MIG_finish_time"
+msgstr "完成日期"
+
+msgid "product_item_finish_time"
+msgstr "交货日期"
+
+msgid "is_sync_work"
+msgstr "是否同步生产"
+
+msgid "worked_hours"
+msgstr "加工时间"
+
+msgid "order_time"
+msgstr "下单时间"
+
+msgid "contract_code"
+msgstr "合同编号"
+
+msgid "unit_price"
+msgstr "单价"
+
+#: apps/warehouse/models.py:448
+msgid "cost"
+msgstr "支出"
+
+msgid "prepay"
+msgstr "充值"
+
+msgid "expense"
+msgstr "开销"
+
+msgid "expenses"
+msgstr "开销"
+
+msgid "kilowatt"
+msgstr "用量（度）"
+
+msgid "electricity charge"
+msgstr "电量使用"
+
+msgid "electricity charges"
+msgstr "电量使用"
+
+#: apps/warehouse/adminx.py:448
+msgid "expense date"
+msgstr "支出时间"
+
+msgid "expense cost"
+msgstr "电费"
+
+msgid "expense prepay"
+msgstr "充值"
+
+#: apps/technologies/views.py:54
+msgid ""
+"the technology is already exist, and started technology workflow, you donot "
+"edit it"
+msgstr "这个工艺已经存在，并且发起了审核流程，你不能做任何修改。"
+
+msgid "update technology %(name)s success"
+msgstr "工艺更新成功 %(name)s"
+
+msgid "create technology %(name)s success"
+msgstr "工艺创建成功 %(name)s"
+
+msgid "create technology %(name)s error"
+msgstr "工艺创建出错 %(name)s"
+
+msgid "--update operation_group %(order)03d : %(name)s success"
+msgstr "--工序更新成功 %(order)03d : %(name)s"
+
+msgid "--create operation_group %(order)03d : %(name)s success"
+msgstr "--工序创建成功 %(order)03d : %(name)s"
+
+msgid "--create operation_group %(order)03d : %(name)s error"
+msgstr "--工序创建出错 %(order)03d : %(name)s"
+
+msgid "----update operation %(order)03d : %(name)s success"
+msgstr "----工步更新成功 %(order)03d : %(name)s"
+
+msgid "----create operation %(order)03d : %(name)s success"
+msgstr "----工步创建成功 %(order)03d : %(name)s"
+
+msgid "----create operation %(order)03d : %(name)s error"
+msgstr "----工步创建出错 %(order)03d : %(name)s"
+
+#: apps/companydepartment/forms.py:6 apps/device/forms.py:6
+msgid "Department Name"
+msgstr "部门名字"
+
+msgid "DEPARTMENT"
+msgstr "部门"
+
+#: apps/companydepartment/forms.py:7 apps/device/forms.py:7
+msgid "Belong To Company"
+msgstr "所属公司"
+
+msgid "Columns"
+msgstr "列"
+
+msgid "example.com"
+msgstr "康春MES"
+
+#: apps/companydepartment/forms.py:8 apps/companydepartment/forms.py:41
+#: apps/device/forms.py:8 apps/device/forms.py:41
+msgid "Parent"
+msgstr "上级公司"
+
+#: apps/companydepartment/forms.py:9 apps/device/forms.py:9
+msgid "Description"
+msgstr "介绍"
+
+#: apps/companydepartment/forms.py:10 apps/device/forms.py:10
+msgid "Address"
+msgstr "地址"
+
+#: apps/companydepartment/forms.py:11 apps/device/forms.py:11
+msgid "City"
+msgstr "城市"
+
+#: apps/companydepartment/forms.py:12 apps/device/forms.py:12
+#: apps/workflows/models.py:239 apps/workflows/models.py:332
+#: apps/workflows/models.py:355
+msgid "State"
+msgstr ""
+
+#: apps/companydepartment/forms.py:13 apps/device/forms.py:13
+msgid "ZipCode"
+msgstr "邮编"
+
+#: apps/companydepartment/forms.py:14 apps/device/forms.py:14
+msgid "Importance"
+msgstr "重要等级"
+
+#: apps/companydepartment/templates/company/company_add.html:3
+#: apps/companydepartment/templates/company/company_add.html:7
+msgid "company add"
+msgstr "添加公司"
+
+#: apps/companydepartment/templates/company/company_add.html:9
+#: apps/companydepartment/templates/company/company_edit.html:9
+#: apps/companydepartment/templates/company/companys_list.html:3
+#: apps/companydepartment/templates/company/companys_list.html:7
+msgid "companys list"
+msgstr "公司列表"
+
+#: apps/companydepartment/templates/company/company_add.html:15
+msgid "add a company"
+msgstr "添加公司"
+
+#: apps/companydepartment/templates/company/company_edit.html:3
+#: apps/companydepartment/templates/company/company_edit.html:7
+msgid "company edit"
+msgstr "编辑公司信息"
+
+#: apps/companydepartment/templates/company/company_edit.html:15
+msgid "edit the company"
+msgstr "编辑公司信息"
+
+#: apps/companydepartment/templates/company/company_files.html:4
+#: apps/companydepartment/templates/company/company_files.html:8
+msgid "company files list"
+msgstr "公司档案列表"
+
+#: apps/companydepartment/templates/company/company_files.html:13
+#: apps/companydepartment/templates/department/department_files.html:13
+#: apps/technologies/templates/operation_group_files.html:13
+#: apps/technologies/templates/technology_files.html:12
+msgid "file name"
+msgstr "文件名"
+
+#: apps/companydepartment/templates/company/company_files.html:13
+#: apps/companydepartment/templates/company/companys_list.html:12
+#: apps/companydepartment/templates/department/department_files.html:13
+#: apps/companydepartment/templates/department/departments_list.html:12
+#: apps/manufactureplan/templates/productionlines_list.html:17
+#: apps/manufactureplan/templates/productionlines_monitoring.html:13
+#: apps/manufactureplan/templates/working_productionlines_list.html:13
+#: apps/person/templates/persons_list.html:12
+#: apps/technologies/templates/operation_group_files.html:14
+#: apps/technologies/templates/technologies_list.html:14
+#: apps/workflows/tools/templates/workflow/workflow_objects_list.html:17
+#: apps/workflows/tools/templates/workflow/workflows_list.html:17
+#: apps/yt_file/templates/files_list.html:11
+#: apps/yt_workflows/templates/workflow/workflow_objects_list.html:17
+#: apps/yt_workflows/templates/workflow/workflows_list.html:17
+msgid "operate"
+msgstr "工步"
+
+#: apps/companydepartment/templates/company/company_files.html:17
+#: apps/companydepartment/templates/department/department_files.html:17
+#: apps/person/templates/persons_list.html:18
+#: apps/technologies/templates/operation_group_files.html:19
+#: apps/technologies/templates/technology_files.html:27
+#: apps/yt_file/templates/upload.html:4
+msgid "upload"
+msgstr "上传"
+
+#: apps/companydepartment/templates/company/companys_list.html:9
+#: apps/companydepartment/templates/company/companys_structure.html:13
+msgid "add new company"
+msgstr "添加公司"
+
+msgid "Product symbol"
+msgstr "产品代号"
+
+#: apps/companydepartment/templates/company/companys_list.html:12
+#: apps/companydepartment/templates/department/departments_list.html:12
+#: apps/customer/models.py:7 apps/manufactureplan/adminx.py:77
+#: apps/manufactureplan/templates/operation_working_timing.html:191
+#: apps/manufactureplan/templates/productionlines_list.html:12
+#: apps/person/templates/persons_list.html:12
+#: apps/productcatalog/migrations/0001_initial.py:69 apps/profiles/models.py:8
+#: apps/quality/templates/excessive_qa_record_view.html:12
+#: apps/report/models.py:17 apps/report/models.py:35 apps/report/models.py:52
+#: apps/report/models.py:69 apps/report/models.py:86
+#: apps/technologies/models.py:184
+#: apps/warehouse/templates/warehouse/bom_detail.html:13
+#: apps/workflows/tools/templates/workflow/workflow_objects_list.html:17
+#: apps/workflows/tools/templates/workflow/workflows_list.html:17
+#: apps/yt_barcode/models.py:9 apps/yt_file/templates/files_list.html:11
+#: apps/yt_workflows/templates/workflow/workflow_objects_list.html:17
+#: apps/yt_workflows/templates/workflow/workflows_list.html:17
+msgid "name"
+msgstr "名称"
+
+#: apps/companydepartment/templates/company/companys_list.html:12
+#: apps/companydepartment/templates/department/departments_list.html:12
+#: apps/customer/models.py:8 apps/person/templates/persons_list.html:12
+#: thirdparty/notification/models.py:35
+msgid "description"
+msgstr "介绍"
+
+#: apps/companydepartment/templates/company/companys_list.html:12
+#: apps/companydepartment/templates/department/departments_list.html:12
+#: apps/customer/models.py:9
+msgid "address"
+msgstr "地址"
+
+#: apps/companydepartment/templates/company/companys_list.html:12
+#: apps/companydepartment/templates/department/departments_list.html:12
+#: apps/customer/models.py:10
+msgid "city"
+msgstr "城市"
+
+#: apps/companydepartment/templates/company/companys_list.html:12
+#: apps/companydepartment/templates/department/departments_list.html:12
+#: apps/customer/models.py:11 apps/manufactureplan/adminx.py:164
+#: apps/technologies/models.py:195
+#: apps/warehouse/templates/warehouse/bom_detail.html:18
+#: apps/yt_log/models.py:30
+msgid "state"
+msgstr "状态"
+
+msgid "Draft"
+msgstr "草稿"
+
+msgid "post"
+msgstr "公告"
+
+#: apps/companydepartment/templates/company/companys_list.html:12
+#: apps/companydepartment/templates/department/departments_list.html:12
+#: apps/customer/models.py:14
+msgid "zip_code"
+msgstr "邮编"
+
+#: apps/companydepartment/templates/company/companys_list.html:22
+#: apps/companydepartment/templates/department/departments_list.html:22
+#: apps/workflows/tools/templates/workflow/workflow_objects_list.html:22
+#: apps/yt_workflows/templates/workflow/workflow_objects_list.html:22
+msgid "edit"
+msgstr "编辑"
+
+#: apps/companydepartment/templates/company/companys_list.html:22
+#: apps/companydepartment/templates/company/companys_list.html:46
+#: apps/companydepartment/templates/department/departments_list.html:22
+#: apps/companydepartment/templates/department/departments_list.html:43
+msgid "delete"
+msgstr "删除"
+
+#: apps/companydepartment/templates/company/companys_list.html:32
+#: apps/companydepartment/templates/department/departments_list.html:32
+msgid "Delete Warning"
+msgstr "删除操作警告"
+
+#: apps/companydepartment/templates/company/companys_list.html:39
+#: apps/companydepartment/templates/department/departments_list.html:36
+msgid "are you sure ?"
+msgstr "你确定吗？"
+
+#: apps/companydepartment/templates/company/companys_list.html:44
+#: apps/companydepartment/templates/department/departments_list.html:41
+msgid "close"
+msgstr "关闭"
+
+#: apps/companydepartment/templates/company/companys_structure.html:3
+#: apps/companydepartment/templates/company/companys_structure.html:11
+msgid "companystructure"
+msgstr "公司结构"
+
+#: apps/companydepartment/templates/department/department_add.html:3
+#: apps/companydepartment/templates/department/department_add.html:7
+msgid "department add"
+msgstr "添加部门"
+
+#: apps/companydepartment/templates/department/department_add.html:9
+#: apps/companydepartment/templates/department/department_edit.html:9
+#: apps/companydepartment/templates/department/departments_list.html:3
+#: apps/companydepartment/templates/department/departments_list.html:7
+msgid "departments list"
+msgstr "部门列表"
+
+#: apps/companydepartment/templates/department/department_add.html:15
+msgid "add a department"
+msgstr "添加部门"
+
+#: apps/companydepartment/templates/department/department_edit.html:3
+#: apps/companydepartment/templates/department/department_edit.html:7
+msgid "department edit"
+msgstr "编辑部门信息"
+
+#: apps/companydepartment/templates/department/department_edit.html:15
+msgid "edit the department"
+msgstr "编辑部门信息"
+
+#: apps/companydepartment/templates/department/department_files.html:4
+#: apps/companydepartment/templates/department/department_files.html:8
+msgid "department files list"
+msgstr "公司信息列表"
+
+#: apps/companydepartment/templates/department/departments_list.html:9
+msgid "add new department"
+msgstr "添加部门"
+
+#: apps/companydepartment/templates/department/departments_structure.html:3
+msgid "structure"
+msgstr "结构"
+
+#: apps/customer/models.py:6
+msgid "customer code"
+msgstr "客户编号"
+
+#: apps/customer/models.py:12
+msgid "telephone"
+msgstr "电话"
+
+#: apps/customer/models.py:13
+msgid "mail"
+msgstr "邮箱"
+
+#: apps/customer/models.py:15 apps/person/models.py:51
+msgid "importance"
+msgstr "重要等级"
+
+#: apps/customer/models.py:18
+msgid "customers"
+msgstr "客户"
+
+#: apps/customer/models.py:26 apps/person/models.py:122
+msgid "person name"
+msgstr "职员名称"
+
+#
+#: apps/customer/models.py:27 apps/person/models.py:123
+msgid "person description"
+msgstr "职员描述"
+
+#: apps/customer/models.py:28 apps/person/models.py:124
+msgid "gender"
+msgstr "性别"
+
+#: apps/customer/models.py:29 apps/manufactureplan/models.py:34
+#: templates/includes/yt_menu.html:70
+msgid "customer"
+msgstr "客户"
+
+#: apps/customer/models.py:30 apps/manufactureplan/models.py:905
+#: apps/manufactureplan/models.py:931 apps/manufactureplan/models.py:1030
+#: apps/person/models.py:26 apps/person/models.py:105
+#: apps/warehouse/models.py:192 apps/warehouse/models.py:346
+#: apps/yt_log/models.py:38 apps/yt_log/models.py:44
+msgid "note"
+msgstr "记录"
+
+#: apps/customer/models.py:33
+msgid "contactors"
+msgstr "联系人"
+
+#: apps/device/adminx.py:49 apps/device/models.py:94
+#: apps/manufactureplan/models.py:1025
+msgid "attribute"
+msgstr "属性"
+
+#: apps/device/models.py:15
+msgid "device prefix"
+msgstr "设备编号前缀"
+
+#: apps/device/models.py:16
+msgid "device name"
+msgstr "设备名称"
+
+#: apps/device/models.py:17
+msgid "device type"
+msgstr "设备类型"
+
+#: apps/device/models.py:18 apps/device/models.py:117
+msgid "producter"
+msgstr "制造商"
+
+#: apps/device/models.py:19 apps/device/models.py:57
+msgid "desigen_lifetime"
+msgstr "设计寿命"
+
+#: apps/device/models.py:21
+msgid "device description"
+msgstr "设备描述"
+
+#: apps/device/models.py:29
+#: apps/manufactureplan/templates/productionline_apply_devices.html:19
+#: apps/manufactureplan/templates/productionline_view_devices.html:15
+#: apps/warehouse/models.py:229
+msgid "Device"
+msgstr "设备"
+
+#: apps/device/models.py:30
+msgid "Devices"
+msgstr "设备"
+
+#: apps/device/models.py:54 apps/device/templates/add_knife.html:16
+msgid "knife name"
+msgstr "刀具名称"
+
+#: apps/device/models.py:55
+msgid "knifeprefix"
+msgstr "刀具编号前缀"
+
+#: apps/device/models.py:56 apps/manufactureplan/models.py:926
+#: apps/technologies/models.py:203
+msgid "attributes"
+msgstr "属性"
+
+#: apps/device/models.py:68 apps/warehouse/models.py:230
+msgid "Knife"
+msgstr "刀具"
+
+#: apps/device/models.py:69
+#: apps/manufactureplan/templates/productionline_apply_knifes.html:19
+#: apps/manufactureplan/templates/productionline_apply_tools.html:19
+msgid "Knifes"
+msgstr "刀具"
+
+#: apps/device/models.py:93 templates/includes/yt_menu.html:20
+msgid "knife"
+msgstr "刀具"
+
+#: apps/device/models.py:95
+msgid "value"
+msgstr "数值"
+
+#: apps/device/models.py:96
+msgid "attribute_code"
+msgstr "属性编号"
+
+#: apps/device/models.py:103
+msgid "KnifeAttribute"
+msgstr "刀具属性"
+
+#: apps/device/models.py:104
+msgid "KnifeAttributes"
+msgstr "刀具属性"
+
+#: apps/device/models.py:109 apps/technologies/models.py:179
+msgid "General"
+msgstr "普通"
+
+#: apps/device/models.py:110
+msgid "SurveyTool"
+msgstr "量具"
+
+#: apps/device/models.py:115
+msgid "tool prefix"
+msgstr "工具编号前缀"
+
+#: apps/device/models.py:116
+msgid "tool name"
+msgstr "工具名称"
+
+#: apps/device/models.py:118
+msgid "tool type"
+msgstr "工具类型"
+
+#: apps/device/models.py:125 apps/warehouse/models.py:231
+msgid "Tool"
+msgstr "工具"
+
+#: apps/device/models.py:126
+msgid "Tools"
+msgstr "工具"
+
+#: apps/device/templates/add_knife.html:3
+#: apps/report/templates/first_item_report.html:3
+msgid "first item"
+msgstr "工序首件三检实测数值记录卡"
+
+#: apps/device/templates/add_knife.html:24
+msgid "knife code"
+msgstr "刀具编号"
+
+#: apps/device/templates/add_knife.html:32 apps/manufactureplan/models.py:621
+#: apps/warehouse/models.py:183 apps/warehouse/models.py:280
+#: apps/warehouse/models.py:382
+#: apps/warehouse/templates/warehouse/bom_detail.html:15
+msgid "quantity"
+msgstr "数量"
+
+#: apps/manufactureplan/adminx.py:53
+msgid "manufactureplan_workflow"
+msgstr "生产通知单审核流程"
+
+#: apps/manufactureplan/adminx.py:71 apps/manufactureplan/models.py:509
+#: apps/manufactureplan/models.py:622 apps/manufactureplan/models.py:1123
+#: apps/manufactureplan/templates/operation_working_start.html:13
+#: apps/report/models.py:36 apps/report/models.py:53 apps/report/models.py:70
+#: apps/report/templates/first_item_list.html:10
+#: apps/report/templates/quality_list.html:10 apps/warehouse/models.py:189
+#: apps/warehouse/models.py:246 templates/includes/yt_menu.html:80
+msgid "productionline"
+msgstr "生产任务"
+
+#: apps/manufactureplan/adminx.py:157
+#: apps/technologies/templates/technology_files.html:14
+msgid "action"
+msgstr "操作"
+
+#: apps/manufactureplan/models.py:20
+msgid "normal"
+msgstr "正常"
+
+#: apps/manufactureplan/models.py:21
+msgid "excessive"
+msgstr "有问题"
+
+#: apps/manufactureplan/models.py:22
+msgid "passed"
+msgstr "通过"
+
+#: apps/manufactureplan/models.py:23
+msgid "no_passed"
+msgstr "不通过"
+
+#: apps/manufactureplan/models.py:24
+msgid "passed_excessive"
+msgstr "正在处理,部分通过"
+
+#: apps/manufactureplan/models.py:25
+msgid "no_passed_excessive"
+msgstr "有问题,不通过"
+
+#: apps/manufactureplan/models.py:26
+msgid "passed_decided"
+msgstr "已处理,通过"
+
+#: apps/manufactureplan/models.py:27
+msgid "no_passed_decided"
+msgstr "已处理,没通过"
+
+#: apps/manufactureplan/models.py:33
+msgid "order name"
+msgstr "订单名称"
+
+#: apps/manufactureplan/models.py:35 apps/manufactureplan/models.py:72
+#: apps/manufactureplan/models.py:186
+msgid "finish_time"
+msgstr "截止时间"
+
+#: apps/manufactureplan/models.py:37
+msgid "contract"
+msgstr "合同"
+
+#: apps/manufactureplan/models.py:38
+msgid "pic_code"
+msgstr "图号"
+
+#: apps/manufactureplan/models.py:39
+msgid "norm_code"
+msgstr "规格型号"
+
+#: apps/manufactureplan/models.py:46
+msgid "Order"
+msgstr "订单"
+
+#: apps/manufactureplan/models.py:47
+msgid "Orders"
+msgstr "订单"
+
+#: apps/manufactureplan/models.py:53 apps/manufactureplan/models.py:620
+#: apps/manufactureplan/templates/productionlines_list.html:13
+#: apps/productcatalog/models.py:140 apps/productcatalog/models.py:159
+#: apps/productcatalog/migrations/0001_initial.py:28
+#: apps/productcatalog/migrations/0001_initial.py:48
+#: apps/warehouse/models.py:180
+msgid "product"
+msgstr "产品"
+
+#: apps/manufactureplan/models.py:54
+msgid "product quantity"
+msgstr "数量"
+
+#: apps/manufactureplan/models.py:55 apps/manufactureplan/models.py:70
+msgid "order"
+msgstr "订单"
+
+#: apps/manufactureplan/models.py:62 apps/manufactureplan/models.py:63
+msgid "ProductItems"
+msgstr "产品"
+
+#: apps/manufactureplan/models.py:69
+msgid "manufacture plan name"
+msgstr "生产通知单名称"
+
+#: apps/manufactureplan/models.py:71 apps/manufactureplan/models.py:185
+msgid "start_time"
+msgstr "开始时间"
+
+#: apps/manufactureplan/models.py:79 apps/manufactureplan/models.py:80
+msgid "ManufacturePlans"
+msgstr "生产通知单"
+
+#: apps/manufactureplan/models.py:169
+msgid "waiting"
+msgstr "等待"
+
+#: apps/manufactureplan/models.py:170
+msgid "applying materials"
+msgstr "正在申领所需物品"
+
+#: apps/manufactureplan/models.py:171
+msgid "assigning materials"
+msgstr "正在分配所需物品"
+
+#: apps/manufactureplan/models.py:172
+msgid "assign materials ok"
+msgstr "所需物品分配成功"
+
+#: apps/manufactureplan/models.py:173 apps/manufactureplan/models.py:549
+msgid "Working"
+msgstr "工作"
+
+#: apps/manufactureplan/models.py:174 apps/manufactureplan/models.py:553
+msgid "Finished"
+msgstr "完成"
+
+#: apps/manufactureplan/models.py:175 apps/manufactureplan/models.py:554
+#: apps/warehouse/models.py:170
+msgid "Error"
+msgstr "错误"
+
+#: apps/manufactureplan/models.py:176
+msgid "record_pass"
+msgstr "检测通过"
+
+#: apps/manufactureplan/models.py:177 apps/manufactureplan/models.py:555
+msgid "Reworking"
+msgstr "返工"
+
+#: apps/manufactureplan/models.py:183
+msgid "production line name"
+msgstr "生产任务名称"
+
+#: apps/manufactureplan/models.py:184 apps/report/models.py:18
+#: apps/report/templates/technology_lsit.html:10
+#: apps/technologies/models.py:135 templates/includes/yt_menu.html:40
+#: templates/includes/yt_menu.html.py:42
+msgid "technology"
+msgstr "工艺"
+
+msgid "TECHNOLOGY"
+msgstr "工艺"
+
+#: apps/manufactureplan/models.py:187
+msgid "production line state"
+msgstr "状态"
+
+#: apps/manufactureplan/models.py:198
+msgid "ProductionLine"
+msgstr "生产任务"
+
+#: apps/manufactureplan/models.py:199
+msgid "ProductionLines"
+msgstr "生产任务"
+
+#: apps/manufactureplan/models.py:510
+msgid "operation_group"
+msgstr "工序"
+
+#: apps/manufactureplan/models.py:511 apps/technologies/models.py:137
+msgid "job"
+msgstr "岗位"
+
+#: apps/manufactureplan/models.py:512
+msgid "device_items"
+msgstr "设备"
+
+#: apps/manufactureplan/models.py:543 apps/manufactureplan/models.py:544
+msgid "OperationGroupRecords"
+msgstr "工序记录"
+
+#: apps/manufactureplan/models.py:548 apps/manufactureplan/models.py:1116
+#: apps/xadmin/templates/xadmin/blocks/model_list.nav_menu.bookmarks.html:33
+#: apps/yt_log/models.py:18
+msgid "Waiting"
+msgstr "等待"
+
+#: apps/manufactureplan/models.py:550 apps/manufactureplan/models.py:916
+#: apps/manufactureplan/templates/operation_working_timing.html:24
+#: apps/manufactureplan/templates/operation_working_timing.html:36
+msgid "QASelfRecord"
+msgstr "自检"
+
+#: apps/manufactureplan/models.py:551
+msgid "QADoubleRecord"
+msgstr "互检"
+
+#: apps/manufactureplan/models.py:552 apps/manufactureplan/models.py:918
+msgid "QAInspectorRecord"
+msgstr "检验"
+
+#: apps/manufactureplan/models.py:562
+#: apps/manufactureplan/templates/productionline_apply_devices.html:18
+#: apps/manufactureplan/templates/productionline_apply_knifes.html:17
+#: apps/manufactureplan/templates/productionline_apply_tools.html:17
+#: apps/manufactureplan/templates/productionline_view_devices.html:14
+msgid "oper_group_record"
+msgstr "工序记录"
+
+#: apps/manufactureplan/models.py:563 apps/technologies/models.py:215
+#: templates/includes/yt_left_menu.html:7 templates/includes/yt_menu.html:44
+msgid "operation"
+msgstr "工步"
+
+#: apps/manufactureplan/models.py:564 templates/includes/yt_menu.html:69
+msgid "employee"
+msgstr "员工"
+
+#: apps/manufactureplan/models.py:565 apps/manufactureplan/models.py:880
+#: apps/manufactureplan/models.py:906 apps/person/models.py:94
+#: apps/technologies/templates/technologies_list.html:16
+#: apps/yt_file/models.py:19 apps/yt_log/models.py:31
+msgid "status"
+msgstr "状态"
+
+#: apps/manufactureplan/models.py:566
+msgid "knife_items"
+msgstr "刀具"
+
+#: apps/manufactureplan/models.py:567
+msgid "tool_items"
+msgstr "工具"
+
+#
+#: apps/manufactureplan/models.py:600
+msgid "OperationRecord"
+msgstr "工步记录"
+
+#
+#: apps/manufactureplan/models.py:601
+msgid "OperationRecords"
+msgstr "工步记录"
+
+#: apps/manufactureplan/models.py:623 templates/includes/yt_menu.html:79
+msgid "manufacture_plan"
+msgstr "生产通知单"
+
+#: apps/manufactureplan/models.py:625 apps/manufactureplan/models.py:696
+#: apps/manufactureplan/models.py:932 apps/manufactureplan/models.py:1033
+msgid "qa_excessive_status"
+msgstr "问题"
+
+#: apps/manufactureplan/models.py:627 apps/manufactureplan/models.py:698
+msgid "batch_code"
+msgstr "批次号"
+
+#: apps/manufactureplan/models.py:628
+msgid "is_batch"
+msgstr "是否是批量"
+
+#: apps/manufactureplan/models.py:686
+msgid "ManufactureItemGropu"
+msgstr "工件组"
+
+#: apps/manufactureplan/models.py:687
+msgid "ManufactureItemGroups"
+msgstr "生产任务"
+
+#: apps/manufactureplan/models.py:693
+msgid "manu_item_group"
+msgstr "工件组"
+
+#: apps/manufactureplan/models.py:695
+msgid "manufacture item status"
+msgstr "工件状态"
+
+#: apps/manufactureplan/models.py:706
+msgid "ManufactureItem"
+msgstr "工件"
+
+#: apps/manufactureplan/models.py:707
+msgid "ManufactureItems"
+msgstr "工件"
+
+#: apps/manufactureplan/models.py:877 apps/manufactureplan/models.py:908
+#: apps/yt_file/models.py:9 apps/yt_log/models.py:40
+#: apps/yt_object/models.py:5
+msgid "date_added"
+msgstr "添加时间"
+
+#: apps/manufactureplan/models.py:878 apps/manufactureplan/models.py:924
+#: apps/manufactureplan/templates/productionline_apply_knifes.html:18
+#: apps/manufactureplan/templates/productionline_apply_tools.html:18
+msgid "operation_record"
+msgstr "工步记录"
+
+#: apps/manufactureplan/models.py:879 apps/manufactureplan/models.py:925
+#: apps/manufactureplan/templates/operation_working_start.html:14
+#: apps/quality/templates/excessive_qa_records_list.html:13
+msgid "manufacture_item"
+msgstr "工件"
+
+#: apps/manufactureplan/models.py:888
+msgid "ManufactureRecord"
+msgstr "生产记录"
+
+#: apps/manufactureplan/models.py:889
+msgid "ManufactureRecords"
+msgstr "生产记录"
+
+#: apps/manufactureplan/models.py:895
+msgid "wait"
+msgstr "等待"
+
+#: apps/manufactureplan/models.py:896
+#: apps/manufactureplan/templates/manufactureplan_workflow.html:36
+#: apps/manufactureplan/templates/manufactureplan_workflow.html:55
+#: apps/manufactureplan/templates/operation_working_timing.html:75
+#: apps/manufactureplan/templates/operation_working_timing.html:137
+#: apps/manufactureplan/templates/operation_working_timing.html:172
+#: apps/manufactureplan/templates/operation_working_timing.html:207
+#: apps/quality/templates/excessive_qa_record_view.html:116
+#: apps/quality/templates/excessive_qa_record_view.html:147
+#: apps/quality/templates/excessive_qa_record_view.html:166
+#: apps/technologies/templates/technology_workflow.html:36
+#: apps/technologies/templates/technology_workflow.html:55
+msgid "ok"
+msgstr "完成"
+
+#: apps/manufactureplan/models.py:897
+#: apps/manufactureplan/templates/operation_working_timing.html:101
+msgid "reject"
+msgstr "拒绝"
+
+#: apps/manufactureplan/models.py:900 apps/manufactureplan/models.py:901
+msgid "from_manufacture_record"
+msgstr "来自生产记录"
+
+#: apps/manufactureplan/models.py:902
+msgid "from_employee"
+msgstr "来自员工"
+
+#: apps/manufactureplan/models.py:903
+msgid "to_employee"
+msgstr "发送至员工"
+
+#: apps/manufactureplan/models.py:904 apps/yt_timesheet/models.py:18
+msgid "date"
+msgstr "日期"
+
+#: apps/manufactureplan/models.py:909 apps/yt_file/models.py:10
+#: apps/yt_log/models.py:41 apps/yt_object/models.py:6
+msgid "date_modified"
+msgstr "修改时间"
+
+#: apps/manufactureplan/models.py:917
+msgid "QADoubleCheckRecord"
+msgstr "互检记录"
+
+#: apps/manufactureplan/models.py:923
+msgid "qarecord employee"
+msgstr "检测人"
+
+#: apps/manufactureplan/models.py:927 apps/technologies/models.py:201
+#: apps/yt_file/models.py:17 apps/yt_file/templates/files_list.html:11
+#: apps/yt_log/models.py:37 apps/yt_timesheet/models.py:21
+msgid "type"
+msgstr "类型"
+
+#: apps/manufactureplan/models.py:928 apps/productcatalog/models.py:96
+#: apps/productcatalog/models.py:146
+msgid "created_at"
+msgstr "创建时间"
+
+#: apps/manufactureplan/models.py:929 apps/productcatalog/models.py:97
+#: apps/productcatalog/models.py:147
+msgid "updated_at"
+msgstr "更新时间"
+
+#: apps/manufactureplan/models.py:934
+msgid "qa decider"
+msgstr "检验处理人"
+
+#: apps/manufactureplan/models.py:942
+msgid "QA Record"
+msgstr "质量检测"
+
+#: apps/manufactureplan/models.py:943
+msgid "QA Records"
+msgstr "质量检测"
+
+#: apps/manufactureplan/models.py:1024
+msgid "QArecord"
+msgstr "质量检测"
+
+#: apps/manufactureplan/models.py:1026
+msgid "display_value"
+msgstr "实测值"
+
+#: apps/manufactureplan/models.py:1027
+msgid "absolute_value"
+msgstr "要求值"
+
+#: apps/manufactureplan/models.py:1028
+msgid "is_published"
+msgstr "是否公开"
+
+#: apps/manufactureplan/models.py:1031
+msgid "decide_people"
+msgstr "批准人"
+
+#: apps/manufactureplan/models.py:1040
+msgid "RecordAttribute"
+msgstr "质检属性"
+
+#: apps/manufactureplan/models.py:1041
+msgid "RecordAttributes"
+msgstr "质检属性"
+
+#: apps/manufactureplan/models.py:1117
+#: apps/quality/templates/excessive_qa_record_view.html:87
+#: apps/quality/templates/excessive_qa_record_view.html:140
+msgid "Rework"
+msgstr "返修"
+
+#: apps/manufactureplan/models.py:1118
+#: apps/quality/templates/excessive_qa_record_view.html:88
+#: apps/quality/templates/excessive_qa_record_view.html:141
+msgid "Degrade"
+msgstr "降级"
+
+#: apps/manufactureplan/models.py:1119
+#: apps/quality/templates/excessive_qa_record_view.html:89
+#: apps/quality/templates/excessive_qa_record_view.html:142
+msgid "Scrap"
+msgstr "报废"
+
+#: apps/manufactureplan/models.py:1124
+msgid "qa_record"
+msgstr "质量检测"
+
+#: apps/manufactureplan/models.py:1125
+#: apps/quality/templates/excessive_qa_record_view.html:131
+msgid "quality_problems"
+msgstr "质检问题"
+
+#: apps/manufactureplan/models.py:1126
+#: apps/quality/templates/excessive_qa_record_view.html:133
+msgid "reason_analysis"
+msgstr "问题分析"
+
+#: apps/manufactureplan/models.py:1127
+msgid "processing_result"
+msgstr "处理结果"
+
+#: apps/manufactureplan/models.py:1128
+#: apps/quality/templates/excessive_qa_record_view.html:138
+msgid "todo_type"
+msgstr "处理方式"
+
+#: apps/manufactureplan/models.py:1130
+msgid "reject decider"
+msgstr "错件处理人"
+
+#: apps/manufactureplan/models.py:1137
+msgid "RejectProductRecord"
+msgstr "不合格处理"
+
+#: apps/manufactureplan/models.py:1138
+msgid "RejectProductRecords"
+msgstr "不合格处理"
+
+#: apps/manufactureplan/views.py:1041
+#, python-format
+msgid "Batch start workflow %(verbose_name_plural)s"
+msgstr "发起工艺流程 %(verbose_name_plural)s"
+
+#: apps/manufactureplan/templates/manufactureplan_workflow.html:9
+msgid "manufactureplan:"
+msgstr "生产通知单"
+
+#: apps/manufactureplan/templates/manufactureplan_workflow.html:10
+#: apps/manufactureplan/templates/productionline_states_list.html:8
+#: apps/technologies/templates/technology_workflow.html:10
+msgid "返回"
+msgstr ""
+
+#: apps/manufactureplan/templates/manufactureplan_workflow.html:14
+#: apps/technologies/templates/technology_workflow.html:14
+msgid "Approve"
+msgstr "批准"
+
+#: apps/manufactureplan/templates/manufactureplan_workflow.html:17
+#: apps/technologies/templates/technology_workflow.html:17
+msgid "Refusal"
+msgstr "拒绝"
+
+#: apps/manufactureplan/templates/manufactureplan_workflow.html:29
+#: apps/technologies/templates/technology_workflow.html:29
+msgid "please fill the approve note"
+msgstr "请填写批准记录"
+
+#: apps/manufactureplan/templates/manufactureplan_workflow.html:35
+#: apps/manufactureplan/templates/manufactureplan_workflow.html:54
+#: apps/manufactureplan/templates/operation_working_start.html:138
+#: apps/manufactureplan/templates/operation_working_timing.html:74
+#: apps/manufactureplan/templates/operation_working_timing.html:136
+#: apps/manufactureplan/templates/operation_working_timing.html:171
+#: apps/manufactureplan/templates/operation_working_timing.html:206
+#: apps/quality/templates/excessive_qa_record_view.html:115
+#: apps/quality/templates/excessive_qa_record_view.html:146
+#: apps/quality/templates/excessive_qa_record_view.html:165
+#: apps/technologies/templates/technology_workflow.html:35
+#: apps/technologies/templates/technology_workflow.html:54
+msgid "cancel"
+msgstr "取消"
+
+#: apps/manufactureplan/templates/manufactureplan_workflow.html:48
+#: apps/technologies/templates/technology_workflow.html:48
+msgid "please fill the refusal note"
+msgstr "请填写拒绝记录"
+
+#: apps/manufactureplan/templates/manufactureplan_workflow.html:67
+#: apps/technologies/templates/technology_workflow.html:67
+msgid "this note is :"
+msgstr "记录:"
+
+#: apps/manufactureplan/templates/manufactureplan_workflow.html:73
+#: apps/manufactureplan/templates/manufactureplan_workflow.html:91
+#: apps/technologies/templates/technology_workflow.html:73
+#: apps/technologies/templates/technology_workflow.html:91
+#: apps/xadmin/templates/xadmin/blocks/model_list.top_toolbar.exports.html:43
+#: apps/xadmin/templates/xadmin/widgets/base.html:40
+msgid "Close"
+msgstr "关闭"
+
+#: apps/manufactureplan/templates/manufactureplan_workflow.html:85
+#: apps/technologies/templates/technology_workflow.html:85
+msgid "Warning :"
+msgstr "警告:"
+
+#: apps/manufactureplan/templates/operation_working_start.html:4
+msgid "operation_working_start"
+msgstr "开始工步"
+
+#: apps/manufactureplan/templates/operation_working_start.html:57
+msgid "no permission"
+msgstr "没有权限"
+
+#: apps/manufactureplan/templates/operation_working_start.html:123
+msgid "the manufacture_item attributes"
+msgstr "工件属性:"
+
+#: apps/manufactureplan/templates/operation_working_start.html:129
+#: apps/manufactureplan/templates/operation_working_timing.html:121
+#: apps/manufactureplan/templates/operation_working_timing.html:156
+#: apps/manufactureplan/templates/working_productionlines_list.html:12
+#: apps/productcatalog/models.py:48 apps/productcatalog/models.py:160
+#: apps/productcatalog/migrations/0001_initial.py:29
+#: apps/productcatalog/migrations/0001_initial.py:61
+#: apps/technologies/models.py:216
+msgid "attribute name"
+msgstr "属性名称"
+
+#: apps/manufactureplan/templates/operation_working_start.html:130
+#: apps/manufactureplan/templates/operation_working_timing.html:122
+#: apps/manufactureplan/templates/operation_working_timing.html:157
+#: apps/manufactureplan/templates/operation_working_timing.html:192
+#: apps/quality/templates/excessive_qa_record_view.html:13
+msgid "ought"
+msgstr "要求值"
+
+#: apps/manufactureplan/templates/operation_working_start.html:131
+#: apps/manufactureplan/templates/operation_working_timing.html:123
+#: apps/manufactureplan/templates/operation_working_timing.html:158
+#: apps/manufactureplan/templates/operation_working_timing.html:193
+#: apps/quality/templates/excessive_qa_record_view.html:14
+msgid "real"
+msgstr "实测值"
+
+#: apps/manufactureplan/templates/operation_working_timing.html:3
+#: apps/warehouse/templates/warehouse/item/item_change.html:3
+msgid "operation_working_timing"
+msgstr "工步工作时间"
+
+#: apps/manufactureplan/templates/operation_working_timing.html:9
+#: apps/manufactureplan/templates/productionline_apply_devices.html:12
+#: apps/manufactureplan/templates/productionline_apply_materials.html:12
+#: apps/manufactureplan/templates/productionline_view_devices.html:9
+#: apps/warehouse/templates/export_detail.html:8
+#: apps/warehouse/templates/import_detail.html:42
+#: apps/warehouse/templates/warehouse/bom_detail.html:39
+#: apps/warehouse/templates/warehouse/bom_output.html:29
+msgid "back"
+msgstr "返回"
+
+#: apps/manufactureplan/templates/operation_working_timing.html:19
+#: apps/manufactureplan/templates/operation_working_timing.html:31
+#: apps/manufactureplan/templates/operation_working_timing.html:43
+#: apps/manufactureplan/templates/operation_working_timing.html:49
+msgid "work"
+msgstr "工作"
+
+#: apps/manufactureplan/templates/operation_working_timing.html:20
+#: apps/manufactureplan/templates/operation_working_timing.html:32
+#: apps/manufactureplan/templates/operation_working_timing.html:44
+#: apps/manufactureplan/templates/operation_working_timing.html:50
+msgid "rest"
+msgstr "休息"
+
+#: apps/manufactureplan/templates/operation_working_timing.html:21
+#: apps/manufactureplan/templates/operation_working_timing.html:33
+msgid "relation"
+msgstr "交接"
+
+#: apps/manufactureplan/templates/operation_working_timing.html:26
+#: apps/manufactureplan/templates/operation_working_timing.html:38
+msgid "finish"
+msgstr "完成"
+
+#: apps/manufactureplan/templates/operation_working_timing.html:45
+msgid "DoubleCheck"
+msgstr "互检"
+
+#: apps/manufactureplan/templates/operation_working_timing.html:51
+msgid "Inspector"
+msgstr "检验"
+
+#: apps/manufactureplan/templates/operation_working_timing.html:68
+msgid "please fill the relation note"
+msgstr "请填写交接日志"
+
+#: apps/manufactureplan/templates/operation_working_timing.html:87
+msgid "please end the relation"
+msgstr "请完成交接"
+
+#: apps/manufactureplan/templates/operation_working_timing.html:90
+msgid "from manufacture_record:"
+msgstr "来自工件记录"
+
+#: apps/manufactureplan/templates/operation_working_timing.html:93
+msgid "from employee:"
+msgstr "来自员工"
+
+#: apps/manufactureplan/templates/operation_working_timing.html:96
+msgid "note:"
+msgstr "记录"
+
+#: apps/manufactureplan/templates/operation_working_timing.html:100
+msgid "accept"
+msgstr "接受"
+
+#: apps/manufactureplan/templates/operation_working_timing.html:115
+#: apps/manufactureplan/templates/operation_working_timing.html:150
+#: apps/manufactureplan/templates/operation_working_timing.html:185
+msgid "please fill the product attributes"
+msgstr "请填写产品属性"
+
+#: apps/manufactureplan/templates/productionline_apply_devices.html:38
+#: apps/manufactureplan/templates/productionline_apply_knifes.html:63
+#: apps/manufactureplan/templates/productionline_apply_materials.html:43
+#: apps/manufactureplan/templates/productionline_apply_tools.html:52
+msgid "Confirm"
+msgstr "确认"
+
+#: apps/manufactureplan/templates/productionline_apply_knifes.html:11
+#: apps/manufactureplan/templates/productionline_apply_tools.html:11
+msgid " 刀具申请"
+msgstr ""
+
+#: apps/manufactureplan/templates/productionline_apply_materials.html:11
+msgid "BOM Entries for manufactureplan:"
+msgstr "生产通知所需物料"
+
+#: apps/manufactureplan/templates/productionline_apply_materials.html:16
+msgid "finish_time: "
+msgstr "截止时间"
+
+#: apps/manufactureplan/templates/productionline_apply_materials.html:18
+msgid "add BOM Entry"
+msgstr "增加物料"
+
+#: apps/manufactureplan/templates/productionline_apply_materials.html:22
+msgid "Item"
+msgstr "物品"
+
+#: apps/manufactureplan/templates/productionline_apply_materials.html:23
+msgid "数量"
+msgstr ""
+
+#: apps/manufactureplan/templates/productionline_apply_materials.html:24
+#: thirdparty/pinax_theme_bootstrap/templates/account/login.html:15
+#: thirdparty/pinax_theme_bootstrap/templates/account/password_reset.html:13
+#: thirdparty/pinax_theme_bootstrap/templates/account/password_reset_done.html:12
+msgid "Note"
+msgstr "记录"
+
+#: apps/manufactureplan/templates/productionline_states_list.html:7
+msgid "productionline:"
+msgstr "生产任务"
+
+#: apps/manufactureplan/templates/productionlines_list.html:3
+#: apps/manufactureplan/templates/productionlines_list.html:7
+#: templates/includes/yt_menu.html:7
+msgid "productionlines list"
+msgstr "生产任务列表"
+
+#: apps/manufactureplan/templates/productionlines_list.html:18
+msgid "生产"
+msgstr ""
+
+#: apps/manufactureplan/templates/productionlines_list.html:19
+#: apps/manufactureplan/templates/working_productionlines_list.html:14
+#: apps/report/templates/plan_report.html:4
+#: apps/report/templates/quality_report.html:4
+#: apps/report/templates/reject_project_report.html:4
+#: apps/report/templates/technology_report.html:3
+#: apps/report/templates/technology_subpicture.html:4
+#: apps/technologies/templates/technologies_list.html:18
+#: templates/includes/yt_menu.html:87
+msgid "report"
+msgstr "报表"
+
+#: apps/manufactureplan/templates/productionlines_list.html:30
+#: apps/manufactureplan/templates/productionlines_list.html:52
+#: apps/manufactureplan/templates/productionlines_list.html:65
+#: apps/manufactureplan/templates/productionlines_list.html:81
+msgid "正在申请中"
+msgstr ""
+
+#: apps/manufactureplan/templates/productionlines_list.html:33
+msgid "申请物料"
+msgstr ""
+
+#: apps/manufactureplan/templates/productionlines_list.html:49
+msgid "查看设备"
+msgstr ""
+
+#: apps/manufactureplan/templates/productionlines_list.html:54
+msgid "申请设备"
+msgstr ""
+
+#: apps/manufactureplan/templates/productionlines_list.html:62
+msgid "查看刀具"
+msgstr ""
+
+#: apps/manufactureplan/templates/productionlines_list.html:69
+msgid "申请刀具"
+msgstr ""
+
+#: apps/manufactureplan/templates/productionlines_list.html:71
+#: apps/manufactureplan/templates/productionlines_list.html:87
+msgid "还不能申请"
+msgstr ""
+
+#: apps/manufactureplan/templates/productionlines_list.html:78
+msgid "查看工具"
+msgstr ""
+
+#: apps/manufactureplan/templates/productionlines_list.html:85
+msgid "申请工具"
+msgstr ""
+
+#: apps/manufactureplan/templates/productionlines_list.html:93
+msgid "工步详情"
+msgstr ""
+
+#: apps/manufactureplan/templates/productionlines_list.html:97
+msgid "生产完成"
+msgstr ""
+
+#: apps/manufactureplan/templates/productionlines_list.html:100
+msgid "生产中"
+msgstr ""
+
+#: apps/manufactureplan/templates/productionlines_list.html:103
+msgid "开始生产"
+msgstr ""
+
+#: apps/manufactureplan/templates/productionlines_list.html:106
+msgid "不能生产"
+msgstr ""
+
+#: apps/manufactureplan/templates/productionlines_list.html:113
+msgid "三检记录卡"
+msgstr ""
+
+#: apps/manufactureplan/templates/productionlines_list.html:114
+msgid "质量控制表"
+msgstr ""
+
+#: apps/manufactureplan/templates/productionlines_list.html:115
+msgid "质量记录表"
+msgstr ""
+
+#: apps/manufactureplan/templates/productionlines_monitoring.html:3
+#: apps/manufactureplan/templates/productionlines_monitoring.html:7
+msgid "productionlines monitoring"
+msgstr "生产任务监控"
+
+#: apps/manufactureplan/templates/productionlines_monitoring.html:12
+msgid "productionline name"
+msgstr "生产任务名称"
+
+#: apps/manufactureplan/templates/productionlines_monitoring.html:20
+#: apps/manufactureplan/templates/working_productionlines_list.html:20
+#: apps/technologies/templates/technologies_list.html:25
+#: apps/technologies/templates/technologies_list.html:35
+msgid "view"
+msgstr "察看"
+
+#: apps/manufactureplan/templates/working_productionlines_list.html:3
+#: apps/manufactureplan/templates/working_productionlines_list.html:7
+msgid "working productionlines list"
+msgstr "工作中的生产任务列表"
+
+#: apps/manufactureplan/templates/working_productionlines_list.html:22
+msgid "generate_first_item_report"
+msgstr "生成 工序首件三检实测数值记录卡"
+
+#: apps/manufactureplan/templates/working_productionlines_list.html:23
+msgid "generate_quality_report"
+msgstr "生成 产品生产质量控制记录表"
+
+#: apps/manufactureplan/templates/working_productionlines_list.html:24
+msgid "generate_reject_project_report"
+msgstr "生成 质量记录表（不合格处理单）"
+
+#: apps/material/models.py:15
+msgid "material name"
+msgstr "材料名称"
+
+#: apps/material/models.py:16
+msgid "material category"
+msgstr "材料类别"
+
+#: apps/material/models.py:18
+msgid "hardness"
+msgstr "硬度"
+
+#: apps/material/models.py:19
+msgid "length"
+msgstr "长度"
+
+#: apps/material/models.py:20
+msgid "weight"
+msgstr "重量"
+
+#: apps/material/models.py:22 apps/yt_file/templates/files_list.html:11
+msgid "owner"
+msgstr "拥有者"
+
+#: apps/material/models.py:29
+msgid "Materials"
+msgstr "材料"
+
+#: apps/material/models.py:36
+msgid "Workblanks"
+msgstr "毛坯"
+
+#: apps/material/models.py:39
+msgid "workblank name"
+msgstr "毛坯名称"
+
+#: apps/material/models.py:40
+msgid "workblank category"
+msgstr "毛坯类别"
+
+#: apps/permissions/models.py:29 apps/workflows/models.py:37
+#: apps/workflows/models.py:154 apps/workflows/models.py:212
+#: templates/profiles/_profile_info.html:3
+#: thirdparty/constance/templates/admin/constance/change_list.html:39
+msgid "Name"
+msgstr "名字"
+
+#: apps/permissions/models.py:30
+msgid "Codename"
+msgstr "编号"
+
+#: apps/permissions/models.py:31
+msgid "Content Types"
+msgstr "类型"
+
+#: apps/permissions/models.py:51 apps/permissions/models.py:164
+#: apps/workflows/models.py:357
+msgid "Role"
+msgstr "角色"
+
+#: apps/permissions/models.py:52 apps/permissions/models.py:72
+#: apps/workflows/models.py:216 apps/workflows/models.py:333
+#: apps/workflows/models.py:356
+msgid "Permission"
+msgstr "权限"
+
+#: apps/permissions/models.py:54 apps/permissions/models.py:74
+#: apps/permissions/models.py:166 apps/workflows/models.py:236
+#: apps/workflows/models.py:263
+msgid "Content type"
+msgstr "类型"
+
+#: apps/permissions/models.py:55 apps/permissions/models.py:75
+#: apps/permissions/models.py:167 apps/workflows/models.py:237
+#: apps/workflows/models.py:264
+msgid "Content id"
+msgstr ""
+
+#: apps/permissions/models.py:162
+#: apps/xadmin/templates/xadmin/views/model_history.html:28
+#: thirdparty/reversion/templates/reversion/object_history.html:16
+msgid "User"
+msgstr "用户"
+
+#: apps/permissions/models.py:163 apps/productcatalog/models.py:71
+msgid "Group"
+msgstr "组"
+
+#: apps/person/models.py:9
+msgid "SocialSecurity"
+msgstr "社会保险"
+
+#: apps/person/models.py:10
+msgid "Benefit"
+msgstr "福利"
+
+#: apps/person/models.py:14
+msgid "benefit type name"
+msgstr "福利类型"
+
+#: apps/person/models.py:15 apps/yt_file/models.py:13
+msgid "display name"
+msgstr "显示名称"
+
+#: apps/person/models.py:16
+msgid "benefit code"
+msgstr "福利编号"
+
+#: apps/person/models.py:17
+msgid "benefit category"
+msgstr "福利类别"
+
+#: apps/person/models.py:18
+msgid "appera on payslip"
+msgstr "在工资单上显示"
+
+#: apps/person/models.py:19
+msgid "benefit active"
+msgstr "活动状态"
+
+#: apps/person/models.py:21
+msgid "benefit order"
+msgstr "福利序号"
+
+#: apps/person/models.py:22
+msgid "amount fix"
+msgstr "金额修正"
+
+#: apps/person/models.py:23
+msgid "amount percentage"
+msgstr "金额比例"
+
+#: apps/person/models.py:24
+msgid "amount code"
+msgstr "金额编号"
+
+#: apps/person/models.py:25
+msgid "placeholder"
+msgstr "预留"
+
+#: apps/person/models.py:29 apps/person/models.py:30
+msgid "BenefitType"
+msgstr "福利类型"
+
+#: apps/person/models.py:50
+msgid "posotion name"
+msgstr "职位名称"
+
+#: apps/person/models.py:52
+msgid "This is private and never displayed to the public via the website."
+msgstr "这是私人信息，不会通过网站向外展示。"
+
+#: apps/person/models.py:52
+msgid "private desc"
+msgstr "私人介绍"
+
+#: apps/person/models.py:53
+msgid "This is the public description displayed via the website."
+msgstr "这是网站向外展示的公共介绍"
+
+#: apps/person/models.py:53
+msgid "public desc"
+msgstr "公开描述"
+
+#: apps/person/models.py:56 apps/person/models.py:57
+msgid "Position"
+msgstr "职位"
+
+#: apps/person/models.py:73
+msgid "Open"
+msgstr "打开"
+
+#: apps/person/models.py:74
+msgid "Filled"
+msgstr "档案录入"
+
+#: apps/person/models.py:75
+msgid "Closed"
+msgstr "关闭"
+
+#: apps/person/models.py:79
+msgid "Unpublished"
+msgstr "非发布"
+
+#: apps/person/models.py:80
+msgid "Published"
+msgstr "已发布"
+
+#: apps/person/models.py:95
+msgid "published status"
+msgstr "发布状态"
+
+#: apps/person/models.py:96
+msgid "pay"
+msgstr "资薪"
+
+#: apps/person/models.py:97
+msgid "benefits"
+msgstr "福利"
+
+#: apps/person/models.py:98 apps/person/models.py:135
+#: templates/includes/yt_menu.html:68
+msgid "department"
+msgstr "部门"
+
+#: apps/person/models.py:99
+msgid "position"
+msgstr "职位"
+
+#: apps/person/models.py:100 apps/profiles/models.py:10
+#: apps/warehouse/models.py:49 apps/warehouse/models.py:380
+msgid "location"
+msgstr "库位"
+
+#: apps/person/models.py:101
+msgid "slug"
+msgstr ""
+
+#: apps/person/models.py:103
+msgid "NPEes"
+msgstr ""
+
+#: apps/person/models.py:104
+msgid "num of vacancies"
+msgstr "假期数量"
+
+#: apps/person/models.py:115 apps/person/models.py:116
+msgid "jobs"
+msgstr "岗位"
+
+#: apps/person/models.py:121 apps/xadmin/models.py:48 apps/xadmin/models.py:87
+#: apps/xadmin/models.py:106 apps/yt_log/models.py:35
+#: thirdparty/notification/models.py:64 thirdparty/notification/models.py:391
+#: thirdparty/reversion/models.py:65
+msgid "user"
+msgstr "用户"
+
+#: apps/person/models.py:134
+msgid "internal_id"
+msgstr "内部编号"
+
+#: apps/person/models.py:136
+msgid "Job"
+msgstr "岗位"
+
+#: apps/person/models.py:139
+msgid "Employees"
+msgstr "员工"
+
+#: apps/person/models.py:140
+msgid "Employee"
+msgstr "员工"
+
+#: apps/person/templates/persons_list.html:4
+#: apps/person/templates/persons_list.html:8 apps/yt_timesheet/models.py:16
+msgid "person"
+msgstr "职员"
+
+#: apps/person/templates/persons_list.html:12
+msgid "files"
+msgstr "文件"
+
+#: apps/productcatalog/_admin.py:70
+msgid "Categories were published"
+msgstr "显示种类"
+
+#: apps/productcatalog/_admin.py:71
+msgid "Publish selected categories"
+msgstr "可选目录"
+
+#: apps/productcatalog/_admin.py:79
+msgid "Categories were hidden"
+msgstr "隐藏种类"
+
+#: apps/productcatalog/_admin.py:80
+msgid "Hide selected categories"
+msgstr "隐藏选中的种类"
+
+#: apps/productcatalog/_admin.py:108 apps/productcatalog/_admin.py:110
+msgid "Common"
+msgstr "普通"
+
+#: apps/productcatalog/_admin.py:114
+msgid "Publication"
+msgstr "公开"
+
+#: apps/productcatalog/_admin.py:122 apps/productcatalog/models.py:60
+msgid "Attributes"
+msgstr "属性"
+
+#: apps/productcatalog/_admin.py:127
+msgid "Photos"
+msgstr "图片"
+
+#: apps/productcatalog/_admin.py:132
+msgid "Custom fields"
+msgstr "客户范围"
+
+#: apps/productcatalog/_admin.py:138
+msgid "Integration"
+msgstr "综合"
+
+#: apps/productcatalog/_admin.py:151
+msgid "Products were published"
+msgstr "产品已发布"
+
+#: apps/productcatalog/_admin.py:152
+msgid "Publish selected products"
+msgstr "发布所选的产品"
+
+#: apps/productcatalog/_admin.py:160
+msgid "Products were hidden"
+msgstr "产品已经隐藏"
+
+#: apps/productcatalog/_admin.py:161
+msgid "Hide selected products"
+msgstr "隐藏选中的产品"
+
+#: apps/productcatalog/models.py:15
+#: apps/productcatalog/migrations/0001_initial.py:18
+msgid "category name"
+msgstr "种类名称"
+
+#: apps/productcatalog/models.py:16
+#: apps/productcatalog/migrations/0001_initial.py:13
+msgid "parent category"
+msgstr "上级类别"
+
+#: apps/productcatalog/models.py:17
+#: apps/productcatalog/migrations/0001_initial.py:12
+msgid "category description"
+msgstr "种类描述"
+
+#: apps/productcatalog/models.py:19
+#: apps/productcatalog/migrations/0001_initial.py:22
+msgid "is category published"
+msgstr "种类是否发布"
+
+#: apps/productcatalog/models.py:20 apps/productcatalog/models.py:50
+#: apps/productcatalog/models.py:89
+msgid "ext_code"
+msgstr "编号"
+
+#: apps/productcatalog/models.py:21 apps/productcatalog/models.py:90
+msgid "custom1"
+msgstr "客户1"
+
+#: apps/productcatalog/models.py:22 apps/productcatalog/models.py:91
+msgid "custom2"
+msgstr "客户2"
+
+#: apps/productcatalog/models.py:23 apps/productcatalog/models.py:92
+msgid "custom3"
+msgstr "客户3"
+
+#: apps/productcatalog/models.py:24 apps/productcatalog/models.py:93
+msgid "custom4"
+msgstr "客户4"
+
+#: apps/productcatalog/models.py:43
+msgid "Category"
+msgstr "种类"
+
+#: apps/productcatalog/models.py:44
+msgid "Categorys"
+msgstr "种类"
+
+#: apps/productcatalog/models.py:49 apps/warehouse/models.py:182
+#: apps/warehouse/models.py:279 apps/warehouse/models.py:381
+#: apps/warehouse/templates/export_detail.html:15
+#: apps/warehouse/templates/import_detail.html:14
+#: apps/warehouse/templates/warehouse/bom_detail.html:14
+msgid "unit"
+msgstr "单位"
+
+#: apps/productcatalog/models.py:59
+msgid "Attribute"
+msgstr "属性"
+
+#: apps/productcatalog/models.py:64 apps/productcatalog/models.py:82
+msgid "symbol"
+msgstr "产品代号"
+
+#: apps/productcatalog/models.py:65
+msgid "group name"
+msgstr "名称"
+
+#: apps/productcatalog/models.py:72
+msgid "Groups"
+msgstr "组"
+
+#: apps/productcatalog/models.py:76
+msgid "End Product"
+msgstr "成品"
+
+#: apps/productcatalog/models.py:77 templates/includes/yt_menu.html:67
+msgid "Semifinished Product"
+msgstr "半成品"
+
+#: apps/productcatalog/models.py:81
+msgid "cad_code"
+msgstr "图号"
+
+#: apps/productcatalog/models.py:83
+msgid "product category"
+msgstr "产品类别"
+
+#: apps/productcatalog/models.py:84
+msgid "product name"
+msgstr "产品名称"
+
+#: apps/productcatalog/models.py:85
+msgid "product type"
+msgstr "成品/半成品"
+
+#: apps/productcatalog/models.py:86
+#: apps/productcatalog/migrations/0001_initial.py:72
+msgid "short description"
+msgstr "简介"
+
+#: apps/productcatalog/models.py:87
+#: apps/productcatalog/migrations/0001_initial.py:68
+msgid "long description"
+msgstr "详细介绍"
+
+#: apps/productcatalog/models.py:88
+#: apps/productcatalog/migrations/0001_initial.py:78
+msgid "is product published"
+msgstr "产品是否发布"
+
+#: apps/productcatalog/models.py:94
+msgid "product groups"
+msgstr "产品组"
+
+#: apps/productcatalog/models.py:95
+msgid "product attributes"
+msgstr "产品属性"
+
+#: apps/productcatalog/models.py:106 apps/warehouse/models.py:228
+msgid "Product"
+msgstr "产品"
+
+#: apps/productcatalog/models.py:107
+msgid "Products"
+msgstr "产品"
+
+#: apps/productcatalog/models.py:145
+msgid "display_order"
+msgstr "显示序号"
+
+#: apps/productcatalog/models.py:155
+msgid "ProductPhoto"
+msgstr "产品图片"
+
+#: apps/productcatalog/models.py:156
+msgid "ProductPhotos"
+msgstr "产品图片"
+
+#: apps/productcatalog/models.py:161
+#: apps/productcatalog/migrations/0001_initial.py:30
+#: apps/technologies/models.py:217
+msgid "display value"
+msgstr "实测值"
+
+#: apps/productcatalog/models.py:162
+#: apps/productcatalog/migrations/0001_initial.py:32
+#: apps/technologies/models.py:218
+msgid "absolute value"
+msgstr "要求值"
+
+#: apps/productcatalog/models.py:163
+#: apps/productcatalog/migrations/0001_initial.py:34
+#: apps/technologies/models.py:219
+msgid "is published"
+msgstr "是否公开"
+
+#: apps/productcatalog/models.py:165 apps/technologies/models.py:221
+msgid "difference"
+msgstr "误差"
+
+#: apps/productcatalog/models.py:170
+msgid "ProductAttribute"
+msgstr "产品属性"
+
+#: apps/productcatalog/models.py:171
+msgid "ProductAttributes"
+msgstr "产品属性"
+
+#: apps/productcatalog/migrations/0001_initial.py:67
+msgid "category"
+msgstr "种类"
+
+#: apps/productcatalog/templates/admin/weboffer/edit_inline/photos.html:13
+msgid "View on site"
+msgstr "在网页中察看"
+
+#: apps/profiles/models.py:9
+msgid "about"
+msgstr "关于"
+
+#: apps/profiles/models.py:11
+msgid "website"
+msgstr "网站"
+
+#: apps/quality/templates/excessive_qa_record_view.html:3
+msgid "excessive_qa_record_view"
+msgstr "质检问题列表"
+
+#: apps/quality/templates/excessive_qa_record_view.html:39
+#: apps/quality/templates/excessive_qa_record_view.html:44
+#: apps/quality/templates/excessive_qa_record_view.html:48
+#: apps/quality/templates/excessive_qa_record_view.html:97
+msgid "pass"
+msgstr "通过"
+
+#: apps/quality/templates/excessive_qa_record_view.html:40
+#: apps/quality/templates/excessive_qa_record_view.html:45
+#: apps/quality/templates/excessive_qa_record_view.html:49
+msgid "no pass"
+msgstr "不通过"
+
+#: apps/quality/templates/excessive_qa_record_view.html:41
+#: apps/quality/templates/excessive_qa_record_view.html:46
+msgid "note: "
+msgstr "记录"
+
+#: apps/quality/templates/excessive_qa_record_view.html:98
+msgid "fail"
+msgstr "失败"
+
+#: apps/quality/templates/excessive_qa_record_view.html:109
+#: apps/quality/templates/excessive_qa_record_view.html:128
+#: apps/quality/templates/excessive_qa_record_view.html:159
+msgid "please fill the note"
+msgstr "请填写处理日志"
+
+#: apps/quality/templates/excessive_qa_record_view.html:135
+msgid "处理结果"
+msgstr ""
+
+#: apps/quality/templates/excessive_qa_records_list.html:3
+#: apps/quality/templates/excessive_qa_records_list.html:8
+#: templates/includes/yt_menu.html:31
+msgid "excessive_qa_records_list"
+msgstr "质检问题列表"
+
+#: apps/quality/templates/excessive_qa_records_list.html:14
+msgid "qa_records"
+msgstr "质检记录"
+
+#: apps/quality/templates/excessive_qa_records_list.html:33
+msgid "质量记录报表"
+msgstr ""
+
+#: apps/report/models.py:21
+#, fuzzy
+msgid "report technology"
+msgstr "工艺"
+
+#: apps/report/models.py:39
+#, fuzzy
+msgid "report quality"
+msgstr "质检"
+
+#: apps/report/models.py:56
+#, fuzzy
+msgid "report record"
+msgstr "报表"
+
+#: apps/report/models.py:73
+#, fuzzy
+msgid "report fall"
+msgstr "报表"
+
+#: apps/report/models.py:87 apps/report/templates/plan_list.html:10
+msgid "manufactureplan"
+msgstr "生产通知"
+
+#: apps/report/models.py:90
+#, fuzzy
+msgid "report plan"
+msgstr "报表"
+
+#: apps/report/templates/first_item_list.html:3
+#, fuzzy
+msgid "productionline of first item report"
+msgstr "工艺流程"
+
+#: apps/report/templates/first_item_list.html:7
+msgid "productionline list"
+msgstr "生产任务列表"
+
+#: apps/report/templates/first_three_report.html:3
+#: apps/warehouse/templates/warehouse/bom_output.html:3
+msgid "warhouse"
+msgstr "仓库"
+
+#: apps/report/templates/plan_list.html:3
+#: apps/report/templates/plan_list.html:7
+msgid "plan list"
+msgstr "生产通知单列表"
+
+#: apps/report/templates/quality_list.html:3
+#: apps/report/templates/quality_list.html:7
+msgid "quality list"
+msgstr "产品生产质量控制记录表列表"
+
+#: apps/report/templates/technology_lsit.html:3
+#: apps/report/templates/technology_lsit.html:7
+msgid "technology list"
+msgstr "工艺列表"
+
+#: apps/technologies/adminx.py:12 apps/technologies/adminx.py:47
+msgid "files management"
+msgstr "文件管理"
+
+msgid "mg attachments"
+msgstr "工序附图"
+
+#: apps/technologies/adminx.py:30
+msgid "Technology Data"
+msgstr "工艺数据"
+
+#: apps/technologies/adminx.py:32
+msgid "some comm fields, required"
+msgstr "填写一些普通字段"
+
+#: apps/technologies/adminx.py:36
+msgid "Workblank Data"
+msgstr "毛坯数据"
+
+#: apps/technologies/models.py:34
+msgid "waiting..."
+msgstr "等待中"
+
+#: apps/technologies/models.py:37 apps/yt_object/models.py:7
+msgid "code"
+msgstr "编号"
+
+#: apps/technologies/models.py:38
+msgid "technology code"
+msgstr "图号"
+
+#: apps/technologies/models.py:39
+#: apps/technologies/templates/technologies_list.html:13
+msgid "technology name"
+msgstr "工艺名称"
+
+#: apps/technologies/models.py:40
+msgid "technology description"
+msgstr "工艺描述"
+
+#: apps/technologies/models.py:41
+msgid "workflow"
+msgstr "工艺流程"
+
+#: apps/technologies/models.py:43
+msgid "publish_code"
+msgstr "发放号"
+
+#: apps/technologies/models.py:45 apps/technologies/models.py:140
+msgid "materials"
+msgstr "材料"
+
+#: apps/technologies/models.py:47
+msgid "workblank_mark"
+msgstr "毛坯牌号"
+
+#: apps/technologies/models.py:48
+msgid "workblank_standard_code"
+msgstr "毛坯标准代号"
+
+#: apps/technologies/models.py:49
+msgid "workblank_hardness"
+msgstr "毛坯硬度"
+
+#: apps/technologies/models.py:50
+msgid "workblank_species"
+msgstr "毛坯种类"
+
+#: apps/technologies/models.py:51
+msgid "workblank_sectional_dimensions"
+msgstr "毛坯剖面尺寸"
+
+#: apps/technologies/models.py:52
+msgid "workblank_length"
+msgstr "毛坯长度"
+
+#: apps/technologies/models.py:53
+msgid "workblank_quantity"
+msgstr "毛坯数量"
+
+#: apps/technologies/models.py:54
+msgid "workblank_single_weight_kg"
+msgstr "毛坯单件质量kg"
+
+#: apps/technologies/models.py:55
+msgid "workblank_full_weight_kg"
+msgstr "毛坯全套质量kg"
+
+#: apps/technologies/models.py:61
+msgid "technologies"
+msgstr "工艺"
+
+#: apps/technologies/models.py:133
+msgid "operation group name"
+msgstr "工序名称"
+
+#: apps/technologies/models.py:134
+msgid "operation group description"
+msgstr "工序描述"
+
+#: apps/technologies/models.py:136
+msgid "operation group order"
+msgstr "工序号"
+
+#: apps/technologies/models.py:139 templates/includes/yt_menu.html:19
+msgid "device"
+msgstr "设备"
+
+#: apps/technologies/models.py:170 apps/technologies/models.py:193
+msgid "operation_groups"
+msgstr "工序"
+
+#: apps/technologies/models.py:180
+msgid "Cooling"
+msgstr "冷却"
+
+#: apps/technologies/models.py:191
+msgid "operation name"
+msgstr "工步名称"
+
+#: apps/technologies/models.py:192
+msgid "operation description"
+msgstr "工步描述"
+
+#: apps/technologies/models.py:194
+msgid "operation order"
+msgstr "工步号"
+
+#: apps/technologies/models.py:197
+msgid "semifinished_product"
+msgstr "半成品"
+
+#: apps/technologies/models.py:198
+msgid "knifes"
+msgstr "刀具"
+
+#: apps/technologies/models.py:199
+msgid "tool measure"
+msgstr "工量具"
+
+#: apps/technologies/models.py:200
+msgid "period(hours)"
+msgstr "时效(小时)"
+
+#: apps/technologies/models.py:206
+msgid "operations"
+msgstr "工步"
+
+#: apps/technologies/models.py:224
+msgid "OperationAttribute"
+msgstr "工步属性"
+
+#: apps/technologies/models.py:225
+msgid "OperationAttributes"
+msgstr "工步属性"
+
+#: apps/technologies/views.py:125
+msgid "BAN"
+msgstr "半成品"
+
+#: apps/technologies/templates/operation_group_files.html:4
+#: apps/technologies/templates/operation_group_files.html:8
+msgid "operation_group CAD files list"
+msgstr "工序附图列表"
+
+#: apps/technologies/templates/technologies_list.html:3
+#: apps/technologies/templates/technologies_list.html:8
+#: templates/includes/yt_menu.html:45
+msgid "technologies list"
+msgstr "工艺列表"
+
+#: apps/technologies/templates/technologies_list.html:15
+msgid "工艺流程"
+msgstr ""
+
+#: apps/technologies/templates/technologies_list.html:17
+msgid "初始化"
+msgstr ""
+
+#: apps/technologies/templates/technologies_list.html:29
+#: apps/yt_timesheet/models.py:17
+msgid "start"
+msgstr "开始"
+
+#: apps/technologies/templates/technologies_list.html:31
+msgid "start (no permission)"
+msgstr "开始(无权限)"
+
+#: apps/technologies/templates/technologies_list.html:37
+msgid "view (no permission)"
+msgstr "察看(无权限)"
+
+#: apps/technologies/templates/technologies_list.html:43
+msgid "wait for start"
+msgstr "等待开始"
+
+#: apps/technologies/templates/technologies_list.html:46
+msgid "started"
+msgstr "已经开始"
+
+#: apps/technologies/templates/technologies_list.html:49
+msgid "finished"
+msgstr "完成"
+
+#: apps/technologies/templates/technology_files.html:3
+#: apps/technologies/templates/technology_files.html:7
+msgid "technology files list"
+msgstr "工艺文件列表"
+
+#: apps/technologies/templates/technology_files.html:13
+#: apps/yt_file/models.py:12
+msgid "file path"
+msgstr "文件路径"
+
+#: apps/technologies/templates/technology_files.html:22
+#: thirdparty/pinax_theme_bootstrap/templates/account/email.html:51
+#: thirdparty/pinax_theme_bootstrap/templates/django_openid/associations.html:26
+msgid "remove"
+msgstr "移除"
+
+#: apps/technologies/templates/technology_states_list.html:8
+msgid "technology:"
+msgstr "工艺"
+
+#: apps/technologies/templates/technology_states_list.html:9
+msgid "technologies_list"
+msgstr "工艺列表"
+
+#: apps/technologies/templates/technology_states_list.html:20
+msgid "工艺附图卡"
+msgstr ""
+
+#: apps/technologies/templates/technology_workflow.html:9
+msgid "  审核流程"
+msgstr ""
+
+#: apps/warehouse/models.py:32
+msgid "store_house"
+msgstr "仓库"
+
+#: apps/warehouse/models.py:33
+msgid "factory"
+msgstr "工厂"
+
+#: apps/warehouse/models.py:37
+msgid "location name"
+msgstr "库位名称"
+
+#: apps/warehouse/models.py:38
+msgid "location type"
+msgstr "库位类型"
+
+#: apps/warehouse/models.py:39
+msgid "location code"
+msgstr "库位编号"
+
+#: apps/warehouse/models.py:40
+msgid "location description"
+msgstr "库位描述"
+
+#: apps/warehouse/models.py:41
+msgid "longitude"
+msgstr "经度"
+
+#: apps/warehouse/models.py:42
+msgid "latitude"
+msgstr "纬度"
+
+#: apps/warehouse/models.py:43 apps/warehouse/models.py:69
+#: apps/warehouse/models.py:184 apps/warehouse/models.py:242
+#: apps/warehouse/models.py:282 apps/warehouse/models.py:344
+#: apps/warehouse/models.py:377
+msgid "created at"
+msgstr "创建时间"
+
+#: apps/warehouse/models.py:44 apps/warehouse/models.py:70
+#: apps/warehouse/models.py:185 apps/warehouse/models.py:243
+#: apps/warehouse/models.py:283
+msgid "updated at"
+msgstr "更新时间"
+
+#: apps/warehouse/models.py:45 apps/warehouse/models.py:186
+#: apps/warehouse/models.py:244 apps/warehouse/models.py:284
+#: apps/warehouse/models.py:347 apps/warehouse/models.py:386
+msgid "updated_by"
+msgstr "修改人"
+
+#: apps/warehouse/models.py:50
+msgid "locations"
+msgstr "库位"
+
+#: apps/warehouse/models.py:60
+msgid "item code"
+msgstr "物品编号"
+
+#: apps/warehouse/models.py:77 apps/warehouse/models.py:181
+#: apps/warehouse/models.py:278 apps/warehouse/models.py:379
+#: apps/warehouse/models.py:423 apps/warehouse/templates/export_detail.html:13
+#: apps/warehouse/templates/import_detail.html:12
+msgid "item"
+msgstr "物品"
+
+#: apps/warehouse/models.py:78
+msgid "items"
+msgstr "物品"
+
+#: apps/warehouse/models.py:167
+#: apps/warehouse/templates/warehouse/bom_list.html:29
+msgid "Waitting"
+msgstr "等待"
+
+#: apps/warehouse/models.py:168
+msgid "Already Output"
+msgstr "已出库"
+
+#: apps/warehouse/models.py:171
+msgid "Already Input"
+msgstr "已入库"
+
+#: apps/warehouse/models.py:175
+msgid "Output"
+msgstr "出库"
+
+#: apps/warehouse/models.py:176 apps/warehouse/models.py:336
+msgid "Input"
+msgstr "入库"
+
+#: apps/warehouse/models.py:190
+msgid "bom state"
+msgstr "状态"
+
+#: apps/warehouse/models.py:191
+msgid "bom_category"
+msgstr "出入库种类"
+
+#: apps/warehouse/models.py:193
+msgid "finsih_time"
+msgstr "截止时间"
+
+#: apps/warehouse/models.py:196
+msgid "BOM entry"
+msgstr "物料清单"
+
+#: apps/warehouse/models.py:197
+msgid "BOM entries"
+msgstr "物料清单"
+
+#: apps/warehouse/models.py:232
+msgid "Material"
+msgstr "材料"
+
+#: apps/warehouse/models.py:238 apps/warehouse/models.py:378
+#: apps/warehouse/templates/export_detail.html:14
+#: apps/warehouse/templates/import_detail.html:13
+msgid "internal_code"
+msgstr "内部编号"
+
+#: apps/warehouse/models.py:239
+msgid "list_category"
+msgstr "物品种类"
+
+#: apps/warehouse/models.py:240
+msgid "transport_category"
+msgstr "出库/入库"
+
+#: apps/warehouse/models.py:241
+msgid "transport list state"
+msgstr "状态"
+
+#: apps/warehouse/models.py:266
+msgid "TransportList"
+msgstr "出库单/入库单"
+
+#: apps/warehouse/models.py:267
+msgid "TransportLists"
+msgstr "出库单/入库单"
+
+#: apps/warehouse/models.py:276
+msgid "transport_list"
+msgstr "出库单/入库单"
+
+#: apps/warehouse/models.py:277
+msgid "item_entry_code"
+msgstr "库存编号"
+
+#: apps/warehouse/models.py:324
+msgid "TransportListDetail"
+msgstr "出入库信息"
+
+#: apps/warehouse/models.py:325
+msgid "TransportListDetails"
+msgstr "出入库信息"
+
+#: apps/warehouse/models.py:334
+msgid "Inventory"
+msgstr "库存"
+
+#: apps/warehouse/models.py:335
+msgid "Movement"
+msgstr "出库"
+
+#: apps/warehouse/models.py:337
+msgid "Damage"
+msgstr "损坏"
+
+#: apps/warehouse/models.py:338
+msgid "Total"
+msgstr "总数"
+
+#: apps/warehouse/models.py:339
+msgid "Sales"
+msgstr "销售"
+
+#: apps/warehouse/models.py:340
+msgid "Purchase"
+msgstr "购买"
+
+#: apps/warehouse/models.py:345
+msgid "journal type"
+msgstr "类型"
+
+#: apps/warehouse/models.py:351
+msgid "item journal"
+msgstr "库存类型"
+
+#: apps/warehouse/models.py:352
+msgid "item journals"
+msgstr "库存类型"
+
+#: apps/warehouse/models.py:376
+msgid "journal"
+msgstr "库存类型"
+
+#: apps/warehouse/models.py:388
+msgid "arrive_factury_date"
+msgstr "到厂时间"
+
+#: apps/warehouse/models.py:391
+msgid "item entry"
+msgstr "物品库存"
+
+#: apps/warehouse/models.py:392
+msgid "item entrys"
+msgstr "物品库存"
+
+#: apps/warehouse/models.py:400
+msgid "usage_time"
+msgstr "使用时间"
+
+#: apps/warehouse/models.py:403 templates/includes/yt_menu.html:58
+msgid "device entry"
+msgstr "设备记录"
+
+#: apps/warehouse/models.py:404
+msgid "device entrys"
+msgstr "设备记录"
+
+#: apps/warehouse/models.py:424
+msgid "price"
+msgstr "价格"
+
+#: apps/warehouse/yt_views.py:27
+msgid "out of storage"
+msgstr "库存不"
+
+#: apps/warehouse/templates/export_detail.html:3
+msgid "export detail"
+msgstr "出库详情"
+
+#: apps/warehouse/templates/export_detail.html:7
+#: apps/warehouse/templates/export_list.html:4
+#: apps/warehouse/templates/export_list.html:9
+#: templates/includes/yt_menu.html:55
+msgid "export list"
+msgstr "出库单列表"
+
+#: apps/warehouse/templates/export_detail.html:16
+#: apps/warehouse/templates/import_detail.html:15
+msgid "qty"
+msgstr "数量"
+
+#: apps/warehouse/templates/export_detail.html:17
+msgid "库存"
+msgstr ""
+
+#: apps/warehouse/templates/export_detail.html:34
+msgid "自动分配"
+msgstr ""
+
+#: apps/warehouse/templates/export_detail.html:36
+msgid "库存不足，请先补充"
+msgstr ""
+
+#: apps/warehouse/templates/export_detail.html:40
+msgid "export all"
+msgstr "全部出库"
+
+#: apps/warehouse/templates/export_list.html:15
+#: apps/warehouse/templates/import_list.html:12
+msgid "物品类型"
+msgstr ""
+
+#: apps/warehouse/templates/export_list.html:16
+#: apps/warehouse/templates/import_list.html:13
+msgid "出入库"
+msgstr ""
+
+#: apps/warehouse/templates/export_list.html:17
+#: apps/warehouse/templates/import_list.html:14
+msgid "创建时间"
+msgstr ""
+
+#: apps/warehouse/templates/export_list.html:18
+#: apps/warehouse/templates/import_list.html:15
+msgid "创建人"
+msgstr ""
+
+#: apps/warehouse/templates/export_list.html:19
+#: apps/warehouse/templates/import_list.html:16
+msgid "状态"
+msgstr ""
+
+#: apps/warehouse/templates/import_detail.html:3
+msgid "import detail"
+msgstr "入库单详情"
+
+#: apps/warehouse/templates/import_detail.html:7
+#: apps/warehouse/templates/import_list.html:3
+#: apps/warehouse/templates/import_list.html:7
+#: templates/includes/yt_menu.html:54
+msgid "import list"
+msgstr "入库单列表"
+
+#: apps/warehouse/templates/import_detail.html:40
+msgid "import all"
+msgstr "全部入库"
+
+#: apps/warehouse/templates/warehouse/bom_detail.html:3
+#: apps/warehouse/templates/warehouse/bom_detail.html:8
+msgid "bom detail"
+msgstr "物料单详情"
+
+#: apps/warehouse/templates/warehouse/bom_detail.html:16
+#: apps/warehouse/templates/warehouse/bom_list.html:13
+msgid "finish time"
+msgstr "截止时间"
+
+#: apps/warehouse/templates/warehouse/bom_detail.html:36
+#: apps/yt_barcode/templates/buffer.html:11
+msgid "output all"
+msgstr "全部出库"
+
+#: apps/warehouse/templates/warehouse/bom_detail.html:37
+msgid "denail"
+msgstr "拒绝"
+
+#: apps/warehouse/templates/warehouse/bom_list.html:3
+#: apps/warehouse/templates/warehouse/bom_list.html:7
+#: templates/includes/yt_menu.html:56
+msgid "bom list"
+msgstr "物料单"
+
+#: apps/warehouse/templates/warehouse/bom_list.html:12
+msgid "manu_plan"
+msgstr "生产通知"
+
+#: apps/warehouse/templates/warehouse/bom_list.html:14
+#: apps/warehouse/templates/warehouse/bom_list.html:25
+msgid "all output"
+msgstr "全部出库"
+
+#: apps/warehouse/templates/warehouse/bom_list.html:33
+msgid "some bom output"
+msgstr "部分出库"
+
+#: apps/warehouse/templates/warehouse/bom_output.html:7
+msgid "output success"
+msgstr "出库成功"
+
+#: apps/warehouse/templates/warehouse/bom_output.html:11
+#: templates/includes/yt_menu.html:53
+msgid "inventory"
+msgstr "库存"
+
+#: apps/workflows/models.py:155 apps/workflows/models.py:213
+#: apps/workflows/models.py:266 apps/workflows/models.py:290
+msgid "Workflow"
+msgstr "工艺流程"
+
+#: apps/workflows/models.py:156
+msgid "Transitions"
+msgstr "处理"
+
+#: apps/workflows/models.py:214
+msgid "Destination"
+msgstr "目的"
+
+#: apps/workflows/models.py:215
+msgid "Condition"
+msgstr ""
+
+#: apps/workflows/models.py:289
+msgid "Content Type"
+msgstr ""
+
+#: apps/workflows/tools/forms.py:7 apps/yt_workflows/forms.py:7
+msgid "Role Name"
+msgstr "角色名称"
+
+#: apps/workflows/tools/forms.py:10 apps/yt_file/forms.py:6
+#: apps/yt_workflows/forms.py:10
+msgid "File"
+msgstr "文件"
+
+#: apps/workflows/tools/forms.py:13 apps/yt_workflows/forms.py:13
+msgid "Workflow Name"
+msgstr "工艺流程名称"
+
+#: apps/workflows/tools/templates/workflow/workflow_add.html:3
+#: apps/workflows/tools/templates/workflow/workflow_add.html:7
+#: apps/yt_workflows/templates/workflow/workflow_add.html:3
+#: apps/yt_workflows/templates/workflow/workflow_add.html:7
+msgid "workflow add"
+msgstr "添加工艺流程"
+
+#: apps/workflows/tools/templates/workflow/workflow_object_add.html:3
+#: apps/workflows/tools/templates/workflow/workflow_object_add.html:7
+#: apps/yt_workflows/templates/workflow/workflow_object_add.html:3
+#: apps/yt_workflows/templates/workflow/workflow_object_add.html:7
+msgid "workflow object add"
+msgstr "添加工艺流程对象"
+
+#: apps/workflows/tools/templates/workflow/workflow_object_add.html:9
+#: apps/workflows/tools/templates/workflow/workflow_objects_list.html:3
+#: apps/yt_workflows/templates/workflow/workflow_object_add.html:9
+#: apps/yt_workflows/templates/workflow/workflow_objects_list.html:3
+msgid "workflow objects list"
+msgstr "工艺流程对象列表"
+
+#: apps/workflows/tools/templates/workflow/workflow_object_add.html:15
+#: apps/yt_workflows/templates/workflow/workflow_object_add.html:15
+msgid "add a workflow object"
+msgstr "添加一个工艺流程对象"
+
+#: apps/workflows/tools/templates/workflow/workflow_objects_list.html:14
+#: apps/yt_workflows/templates/workflow/workflow_objects_list.html:14
+msgid "add new workflow object"
+msgstr "添加一个新的工艺流程对象"
+
+#: apps/workflows/tools/templates/workflow/workflow_setpermission.html:3
+#: apps/yt_workflows/templates/workflow/workflow_setpermission.html:3
+msgid "workflow set permission"
+msgstr "工艺流程权限设置"
+
+#: apps/workflows/tools/templates/workflow/workflow_show.html:3
+#: apps/yt_workflows/templates/workflow/workflow_show.html:3
+msgid "workflow show"
+msgstr "显示工艺流程"
+
+#: apps/workflows/tools/templates/workflow/workflows_list.html:3
+#: apps/workflows/tools/templates/workflow/workflows_list.html:11
+#: apps/yt_workflows/templates/workflow/workflows_list.html:3
+#: apps/yt_workflows/templates/workflow/workflows_list.html:11
+msgid "workflows list"
+msgstr "工艺流程列表"
+
+#: apps/workflows/tools/templates/workflow/workflows_list.html:14
+#: apps/yt_workflows/templates/workflow/workflows_list.html:14
+msgid "add new workflow"
+msgstr "添加新的工艺流程"
+
+#: apps/workflows/tools/templates/workflow/workflows_list.html:23
+#: apps/yt_workflows/templates/workflow/workflows_list.html:23
+msgid "objects"
+msgstr "对象"
+
+#: apps/workflows/tools/templates/workflow/workflows_list.html:24
+#: apps/yt_workflows/templates/workflow/workflows_list.html:24
+msgid "set permission"
+msgstr "设置权限"
+
+#: apps/xadmin/filters.py:181 apps/xadmin/filters.py:213
+#: apps/xadmin/filters.py:425 apps/xadmin/filters.py:475
+msgid "All"
+msgstr "所有"
+
+#: apps/xadmin/filters.py:182 apps/xadmin/plugins/export.py:117
+msgid "Yes"
+msgstr "是"
+
+#: apps/xadmin/filters.py:183 apps/xadmin/plugins/export.py:117
+msgid "No"
+msgstr "否"
+
+#: apps/xadmin/filters.py:197
+msgid "Unknown"
+msgstr "未知"
+
+#: apps/xadmin/filters.py:289
+msgid "Any date"
+msgstr "任何日期"
+
+#: apps/xadmin/filters.py:290
+msgid "Has date"
+msgstr "有日期"
+
+#: apps/xadmin/filters.py:293
+msgid "Has no date"
+msgstr "无日期"
+
+#: apps/xadmin/filters.py:296 apps/xadmin/widgets.py:30
+msgid "Today"
+msgstr "今天"
+
+#: apps/xadmin/filters.py:300
+msgid "Past 7 days"
+msgstr "过去7天"
+
+#: apps/xadmin/filters.py:304
+msgid "This month"
+msgstr "这个月"
+
+#: apps/xadmin/filters.py:308
+msgid "This year"
+msgstr "今年"
+
+#: apps/xadmin/forms.py:10
+msgid ""
+"Please enter the correct username and password for a staff account. Note "
+"that both fields are case-sensitive."
+msgstr "请输入正确的用户名和密码。"
+
+#: apps/xadmin/forms.py:21
+msgid "Please log in again, because your session has expired."
+msgstr "请重新登录."
+
+#: apps/xadmin/forms.py:41
+#, python-format
+msgid "Your e-mail address is not your username. Try '%s' instead."
+msgstr "你的E-mail不是你的用户名,请重新输入'%s'."
+
+#: apps/xadmin/models.py:47
+msgid "Title"
+msgstr "标题"
+
+#: apps/xadmin/models.py:49
+msgid "Url Name"
+msgstr "链接地址"
+
+#: apps/xadmin/models.py:51
+msgid "Query String"
+msgstr "请求参数"
+
+#: apps/xadmin/models.py:52
+msgid "Is Share"
+msgstr "是否分享"
+
+#: apps/xadmin/models.py:65 apps/xadmin/plugins/bookmark.py:49
+#: apps/xadmin/plugins/bookmark.py:177
+msgid "Bookmark"
+msgstr "书签"
+
+#: apps/xadmin/models.py:66
+msgid "Bookmarks"
+msgstr "书签"
+
+#: apps/xadmin/models.py:88
+msgid "Settings Key"
+msgstr "选择关键字"
+
+#: apps/xadmin/models.py:89
+msgid "Settings Content"
+msgstr "设置内容"
+
+#: apps/xadmin/models.py:101
+msgid "User Setting"
+msgstr "用户设置"
+
+#: apps/xadmin/models.py:102
+msgid "User Settings"
+msgstr "用户设置"
+
+#: apps/xadmin/models.py:107
+msgid "Page"
+msgstr "页面"
+
+#: apps/xadmin/models.py:108 apps/xadmin/views/dashboard.py:81
+#: apps/xadmin/views/dashboard.py:91
+msgid "Widget Type"
+msgstr "插件类型"
+
+#: apps/xadmin/models.py:109 apps/xadmin/views/dashboard.py:82
+msgid "Widget Params"
+msgstr "小插件"
+
+#: apps/xadmin/models.py:136
+msgid "User Widget"
+msgstr "用户插件"
+
+#: apps/xadmin/models.py:137
+msgid "User Widgets"
+msgstr "用户插件"
+
+#: apps/xadmin/widgets.py:48
+msgid "Now"
+msgstr "现在"
+
+#: apps/xadmin/plugins/actions.py:54
+#, python-format
+msgid "Delete selected %(verbose_name_plural)s"
+msgstr "删除所选 %(verbose_name_plural)s"
+
+#: apps/xadmin/plugins/actions.py:67
+#, python-format
+msgid "Successfully deleted %(count)d %(items)s."
+msgstr "已成功删除 %(count)d %(items)s"
+
+#: apps/xadmin/plugins/actions.py:99 apps/xadmin/views/delete.py:68
+#, python-format
+msgid "Cannot delete %(name)s"
+msgstr "无法删除 %(name)s"
+
+#: apps/xadmin/plugins/actions.py:101 apps/xadmin/views/delete.py:71
+msgid "Are you sure?"
+msgstr "你确定吗？"
+
+#: apps/xadmin/plugins/actions.py:147
+#, python-format
+msgid "%(total_count)s selected"
+msgid_plural "All %(total_count)s selected"
+msgstr[0] ""
+
+#: apps/xadmin/plugins/actions.py:151
+#, python-format
+msgid "0 of %(cnt)s selected"
+msgstr ""
+
+#: apps/xadmin/plugins/actions.py:168 apps/xadmin/plugins/actions.py:178
+msgid ""
+"Items must be selected in order to perform actions on them. No items have "
+"been changed."
+msgstr ""
+
+#: apps/xadmin/plugins/aggregation.py:14
+msgid "Min"
+msgstr "最小"
+
+#: apps/xadmin/plugins/aggregation.py:14
+msgid "Max"
+msgstr "最大"
+
+#: apps/xadmin/plugins/aggregation.py:14
+msgid "Avg"
+msgstr ""
+
+#: apps/xadmin/plugins/aggregation.py:14
+msgid "Sum"
+msgstr "求和"
+
+#: apps/xadmin/plugins/aggregation.py:14
+#, fuzzy
+msgid "Count"
+msgstr "关于我们"
+
+#: apps/xadmin/plugins/auth.py:21
+msgid "Can add %s"
+msgstr "Can add %s"
+
+#: apps/xadmin/plugins/auth.py:22
+msgid "Can change %s"
+msgstr "Can change %s"
+
+#: apps/xadmin/plugins/auth.py:23
+msgid "Can edit %s"
+msgstr "Can edit %s"
+
+#: apps/xadmin/plugins/auth.py:24
+msgid "Can delete %s"
+msgstr "Can delete %s"
+
+#: apps/xadmin/plugins/auth.py:25
+msgid "Can view %s"
+msgstr "Can view %s"
+
+#: apps/xadmin/plugins/auth.py:87
+msgid "Personal info"
+msgstr "个人信息"
+
+#: apps/xadmin/plugins/auth.py:91
+msgid "Permissions"
+msgstr "权限"
+
+#: apps/xadmin/plugins/auth.py:94
+msgid "Important dates"
+msgstr "重要日期"
+
+#: apps/xadmin/plugins/auth.py:99
+msgid "Status"
+msgstr "状态"
+
+#: apps/xadmin/plugins/auth.py:111
+msgid "Permission Name"
+msgstr "权限名称"
+
+#: apps/xadmin/plugins/auth.py:159
+#: thirdparty/pinax_theme_bootstrap/templates/account/base.html:20
+#: thirdparty/pinax_theme_bootstrap/templates/account/password_change.html:6
+#: thirdparty/pinax_theme_bootstrap/templates/account/password_change.html:9
+#: thirdparty/pinax_theme_bootstrap/templates/account/password_reset_from_key.html:5
+#: thirdparty/pinax_theme_bootstrap/templates/account/password_reset_from_key.html:8
+msgid "Change Password"
+msgstr "修改密码"
+
+#: apps/xadmin/plugins/auth.py:189
+#, python-format
+msgid "Change password: %s"
+msgstr "修改密码: %s"
+
+#: apps/xadmin/plugins/auth.py:214 apps/xadmin/plugins/auth.py:246
+msgid "Password changed successfully."
+msgstr "已成功修改密码"
+
+#: apps/xadmin/plugins/auth.py:233
+#: apps/xadmin/templates/xadmin/auth/user/change_password.html:11
+#: apps/xadmin/templates/xadmin/auth/user/change_password.html:22
+#: apps/xadmin/templates/xadmin/auth/user/change_password.html:55
+msgid "Change password"
+msgstr "修改密码"
+
+#: apps/xadmin/plugins/batch.py:44
+msgid "Change this field"
+msgstr ""
+
+#: apps/xadmin/plugins/batch.py:68
+#, python-format
+msgid "Batch Change selected %(verbose_name_plural)s"
+msgstr ""
+
+#: apps/xadmin/plugins/batch.py:93
+#, python-format
+msgid "Successfully change %(count)d %(items)s."
+msgstr ""
+
+#: apps/xadmin/plugins/batch.py:141
+#, python-format
+msgid "Batch change %s"
+msgstr "批量修改 %s"
+
+#: apps/xadmin/plugins/bookmark.py:171
+msgid "bookmark"
+msgstr ""
+
+#: apps/xadmin/plugins/bookmark.py:173
+msgid "Bookmark Widget, can show user's bookmark list data in widget."
+msgstr ""
+
+#: apps/xadmin/plugins/chart.py:24
+msgid "Show models simple chart."
+msgstr ""
+
+#: apps/xadmin/plugins/chart.py:49
+#, python-format
+msgid "%s Charts"
+msgstr ""
+
+#: apps/xadmin/plugins/comments.py:33
+msgid "Metadata"
+msgstr ""
+
+#: apps/xadmin/plugins/comments.py:60
+msgid "flagged"
+msgid_plural "flagged"
+msgstr[0] ""
+
+#: apps/xadmin/plugins/comments.py:61
+msgid "Flag selected comments"
+msgstr "标记选中的种类"
+
+#: apps/xadmin/plugins/comments.py:66
+msgid "approved"
+msgid_plural "approved"
+msgstr[0] ""
+
+#: apps/xadmin/plugins/comments.py:67
+#, fuzzy
+msgid "Approve selected comments"
+msgstr "隐藏选中的种类"
+
+#: apps/xadmin/plugins/comments.py:72
+#, fuzzy
+msgid "removed"
+msgid_plural "removed"
+msgstr[0] "角色"
+
+#: apps/xadmin/plugins/comments.py:73
+msgid "Remove selected comments"
+msgstr "删除选中的评论"
+
+#: apps/xadmin/plugins/comments.py:86
+#, python-format
+msgid "1 comment was successfully %(action)s."
+msgid_plural "%(count)s comments were successfully %(action)s."
+msgstr[0] ""
+
+#: apps/xadmin/plugins/details.py:52 apps/xadmin/views/list.py:575
+#, python-format
+msgid "Details of %s"
+msgstr ""
+
+#: apps/xadmin/plugins/editable.py:47
+#, python-format
+msgid "Enter %s"
+msgstr ""
+
+#: apps/xadmin/plugins/editable.py:74 apps/xadmin/views/dashboard.py:638
+#: apps/xadmin/views/delete.py:26 apps/xadmin/views/detail.py:144
+#: apps/xadmin/views/edit.py:428
+#, python-format
+msgid "%(name)s object with primary key %(key)r does not exist."
+msgstr ""
+
+#: apps/xadmin/plugins/export.py:87
+msgid "Sheet"
+msgstr ""
+
+#: apps/xadmin/plugins/filters.py:125
+#, python-format
+msgid "<b>Filtering error:</b> %s"
+msgstr ""
+
+#: apps/xadmin/plugins/images.py:29
+#: thirdparty/pinax_theme_bootstrap/templates/pagination/pagination.html:8
+#: thirdparty/pinax_theme_bootstrap/templates/pagination/pagination.html:11
+msgid "Previous"
+msgstr ""
+
+#: apps/xadmin/plugins/images.py:29
+#: thirdparty/pinax_theme_bootstrap/templates/pagination/pagination.html:21
+#: thirdparty/pinax_theme_bootstrap/templates/pagination/pagination.html:23
+msgid "Next"
+msgstr ""
+
+#: apps/xadmin/plugins/images.py:29
+msgid "Slideshow"
+msgstr ""
+
+#: apps/xadmin/plugins/images.py:29
+msgid "Download"
+msgstr ""
+
+#: apps/xadmin/plugins/images.py:50
+msgid "Change:"
+msgstr ""
+
+#: apps/xadmin/plugins/layout.py:15
+msgid "Table"
+msgstr "表格"
+
+#: apps/xadmin/plugins/layout.py:21
+msgid "Thumbnails"
+msgstr ""
+
+#: apps/xadmin/plugins/passwords.py:64
+msgid "Forgotten your password or username?"
+msgstr ""
+
+#: apps/xadmin/plugins/quickform.py:77
+#, python-format
+msgid "Create New %s"
+msgstr ""
+
+#: apps/xadmin/plugins/relate.py:73
+msgid "Related Objects"
+msgstr ""
+
+#: apps/xadmin/plugins/relfield.py:53 apps/xadmin/plugins/topnav.py:35
+#, python-format
+msgid "Search %s"
+msgstr "搜索 %s"
+
+#: apps/xadmin/plugins/themes.py:49
+#: thirdparty/constance/templates/admin/constance/change_list.html:40
+msgid "Default"
+msgstr "默认"
+
+#: apps/xadmin/plugins/themes.py:50
+msgid "Default bootstrap theme"
+msgstr ""
+
+#: apps/xadmin/plugins/themes.py:51
+msgid "Bootstrap2"
+msgstr ""
+
+#: apps/xadmin/plugins/themes.py:51
+msgid "Bootstrap 2.x theme"
+msgstr ""
+
+# msgid "Add %s"
+# msgstr "添加 %s"
+#: apps/xadmin/plugins/topnav.py:58 apps/xadmin/views/dashboard.py:455
+#: apps/xadmin/views/edit.py:361 apps/xadmin/views/edit.py:370
+msgid "Add %s"
+msgstr "添加 %s"
+
+#: apps/xadmin/plugins/xversion.py:129 thirdparty/reversion/admin.py:144
+msgid "Initial version."
+msgstr ""
+
+#: apps/xadmin/plugins/xversion.py:131
+msgid "Change version."
+msgstr "修改版本"
+
+#: apps/xadmin/plugins/xversion.py:133
+msgid "Revert version."
+msgstr "恢复版本"
+
+#: apps/xadmin/plugins/xversion.py:135
+msgid "Rercover version."
+msgstr "覆盖版本"
+
+#: apps/xadmin/plugins/xversion.py:137 thirdparty/reversion/admin.py:166
+#, python-format
+msgid "Deleted %(verbose_name)s."
+msgstr ""
+
+#: apps/xadmin/plugins/xversion.py:165
+#: apps/xadmin/templates/xadmin/views/recover_form.html:26
+msgid "Recover"
+msgstr "恢复"
+
+#: apps/xadmin/plugins/xversion.py:181
+#: apps/xadmin/templates/xadmin/views/model_history.html:11
+#: apps/xadmin/templates/xadmin/views/revision_diff.html:11
+#: apps/xadmin/templates/xadmin/views/revision_form.html:15
+#: thirdparty/reversion/templates/reversion/revision_form.html:12
+msgid "History"
+msgstr ""
+
+#: apps/xadmin/plugins/xversion.py:224
+#: apps/xadmin/templates/xadmin/views/recover_form.html:14
+#: apps/xadmin/templates/xadmin/views/recover_list.html:10
+#: thirdparty/reversion/admin.py:189
+#: thirdparty/reversion/templates/reversion/change_list.html:7
+#: thirdparty/reversion/templates/reversion/recover_form.html:11
+#: thirdparty/reversion/templates/reversion/recover_list.html:11
+#, python-format
+msgid "Recover deleted %(name)s"
+msgstr ""
+
+#: apps/xadmin/plugins/xversion.py:262
+msgid "Change history: %s"
+msgstr "修改历史: %s"
+
+#: apps/xadmin/plugins/xversion.py:312
+msgid "Must select two versions."
+msgstr "必须选择两个版本"
+
+#: apps/xadmin/plugins/xversion.py:320
+msgid "Please select two different versions."
+msgstr ""
+
+#: apps/xadmin/plugins/xversion.py:407 apps/xadmin/plugins/xversion.py:515
+#, python-format
+msgid "Current: %s"
+msgstr ""
+
+#: apps/xadmin/plugins/xversion.py:439
+msgid "Revert %s"
+msgstr "还原"
+
+#: apps/xadmin/plugins/xversion.py:455 thirdparty/reversion/admin.py:306
+#, python-format
+msgid ""
+"The %(model)s \"%(name)s\" was reverted successfully. You may edit it again "
+"below."
+msgstr ""
+
+#: apps/xadmin/plugins/xversion.py:476
+msgid "Recover %s"
+msgstr "恢复"
+
+#: apps/xadmin/plugins/xversion.py:492
+#, python-format
+msgid ""
+"The %(model)s \"%(name)s\" was recovered successfully. You may edit it again "
+"below."
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/404.html:4
+#: apps/xadmin/templates/xadmin/404.html:8
+msgid "Page not found"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/404.html:10
+msgid "We're sorry, but the requested page could not be found."
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/500.html:7
+#: apps/xadmin/templates/xadmin/base_site.html:108
+#: apps/xadmin/templates/xadmin/auth/user/change_password.html:10
+#: apps/xadmin/templates/xadmin/auth/user/change_password.html:15
+#: apps/xadmin/templates/xadmin/includes/sitemenu_default.html:7
+#: apps/xadmin/templates/xadmin/views/app_index.html:9
+#: apps/xadmin/templates/xadmin/views/batch_change_form.html:9
+#: apps/xadmin/templates/xadmin/views/invalid_setup.html:7
+#: apps/xadmin/templates/xadmin/views/model_dashboard.html:7
+#: apps/xadmin/templates/xadmin/views/model_delete_selected_confirm.html:8
+#: apps/xadmin/templates/xadmin/views/model_history.html:8
+#: apps/xadmin/templates/xadmin/views/recover_form.html:8
+#: apps/xadmin/templates/xadmin/views/recover_list.html:8
+#: apps/xadmin/templates/xadmin/views/revision_diff.html:8
+#: apps/xadmin/templates/xadmin/views/revision_form.html:8
+#: apps/xadmin/views/base.py:448
+#: thirdparty/constance/templates/admin/constance/change_list.html:78
+#: thirdparty/reversion/templates/reversion/recover_form.html:8
+#: thirdparty/reversion/templates/reversion/recover_list.html:8
+#: thirdparty/reversion/templates/reversion/revision_form.html:8
+msgid "Home"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/500.html:8
+msgid "Server error"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/500.html:12
+msgid "Server error (500)"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/500.html:15
+msgid "Server Error <em>(500)</em>"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/500.html:16
+msgid ""
+"There's been an error. It's been reported to the site administrators via e-"
+"mail and should be fixed shortly. Thanks for your patience."
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/base_site.html:36
+msgid "Welcome,"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/base_site.html:42
+#: thirdparty/pinax_theme_bootstrap/templates/_account_bar.html:20
+msgid "Log out"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/base_site.html:90
+msgid "You don't have permission to edit anything."
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/auth/password_reset/complete.html:11
+#: apps/xadmin/templates/xadmin/auth/password_reset/done.html:11
+msgid "Password reset successful"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/auth/password_reset/complete.html:14
+msgid "Your password has been set.  You may go ahead and log in now."
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/auth/password_reset/complete.html:15
+#: thirdparty/pinax_theme_bootstrap/templates/account/login.html:35
+#: thirdparty/pinax_theme_bootstrap/templates/account/login.html:60
+#: thirdparty/pinax_theme_bootstrap/templates/account/signup.html:51
+msgid "Log in"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/auth/password_reset/confirm.html:12
+msgid "Enter new password"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/auth/password_reset/confirm.html:17
+msgid ""
+"Please enter your new password twice so we can verify you typed it in "
+"correctly."
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/auth/password_reset/confirm.html:19
+msgid "Change my password"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/auth/password_reset/confirm.html:24
+msgid "Password reset unsuccessful"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/auth/password_reset/confirm.html:27
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used.  Please request a new password reset."
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/auth/password_reset/done.html:14
+msgid ""
+"We've e-mailed you instructions for setting your password to the e-mail "
+"address you submitted. You should be receiving it shortly."
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/auth/password_reset/email.html:2
+#, python-format
+msgid ""
+"You're receiving this e-mail because you requested a password reset for your "
+"user account at %(site_name)s."
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/auth/password_reset/email.html:4
+msgid "Please go to the following page and choose a new password:"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/auth/password_reset/email.html:8
+msgid "Your username, in case you've forgotten:"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/auth/password_reset/email.html:10
+msgid "Thanks for using our site!"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/auth/password_reset/email.html:12
+#, python-format
+msgid "The %(site_name)s team"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/auth/password_reset/form.html:13
+msgid "Password reset"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/auth/password_reset/form.html:17
+msgid ""
+"Forgotten your password? Enter your e-mail address below, and we'll e-mail "
+"instructions for setting a new one."
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/auth/password_reset/form.html:25
+msgid "E-mail address:"
+msgstr "E-mail地址"
+
+#: apps/xadmin/templates/xadmin/auth/password_reset/form.html:33
+#: thirdparty/pinax_theme_bootstrap/templates/account/password_reset.html:24
+msgid "Reset my password"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/auth/user/add_form.html:6
+msgid ""
+"First, enter a username and password. Then, you'll be able to edit more user "
+"options."
+msgstr ""
+
+msgid "Slug"
+msgstr "简写"
+
+msgid "Image"
+msgstr "图片"
+
+msgid "Markup"
+msgstr "书写格式"
+
+msgid "Create Post"
+msgstr "创建公告"
+
+msgid "read more"
+msgstr "详细内容"
+
+msgid "Author"
+msgstr "作者"
+
+msgid "section"
+msgstr "类别"
+
+#: apps/xadmin/templates/xadmin/auth/user/add_form.html:8
+msgid "Enter a username and password."
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/auth/user/change_password.html:31
+#: apps/xadmin/templates/xadmin/views/batch_change_form.html:24
+#: apps/xadmin/templates/xadmin/views/model_form.html:20
+msgid "Please correct the error below."
+msgid_plural "Please correct the errors below."
+msgstr[0] ""
+
+#: apps/xadmin/templates/xadmin/auth/user/change_password.html:38
+msgid "Enter your new password."
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/auth/user/change_password.html:40
+#, python-format
+msgid "Enter a new password for the user <strong>%(username)s</strong>."
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/blocks/comm.top.theme.html:4
+msgid "Themes"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/blocks/comm.top.topnav.html:8
+#: apps/xadmin/templates/xadmin/filters/char.html:7
+#: apps/xadmin/templates/xadmin/filters/fk_search.html:7
+#: apps/xadmin/templates/xadmin/filters/fk_search.html:14
+#: apps/xadmin/templates/xadmin/filters/number.html:7
+msgid "Search"
+msgstr "搜索"
+
+#: apps/xadmin/templates/xadmin/blocks/comm.top.topnav.html:22
+#: apps/xadmin/templates/xadmin/views/model_list.html:29
+msgid "Add"
+msgstr "添加"
+
+#: apps/xadmin/templates/xadmin/blocks/model_form.submit_line.wizard.html:9
+#: apps/xadmin/templates/xadmin/blocks/model_form.submit_line.wizard.html:26
+msgid "Prev step"
+msgstr "上一步"
+
+#: apps/xadmin/templates/xadmin/blocks/model_form.submit_line.wizard.html:13
+#: apps/xadmin/templates/xadmin/blocks/model_form.submit_line.wizard.html:29
+msgid "Next step"
+msgstr "下一步"
+
+#: apps/xadmin/templates/xadmin/blocks/model_form.submit_line.wizard.html:15
+#: apps/xadmin/templates/xadmin/blocks/model_form.submit_line.wizard.html:31
+#: apps/xadmin/templates/xadmin/includes/submit_line.html:10
+#: apps/xadmin/templates/xadmin/includes/submit_line.html:13
+#: thirdparty/constance/templates/admin/constance/change_list.html:68
+msgid "Save"
+msgstr "保存"
+
+#: apps/xadmin/templates/xadmin/blocks/model_list.nav_menu.bookmarks.html:7
+msgid "Clean Bookmarks"
+msgstr "清楚书签"
+
+#: apps/xadmin/templates/xadmin/blocks/model_list.nav_menu.bookmarks.html:18
+msgid "No Bookmarks"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/blocks/model_list.nav_menu.bookmarks.html:22
+msgid "New Bookmark"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/blocks/model_list.nav_menu.bookmarks.html:26
+msgid "Save current page as Bookmark"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/blocks/model_list.nav_menu.bookmarks.html:32
+msgid "Enter bookmark title"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/blocks/model_list.nav_menu.bookmarks.html:33
+msgid "Save Bookmark"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/blocks/model_list.nav_menu.filters.html:4
+msgid "Filters"
+msgstr "过滤器"
+
+#: apps/xadmin/templates/xadmin/blocks/model_list.nav_menu.filters.html:8
+msgid "Clean Filters"
+msgstr "清除过滤器"
+
+#: apps/xadmin/templates/xadmin/blocks/model_list.results_bottom.actions.html:19
+msgid "Click here to select the objects across all pages"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/blocks/model_list.results_bottom.actions.html:19
+#, python-format
+msgid "Select all %(total_count)s %(module_name)s"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/blocks/model_list.results_bottom.actions.html:20
+msgid "Clear selection"
+msgstr "清除选择"
+
+#: apps/xadmin/templates/xadmin/blocks/model_list.results_top.charts.html:4
+msgid "Charts"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/blocks/model_list.top_toolbar.exports.html:4
+#: apps/xadmin/templates/xadmin/blocks/model_list.top_toolbar.exports.html:8
+#: apps/xadmin/templates/xadmin/blocks/model_list.top_toolbar.exports.html:19
+#: apps/xadmin/templates/xadmin/blocks/model_list.top_toolbar.exports.html:44
+msgid "Export"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/blocks/model_list.top_toolbar.exports.html:26
+#: apps/xadmin/templates/xadmin/blocks/model_list.top_toolbar.exports.html:29
+msgid "Export with table header."
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/blocks/model_list.top_toolbar.exports.html:32
+#: apps/xadmin/templates/xadmin/blocks/model_list.top_toolbar.exports.html:35
+msgid "Export with format."
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/blocks/model_list.top_toolbar.exports.html:39
+msgid "Export all datas."
+msgstr "导出所有数据"
+
+#: apps/xadmin/templates/xadmin/blocks/model_list.top_toolbar.layouts.html:4
+msgid "Layout"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/blocks/model_list.top_toolbar.refresh.html:8
+msgid "Clean Refresh"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/blocks/model_list.top_toolbar.refresh.html:14
+#, python-format
+msgid "Every %(t)s seconds"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/edit_inline/blank.html:5
+#: apps/xadmin/views/detail.py:22 apps/xadmin/views/edit.py:100
+#: apps/xadmin/views/list.py:28
+msgid "Null"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/filters/char.html:13
+msgid "Enter"
+msgstr "输入"
+
+#: apps/xadmin/templates/xadmin/filters/date.html:10
+#: apps/xadmin/templates/xadmin/filters/date.html:13
+msgid "Choice Date"
+msgstr "选择数据"
+
+#: apps/xadmin/templates/xadmin/filters/date.html:18
+msgid "YY"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/filters/date.html:19
+msgid "year"
+msgstr "年"
+
+#: apps/xadmin/templates/xadmin/filters/date.html:22
+msgid "MM"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/filters/date.html:23
+msgid "month"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/filters/date.html:26
+msgid "DD"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/filters/date.html:27
+msgid "day"
+msgstr "天"
+
+#: apps/xadmin/templates/xadmin/filters/date.html:29
+#: apps/xadmin/templates/xadmin/filters/date.html:46
+#: apps/xadmin/templates/xadmin/filters/date.html:54
+#: apps/xadmin/templates/xadmin/filters/fk_search.html:16
+#: apps/xadmin/templates/xadmin/filters/number.html:37
+msgid "Apply"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/filters/date.html:34
+msgid "Date Range"
+msgstr "时间范围"
+
+#: apps/xadmin/templates/xadmin/filters/date.html:41
+msgid "Select Date"
+msgstr "选择时间"
+
+#: apps/xadmin/templates/xadmin/filters/date.html:42
+msgid "From"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/filters/date.html:44
+msgid "To"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/filters/fk_search.html:18
+#: apps/xadmin/templates/xadmin/filters/number.html:39
+msgid "Clean"
+msgstr "清除"
+
+#: apps/xadmin/templates/xadmin/filters/number.html:17
+#: apps/xadmin/templates/xadmin/filters/number.html:25
+#: apps/xadmin/templates/xadmin/filters/number.html:33
+msgid "Enter Number"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/filters/rel.html:3
+#, python-format
+msgid " By %(filter_title)s "
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/forms/transfer.html:4
+msgid "Available"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/forms/transfer.html:12
+msgid "Click to choose all at once."
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/forms/transfer.html:12
+msgid "Choose all"
+msgstr "选择所有"
+
+#: apps/xadmin/templates/xadmin/forms/transfer.html:16
+msgid "Choose"
+msgstr "选择"
+
+#: apps/xadmin/templates/xadmin/forms/transfer.html:19
+#: apps/xadmin/templates/xadmin/widgets/base.html:39
+msgid "Remove"
+msgstr "移除"
+
+#: apps/xadmin/templates/xadmin/forms/transfer.html:23
+msgid "Chosen"
+msgstr "选择"
+
+#: apps/xadmin/templates/xadmin/forms/transfer.html:27
+msgid "Click to remove all chosen at once."
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/forms/transfer.html:27
+msgid "Remove all"
+msgstr "移除所有"
+
+#: apps/xadmin/templates/xadmin/includes/pagination.html:9
+msgid "Show all"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/includes/submit_line.html:10
+#: apps/xadmin/templates/xadmin/includes/submit_line.html:13
+msgid "Saving.."
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/includes/submit_line.html:17
+msgid "Save as new"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/includes/submit_line.html:18
+msgid "Save and add another"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/includes/submit_line.html:19
+msgid "Save and continue editing"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/includes/submit_line.html:24
+#: apps/xadmin/templates/xadmin/views/model_detail.html:28
+#: apps/xadmin/views/delete.py:91
+msgid "Delete"
+msgstr "删除"
+
+#: apps/xadmin/templates/xadmin/views/app_index.html:13
+msgid "%(name)s"
+msgstr "%(name)s"
+
+#: apps/xadmin/templates/xadmin/views/batch_change_form.html:11
+msgid "Change multiple objects"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/views/batch_change_form.html:16
+#, python-format
+msgid "Change one %(objects_name)s"
+msgid_plural "Batch change %(counter)s %(objects_name)s"
+msgstr[0] ""
+
+#: apps/xadmin/templates/xadmin/views/batch_change_form.html:38
+msgid "Change Multiple"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/views/dashboard.html:15
+#: apps/xadmin/templates/xadmin/views/dashboard.html:22
+#: apps/xadmin/templates/xadmin/views/dashboard.html:23
+msgid "Add Widget"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/views/invalid_setup.html:13
+msgid ""
+"Something's wrong with your database installation. Make sure the appropriate "
+"database tables have been created, and make sure the database is readable by "
+"the appropriate user."
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/views/logged_out.html:16
+msgid "Logout Success"
+msgstr "登出成功"
+
+#: apps/xadmin/templates/xadmin/views/logged_out.html:17
+msgid "Thanks for spending some quality time with the Web site today."
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/views/logged_out.html:19
+msgid "Close Window"
+msgstr "关闭窗口"
+
+#: apps/xadmin/templates/xadmin/views/logged_out.html:20
+msgid "Log in again"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/views/login.html:39
+#: apps/xadmin/views/website.py:38
+msgid "Please Login"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/views/login.html:52
+msgid "Username"
+msgstr "用户名"
+
+#: apps/xadmin/templates/xadmin/views/login.html:64
+msgid "Password"
+msgstr "密码"
+
+#: apps/xadmin/templates/xadmin/views/login.html:75
+msgid "log in"
+msgstr "登录"
+
+#: apps/xadmin/templates/xadmin/views/model_dashboard.html:26
+#: apps/xadmin/templates/xadmin/views/model_detail.html:25
+msgid "Edit"
+msgstr "编辑"
+
+#: apps/xadmin/templates/xadmin/views/model_delete_confirm.html:11
+#, python-format
+msgid ""
+"Deleting the %(verbose_name)s '%(escaped_object)s' would result in deleting "
+"related objects, but your account doesn't have permission to delete the "
+"following types of objects:"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/views/model_delete_confirm.html:19
+#, python-format
+msgid ""
+"Deleting the %(verbose_name)s '%(escaped_object)s' would require deleting "
+"the following protected related objects:"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/views/model_delete_confirm.html:27
+#, python-format
+msgid ""
+"Are you sure you want to delete the %(verbose_name)s \"%(escaped_object)s\"? "
+"All of the following related items will be deleted:"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/views/model_delete_confirm.html:34
+#: apps/xadmin/templates/xadmin/views/model_delete_selected_confirm.html:49
+msgid "Yes, I'm sure"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/views/model_delete_confirm.html:35
+#: apps/xadmin/templates/xadmin/views/model_delete_selected_confirm.html:50
+msgid "Cancel"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/views/model_delete_selected_confirm.html:10
+msgid "Delete multiple objects"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/views/model_delete_selected_confirm.html:18
+#, python-format
+msgid ""
+"Deleting the selected %(objects_name)s would result in deleting related "
+"objects, but your account doesn't have permission to delete the following "
+"types of objects:"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/views/model_delete_selected_confirm.html:26
+#, python-format
+msgid ""
+"Deleting the selected %(objects_name)s would require deleting the following "
+"protected related objects:"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/views/model_delete_selected_confirm.html:34
+#, python-format
+msgid ""
+"Are you sure you want to delete the selected %(objects_name)s? All of the "
+"following objects and their related items will be deleted:"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/views/model_history.html:26
+msgid "Diff"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/views/model_history.html:27
+#: apps/xadmin/templates/xadmin/views/recover_list.html:25
+#: thirdparty/reversion/templates/reversion/object_history.html:15
+#: thirdparty/reversion/templates/reversion/recover_list.html:24
+msgid "Date/time"
+msgstr "日期/时间"
+
+#: apps/xadmin/templates/xadmin/views/model_history.html:29
+#: thirdparty/reversion/templates/reversion/object_history.html:17
+msgid "Comment"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/views/model_history.html:54
+msgid "Diff Select Versions"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/views/model_history.html:58
+#: thirdparty/reversion/templates/reversion/object_history.html:36
+msgid ""
+"This object doesn't have a change history. It probably wasn't added via this "
+"admin site."
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/views/model_list.html:42
+msgid "Restore Selected"
+msgstr "恢复选中项"
+
+#: apps/xadmin/templates/xadmin/views/model_list.html:147
+#: apps/xadmin/templates/xadmin/widgets/list.html:33
+msgid "Empty list"
+msgstr "清空列表"
+
+#: apps/xadmin/templates/xadmin/views/recover_form.html:20
+msgid "Press the recover button below to recover this version of the object."
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/views/recover_list.html:19
+#: thirdparty/reversion/templates/reversion/recover_list.html:18
+msgid ""
+"Choose a date from the list below to recover a deleted version of an object."
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/views/recover_list.html:39
+#: thirdparty/reversion/templates/reversion/recover_list.html:38
+msgid "There are no deleted objects to recover."
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/views/revision_diff.html:12
+#: apps/xadmin/templates/xadmin/views/revision_diff.html:17
+#, python-format
+msgid "Diff %(verbose_name)s"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/views/revision_diff.html:25
+msgid "Field"
+msgstr "字段"
+
+#: apps/xadmin/templates/xadmin/views/revision_diff.html:26
+msgid "Version A"
+msgstr "版本A"
+
+#: apps/xadmin/templates/xadmin/views/revision_diff.html:27
+msgid "Version B"
+msgstr "版本B"
+
+#: apps/xadmin/templates/xadmin/views/revision_diff.html:39
+msgid "Revert to"
+msgstr "还原到"
+
+#: apps/xadmin/templates/xadmin/views/revision_diff.html:40
+#: apps/xadmin/templates/xadmin/views/revision_diff.html:41
+msgid "Revert"
+msgstr "还原"
+
+#: apps/xadmin/templates/xadmin/views/revision_form.html:16
+#: thirdparty/reversion/templates/reversion/revision_form.html:13
+#, python-format
+msgid "Revert %(verbose_name)s"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/views/revision_form.html:21
+msgid "Press the revert button below to revert to this version of the object."
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/views/revision_form.html:27
+msgid "Revert this revision"
+msgstr "还原这个版本"
+
+#: apps/xadmin/templates/xadmin/widgets/addform.html:14
+msgid "Success"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/widgets/addform.html:14
+msgid "Add success, click <a id='change-link'>edit</a> to edit."
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/widgets/addform.html:17
+msgid "Quick Add"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/widgets/base.html:30
+msgid "Widget Options"
+msgstr ""
+
+#: apps/xadmin/templates/xadmin/widgets/base.html:41
+msgid "Save changes"
+msgstr "保存修改"
+
+#: apps/xadmin/views/base.py:430
+msgid "Farsight Admin"
+msgstr ""
+
+#: apps/xadmin/views/dashboard.py:185
+msgid "Widget ID"
+msgstr ""
+
+#: apps/xadmin/views/dashboard.py:186
+msgid "Widget Title"
+msgstr ""
+
+#: apps/xadmin/views/dashboard.py:248
+msgid "Html Content Widget, can write any html content in widget."
+msgstr ""
+
+#: apps/xadmin/views/dashboard.py:251
+msgid "Html Content"
+msgstr "网页内容"
+
+#: apps/xadmin/views/dashboard.py:314
+msgid "Target Model"
+msgstr ""
+
+#: apps/xadmin/views/dashboard.py:365
+msgid "Quick button Widget, quickly open any page."
+msgstr ""
+
+#: apps/xadmin/views/dashboard.py:367
+msgid "Quick Buttons"
+msgstr ""
+
+#: apps/xadmin/views/dashboard.py:408
+msgid "Any Objects list Widget."
+msgstr ""
+
+#: apps/xadmin/views/dashboard.py:447
+msgid "Add any model object Widget."
+msgstr ""
+
+#: apps/xadmin/views/dashboard.py:481
+msgid "Dashboard"
+msgstr ""
+
+#: apps/xadmin/views/dashboard.py:622
+#, python-format
+msgid "%s Dashboard"
+msgstr ""
+
+#: apps/xadmin/views/delete.py:101
+#, python-format
+msgid "The %(name)s \"%(obj)s\" was deleted successfully."
+msgstr ""
+
+#: apps/xadmin/views/detail.py:172 apps/xadmin/views/edit.py:199
+msgid "Other Fields"
+msgstr ""
+
+#: apps/xadmin/views/detail.py:235
+msgid "%s Detail"
+msgstr "%s 详情"
+
+#: apps/xadmin/views/edit.py:394
+#, python-format
+msgid "The %(name)s \"%(obj)s\" was added successfully."
+msgstr ""
+
+#: apps/xadmin/views/edit.py:399 apps/xadmin/views/edit.py:494
+msgid "You may edit it again below."
+msgstr ""
+
+#: apps/xadmin/views/edit.py:403 apps/xadmin/views/edit.py:497
+#, python-format
+msgid "You may add another %s below."
+msgstr ""
+
+#: apps/xadmin/views/edit.py:445
+msgid "Change %s"
+msgstr "修改 %s"
+
+#: apps/xadmin/views/edit.py:490
+#, python-format
+msgid "The %(name)s \"%(obj)s\" was changed successfully."
+msgstr ""
+
+#: apps/xadmin/views/list.py:197
+msgid "Database error"
+msgstr ""
+
+#: apps/xadmin/views/list.py:371
+#, python-format
+msgid "%s List"
+msgstr ""
+
+#: apps/xadmin/views/list.py:499
+msgid "Sort ASC"
+msgstr ""
+
+#: apps/xadmin/views/list.py:500
+msgid "Sort DESC"
+msgstr ""
+
+#: apps/xadmin/views/list.py:504
+msgid "Cancel Sort"
+msgstr ""
+
+#: apps/xadmin/views/website.py:16
+msgid "Main Dashboard"
+msgstr ""
+
+#: apps/yt_barcode/models.py:10
+msgid "base64_code"
+msgstr "base64编码"
+
+#: apps/yt_barcode/views.py:39
+#, python-format
+msgid "Batch device barcode %(verbose_name_plural)s"
+msgstr "生成设备条形码 %(verbose_name_plural)s"
+
+#: apps/yt_barcode/views.py:91
+#, python-format
+msgid "Batch manufacture item barcode %(verbose_name_plural)s"
+msgstr "生成工件条形码 %(verbose_name_plural)s"
+
+#: apps/yt_barcode/templates/barcode.html:3
+#: apps/yt_barcode/templates/buffer.html:3
+msgid "barcode"
+msgstr "条形码"
+
+#: apps/yt_barcode/templates/buffer.html:9
+msgid "barcode list"
+msgstr "条形码列表"
+
+#: apps/yt_file/forms.py:5
+msgid "Display Name"
+msgstr "显示名称"
+
+#: apps/yt_file/models.py:14
+msgid "file code"
+msgstr "文件编号"
+
+#: apps/yt_file/models.py:16
+msgid "size"
+msgstr "大小"
+
+#: apps/yt_file/models.py:18
+msgid "imgtag"
+msgstr "图片标记"
+
+#: apps/yt_file/templates/files_list.html:4
+#: apps/yt_file/templates/files_list.html:7
+msgid "files list"
+msgstr "文件列表"
+
+#: apps/yt_file/templates/upload.html:7 apps/yt_file/templates/upload.html:13
+msgid "upload file"
+msgstr "上传文件"
+
+#: apps/yt_file/templates/upload_success.html:4
+msgid "persons list"
+msgstr "人员列表"
+
+#: apps/yt_log/models.py:9
+msgid "info"
+msgstr "信息"
+
+#: apps/yt_log/models.py:10
+msgid "warning"
+msgstr "警告"
+
+#: apps/yt_log/models.py:11
+msgid "debug"
+msgstr ""
+
+#: apps/yt_log/models.py:12
+msgid "error"
+msgstr "错误"
+
+#: apps/yt_log/models.py:13
+msgid "fatal"
+msgstr "致命错误"
+
+#: apps/yt_log/models.py:17
+msgid "Current"
+msgstr "当前"
+
+#: apps/yt_log/models.py:19 apps/yt_log/models.py:24
+msgid "Approved"
+msgstr "批准"
+
+#: apps/yt_log/models.py:20 apps/yt_log/models.py:25
+msgid "Rejected"
+msgstr "拒绝"
+
+#: apps/yt_log/models.py:29
+msgid "workflow_object_relation"
+msgstr "流程对象联系"
+
+#: apps/yt_log/models.py:34
+msgid "state_detail"
+msgstr "节点详情"
+
+#: apps/yt_log/models.py:36
+msgid "level"
+msgstr "级别"
+
+#: apps/yt_log/models.py:45
+msgid "notes"
+msgstr "记录"
+
+#: apps/yt_timesheet/models.py:11
+msgid "Work"
+msgstr "工作"
+
+#: apps/yt_timesheet/models.py:12
+msgid "Rest"
+msgstr "休息"
+
+#: apps/yt_timesheet/models.py:13
+msgid "Other"
+msgstr "其它"
+
+#: apps/yt_timesheet/models.py:19
+msgid "end"
+msgstr "结束"
+
+#: apps/yt_timesheet/models.py:27
+msgid "date added"
+msgstr "添加时间"
+
+#: apps/yt_timesheet/models.py:28
+msgid "date modified"
+msgstr "修改时间"
+
+#: apps/yt_timesheet/models.py:31
+msgid "timesheet"
+msgstr "时间表"
+
+#: apps/yt_timesheet/models.py:32
+msgid "timesheets"
+msgstr "时间表"
+
+#: templates/homepage.html:6 templates/homepage_mes.html:6
+msgid "Welcome"
+msgstr "欢迎"
+
+#: templates/about/what_next.html:6 templates/about/what_next.html.py:9
+msgid "What Next?"
+msgstr "下一步"
+
+#: templates/about/what_next.html:12
+msgid "Here are some things to do to get started with this site:"
+msgstr "这里有一些提示哦。"
+
+#: templates/about/what_next.html:15
+msgid "verify an email address"
+msgstr "验证邮件地址"
+
+#: templates/about/what_next.html:16
+msgid ""
+"so you can receive notifications, reset your password and so people can find "
+"you more easily."
+msgstr "这样您就可以收到消息，重置密码，同时，朋友们可以更容易找到你。"
+
+#: templates/about/what_next.html:18
+msgid "fill out your profile"
+msgstr "填写自己的资料"
+
+#: templates/about/what_next.html:19
+msgid "to tell the world a little about yourself."
+msgstr "网络世界与你同在。"
+
+#: templates/about/what_next.html:24
+msgid "invite more people to the site"
+msgstr ""
+
+#: templates/about/what_next.html:25
+msgid "so more people can share in the fun."
+msgstr ""
+
+#: templates/about/what_next.html:35
+#, python-format
+msgid ""
+"Start by <a href=\"%(signup_url)s\">signing up</a> and <a href="
+"\"%(login_url)s\">logging in</a>."
+msgstr ""
+
+#: templates/about/what_next.html:37
+#, python-format
+msgid "Start by <a href=\"%(login_url)s\">logging in</a>."
+msgstr ""
+
+#: templates/includes/yt_left_menu.html:4
+msgid "流程设置"
+msgstr ""
+
+#: templates/includes/yt_left_menu.html:10
+msgid "仓库总量"
+msgstr ""
+
+#: templates/includes/yt_left_menu.html:13
+msgid "仓库出入"
+msgstr ""
+
+#: templates/includes/yt_left_menu.html:16
+msgid "Bom"
+msgstr ""
+
+#: templates/includes/yt_left_menu.html:19
+msgid "机构设置"
+msgstr ""
+
+#: templates/includes/yt_left_menu.html:30
+msgid "部门设置"
+msgstr ""
+
+#: templates/includes/yt_left_menu.html:33
+msgid "职员设置"
+msgstr ""
+
+#: templates/includes/yt_left_menu.html:37
+msgid "仓库设置"
+msgstr ""
+
+#: templates/includes/yt_left_menu.html:40
+msgid "物料设置"
+msgstr ""
+
+#: templates/includes/yt_left_menu.html:43
+msgid "产品设置"
+msgstr ""
+
+#: templates/includes/yt_left_menu.html:47
+msgid "角色设置"
+msgstr ""
+
+#: templates/includes/yt_left_menu.html:50
+msgid "用户设置"
+msgstr ""
+
+#: templates/includes/yt_left_menu.html:54
+msgid "设备设置"
+msgstr ""
+
+#: templates/includes/yt_left_menu.html:57
+msgid "刀库设置"
+msgstr ""
+
+#: templates/includes/yt_left_menu.html:61
+msgid "生产设置"
+msgstr ""
+
+#: templates/includes/yt_left_menu.html:65
+msgid "质量控制"
+msgstr ""
+
+#: templates/includes/yt_left_menu.html:68
+msgid "报表设置"
+msgstr ""
+
+#: templates/includes/yt_left_menu.html:71
+msgid "工艺设置"
+msgstr ""
+
+#: templates/includes/yt_left_menu.html:74
+msgid "工序设置"
+msgstr ""
+
+#: templates/includes/yt_menu.html:5
+msgid "manufacture"
+msgstr "生产"
+
+#: templates/includes/yt_menu.html:8
+msgid "working dashboard"
+msgstr "工作台"
+
+#: templates/includes/yt_menu.html:17
+msgid "device and material"
+msgstr "物料"
+
+#: templates/includes/yt_menu.html:21
+msgid "surveytool"
+msgstr "量具"
+
+#: templates/includes/yt_menu.html:22
+msgid "tool"
+msgstr "工具"
+
+#: templates/includes/yt_menu.html:23
+msgid "material"
+msgstr "材料"
+
+msgid "QC"
+msgstr "质检"
+
+#: templates/includes/yt_menu.html:29
+msgid "quality"
+msgstr "质量"
+
+#: templates/includes/yt_menu.html:32
+msgid "待处理"
+msgstr ""
+
+#: templates/includes/yt_menu.html:33
+msgid "检验通过单（检验员）"
+msgstr ""
+
+#: templates/includes/yt_menu.html:34
+msgid "检验不通过单（检验员）"
+msgstr ""
+
+#: templates/includes/yt_menu.html:43
+msgid "operation group"
+msgstr "工序"
+
+#: templates/includes/yt_menu.html:51
+msgid "warehouse"
+msgstr "仓库"
+
+#: templates/includes/yt_menu.html:57
+msgid "bom movement"
+msgstr "出入记录"
+
+#: templates/includes/yt_menu.html:64
+msgid "basic information"
+msgstr "信息管理"
+
+#: templates/includes/yt_menu.html:66
+msgid "catalog"
+msgstr "产品目录"
+
+#: templates/includes/yt_menu.html:76
+msgid "管理"
+msgstr ""
+
+#: templates/includes/yt_menu.html:78
+msgid "orders"
+msgstr "订单"
+
+#: templates/profiles/_profile_info.html:4
+msgid "About"
+msgstr "关于我们"
+
+#: templates/profiles/_profile_info.html:5
+msgid "Location"
+msgstr "库位"
+
+#: templates/profiles/_profile_info.html:6
+msgid "Website"
+msgstr "网站"
+
+#: thirdparty/announcements/forms.py:21
+msgid "Tick this box to send out this announcement now."
+msgstr ""
+
+#: thirdparty/announcements/models.py:49
+msgid "title"
+msgstr "标题"
+
+#: thirdparty/announcements/models.py:50
+msgid "content"
+msgstr "内容"
+
+#: thirdparty/announcements/models.py:51
+msgid "creator"
+msgstr "制造"
+
+#: thirdparty/announcements/models.py:52
+msgid "creation_date"
+msgstr "创建时间"
+
+#: thirdparty/announcements/models.py:53
+msgid "site wide"
+msgstr "范围"
+
+#: thirdparty/announcements/models.py:54
+msgid "members only"
+msgstr "人员限定"
+
+#
+#: thirdparty/announcements/models.py:66
+msgid "announcement"
+msgstr "公告"
+
+#: thirdparty/announcements/models.py:67
+msgid "announcements"
+msgstr "公告"
+
+#: thirdparty/constance/admin.py:97
+msgid "Live settings updated successfully."
+msgstr "设定已成功更新."
+
+#: thirdparty/constance/admin.py:102
+msgid "Constance config"
+msgstr ""
+
+#: thirdparty/constance/backends/database/models.py:19
+#, fuzzy
+msgid "constance"
+msgstr "合同"
+
+#: thirdparty/constance/backends/database/models.py:20
+#, fuzzy
+msgid "constances"
+msgstr "联系人"
+
+#: thirdparty/constance/templates/admin/constance/change_list.html:41
+#, fuzzy
+msgid "Value"
+msgstr "数值"
+
+#: thirdparty/constance/templates/admin/constance/change_list.html:42
+#, fuzzy
+msgid "Is modified"
+msgstr "修改时间"
+
+#: thirdparty/crispy_forms/tests/test_form_helper.py:129
+#: thirdparty/crispy_forms/tests/test_form_helper.py:139
+msgid "This field is required."
+msgstr ""
+
+#: thirdparty/crispy_forms/tests/test_layout.py:467
+msgid "i18n text"
+msgstr ""
+
+#: thirdparty/crispy_forms/tests/test_layout.py:469
+msgid "i18n legend"
+msgstr ""
+
+#: thirdparty/crispy_forms/tests/test_layout_objects.py:111
+msgid "Enter a valid value."
+msgstr ""
+
+#: thirdparty/emailconfirmation/models.py:71
+msgid "email address"
+msgstr "E-mail地址"
+
+#: thirdparty/emailconfirmation/models.py:72
+msgid "email addresses"
+msgstr "E-mail地址"
+
+#: thirdparty/emailconfirmation/models.py:159
+msgid "email confirmation"
+msgstr "E-mail确认"
+
+#: thirdparty/emailconfirmation/models.py:160
+msgid "email confirmations"
+msgstr "E-mail确认"
+
+#: thirdparty/emailconfirmation/templates/emailconfirmation/email_confirmation_message.txt:1
+#, python-format
+msgid ""
+"User '%(user)s' at %(site_name)s has given this as an email address.\n"
+"\n"
+"To confirm this is correct, go to %(activate_url)s\n"
+msgstr ""
+
+#: thirdparty/emailconfirmation/templates/emailconfirmation/email_confirmation_subject.txt:1
+#, python-format
+msgid "Confirm email address for %(site_name)s"
+msgstr ""
+
+#: thirdparty/notification/decorators.py:37
+msgid "Restricted Access"
+msgstr ""
+
+#: thirdparty/notification/decorators.py:60
+msgid "Authorization Required"
+msgstr ""
+
+#: thirdparty/notification/feeds.py:61
+msgid "Notices Feed"
+msgstr "通知反馈"
+
+#: thirdparty/notification/models.py:33
+msgid "label"
+msgstr "标签"
+
+#: thirdparty/notification/models.py:34
+msgid "display"
+msgstr "显示"
+
+#: thirdparty/notification/models.py:38
+msgid "default"
+msgstr "默认"
+
+#: thirdparty/notification/models.py:44 thirdparty/notification/models.py:65
+#: thirdparty/notification/models.py:142 thirdparty/notification/models.py:397
+msgid "notice type"
+msgstr "通知类型"
+
+#: thirdparty/notification/models.py:45
+msgid "notice types"
+msgstr "通知类型"
+
+#: thirdparty/notification/models.py:50
+msgid "Email"
+msgstr "邮箱"
+
+#: thirdparty/notification/models.py:66
+msgid "medium"
+msgstr "媒体"
+
+#: thirdparty/notification/models.py:67
+msgid "send"
+msgstr "发送"
+
+#: thirdparty/notification/models.py:70
+msgid "notice setting"
+msgstr "通知设定"
+
+#: thirdparty/notification/models.py:71
+msgid "notice settings"
+msgstr "通知设定"
+
+#: thirdparty/notification/models.py:139
+msgid "recipient"
+msgstr "接受"
+
+#: thirdparty/notification/models.py:140
+msgid "sender"
+msgstr "发送者"
+
+#: thirdparty/notification/models.py:141
+msgid "message"
+msgstr "信息"
+
+#: thirdparty/notification/models.py:143 thirdparty/notification/models.py:399
+msgid "added"
+msgstr "地址"
+
+#: thirdparty/notification/models.py:144
+msgid "unseen"
+msgstr "未读"
+
+#: thirdparty/notification/models.py:145
+msgid "archived"
+msgstr "归档"
+
+#: thirdparty/notification/models.py:146
+msgid "on site"
+msgstr "在网站上察看"
+
+#: thirdparty/notification/models.py:172
+msgid "notice"
+msgstr "通知"
+
+#: thirdparty/notification/models.py:173
+msgid "notices"
+msgstr "通知"
+
+#: thirdparty/notification/models.py:402
+msgid "signal"
+msgstr ""
+
+#: thirdparty/notification/models.py:408
+msgid "observed item"
+msgstr ""
+
+#: thirdparty/notification/models.py:409
+msgid "observed items"
+msgstr ""
+
+#: thirdparty/notification/templates/notification/email_body.txt:1
+#, python-format
+msgid ""
+"You have received the following notice from %(current_site)s:\n"
+"\n"
+"%(message)s\n"
+"\n"
+"To see other notices or change how you receive notifications, please go to "
+"%(notices_url)s.\n"
+msgstr ""
+
+#: thirdparty/notification/templates/notification/email_subject.txt:1
+#, python-format
+msgid "[%(current_site)s] %(message)s"
+msgstr ""
+
+#: thirdparty/notification/templates/notification/full.html:1
+#: thirdparty/notification/templates/notification/full.txt:1
+#: thirdparty/notification/templates/notification/notice.html:1
+#: thirdparty/notification/templates/notification/short.txt:1
+msgid "%(notice)s"
+msgstr "%(notice)s"
+
+#: thirdparty/pinax_theme_bootstrap/templates/404.html:5
+msgid "Not Found"
+msgstr "未找到"
+
+#: thirdparty/pinax_theme_bootstrap/templates/404.html:8
+msgid "We're sorry but that page could not be found."
+msgstr "很抱歉,无法找到页面"
+
+#: thirdparty/pinax_theme_bootstrap/templates/500.html:5
+msgid "Server Error"
+msgstr "服务错误"
+
+#: thirdparty/pinax_theme_bootstrap/templates/500.html:8
+msgid ""
+"We're sorry but a server error has occurred. We've been notified and will "
+"look into it as soon as possible."
+msgstr "很抱歉,发生了服务器错误,我们将很快修复"
+
+#: thirdparty/pinax_theme_bootstrap/templates/_account_bar.html:6
+msgid "Inbox"
+msgstr "收件箱"
+
+#: thirdparty/pinax_theme_bootstrap/templates/_account_bar.html:7
+#: thirdparty/pinax_theme_bootstrap/templates/notification/base.html:12
+#: thirdparty/pinax_theme_bootstrap/templates/notification/base.html:14
+#: thirdparty/pinax_theme_bootstrap/templates/notification/notices.html:8
+msgid "Notices"
+msgstr "通知"
+
+#: thirdparty/pinax_theme_bootstrap/templates/_account_bar.html:14
+#: thirdparty/pinax_theme_bootstrap/templates/account/base.html:13
+#: thirdparty/pinax_theme_bootstrap/templates/account/email.html:6
+msgid "Account"
+msgstr "账户"
+
+#: thirdparty/pinax_theme_bootstrap/templates/_account_bar.html:15
+msgid "Profile"
+msgstr "个人设定"
+
+#: thirdparty/pinax_theme_bootstrap/templates/_account_bar.html:17
+msgid "Admin"
+msgstr "管理员"
+
+#: thirdparty/pinax_theme_bootstrap/templates/_account_bar.html:24
+#: thirdparty/pinax_theme_bootstrap/templates/account/login.html:11
+#: thirdparty/pinax_theme_bootstrap/templates/account/signup.html:15
+#: thirdparty/pinax_theme_bootstrap/templates/django_openid/login.html:20
+msgid "Log In"
+msgstr "登录"
+
+#: thirdparty/pinax_theme_bootstrap/templates/account/base.html:15
+#: thirdparty/pinax_theme_bootstrap/templates/account/email.html:9
+msgid "Email Addresses"
+msgstr "E-mai地址"
+
+#: thirdparty/pinax_theme_bootstrap/templates/account/base.html:17
+#: thirdparty/pinax_theme_bootstrap/templates/django_openid/associations.html:5
+msgid "OpenID Associations"
+msgstr "关联OpenID"
+
+#: thirdparty/pinax_theme_bootstrap/templates/account/base.html:22
+#: thirdparty/pinax_theme_bootstrap/templates/account/password_set.html:6
+#: thirdparty/pinax_theme_bootstrap/templates/account/password_set.html:9
+msgid "Set Password"
+msgstr "设置密码"
+
+#: thirdparty/pinax_theme_bootstrap/templates/account/base.html:25
+#: thirdparty/pinax_theme_bootstrap/templates/account/password_delete.html:5
+#: thirdparty/pinax_theme_bootstrap/templates/account/password_delete.html:8
+msgid "Delete Password"
+msgstr "删除密码"
+
+#: thirdparty/pinax_theme_bootstrap/templates/account/base.html:28
+#: thirdparty/pinax_theme_bootstrap/templates/account/language_change.html:6
+#: thirdparty/pinax_theme_bootstrap/templates/account/language_change.html:9
+msgid "Language"
+msgstr "语言"
+
+#: thirdparty/pinax_theme_bootstrap/templates/account/base.html:30
+#: thirdparty/pinax_theme_bootstrap/templates/account/timezone_change.html:6
+#: thirdparty/pinax_theme_bootstrap/templates/account/timezone_change.html:9
+msgid "Timezone"
+msgstr "时区"
+
+#: thirdparty/pinax_theme_bootstrap/templates/account/email.html:18
+msgid "verified"
+msgstr "修改"
+
+#: thirdparty/pinax_theme_bootstrap/templates/account/email.html:20
+msgid "primary"
+msgstr "主要信息"
+
+#: thirdparty/pinax_theme_bootstrap/templates/account/email.html:28
+msgid "make primary"
+msgstr "设置主要信息"
+
+#: thirdparty/pinax_theme_bootstrap/templates/account/email.html:33
+msgid "unverified"
+msgstr "未验证"
+
+#: thirdparty/pinax_theme_bootstrap/templates/account/email.html:40
+msgid "re-send verification email"
+msgstr "重新发送验证邮件"
+
+#: thirdparty/pinax_theme_bootstrap/templates/account/email.html:59
+msgid ""
+"You should really add an email address so you can receive notifications, "
+"reset your password if you forget it, etc."
+msgstr ""
+
+#: thirdparty/pinax_theme_bootstrap/templates/account/email.html:63
+msgid "Add Email Address"
+msgstr "添加邮件地址"
+
+#: thirdparty/pinax_theme_bootstrap/templates/account/email.html:72
+msgid "add"
+msgstr "添加"
+
+#: thirdparty/pinax_theme_bootstrap/templates/account/language_change.html:11
+msgid "This site can be used in your preferred language."
+msgstr ""
+
+#: thirdparty/pinax_theme_bootstrap/templates/account/language_change.html:19
+msgid "Change my language"
+msgstr ""
+
+#: thirdparty/pinax_theme_bootstrap/templates/account/login.html:8
+#: thirdparty/pinax_theme_bootstrap/templates/django_openid/login.html:8
+msgid "Login"
+msgstr "登录"
+
+#: thirdparty/pinax_theme_bootstrap/templates/account/login.html:15
+#: thirdparty/pinax_theme_bootstrap/templates/account/password_reset.html:13
+#: thirdparty/pinax_theme_bootstrap/templates/account/password_reset_done.html:12
+#, python-format
+msgid "you are already logged in as %(user_display)s."
+msgstr "你已经用%(user_display)s登录"
+
+#: thirdparty/pinax_theme_bootstrap/templates/account/login.html:19
+#, python-format
+msgid "Don't have an account? <a href=\"%(signup_url)s\">Sign up</a>!"
+msgstr "还没有账户?<a href=\"%(signup_url)s\">注册</a>!"
+
+#: thirdparty/pinax_theme_bootstrap/templates/account/login.html:22
+msgid "Forgot password?"
+msgstr "忘记密码?"
+
+#: thirdparty/pinax_theme_bootstrap/templates/account/login.html:40
+#: thirdparty/pinax_theme_bootstrap/templates/account/signup.html:31
+msgid "Or sign in with your OpenID"
+msgstr "或者用OpenID登录"
+
+#: thirdparty/pinax_theme_bootstrap/templates/account/login.html:70
+#: thirdparty/pinax_theme_bootstrap/templates/django_openid/login.html:28
+#, python-format
+msgid ""
+"If you have any trouble logging in to your account, contact us at <a href="
+"\"mailto:%(CONTACT_EMAIL)s\">%(CONTACT_EMAIL)s</a>."
+msgstr ""
+"如果你在登录的时候遇到问题,请通过<a href=\"mailto:%(CONTACT_EMAIL)s\">"
+"%(CONTACT_EMAIL)s</a>联系我们."
+
+#: thirdparty/pinax_theme_bootstrap/templates/account/logout.html:5
+msgid "Logout"
+msgstr "退出"
+
+#: thirdparty/pinax_theme_bootstrap/templates/account/logout.html:8
+msgid "You've been logged out."
+msgstr "你已经退出"
+
+#: thirdparty/pinax_theme_bootstrap/templates/account/password_change.html:17
+#: thirdparty/pinax_theme_bootstrap/templates/account/password_reset_from_key.html:21
+msgid "change password"
+msgstr "修改密码"
+
+#: thirdparty/pinax_theme_bootstrap/templates/account/password_delete.html:10
+msgid ""
+"You may delete your password since you are currently logged in using OpenID."
+msgstr "如果你当前使用OpenID登录, 你可以删除你的密码."
+
+#: thirdparty/pinax_theme_bootstrap/templates/account/password_delete.html:13
+msgid "delete my password"
+msgstr "删除我的密码"
+
+#: thirdparty/pinax_theme_bootstrap/templates/account/password_delete_done.html:5
+#: thirdparty/pinax_theme_bootstrap/templates/account/password_delete_done.html:8
+msgid "Password Deleted"
+msgstr "密码已经删除"
+
+#: thirdparty/pinax_theme_bootstrap/templates/account/password_delete_done.html:10
+msgid "Your password has been deleted."
+msgstr "你的密码已被删除"
+
+#: thirdparty/pinax_theme_bootstrap/templates/account/password_reset.html:7
+#: thirdparty/pinax_theme_bootstrap/templates/account/password_reset.html:10
+#: thirdparty/pinax_theme_bootstrap/templates/account/password_reset_done.html:6
+#: thirdparty/pinax_theme_bootstrap/templates/account/password_reset_done.html:9
+msgid "Password Reset"
+msgstr "重新设定密码"
+
+#: thirdparty/pinax_theme_bootstrap/templates/account/password_reset.html:16
+msgid ""
+"Forgotten your password? Enter your email address below, and we'll send you "
+"an email allowing you to reset it."
+msgstr ""
+
+#: thirdparty/pinax_theme_bootstrap/templates/account/password_reset.html:28
+#, python-format
+msgid ""
+"If you have any trouble resetting your password, contact us at <a href="
+"\"mailto:%(CONTACT_EMAIL)s\">%(CONTACT_EMAIL)s</a>."
+msgstr ""
+
+#: thirdparty/pinax_theme_bootstrap/templates/account/password_reset_done.html:15
+#, python-format
+msgid ""
+"We have sent you an email. If you do not receive it within a few minutes, "
+"contact us at <a href=\"mailto:%(CONTACT_EMAIL)s\">%(CONTACT_EMAIL)s</a>."
+msgstr ""
+
+#: thirdparty/pinax_theme_bootstrap/templates/account/password_reset_from_key.html:8
+msgid "Bad Token"
+msgstr ""
+
+#: thirdparty/pinax_theme_bootstrap/templates/account/password_reset_from_key.html:12
+#, python-format
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used.  Please request a <a href=\"%(passwd_reset_url)s\">new password reset</"
+"a>."
+msgstr ""
+
+#: thirdparty/pinax_theme_bootstrap/templates/account/password_reset_key_message.txt:1
+#, python-format
+msgid ""
+"You're receiving this email becuase you or someone else has requested a "
+"password for your user account at Pinax.\n"
+"It can be safely ignored if you did not request a password reset. Click the "
+"link below to reset your password.\n"
+"\n"
+"http://%(domain)s%(password_reset_url)s\n"
+"\n"
+"Thanks for using our site!\n"
+msgstr ""
+
+#: thirdparty/pinax_theme_bootstrap/templates/account/password_reset_message.txt:1
+#, python-format
+msgid ""
+"You're receiving this email because you requested a password reset\n"
+"for your user account at Pinax.\n"
+"\n"
+"Your new password is: %(new_password)s\n"
+"\n"
+"Your username, in case you've forgotten: %(username)s\n"
+"\n"
+"You should log in as soon as possible and change your password.\n"
+"\n"
+"Thanks for using our site!\n"
+msgstr ""
+
+#: thirdparty/pinax_theme_bootstrap/templates/account/password_set.html:17
+msgid "set password"
+msgstr "设置密码"
+
+#: thirdparty/pinax_theme_bootstrap/templates/account/signup.html:7
+msgid "Signup"
+msgstr "登录"
+
+#: thirdparty/pinax_theme_bootstrap/templates/account/signup.html:10
+#: thirdparty/pinax_theme_bootstrap/templates/account/signup.html:26
+#: thirdparty/pinax_theme_bootstrap/templates/django_openid/register.html:23
+msgid "Sign Up"
+msgstr "登录"
+
+#: thirdparty/pinax_theme_bootstrap/templates/account/signup.html:13
+msgid "You are already logged in."
+msgstr ""
+
+#: thirdparty/pinax_theme_bootstrap/templates/account/signup.html:15
+msgid "Already have an account?"
+msgstr ""
+
+#: thirdparty/pinax_theme_bootstrap/templates/account/signup.html:59
+#, python-format
+msgid ""
+"By clicking \"Sign Up\", you are indicating that you have read and agree to "
+"the <a href=\"%(terms_url)s\">Terms of Use</a> and <a href=\"%(privacy_url)s"
+"\">Privacy Policy</a>."
+msgstr ""
+
+#: thirdparty/pinax_theme_bootstrap/templates/account/signup.html:61
+#: thirdparty/pinax_theme_bootstrap/templates/django_openid/register.html:32
+#, python-format
+msgid ""
+"If you have any trouble creating your account, contact us at <a href="
+"\"mailto:%(CONTACT_EMAIL)s\">%(CONTACT_EMAIL)s</a>."
+msgstr ""
+
+#: thirdparty/pinax_theme_bootstrap/templates/account/timezone_change.html:11
+msgid ""
+"This site can localize all times into your preferred timezone. Change your "
+"timezone below."
+msgstr ""
+
+#: thirdparty/pinax_theme_bootstrap/templates/account/timezone_change.html:19
+msgid "Change my timezone"
+msgstr "修改我的时区"
+
+#: thirdparty/pinax_theme_bootstrap/templates/account/verification_sent.html:5
+#: thirdparty/pinax_theme_bootstrap/templates/account/verification_sent.html:8
+msgid "Verify your email address"
+msgstr "确认您的邮件地址"
+
+#: thirdparty/pinax_theme_bootstrap/templates/account/verification_sent.html:10
+#, python-format
+msgid ""
+"We have sent you an email to <b>%(email)s</b> for verification. Follow the "
+"link provided to finalize the signup process. If you do not receive it "
+"within a few minutes, contact us at <a href=\"mailto:%(CONTACT_EMAIL)s\">"
+"%(CONTACT_EMAIL)s</a>."
+msgstr ""
+
+#: thirdparty/pinax_theme_bootstrap/templates/django_openid/already_logged_in.html:5
+#: thirdparty/pinax_theme_bootstrap/templates/django_openid/already_logged_in.html:8
+msgid "Already logged in"
+msgstr ""
+
+#: thirdparty/pinax_theme_bootstrap/templates/django_openid/already_logged_in.html:10
+#, python-format
+msgid ""
+"You are already logged into the site. To login with a different OpenID "
+"please <a href=\"/openid/logout/?next=%(url_acct_logout)s\">logout</a> first."
+msgstr ""
+
+#: thirdparty/pinax_theme_bootstrap/templates/django_openid/associate.html:6
+#: thirdparty/pinax_theme_bootstrap/templates/django_openid/associate.html:9
+msgid "Verify this Association"
+msgstr ""
+
+#: thirdparty/pinax_theme_bootstrap/templates/django_openid/associations.html:8
+msgid "Manage OpenID Associations"
+msgstr ""
+
+#: thirdparty/pinax_theme_bootstrap/templates/django_openid/associations.html:12
+#, python-format
+msgid ""
+"You have not set a password for this user account. You are unable to remove "
+"OpenID associations until you <a href=\"%(acct_passwd_set_url)s\">set a "
+"password</a>."
+msgstr ""
+
+#: thirdparty/pinax_theme_bootstrap/templates/django_openid/associations.html:16
+#, python-format
+msgid ""
+"Your account is currently associated with the following OpenID %(buttons)s:"
+msgstr ""
+
+#: thirdparty/pinax_theme_bootstrap/templates/django_openid/associations.html:33
+msgid "To associate a new OpenID with this account, sign in with it here:"
+msgstr ""
+
+#: thirdparty/pinax_theme_bootstrap/templates/django_openid/associations.html:40
+msgid "Authenticate and associate with this account"
+msgstr ""
+
+#: thirdparty/pinax_theme_bootstrap/templates/django_openid/error.html:5
+#: thirdparty/pinax_theme_bootstrap/templates/django_openid/error.html:8
+msgid "Error using OpenID"
+msgstr ""
+
+#: thirdparty/pinax_theme_bootstrap/templates/django_openid/login.html:12
+msgid "Log In to OpenID"
+msgstr ""
+
+#: thirdparty/pinax_theme_bootstrap/templates/django_openid/register.html:6
+#: thirdparty/pinax_theme_bootstrap/templates/django_openid/register.html:9
+msgid "Choose a Username"
+msgstr "修改用户名"
+
+#: thirdparty/pinax_theme_bootstrap/templates/django_openid/register.html:12
+msgid "Please correct the errors below:"
+msgstr ""
+
+#: thirdparty/pinax_theme_bootstrap/templates/django_openid/register.html:15
+msgid ""
+"Now that you have logged in with your OpenID, we need you to choose a "
+"username for this site."
+msgstr ""
+
+#: thirdparty/pinax_theme_bootstrap/templates/django_openid/register.html:30
+#, python-format
+msgid ""
+"<strong>Already have an account?</strong> <a href=\"%(acct_login_openid_url)s"
+"\">Log in</a> to associate your OpenID with your existing account."
+msgstr ""
+
+#: thirdparty/pinax_theme_bootstrap/templates/django_openid/register.html:31
+#, python-format
+msgid ""
+"By clicking &quot;Sign Up&quot;, you are indicating that you have read and "
+"agree to the <a href=\"%(terms_url)s\">Terms of Use</a> and <a href="
+"\"%(privacy_url)s\">Privacy Policy</a>."
+msgstr ""
+
+#: thirdparty/pinax_theme_bootstrap/templates/django_openid/registration_closed.html:5
+#: thirdparty/pinax_theme_bootstrap/templates/django_openid/registration_closed.html:8
+msgid "Signup closed"
+msgstr ""
+
+#: thirdparty/pinax_theme_bootstrap/templates/django_openid/registration_closed.html:10
+msgid ""
+"Whoops, you can't register for an account now. This site is currently closed "
+"for sign-up."
+msgstr ""
+
+#: thirdparty/pinax_theme_bootstrap/templates/emailconfirmation/confirm_email.html:6
+msgid "Confirm Email"
+msgstr ""
+
+#: thirdparty/pinax_theme_bootstrap/templates/emailconfirmation/confirm_email.html:10
+msgid "Email Confirmed"
+msgstr ""
+
+#: thirdparty/pinax_theme_bootstrap/templates/emailconfirmation/confirm_email.html:12
+#, python-format
+msgid ""
+"You have confirmed that %(email)s is an email address for user "
+"'%(user_display)s'."
+msgstr ""
+
+#: thirdparty/pinax_theme_bootstrap/templates/emailconfirmation/confirm_email.html:14
+msgid "Invalid confirmation key."
+msgstr ""
+
+#: thirdparty/pinax_theme_bootstrap/templates/idios/base.html:10
+msgid "Your Profile"
+msgstr ""
+
+#: thirdparty/pinax_theme_bootstrap/templates/idios/base.html:11
+#: thirdparty/pinax_theme_bootstrap/templates/idios/profiles.html:7
+#: thirdparty/pinax_theme_bootstrap/templates/idios/profiles.html:10
+msgid "All Profiles"
+msgstr ""
+
+#: thirdparty/pinax_theme_bootstrap/templates/idios/profile.html:6
+#: thirdparty/pinax_theme_bootstrap/templates/idios/profile.html:11
+#, python-format
+msgid "Profile for %(page_user_display)s"
+msgstr ""
+
+#: thirdparty/pinax_theme_bootstrap/templates/idios/profile_edit.html:5
+#: thirdparty/pinax_theme_bootstrap/templates/idios/profile_edit.html:9
+#: thirdparty/pinax_theme_bootstrap/templates/idios/profile_edit_ajax.html:5
+msgid "Edit Profile"
+msgstr ""
+
+#: thirdparty/pinax_theme_bootstrap/templates/idios/profile_edit_ajax_success.html:4
+msgid "Success!"
+msgstr "成功"
+
+#: thirdparty/pinax_theme_bootstrap/templates/notification/base.html:15
+#: thirdparty/pinax_theme_bootstrap/templates/notification/notice_settings.html:9
+msgid "Settings"
+msgstr "设置"
+
+#: thirdparty/pinax_theme_bootstrap/templates/notification/notice_settings.html:6
+msgid "Notification Settings"
+msgstr ""
+
+#: thirdparty/pinax_theme_bootstrap/templates/notification/notice_settings.html:15
+msgid "Primary email"
+msgstr ""
+
+#: thirdparty/pinax_theme_bootstrap/templates/notification/notice_settings.html:17
+#, python-format
+msgid "change under <a href=\"%(email_url)s\">Account</a>"
+msgstr ""
+
+#: thirdparty/pinax_theme_bootstrap/templates/notification/notice_settings.html:21
+#, python-format
+msgid ""
+"\n"
+"                You do not have a verified email address to which notices "
+"can be sent.\n"
+"                You can add one by going to <a href=\"%(email_url)s"
+"\">Account</a>.\n"
+"                "
+msgstr ""
+
+#: thirdparty/pinax_theme_bootstrap/templates/notification/notice_settings.html:32
+msgid "Notification Type"
+msgstr ""
+
+#: thirdparty/pinax_theme_bootstrap/templates/notification/notice_settings.html:50
+msgid "Change"
+msgstr "编辑"
+
+#: thirdparty/pinax_theme_bootstrap/templates/notification/notices.html:15
+msgid "Mark all unseen notices seen"
+msgstr "将所有通知标记为已读"
+
+#: thirdparty/pinax_theme_bootstrap/templates/notification/notices.html:21
+msgid "MONTH_DAY_FORMAT"
+msgstr ""
+
+#: thirdparty/pinax_theme_bootstrap/templates/notification/notices.html:39
+msgid "No notices."
+msgstr "没有通知"
+
+#: thirdparty/reversion/admin.py:304
+#, python-format
+msgid "Reverted to previous version, saved on %(datetime)s"
+msgstr ""
+
+#: thirdparty/reversion/admin.py:392
+msgid "Recover %(name)s"
+msgstr "恢复 %(name)s"
+
+#: thirdparty/reversion/admin.py:406
+msgid "Revert %(name)s"
+msgstr "还原 %(name)s"
+
+#: thirdparty/reversion/models.py:59
+msgid "date created"
+msgstr "添加时间"
+
+#: thirdparty/reversion/models.py:69
+msgid "comment"
+msgstr "评论"
+
+#: thirdparty/reversion/templates/reversion/object_history.html:8
+msgid ""
+"Choose a date from the list below to revert to a previous version of this "
+"object."
+msgstr ""
+
+#: thirdparty/reversion/templates/reversion/recover_form.html:18
+msgid "Press the save button below to recover this version of the object."
+msgstr ""
+
+#: thirdparty/reversion/templates/reversion/revision_form.html:26
+msgid "Press the save button below to revert to this version of the object."
+msgstr ""
+
+#: thirdparty/tastypie/authentication.py:427
+#, python-format
+msgid "Invalid access token: %s"
+msgstr ""
+
+#: thirdparty/tastypie/authentication.py:441
+msgid "You are not allowed to access this resource."
+msgstr ""
+
+#: thirdparty/tastypie/authentication.py:443
+msgid "Invalid request parameters."
+msgstr ""
+
+msgid "departments"
+msgstr "部门"
+
+msgid "Section"
+msgstr "类别"
+
+#~ msgid "company"
+#~ msgstr "公司"
+
+#~ msgid ""
+#~ "please fill 'Sectional dimensions, Length, Quantity, Single piece weight "
+#~ "kg, Full mass kg', Used ',' spacing"
+#~ msgstr "请输入：剖面尺寸，长度，数量，单件质量kg，全套质量kg，用，作间隔"
+
+#~ msgid "tools"
+#~ msgstr "工具"
+
+#~ msgid "is_finished"
+#~ msgstr "是否完成"
+
+#, fuzzy
+#~ msgid "Records"
+#~ msgstr "质量检测"
+
+#~ msgid " | "
+#~ msgstr " | "
+
+#~ msgid "groups"
+#~ msgstr "组"
+
+#~ msgid "order_num"
+#~ msgstr "编号"
+
+#~ msgid "blocked"
+#~ msgstr "是否上锁"
+
+#~ msgid "Insufficient"
+#~ msgstr "不足"
+
+#~ msgid "all import"
+#~ msgstr "全部入库入库"
+
+#~ msgid "some bom import"
+#~ msgstr "部分出库"
+
+#, fuzzy
+#~ msgid "barcode table test"
+#~ msgstr "物料"
+
+#~ msgid "operation working"
+#~ msgstr "工步工作信息"
+
+#~ msgid "max_amount"
+#~ msgstr "最大数量"
+
+#~ msgid "SurveyTools"
+#~ msgstr "量具"
+
+#~ msgid "device:"
+#~ msgstr "设备:"
+
+#~ msgid "qa_fill"
+#~ msgstr "自动填充检测数据"
+
+#~ msgid "Quantity"
+#~ msgstr "质检"
+
+#~ msgid "MaterialItems"
+#~ msgstr "材料"
+
+#~ msgid "WorkblankItems"
+#~ msgstr "毛坯"
+
+#, fuzzy
+#~ msgid "excessive_qa_record: "
+#~ msgstr "工步编号"
+
+#~ msgid "approver"
+#~ msgstr "批准"
+
+#~ msgid "checker"
+#~ msgstr "检查"
+
+#~ msgid "generate_technology_report"
+#~ msgstr "生成机械加工过程卡"
+
+#, fuzzy
+#~ msgid "Add %(name)s"
+#~ msgstr "名字"
+
+#~ msgid "ManufactureRelation"
+#~ msgstr "生产交接"
+
+#~ msgid "ManufactureRelations"
+#~ msgstr "生产交接"
+
+#~ msgid "QARecordAttribute"
+#~ msgstr "质检属性"
+
+#~ msgid "Batch Apply Materials %(verbose_name_plural)s"
+#~ msgstr "申请物料%(verbose_name_plural)s"
+
+#~ msgid "operation_working_record_fill"
+#~ msgstr "工步工作记录"
+
+#~ msgid "Self"
+#~ msgstr "自检"
+
+#~ msgid "SelfRecord"
+#~ msgstr "自检记录"
+
+#~ msgid "DoubleCheckRecord"
+#~ msgstr "互检记录"
+
+#~ msgid "InspectorRecord"
+#~ msgstr "检验记录"
+
+#~ msgid "workflow:"
+#~ msgstr "工艺流程"
+
+#~ msgid "permission"
+#~ msgstr "权限"
+
+#~ msgid "permissions"
+#~ msgstr "权限"
+
+#~ msgid "ObjectPermission"
+#~ msgstr "权限对象"
+
+#~ msgid "ObjectPermissions"
+#~ msgstr "权限对象"
+
+#~ msgid "ObjectPermissionInheritanceBlock"
+#~ msgstr "权限对象继承块"
+
+#~ msgid "ObjectPermissionInheritanceBlocks"
+#~ msgstr "权限对象继承块"
+
+#~ msgid "Roles"
+#~ msgstr "角色"
+
+#~ msgid "PrincipalRoleRelation"
+#~ msgstr "权限关系"
+
+#~ msgid "PrincipalRoleRelations"
+#~ msgstr "权限关系"
+
+#~ msgid "display_name"
+#~ msgstr "显示名称"
+
+#~ msgid "active"
+#~ msgstr "激活"
+
+#~ msgid "benefit types"
+#~ msgstr "福利类型"
+
+#~ msgid "positions"
+#~ msgstr "职位"
+
+#~ msgid "employees"
+#~ msgstr "员工"
+
+#~ msgid "Profiles"
+#~ msgstr "个人设定"
+
+#~ msgid "technology subpicture"
+#~ msgstr "工艺附图卡"
+
+#~ msgid "English"
+#~ msgstr "English"
+
+#~ msgid "Chinese"
+#~ msgstr "中文"
+
+#, fuzzy
+#~ msgid "technology_workflow"
+#~ msgstr "工艺"
+
+#~ msgid "compant_parent"
+#~ msgstr "上级公司"
+
+#~ msgid "companys"
+#~ msgstr "公司"
+
+#~ msgid "belong_to"
+#~ msgstr "所属公司"
+
+#~ msgid "department parent"
+#~ msgstr "上级部门"
+
+#~ msgid "customer state"
+#~ msgstr "客户状态"
+
+#~ msgid ""
+#~ "Must be all lower case, start with a letter, and contain only letters, "
+#~ "numbers, or underscores."
+#~ msgstr "必须为小写字母、数字和下划线，并且以字母开头。"
+
+#, fuzzy
+#~ msgid "enum group"
+#~ msgstr "工序"
+
+#, fuzzy
+#~ msgid "Float"
+#~ msgstr "地点"
+
+#, fuzzy
+#~ msgid "Integer"
+#~ msgstr "记录"
+
+#, fuzzy
+#~ msgid "Date"
+#~ msgstr "日期"
+
+#, fuzzy
+#~ msgid "Django Object"
+#~ msgstr "对象"
+
+#, fuzzy
+#~ msgid "User-friendly attribute name"
+#~ msgstr "属性名称"
+
+#, fuzzy
+#~ msgid "site"
+#~ msgstr "物品"
+
+#, fuzzy
+#~ msgid "Short description"
+#~ msgstr "简介"
+
+#, fuzzy
+#~ msgid "choice group"
+#~ msgstr "工序"
+
+#, fuzzy
+#~ msgid "data type"
+#~ msgstr "日期"
+
+#, fuzzy
+#~ msgid "created"
+#~ msgstr "创建时间"
+
+#~ msgid "customer orders"
+#~ msgstr "客户订单"
+
+#~ msgid "ProductItem"
+#~ msgstr "产品"
+
+#~ msgid "ManufacturePlan"
+#~ msgstr "生产通知"
+
+#~ msgid "Application materials"
+#~ msgstr "申请物料"
+
+#~ msgid "OperationGroupRecord"
+#~ msgstr "工序记录"
+
+#~ msgid "Production Items"
+#~ msgstr "产品"
+
+#, fuzzy
+#~ msgid "Welcome2"
+#~ msgstr "欢迎"
+
+# python-format
+#~ msgid "Batch generate barcode %(verbose_name_plural)s"
+#~ msgstr "生成设备条形码 %(verbose_name_plural)s"
+
+#~ msgid "Files"
+#~ msgstr "文件"
+
+#~ msgid "Rset"
+#~ msgstr "休息"
+
+#~ msgid "single_code"
+#~ msgstr "数值编号"
+
+#~ msgid "produced_date"
+#~ msgstr "生产日期"
+
+#~ msgid "identifier"
+#~ msgstr "标识"
+
+#, fuzzy
+#~ msgid "Company"
+#~ msgstr "公司"
+
+#~ msgid "文件"
+#~ msgstr "档案"
+
+#~ msgid "current_amount"
+#~ msgstr "当前数量"
+
+#, fuzzy
+#~ msgid "拒绝"
+#~ msgstr "上级公司"
+
+#~ msgid "max_service_time"
+#~ msgstr "额定工作年限"
+
+#, fuzzy
+#~ msgid "produc"
+#~ msgstr "产品"
+
+#, fuzzy
+#~ msgid "parent"
+#~ msgstr "上级公司"
+
+#~ msgid "hours"
+#~ msgstr "小时"
+
+#~ msgid "categroy"
+#~ msgstr "种类"
+
+#~ msgid "current_tools_number"
+#~ msgstr "当前刀具数量"
+
+#~ msgid "max_tools_number"
+#~ msgstr "最大刀具数量"
+
+#~ msgid "diameter"
+#~ msgstr "直径"
+
+#~ msgid "In use"
+#~ msgstr "使用中"
+
+#~ msgid "Stock"
+#~ msgstr "使用"
+
+#~ msgid "Repair"
+#~ msgstr "修理"
+
+#~ msgid "Qualities"
+#~ msgstr "质检"
+
+#, fuzzy
+#~ msgid "product1"
+#~ msgstr "产品"
+
+#, fuzzy
+#~ msgid "quantity1"
+#~ msgstr "数量"
+
+#, fuzzy
+#~ msgid "product2"
+#~ msgstr "产品"
+
+#, fuzzy
+#~ msgid "quantity2"
+#~ msgstr "数量"
+
+#, fuzzy
+#~ msgid "product3"
+#~ msgstr "产品"
+
+#, fuzzy
+#~ msgid "quantity3"
+#~ msgstr "数量"
+
+#~ msgid "technologygroup_number"
+#~ msgstr "工序编号"
+
+#~ msgid "technologygroups"
+#~ msgstr "工序"
+
+#~ msgid "workplan"
+#~ msgstr "生产通知"
+
+#~ msgid "technologygroup_name"
+#~ msgstr "工序名称"
+
+msgid "ManufactureItem code"
+msgstr "工件编号"
+
+#, 返回到上一步
+msgid "return back"
+msgstr "返回"
+
+msgid "return back to technology"
+msgstr "返回工艺"
+
+msgid "are you sure delete this item?"
+msgstr "你确定要删除该选项吗?"
+
+msgid "view operation_group"
+msgstr "查看工序"
+
+msgid "operation_group_total_pages %(operation_group_total_pages)s does not equal number of operation_groups %(operation_groups_len)s"
+msgstr "工艺附图卡页码%(operation_group_total_pages)s不等于工序数量%(operation_groups_len)s"
+
+msgid "sheet %(current_sheet_index)s does not technology process card"
+msgstr "第 %(current_sheet_index)s 个工作表不是工艺过程卡"
+
+
+msgid "sheet %(current_sheet_index)s does not technology picture addition card"
+msgstr "第 %(current_sheet_index)s 个工作表不是工艺附图卡"
+
+msgid "postion/job does not exist for %(position_name)s which order is %(order)s in technology picture addition card"
+msgstr "工序号等于%(order)s的 工种/职位(%(position_name)s) 不存在,请联系管理员添加"
+
+msgid "device %(device_type)s which order is %(order)s in technology picture addition card,please contact the admin add it"
+msgstr "在工序号等于%(order)s的工艺附图卡中,设备(%(device_type)s)不存在,请联系管理员添加"
+
+msgid "unknow sheet %(sheet_index)s type"
+msgstr "第%(sheet_index)s个工作表既不是工艺过程卡也不是工艺附图卡"
+
+msgid "number of technology picture addition card not equal number of operation group"
+msgstr "工序数量与工艺附图卡数量不一致"
+
+msgid "check"
+msgstr "检验"
+
+msgid "wipe burr"
+msgstr "去毛刺"
+
+msgid "heattreatment"
+msgstr "热处理"
+
+msgid "incasement"
+msgstr "装箱"
+
+msgid "period"
+msgstr "时效"
+
+msgid "other"
+msgstr "其它"
+
+msgid "batch check"
+msgstr "批量检验"
+
+msgid "batch wipe burr"
+msgstr "批量去毛刺"
+
+msgid "batch heattreatment"
+msgstr "批量热处理"
+
+msgid "batch incasement"
+msgstr "批量装箱"
+
+msgid "batch period"
+msgstr "批量时效"
+
+msgid "operation_group_name does not matched which order is %(order)s"
+msgstr "工序为(%(order)s)的工艺附图卡中的工序名称和工艺过程卡的工序名称不一致"
+
+msgid "add attribute"
+msgstr "添加属性"
+
+msgid "operations need add attribute"
+msgstr "需要创建属性的工步"
+
+msgid "batch note"
+msgstr "备注"
+
+msgid "Select All"
+msgstr "全选"
+
+msgid "value must be required"
+msgstr "你必须填入实测值"
+
+msgid "value must be a decimal number"
+msgstr "你必须填入一个数字"
+
+msgid "choose one item at least"
+msgstr "你至少选择一项"
+
+msgid "qa note"
+msgstr "检验记录"
+
+msgid "surveyor"
+msgstr "检验人"
+
+msgid "report to qa dept"
+msgstr "报质量部"
+
+msgid "search"
+msgstr "搜索"
+
+msgid "qa records search"
+msgstr "质检查询"
+
+msgid "%(query_string)s 's qa record list"
+msgstr "%(query_string)s 的质检记录"
+
+msgid "qa self record or qa double check need confirm,so note must be required"
+msgstr "当前自检或互检存在问题，备注内容必须填写"
+
+msgid "qualified"
+msgstr "合格"
+
+msgid "unqualified"
+msgstr "不合格"
+
+msgid "handle later"
+msgstr "稍后处理"
+
+msgid "surveyor must be required"
+msgstr "检验人是必填项"
+
+# 毛坯检验不合格的工件
+msgid "blank no passed list"
+msgstr "毛坯检验"
+
+msgid "%(query_string)s 's blank no passed list"
+msgstr "%(query_string)s 的毛坯检验"
+
+msgid "need qa dept confirm"
+msgstr "需要质量部确认"
+
+msgid "ignore"
+msgstr "忽略"
+
+msgid "unknow error"
+msgstr "未知错误"
+
+msgid "technology template download"
+msgstr "下载模板"
+
+msgid "workblanks check"
+msgstr "毛坯检验"
+
+msgid "final check"
+msgstr "终检"

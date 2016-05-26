@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="{{ LANGUAGE_CODE }}" xml:lang="{{ LANGUAGE_CODE }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
+    <head>
+        <title>{% block title %}{% endblock %}{% block sitetitle %} - WizardCMS{% endblock %}</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="keywords" content="{{ meta.keywords }}" />
+        <meta name="description" content="{{ meta.description }}" />
+        <link rel="stylesheet" type="text/css" href="{% block stylesheet %}{{ MEDIA_URL }}css/base.css{% endblock %}" />
+        {% block extrastyle %}{% endblock %}
+        {% block extrahead %}{% endblock %}
+        {% block blockbots %}<meta name="robots" content="NONE,NOARCHIVE" />{% endblock %}
+    </head>
+    <body>
+        <div id="Container">
+            {% block container %}
+            <div id="Header">
+                {% block header %}{% endblock %}
+            </div>
+            {% block topmenu %}{% endblock %}
+            <div id="Content">
+                <div id="Sidebar">
+                    {% block sidebar %}{% endblock %}
+                </div>
+                {% block content %}{% endblock %}
+            </div>
+            <div id="Footer">
+                {% block footer %}
+                    {% block footermenu %}{% endblock %}
+                    {% block copyright %}
+                    WebOffer Software Copyright &copy;2009 <a href="http://netwizard.pl/">Netwizard Multimedia Group</a>
+                    {% endblock %}
+                {% endblock %}
+            </div>
+            {% endblock container %}
+        </div>
+    </body>
+</html>

@@ -1,0 +1,106 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-03-31 20:12+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms:  nplurals=2; plural=(n != 1);\n"
+
+#: .\models.py:12 .\models.py:29
+msgid "code"
+msgstr "kod"
+
+#: .\models.py:13 .\models.py:30
+msgid "description"
+msgstr "beskrivning"
+
+#: .\models.py:14
+msgid "longitude"
+msgstr "longitud"
+
+#: .\models.py:15
+msgid "latitude"
+msgstr "latitud"
+
+#: .\models.py:16 .\models.py:32 .\models.py:59 .\models.py:93 .\models.py:120
+msgid "created at"
+msgstr "skapad den"
+
+#: .\models.py:17 .\models.py:33 .\models.py:60
+msgid "updated at"
+msgstr "uppdaterad den"
+
+#: .\models.py:21
+msgid "location"
+msgstr "lagerställe"
+
+#: .\models.py:22
+msgid "locations"
+msgstr "lagerställen"
+
+#: .\models.py:31
+msgid "identifier"
+msgstr "identifierare"
+
+#: .\models.py:37
+msgid "item"
+msgstr "artikel"
+
+#: .\models.py:38
+msgid "items"
+msgstr "artiklar"
+
+#: .\models.py:58 .\models.py:123
+msgid "quantity"
+msgstr "antal"
+
+#: .\models.py:64
+msgid "BOM entry"
+msgstr "BOM post"
+
+#: .\models.py:65
+msgid "BOM entries"
+msgstr "BOM poster"
+
+#: .\models.py:88
+msgid "Inventory"
+msgstr ""
+
+#: .\models.py:89
+msgid "Movement"
+msgstr "Flytt"
+
+#: .\models.py:90
+msgid "Sales"
+msgstr "Försäljning"
+
+#: .\models.py:91
+msgid "Purchase"
+msgstr "Inköp"
+
+#: .\models.py:94
+msgid "journal type"
+msgstr "journaltyp"
+
+#: .\models.py:95
+msgid "note"
+msgstr "anteckning"
+
+#: .\models.py:100
+msgid "item journal"
+msgstr "artikeljournal"
+
+#: .\models.py:101
+msgid "item journals"
+msgstr "artikeljournaler"

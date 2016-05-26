@@ -1,0 +1,74 @@
+{% extends "hr/base.html" %}
+{% load i18n %}
+{% block title %} {% trans "companys list" %} {% endblock %}
+{% block extjs_center_area %}
+<div class="container-fluid">
+	<legend>
+		<h1>{% trans "companys list" %}</h1>
+	</legend>
+	<a class="btn" href="{% url companyadd %}"><i class="icon-plus"></i> {% trans "add new company" %}</a>
+	<table class="table table-bordered table-hover">
+		<thead bgColor=#dddddd>
+			<th> {% trans "name" %} </th><th> {% trans "description" %} </th><th> {% trans "address" %} </th><th> {% trans "city" %} </th><th> {% trans "state" %} </th><th> {% trans "zip_code" %} </th><th> {% trans "operate" %} </th>
+		</thead>
+		{% for company in companys %}
+		<tr>
+			<td><a href="{% url compnayfileslist company.id %}"> {{company.name}} </a></td>
+			<td> {{company.description}} </td>
+			<td> {{company.address}} </td>
+			<td> {{company.city}} </td>
+			<td> {{company.state}} </td>
+			<td> {{company.zip_code}} </td>
+			<td><a href="{% url companyedit company.id %}"> {% trans "edit" %} </a><a href="delete" data-toggle="modal" id='{{company.id}}' hide='{{company.name}}'> {% trans "delete" %} </a></td>
+		</tr>
+		{% endfor %}
+	</table>
+	<!-- Modal -->
+	<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+				×
+			</button>
+			<h3 id="myModalLabel">{% trans "Delete Warning" %}</h3>
+		</div>
+		<div class="modal-body">
+			{% for company in companys %}
+
+			{% endfor %}
+			<p>
+				{% trans "are you sure ?" %}
+			</p>
+		</div>
+		<div class="modal-footer">
+			<button class="btn" data-dismiss="modal" aria-hidden="true">
+				{% trans "close" %}
+			</button>
+			<a class="btn btn-primary" id="delete_modal"> {% trans "delete" %} </a>
+		</div>
+	</div>
+</div>
+{% endblock %}
+{% block jsblock %}
+<script type="text/javascript">
+	var del_tr_dom
+	var del_id
+	var warning_text
+	$("[href='delete']").click(function(event) {
+		$('#myModal').modal('show')
+		del_id = $(this).attr("id")
+		del_tr_dom = $(this).parent().parent()
+		warning_text = $(this).attr("hide")
+	});
+	$("[id='delete_modal']").click(function(event) {
+		//alert("delete department id: " + del_id)
+		$.post('{% url companydel %}', {
+			Action : "POST",
+			del_id : del_id,
+		}, function(data) {
+			alert("Delete Success")
+		});
+		$('#myModal').modal('hide')
+		del_tr_dom.remove()
+	}); 
+</script>
+{% endblock %}

@@ -1,0 +1,180 @@
+{% extends "subnav_base.html" %}
+
+{% load staticfiles %}
+{% load i18n %}
+{% load ifsetting_tag %}
+
+{% block extra_style %}
+    <link href="{% static "bootstrap/css/datepicker.css" %}" rel="stylesheet">
+    <link href="{% static "js/jquery-easyui/themes/bootstrap/easyui.css" %}" rel="stylesheet">
+{% endblock %}
+{% block extra_script %}
+    <script type="text/javascript" src="{% static "apps/include-ext.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/jquery-easyui/jquery.easyui.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/json2.js" %}"></script>
+    <style type="text/css">
+        .x-border-box,
+        .x-border-box * {
+          box-sizing: border-box;
+          -moz-box-sizing: border-box;
+          -ms-box-sizing: border-box;
+          -webkit-box-sizing: border-box;
+        }
+    </style>
+{% endblock %}
+
+{% block left-menu-bar %}
+{% endblock %}
+
+{% block center_area %}
+
+
+    <div id="west" class="x-hide-display"></div>
+    <div id="center1" class="x-hide-display" style="padding: 20px;height=100%;">
+        {% block extjs_center_area %}
+        {% endblock %}
+    </div>
+    <div id="props-panel" class="x-hide-display" style="width:200px;height:200px;overflow:hidden;">
+    </div>
+    <div id="south" class="x-hide-display">
+        <p>south - generally for informational stuff, also could be for status bar</p>
+    </div>
+
+{% endblock %}
+
+{% block extra_body %}
+    <script type="text/javascript">
+    Ext.require(['*']);
+    var c= 'sss';
+    Ext.onReady(function() {
+        function getBaseURL () {
+           return location.protocol + "//" + location.hostname + (location.port && ":" + location.port) + "/";
+        }
+        var url_base = getBaseURL();
+        Ext.QuickTips.init();
+
+        // NOTE: This is an example showing simple state management. During development,
+        // it is generally best to disable state management as dynamically-generated ids
+        // can change across page loads, leading to unpredictable results.  The developer
+        // should ensure that stable state ids are set for stateful components in real apps.
+        Ext.state.Manager.setProvider(Ext.create('Ext.state.CookieProvider'));
+
+        var tpanel = Ext.create('Ext.tree.Panel', {
+            title : '报表总览',
+        });
+
+        var center_panel = Ext.create('Ext.tab.Panel', {
+            region: 'center', // a center region is ALWAYS required for border layout
+            deferredRender: false,
+            id: 'center-panel',
+            autoScroll:true,
+            activeTab: 0,     // first tab initially active
+            items: [{
+                contentEl: 'center1',
+                title: '工件加工时间',
+                autoScroll: true,
+                closable: true,
+                itemId: 'hr',
+                id: 'hr-panel'
+            }, tpanel]
+        });
+
+        var south_panel = Ext.create('Ext.tab.Panel', {
+                // lazily created panel (xtype:'panel' is default)
+                region: 'south',
+                contentEl: 'south',
+                split: true,
+                height: 100,
+                minSize: 100,
+                maxSize: 200,
+                collapsible: true,
+                collapsed: true,
+                title: '状态栏',
+                margins: '0 0 0 0'
+        });
+
+        var east_panel = Ext.create('Ext.tab.Panel',{
+                xtype: 'tabpanel',
+                region: 'east',
+                title: '工具栏',
+                animCollapse: true,
+                collapsible: true,
+                split: true,
+                width: 225, // give east and west regions a width
+                minSize: 175,
+                maxSize: 400,
+                margins: '0 5 0 0',
+                activeTab: 1,
+                tabPosition: 'bottom',
+                items: [{
+                    itemId: 'hr_actions',
+                    html: '<a href="#">添加</a>',
+                    title: '操作',
+                    autoScroll: true
+                }]
+            });
+
+        var west_panel = Ext.create('Ext.panel.Panel',{
+                region: 'west',
+                stateId: 'navigation-panel',
+                id: 'west-panel', // see Ext.getCmp() below
+                title: '报表中心',
+                split: true,
+                width: 200,
+                minWidth: 175,
+                maxWidth: 400,
+                collapsible: true,
+                animCollapse: true,
+                margins: '0 0 0 5',
+                layout: 'accordion',
+                defaults: {
+                            autoScroll:true
+                        },
+                items: [{
+                            xtype: 'panel', // << fake hidden panel
+                            hidden: true,
+                            collapsed: false
+                },{
+                    title: '员工',
+                    id: 'menu_employee',
+                    html:   '<ul>' + 
+                                '<li><a href="{% url ext_employee_worked_manufactureitem %}">{% trans "employee_worked_manufactureitem" %}</a></li>' +
+                            '</ul>'
+                },{
+                    title: '生产',
+                    id: 'menu_manufacturing',
+                    html:   '<ul>' + 
+                                '<li><a href="{% url ext_manufactureitem_working_time %}">{% trans "manufactureitem_working_time" %}</a></li>' + 
+                                '<li><a href="{% url ext_device_working_time %}">{% trans "device_working_time" %}</a></li>' +
+                            '</ul>'
+                },{
+                    title: '仓库',
+                    id: 'menu_warehouse',
+                    html:   '<ul>' + 
+                                '<li><a href="{% url ext_warehouse_inventory %}">{% trans "warehouse_inventory" %}</a></li>' +
+                                '<li><a href="{% url ext_knife_scraped %}">{% trans "knife_scraped" %}</a></li>' +
+                            '</ul>'
+                }]
+            });
+
+        var viewport = Ext.create('Ext.Viewport', {
+            id: 'border-example',
+            layout: 'border',
+            items: [
+            // create instance immediately
+            Ext.create('Ext.Component', {
+                region: 'north',
+                height: 44
+            }), 
+            west_panel,
+            center_panel]
+        });
+
+        function changeCenterAreaTitle(title){
+            center_panel.child('#hr').setTitle(title);
+        };
+
+    });
+    </script>
+
+{% endblock %}

@@ -1,0 +1,483 @@
+{% load i18n %}
+{% load quality_report_content %}
+<!DOCTYPE document SYSTEM "rml.dtd">
+<document filename="example_08.pdf">
+<template showBoundary="0" 
+pageSize="(29.7cm, 21cm)"
+>
+<pageTemplate id="main">
+
+<!-- <frame id="first" x1="0cm" y1="0cm" width="29.7cm" height="21cm"/> -->
+    <frame id="first" x1="2cm" y1="2cm" width="26.7cm" height="17cm"/>
+
+<pageGraphics>
+
+</pageGraphics>
+
+
+</pageTemplate>
+</template>
+<stylesheet>
+
+    <blockTableStyle id="myBlockTableStyle1">
+      <blockFont name="DejaVuSans" size="9"/>
+      <blockTextColor colorName="black"/>
+      <lineStyle kind="GRID" colorName="black"/>
+
+      <blockSpan start="0,0" stop="1,1"/>
+      <blockSpan start="2,0" stop="3,0"/>
+      <blockSpan start="2,1" stop="3,1"/>
+
+      <blockSpan start="9,0" stop="11,0"/>
+      <blockSpan start="9,1" stop="11,1"/>
+
+      <blockSpan start="0,2" stop="1,2"/>
+      <blockSpan start="0,3" stop="1,3"/>
+
+      <blockSpan start="2,2" stop="3,2"/>
+      <blockSpan start="2,3" stop="3,3"/>
+
+      <blockSpan start="4,2" stop="5,2"/>
+      <blockSpan start="4,3" stop="5,3"/>
+
+      <blockSpan start="11,2" stop="11,3"/>
+
+      <blockSpan start="4,0" stop="7,1"/>
+      <!-- <blockSpan start="5,2" stop="6,2"/> -->
+      <blockSpan start="5,4" stop="6,4"/>
+
+      <blockSpan start="0,6" stop="0,7"/>
+      <blockSpan start="1,6" stop="1,7"/>
+      <blockSpan start="2,6" stop="2,7"/>
+      <blockSpan start="3,6" stop="3,7"/>
+      <blockSpan start="4,6" stop="4,7"/>
+      <blockSpan start="7,6" stop="7,7"/>
+      <blockSpan start="8,6" stop="8,7"/>
+      <blockSpan start="9,6" stop="9,7"/>
+      <blockSpan start="10,6" stop="10,7"/>
+      <blockSpan start="11,6" stop="11,7"/>
+
+      <blockSpan start="0,8" stop="0,9"/>
+      <blockSpan start="1,8" stop="1,9"/>
+      <blockSpan start="2,8" stop="3,9"/>
+      <!-- <blockSpan start="3,8" stop="3,9"/> -->
+      <blockSpan start="4,8" stop="4,9"/>
+      <blockSpan start="5,8" stop="5,9"/>
+      <blockSpan start="6,8" stop="6,9"/>
+      <blockSpan start="7,8" stop="10,8"/>
+
+      <blockSpan start="0,10" stop="0,11"/>
+      <blockSpan start="1,10" stop="1,11"/>
+      <blockSpan start="0,12" stop="0,13"/>
+      <blockSpan start="1,12" stop="1,13"/>
+      <blockSpan start="0,14" stop="0,15"/>
+      <blockSpan start="1,14" stop="1,15"/>
+      <blockSpan start="0,16" stop="0,17"/>
+      <blockSpan start="1,16" stop="1,17"/>
+      <blockSpan start="0,18" stop="0,19"/>
+      <blockSpan start="1,18" stop="1,19"/>
+      <blockSpan start="0,20" stop="0,21"/>
+      <blockSpan start="1,20" stop="1,21"/>
+      <blockSpan start="0,22" stop="0,23"/>
+      <blockSpan start="1,22" stop="1,23"/>
+
+      <blockSpan start="2,10" stop="3,10"/>
+      <blockSpan start="2,11" stop="3,11"/>
+      <blockSpan start="2,12" stop="3,12"/>
+      <blockSpan start="2,13" stop="3,13"/>
+      <blockSpan start="2,14" stop="3,14"/>
+      <blockSpan start="2,15" stop="3,15"/>
+      <blockSpan start="2,16" stop="3,16"/>
+      <blockSpan start="2,17" stop="3,17"/>
+      <blockSpan start="2,18" stop="3,18"/>
+      <blockSpan start="2,19" stop="3,19"/>
+      <blockSpan start="2,20" stop="3,20"/>
+      <blockSpan start="2,21" stop="3,21"/>
+      <blockSpan start="2,22" stop="3,22"/>
+      <blockSpan start="2,23" stop="3,23"/>
+        <blockAlignment value="CENTER"/>
+    </blockTableStyle>
+
+
+ <blockTableStyle id="myBlockTableStyle2">
+      <blockFont name="DejaVuSans" size="9"/>
+      <blockTextColor colorName="black"/>
+      <lineStyle kind="GRID" colorName="black"/>
+
+      <blockSpan start="0,0" stop="1,1"/>
+      <blockSpan start="2,0" stop="3,0"/>
+      <blockSpan start="2,1" stop="3,1"/>
+
+      <blockSpan start="9,0" stop="11,0"/>
+      <blockSpan start="9,1" stop="11,1"/>
+
+      <blockSpan start="0,2" stop="1,2"/>
+      <blockSpan start="0,3" stop="1,3"/>
+
+      <blockSpan start="2,2" stop="3,2"/>
+      <blockSpan start="2,3" stop="3,3"/>
+
+      <blockSpan start="4,2" stop="5,2"/>
+      <blockSpan start="4,3" stop="5,3"/>
+
+
+      <blockSpan start="11,2" stop="11,3"/>
+
+      <blockSpan start="4,0" stop="7,1"/>
+
+      <blockSpan start="0,4" stop="0,5"/>
+      <blockSpan start="1,4" stop="1,5"/>
+      <blockSpan start="2,4" stop="3,5"/>
+      <!-- <blockSpan start="3,4" stop="3,5"/> -->
+      <blockSpan start="4,4" stop="4,5"/>
+      <blockSpan start="5,4" stop="5,5"/>
+      <blockSpan start="6,4" stop="6,5"/>
+      <blockSpan start="7,4" stop="10,4"/>
+
+      <blockSpan start="0,6" stop="0,7"/>
+      <blockSpan start="1,6" stop="1,7"/>
+      <blockSpan start="0,8" stop="0,9"/>
+      <blockSpan start="1,8" stop="1,9"/>
+      <blockSpan start="0,10" stop="0,11"/>
+      <blockSpan start="1,10" stop="1,11"/>
+      <blockSpan start="0,12" stop="0,13"/>
+      <blockSpan start="1,12" stop="1,13"/>
+      <blockSpan start="0,14" stop="0,15"/>
+      <blockSpan start="1,14" stop="1,15"/>
+      <blockSpan start="0,16" stop="0,17"/>
+      <blockSpan start="1,16" stop="1,17"/>
+      <blockSpan start="0,18" stop="0,19"/>
+      <blockSpan start="1,18" stop="1,19"/>
+      <blockSpan start="0,20" stop="0,21"/>
+      <blockSpan start="1,20" stop="1,21"/>
+      <blockSpan start="0,22" stop="0,23"/>
+      <blockSpan start="1,22" stop="1,23"/>
+
+      <blockSpan start="2,6" stop="3,6"/>
+      <blockSpan start="2,7" stop="3,7"/>
+      <blockSpan start="2,8" stop="3,8"/>
+      <blockSpan start="2,9" stop="3,9"/>
+      <blockSpan start="2,10" stop="3,10"/>
+      <blockSpan start="2,11" stop="3,11"/>
+      <blockSpan start="2,12" stop="3,12"/>
+      <blockSpan start="2,13" stop="3,13"/>
+      <blockSpan start="2,14" stop="3,14"/>
+      <blockSpan start="2,15" stop="3,15"/>
+      <blockSpan start="2,16" stop="3,16"/>
+      <blockSpan start="2,17" stop="3,17"/>
+      <blockSpan start="2,18" stop="3,18"/>
+      <blockSpan start="2,19" stop="3,19"/>
+      <blockSpan start="2,20" stop="3,20"/>
+      <blockSpan start="2,21" stop="3,21"/>
+      <blockSpan start="2,22" stop="3,22"/>
+      <blockSpan start="2,23" stop="3,23"/>
+      <blockAlignment value="CENTER"/>
+    </blockTableStyle>
+
+
+
+    <blockTableStyle id="myBlockTableStyle">
+      <blockFont name="DejaVuSans" size="9"/>
+      <blockTextColor colorName="black"/>
+      <lineStyle kind="GRID" colorName="black"/>
+    </blockTableStyle>
+
+<paraStyle name="textstyle"
+fontName="DejaVuSans"
+fontSize="8"
+textColor="black"
+alignment="CENTER"
+/>
+
+
+</stylesheet>
+<story>
+<blockTable style="myBlockTableStyle1"
+
+colWidths="2cm,2cm,2cm,2cm,2cm,3cm,3cm,2cm,2cm,2cm,2cm,2cm"
+>
+
+    <tr>
+        <td>康春机械</td>
+        <td></td>
+        <td>任务编号</td>
+        <td></td>
+        <td>产品生产质量控制记录卡（首页）</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>合格证编号</td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td></td>
+        <td></td>
+        <td>{{ productionline.manu_item_groups.all.0.task_code|default_if_none:"&nbsp;" }}</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>质控卡编号</td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td>型号</td>
+        <td></td>
+        <td>图号</td>
+        <td></td>
+        <td>名称</td>
+        <td></td>
+        <td>计划数量</td>
+        <td>投产数量</td>
+        <td>产品交接路线</td>
+        <td>进度</td>
+        <td>备注</td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td>{{ productionline.product.symbol }}</td>
+        <td></td>
+        <td>{{ productionline.product.cad_code }}</td>
+        <td></td>
+        <td>{{ productionline.product.name }}</td>
+        <td></td>
+        <td>{{ productionline.manu_item_groups.all.0.quantity }}</td>
+        <td></td>
+        <td></td>
+        <td></td>
+
+    </tr>
+
+
+    <tr>
+        <td>区分</td>
+        <td>材料牌号</td>
+        <td>供应状态</td>
+        <td>技术条件</td>
+        <td>规格尺寸</td>
+        <td>材料、非金属材料、锻、铸件</td>
+        <td></td>
+        <td>代料单号</td>
+        <td>单位</td>
+        <td>数量</td>
+        <td>领料员</td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td>请领</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><para style="textstyle">合格证编号 <br />（非金属制造日期）</para></td>
+        <td><para style="textstyle"> 炉批号或复检报告编号 <br />（保管期、周转期）</para></td>
+        <td></td>
+        <td>件</td>
+        <td>2</td>
+        <td>发料员</td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td>实发</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>检验员</td>
+        <td></td>
+    </tr>
+
+    <tr>
+       
+        <td>&nbsp;</td>
+        <td></td>
+      
+    </tr>
+    <tr>
+        <td>工序</td>
+        <td>工种</td>
+        <td>首件检验合格</td>
+        <td></td>
+        <td>操作者</td>
+        <td>互检</td>
+        <td>检验员</td>
+        <td>检验结果质量等级评定</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>军代表</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>合格</td>
+        <td>超差</td>
+        <td>报废</td>
+        <td>备注</td>
+    </tr>
+
+    {% get_quality_report_content productionline %}
+
+</blockTable>
+
+<blockTable style="myBlockTableStyle"
+colWidths="1cm,2cm,1cm,2cm,2cm,2cm,1cm,2cm,1cm,2cm,2cm,2cm,1cm,2cm,1cm,2cm">
+    <tr>
+        <td>编制</td>
+        <td></td>
+        <td>校对</td>
+        <td></td>
+        <td>更改标记</td>
+        <td></td>
+        <td>签名</td>
+        <td></td>
+        <td>时间</td>
+        <td></td>
+        <td>更改标记</td>
+        <td></td>
+        <td>共 页</td>
+        <td>{{ page_counts|last|add:"2" }}</td>
+        <td>第 页</td>
+        <td>1</td>
+    </tr>
+</blockTable>
+
+ <!-- <condPageBreak/> -->
+{% for page_num in page_counts %}
+
+<blockTable style="myBlockTableStyle2"
+
+colWidths="2cm,2cm,2cm,2cm,2cm,3cm,3cm,2cm,2cm,2cm,2cm,2cm"
+
+>
+
+    <tr>
+        <td>康春机械</td>
+        <td></td>
+        <td>任务编号</td>
+        <td></td>
+        <td>产品生产质量控制记录卡（续页）</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>合格证编号</td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td></td>
+        <td></td>
+        <td>{{ productionline.code }}</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>质控卡编号</td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td>型号</td>
+        <td></td>
+        <td>图号</td>
+        <td></td>
+        <td>名称</td>
+        <td></td>
+        <td>计划数量</td>
+        <td>投产数量</td>
+        <td>产品交接路线</td>
+        <td>进度</td>
+        <td>备注</td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td>{{ productionline.product.symbol }}</td>
+        <td></td>
+        <td>{{ productionline.product.cad_code }}</td>
+        <td></td>
+        <td>{{ productionline.product.name }}</td>
+        <td></td>
+        <td>{{ productionline.manu_item_groups.all.0.quantity }}</td>
+        <td></td>
+        <td></td>
+        <td></td>
+
+    </tr>
+
+
+    <tr>
+        <td>工序</td>
+        <td>工种</td>
+        <td>首件检验合格</td>
+        <td></td>
+        <td>操作者</td>
+        <td>互检</td>
+        <td>检验员</td>
+        <td>检验结果质量等级评定</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>军代表</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>合格</td>
+        <td>超差</td>
+        <td>报废</td>
+        <td>备注</td>
+    </tr>
+
+    {% get_quality_report_content productionline "others" page_num %}
+
+</blockTable>
+
+<blockTable style="myBlockTableStyle"
+colWidths="1cm,2cm,1cm,2cm,2cm,2cm,1cm,2cm,1cm,2cm,2cm,2cm,1cm,2cm,1cm,2cm">
+    <tr>
+        <td>编制</td>
+        <td></td>
+        <td>校对</td>
+        <td></td>
+        <td>更改标记</td>
+        <td></td>
+        <td>签名</td>
+        <td></td>
+        <td>时间</td>
+        <td></td>
+        <td>更改标记</td>
+        <td></td>
+        <td>共 页</td>
+        <td>{{ page_counts|last|add:"2" }}</td>
+        <td>第 页</td>
+        <td>{{ page_num|add:"2" }}</td>
+    </tr>
+</blockTable>
+
+{% endfor %}
+
+</story>
+</document>

@@ -1,0 +1,24 @@
+{% extends "hr/base.html" %}
+{% load i18n %}
+{% load file_tags %}
+{% block title %} {% trans "department files list" %} {% endblock %}
+{% block extjs_center_area %}
+<div class="container-fluid">
+	<legend>
+		<h1>{% trans "department files list" %}</h1>
+	</legend>
+
+	<table class="table table-bordered table-hover">
+		<thead bgColor=#dddddd>
+			<th> {% trans "file name" %} </th><th> {% trans "operate" %} </th>
+		</thead>
+		<tr>
+			<td> {% files_for_object department %} </td>
+			<td><a href="{% url uploadfile contenttype_id department.id %}?next={{request.path}}"> {% trans "upload" %} </a></td>
+		</tr>
+	</table>
+	</div>
+</div>
+{% endblock %}
+{% block jsblock %}
+{% endblock %}

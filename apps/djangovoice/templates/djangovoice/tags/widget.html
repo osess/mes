@@ -1,0 +1,37 @@
+{% load trans from i18n %}
+{% load url from future %}
+
+<div id="djangovoice-widget"
+     style="padding: 5px 10px;
+            position: fixed;
+            top: 0;
+            left: 20px;
+            background-color: #333;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            user-select: none;
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            border: 3px double #fff;">
+    <p style="margin: 0; font-size: 12px; font-family: Arial, Helvetica, sans-serif;">
+        {% trans "feedback" %}
+    </p>
+</div>
+
+<div id="djangovoice-dialogbox" style="display: none; width: 100%; text-align: center;
+                                       position: fixed; top: 20%; z-index: 9999">
+    <iframe id="djangovoice-iframe"
+            allowtransparency="true"
+            scrolling="no"
+            frameborder="0"
+            width="500"
+            height="300"
+            src="{% url 'djangovoice_widget' %}"
+            style="vertical-align: top; margin-top: 15px;
+                   border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px;
+                   box-shadow: 0 0 10px #777; -moz-box-shadow: 0 0 10px #777; -webkit-box-shadow: 0 0 10px #777;"></iframe>
+    <img src="{{ STATIC_URL }}djangovoice/img/dialog_close.png"
+         style="cursor: pointer; margin-left: -30px;" />
+</div>
+<script type="text/javascript" src="{{ STATIC_URL }}djangovoice/js/djangovoice.js"></script>

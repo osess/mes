@@ -1,0 +1,342 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block head_title %} {% trans "edit technology" %} {% endblock %}
+
+{% block center_area %}
+
+<head>
+    <style type="text/css">
+
+        .report {font-size: 85%;
+                width:200%;
+                margin: 0 auto; 
+                
+                }
+        
+        td      {
+                text-align:center;
+
+                }
+        table{
+                border-collapse:collapse;
+            }
+    </style>
+</head>
+
+<div class="report">
+<div id="verification"></div>
+    <a id='technology_list' class="btn btn-primary active" value="TechnologyList" href="{% url technologies_list %}">{% trans 'technology list' %}</a>
+<table class="table table-bordered" cellpadding ="0">
+<tr>
+    <td colspan='3' >
+        <table class="table table-bordered" >
+            <tr>
+                <td colspan='2' rowspan="2">康春机械</td>
+                <td colspan='4' rowspan="2">机械加工工艺过程卡</td>
+                <td colspan='2'>产品代号</td>
+                <td colspan='2'>图号</td>
+                <td colspan='2'>零、部、组(整体)件名称</td>
+                <td>工艺文件编号</td>
+                <td >发放号</td>
+            </tr>
+
+            <tr class="">
+                <td colspan='2'></td>
+                <td colspan='2'><input class="form-control" type="text" id="product_cad_code" name="technology_level" value="{{ technology.product.cad_code }}"/></td>
+                <td colspan='2'></td>
+                <td><input class="form-control" type="text" id="file_code" name="technology_level" value="{{ technology.file_code }}"/></td>
+                <td><input class="form-control" type="text" id="publish_code" name="technology_level" value="{{ technology.publish_code }}"/></td>
+            </tr>
+
+            <tr>
+                <td colspan='3' align="center">零件数量</td>
+                <td colspan='2' align="center">零件质量</td>
+                <td colspan='4' align="center">材料</td>
+                <td colspan='5' align="center">毛坯</td>
+            </tr>
+
+            <tr>
+                <td>每个产品</td>
+                <td>备件</td>
+                <td>总计</td>
+                <td>单件</td>
+                <td>全套</td>
+                <td>牌号</td>
+                <td>标准代号</td>
+                <td>硬度</td>
+                <td>种类</td>
+                <td>剖面尺寸</td>
+                <td>长度</td>
+                <td>数量</td>
+                <td>单件质量kg</td>
+                <td>全套质量kg</td>
+            </tr>
+
+            <tr>
+                <td><input class="form-control" type="text" id="LGSL_MGLJ" name="technology_level" value="{{ technology.each_product|default_if_none:"" }}"/></td>
+                <td><input class="form-control" type="text" id="LGSL_BJ" name="technology_level" value="{{ technology.spare_part|default_if_none:"" }}"/></td>
+                <td><input class="form-control" type="text" id="LGSL_ZJ" name="technology_level" value="{{ technology.total|default_if_none:"" }}"/></td>
+                <td><input class="form-control" type="text" id="LGZL_DJ" name="technology_level" value="{{ technology.one_piece|default_if_none:"" }}"/></td>
+                <td><input class="form-control" type="text" id="LGZL_QT" name="technology_level" value="{{ technology.complete_set|default_if_none:"" }}"/></td>
+                <td><input class="form-control" type="text" id="workblank_mark" name="technology_level" value="{{ technology.workblank_mark|default_if_none:"" }}"/></td>
+                <td><input class="form-control" type="text" id="workblank_standard_code" name="technology_level" value="{{ technology.workblank_standard_code|default_if_none:"" }}"/></td>
+                <td><input class="form-control" type="text" id="workblank_hardness" name="technology_level" value="{{ technology.workblank_hardness|default_if_none:"" }}"/></td>
+                <td><input class="form-control" type="text" id="workblank_species" name="technology_level" value="{{ technology.workblank_species|default_if_none:"" }}"/></td>
+                <td><input class="form-control" type="text" id="workblank_sectional_dimensions" name="technology_level" value="{{ technology.workblank_sectional_dimensions|default_if_none:"" }}"/></td>
+                <td><input class="form-control" type="text" id="workblank_length" name="technology_level" value="{{ technology.workblank_length|default_if_none:"" }}"/></td>
+                <td><input class="form-control" type="text" id="workblank_quantity" name="technology_level" value="{{ technology.workblank_quantity|default_if_none:"" }}"/></td>
+                <td><input class="form-control" type="text" id="workblank_single_weight_kg" name="technology_level" value="{{ technology.workblank_single_weight_kg|default_if_none:"" }}"/></td>
+                <td><input class="form-control" type="text" id="workblank_full_weight_kg" name="technology_level" value="{{ technology.workblank_full_weight_kg|default_if_none:"" }}"/></td>
+            </tr>
+
+        </table>
+    </td>
+<tr/>
+<tr>
+    <td>
+    <table id="operation_groups" class="table table-bordered">
+        <thead>
+            <tr>
+                <td class="col-md-1">工序号</td>
+                <td class="col-md-2">工种</td>
+                <td class="col-md-7">工序名称</td>
+                <td class="col-md-3">
+                    (添加/删除)工序
+                </td>
+            </tr>
+        </thead>
+        <tbody id="OG_body">
+        {% for operation_group in technology.operation_groups.all %}
+            <tr class="operation_group_field" name="operation_group_level" id='id-tr-{{ operation_group.order }}' data-operation-group-id="{{ operation_group.id }}">
+                <td>
+                    <input class="form-control" type="text" name="GX_GXH" value="{{ operation_group.order|default_if_none:"" }}"/>
+                    <input type="hidden" name="GX_ID" value="{{ operation_group.id }}" />
+                    </td>
+                <td>
+                <select name="GX_GZ" class="form-control">
+                {% for job in jobs %}
+                    {% ifequal job.id operation_group.Job.id %}
+                    <option value="{{ job.id }}" name="GX_GZ" selected="selected">{{ job }}</option>
+                    {% else %}
+                    <option value="{{ job.id }}" name="GX_GZ">{{ job }}</option>
+                    {% endifequal %}
+                {% endfor %}
+                </select>
+                </td>
+                <td><input class="form-control" type="text" name="GX_GXMC" value="{{ operation_group.name|default_if_none:"" }}"/></td>
+                <td>
+                    <a href="javascript:void(0)" class="del-gy-row">删除行</a>
+                    <a href="javascript:void(0)" class="insert-after-gy-row">插入行</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </td>
+<tr/>
+<tr>
+    <td colspan="3">
+    <table class="table table-bordered">
+        <tr>
+            <td>描图</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>阶段标记</td>
+        </tr>
+
+        <tr>
+            <td rowspan='2'>描较</td>
+            <td rowspan='2'></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>编制</td>
+            <td>审核</td>
+            <td>标准化</td>
+            <td>会签</td>
+            <td>批准</td>
+            <td></td>
+        </tr>
+
+        <tr>
+            <td>&nbsp;</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>{{ technology.bianzhi.executor.last_name }}{{ technology.bianzhi.executor.first_name }}</td>
+            <td>{{ technology.shenhe.executor.last_name }}{{ technology.shenhe.executor.first_name }}</td>
+            <td>{{ technology.biaozhunhua.executor.last_name }}{{ technology.biaozhunhua.executor.first_name }}</td>
+            <td>{{ technology.huiqian.executor.last_name }}{{ technology.huiqian.executor.first_name }}</td>
+            <td>{{ technology.pizhun.executor.last_name }}{{ technology.pizhun.executor.first_name }}</td>
+            <td></td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td>更改标记</td>
+            <td>更改单号</td>
+            <td>签名</td>
+            <td>日期</td>
+            <td>更改标记</td>
+            <td>更改单号</td>
+            <td>签名</td>
+            <td>日期</td>
+            <td>{{ technology.bianzhi.date_added.date|date:"Y-m-d" }}</td>
+            <td>{{ technology.shenhe.date_added.date|date:"Y-m-d" }}</td>
+            <td>{{ technology.biaozhunhua.date_added.date|date:"Y-m-d" }}</td>
+            <td>{{ technology.huiqian.date_added.date|date:"Y-m-d" }}</td>
+            <td>{{ technology.pizhun.date_added.date|date:"Y-m-d" }}</td>
+            <td></td>
+        </tr>
+
+    </table>
+</td>
+</tr>
+</table>
+    <a id='btn_submit' class="pull-right btn btn-primary active" value="Confirm">{% trans 'Confirm' %}</a>
+</div>
+
+
+<script type="text/javascript">
+  $("#btn_submit").click(function(event) {
+    var technology_value = {};
+    $("[name='technology_level']").each(function(){
+      technology_value[$(this).attr('id')] = $(this).val();
+    });
+
+    // 工序数据
+    var operation_groups_value = new Array();
+    $("[name='operation_group_level']").each(function(){
+      var operation_group_a = {};
+      $(this).find("input,select option:selected").each(function(){
+        operation_group_a[$(this).attr('name')] = $(this).val();
+      });
+      operation_groups_value.push(operation_group_a);
+    });
+    var technology_value_str = JSON.stringify(technology_value);
+    var operation_groups_value_str = JSON.stringify(operation_groups_value);
+    // alert(technology_value_str + operation_groups_value_str);
+
+    // return;
+
+    $.ajax({
+      type: "POST",
+      url: "{% url ajax_edit_technology_verification %}",
+      dataType: "jsonp",
+      jsonp: "callback",
+      jsonpCallback:"yuankong",
+      data: {
+        technology_value_str:technology_value_str,
+        operation_groups_value_str:operation_groups_value_str,
+      },
+      success: function(data) {
+        if(data.result==0){
+          $.ajax({
+            type: "POST",
+            url: "{% url ajax_edit_technology technology.id %}",
+            dataType: "jsonp",
+            jsonp: "callback",
+            jsonpCallback:"yuankong",
+            data: {
+              technology_value_str:technology_value_str,
+              operation_groups_value_str:operation_groups_value_str,
+            },
+            success: function(data) {
+              if(data.result==0){
+                window.location.replace("{% url view_technology technology.id %}");
+              }else{
+                alert(data.msg)
+              }
+            },
+            error: function () {
+              alert('fail');
+            },
+          });
+        }else{
+          $("#verification").html("<div class='alert alert-danger alert-dismissable'>" + "<button type='button' class='close' data-dismiss='alert'>&times;</button>" + data.msg + "</div>");
+        }
+      },
+      error: function () {
+        alert('fail');
+      },
+    });
+
+  });
+
+// 删除行,修改为需要点击确认才删除
+$('.del-gy-row').on("click",function(e){
+    // 删除前确认
+    var is_delete_confirm = confirm('{% trans "are you sure delete this item?" %}');
+    if(is_delete_confirm == true){
+        // 获得当前行
+        var $row = $(this).closest('tr');
+        var og_id = $row.attr('data-operation-group-id');
+        var sn = parseInt($row.find('input[name="GX_GXH"]').val());
+        // 当前行的后面所有行的序号自减 1
+        $('.operation_group_field').each(function(){
+            var $this_row = $(this).closest('tr');
+            var this_sn = parseInt($this_row.find('input[name="GX_GXH"]').val());
+            if(this_sn > sn){
+                var new_sn = this_sn - 1;
+                console.log(new_sn);
+                $this_row.find('input[name="GX_GXH"]').val(new_sn);
+            }
+        });
+        // 移除当前行
+        $row.remove();
+    }
+    else{
+        return;
+    }
+});
+
+// 添加行
+$('.insert-after-gy-row').on("click",function(){
+    // 获得当前行
+    var $row = $(this).closest('tr');
+    // 当前行序号
+    var sn = parseInt($row.find('input[name="GX_GXH"]').val());
+    console.log(sn);
+    // 当前行之后的所有行序号自加 1
+    $('.operation_group_field').each(function(){
+        var $this_row = $(this).closest('tr');
+        var this_sn = parseInt($this_row.find('input[name="GX_GXH"]').val());
+        if(this_sn > sn){
+            var new_sn = this_sn + 1;
+            console.log(new_sn);
+            $this_row.find('input[name="GX_GXH"]').val(new_sn);
+        }
+    });
+
+    // 复制当前行
+    var $clone = $row.clone(true);
+    // 新行的序号自增1 
+    $clone.find('input[name="GX_GXH"]').val(sn+1);
+    // 新行的名称内容为空,由用户填写
+    $clone.find('input[name="GX_GXMC"]').val('');
+    $clone.find('input[name="GX_ID"]').val('');
+    // console.log($clone.find('.del-row').html());
+    $row.after($clone);
+});
+
+</script>
+
+{% endblock %}

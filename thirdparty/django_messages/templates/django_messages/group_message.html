@@ -1,0 +1,21 @@
+about
+ 
+<h1>撰写消息</h1>
+<form action="" method="post">
+<div style='display:none'><input type='hidden' name='csrfmiddlewaretoken' value='upfeTwLEsIuFtWjoXg3vp08WX8Cmk5HQ' /></div> 
+<table>
+<tr><th><label for="id_recipient">收信人:</label></th><td><input type="text" name="recipient" id="id_recipient" /></td></tr>
+<tr><th><label for="id_subject">主题:</label></th><td><input id="id_subject" type="text" name="subject" maxlength="120" /></td></tr>
+<tr><th><label for="id_body">消息主体:</label></th><td><textarea id="id_body" rows="12" cols="55" name="body"></textarea></td></tr>
+</table>
+<input type="submit" value="发送 &raquo;"/>
+</form>
+
+
+
+<ul class="subnavilist">
+    <li><a href="/messages/inbox/ ">&raquo;&nbsp;收件箱</a></li>
+    <li><a href="/messages/outbox/ ">&raquo;&nbsp;发送的消息</a></li>
+    <li><a href="/messages/compose/ ">&raquo;&nbsp;新消息</a></li>
+    <li><a href="/messages/trash/ ">&raquo;&nbsp;回收站</a></li>
+</ul>

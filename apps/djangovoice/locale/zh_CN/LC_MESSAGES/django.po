@@ -1,0 +1,389 @@
+# Django-voice Finnish translation.
+# Copyright (C) 2012
+# This file is distributed under the same license as the django-voice package.
+# Juho Rutila juho.rutila@iki.fi, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-07-02 07:53+0300\n"
+"PO-Revision-Date: 2015-04-22 18:38+0800\n"
+"Last-Translator: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.7.6\n"
+"Language-Team: \n"
+"Language: zh_CN\n"
+
+#: models.py:7
+msgctxt "status"
+msgid "Open"
+msgstr "开放的"
+
+#: models.py:8
+msgctxt "status"
+msgid "Closed"
+msgstr "关闭的"
+
+msgid "all"
+msgstr "全部"
+
+msgid "open"
+msgstr "公开的"
+
+msgid "closed"
+msgstr "关闭的"
+
+msgid "mine"
+msgstr "我的"
+
+#: models.py:17
+msgid "New feedback will have this status"
+msgstr "新的反馈将包含这个状态"
+
+#: models.py:37
+msgid "status"
+msgstr "状态"
+
+#: models.py:38
+msgid "statuses"
+msgstr "状态"
+
+#: models.py:50 templates/djangovoice/sidebar.html:13
+msgid "Type"
+msgstr "类型"
+
+#: models.py:51
+msgid "Title"
+msgstr "标题"
+
+#: models.py:53
+msgid "Description"
+msgstr "描述"
+
+#: models.py:55
+msgid ""
+"This will be viewable by other people - do not include any private details "
+"such as passwords or phone numbers here."
+msgstr ""
+"其他人也可以看到这个信息 - 但是私密信息不可见 比如： 密码 或者 电话号码"
+
+#: models.py:58
+msgid "Anonymous"
+msgstr "匿名"
+
+msgid "read more"
+msgstr "更多"
+
+msgid "Done"
+msgstr "已结束"
+
+msgid "Won't do"
+msgstr "否决的"
+
+#: models.py:59
+msgid "Do not show who sent this"
+msgstr "不要显示发件人"
+
+#: models.py:61
+msgid "Private"
+msgstr "私密"
+
+#: models.py:63
+msgid ""
+"Hide from public pages. Only site administrators will be able to view and "
+"respond to this"
+msgstr "不在公共页面显示。只有系统管理员可以看到，并且提供反馈。"
+
+#: models.py:66
+msgid "User"
+msgstr "用户"
+
+#: models.py:67
+msgid "E-mail"
+msgstr ""
+
+#: models.py:68
+msgid ""
+"You must provide your e-mail so we can answer to you. Alternatively you can "
+"bookmark next page and checkout for an answer later."
+msgstr "你必须提供你的电子邮件，这样我们才能给你反馈。"
+
+#: models.py:74 templates/djangovoice/sidebar.html:3
+msgid "Status"
+msgstr "状态"
+
+#: models.py:76
+msgid "Duplicate"
+msgstr "复制"
+
+#: models.py:101 models.py:102 templates/djangovoice/tags/widget.html:17
+msgid "feedback"
+msgstr "反馈"
+
+#: views.py:53
+msgid "Open Feedback"
+msgstr "当前反馈"
+
+#: views.py:56
+msgid "Closed Feedback"
+msgstr "关闭的反馈"
+
+#: views.py:59
+msgid "My Feedback"
+msgstr "我的反馈"
+
+#: views.py:62 templates/djangovoice/detail.html:4
+#: templates/djangovoice/feedback_base.html:16
+#: templates/djangovoice/submit.html:4 templates/djangovoice/submit.html:9
+#: templates/djangovoice/widget.html:9
+msgid "Feedback"
+msgstr "反馈"
+
+#: views.py:116
+msgid "Thanks for feedback."
+msgstr "感谢你的反馈"
+
+#: views.py:122
+msgid "Form is invalid."
+msgstr "表单暂时无法访问"
+
+#: templates/djangovoice/container.html:12
+msgid "DjangoVoice"
+msgstr "康春"
+
+#: templates/djangovoice/delete.html:4 templates/djangovoice/detail.html:9
+msgid "Delete"
+msgstr "删除"
+
+#: templates/djangovoice/delete.html:7
+msgid ""
+"Are you sure you wish to delete this feedback item completely, and all of "
+"the comments associated with it?"
+msgstr "您确定要删除这个反馈吗?"
+
+#: templates/djangovoice/delete.html:8
+msgid "There is <strong>no way to undo this!</strong>"
+msgstr "将无法恢复这条反馈"
+
+#: templates/djangovoice/delete.html:12
+msgid "Delete Permenantly"
+msgstr "永久删除"
+
+#: templates/djangovoice/delete.html:12
+msgid "or"
+msgstr "或"
+
+#: templates/djangovoice/delete.html:12
+msgid "leave everything as it is"
+msgstr "暂时不变"
+
+#: templates/djangovoice/detail.html:8 templates/djangovoice/edit.html:4
+msgid "Edit"
+msgstr "编辑"
+
+#: templates/djangovoice/detail.html:16
+msgid "Duplicate of"
+msgstr "重复"
+
+#: templates/djangovoice/detail.html:24
+#, python-format
+msgid ""
+"\n"
+"        from %(score.num_votes)s Vote%(score.num_votes|pluralize)s\n"
+"        "
+msgstr ""
+"\n"
+"         %(score.num_votes)s 投票%(score.num_votes|pluralize)s\n"
+"        "
+
+#: templates/djangovoice/detail.html:53 templates/djangovoice/list.html:44
+msgid "Submitted by:"
+msgstr "提交人:"
+
+#: templates/djangovoice/detail.html:54 templates/djangovoice/detail.html:55
+#: templates/djangovoice/list.html:45
+msgid "View profile"
+msgstr "查看 个人资料"
+
+#: templates/djangovoice/detail.html:57 templates/djangovoice/list.html:51
+msgid "Submitted anonymously"
+msgstr "匿名提交"
+
+#: templates/djangovoice/detail.html:60 templates/djangovoice/detail.html:98
+msgid "on"
+msgstr "日期："
+
+#: templates/djangovoice/detail.html:69
+#, python-format
+msgid "Comments (%(comment_count)s)"
+msgstr "评论 (%(comment_count)s)"
+
+msgid "%(comment_count|pluralize)s comment"
+msgstr "%(comment_count|pluralize)s 评论"
+
+#: templates/djangovoice/detail.html:86
+msgid "Staff"
+msgstr "工作人员"
+
+#: templates/djangovoice/detail.html:91
+msgid "From:"
+msgstr "发送人:"
+
+#: templates/djangovoice/detail.html:93
+msgid "you"
+msgstr "你"
+
+#: templates/djangovoice/detail.html:98
+msgid "at"
+msgstr ""
+
+#: templates/djangovoice/detail.html:108
+msgid "No one has commented. Have your say."
+msgstr "暂无评论"
+
+#: templates/djangovoice/detail.html:112
+msgid "Leave a comment"
+msgstr "留言"
+
+#: templates/djangovoice/detail.html:123
+msgid "Post comment"
+msgstr "提交"
+
+#: templates/djangovoice/edit.html:15
+msgid "Save"
+msgstr "保存"
+
+#: templates/djangovoice/feedback_base.html:8
+msgid "Latest feedback"
+msgstr "最新的反馈"
+
+#: templates/djangovoice/feedback_base.html:19
+#: templates/djangovoice/sidebar.html:7 templates/djangovoice/sidebar.html:17
+msgid "All"
+msgstr "全部"
+
+#: templates/djangovoice/feedback_base.html:20
+msgid "Open"
+msgstr "开放的"
+
+#: templates/djangovoice/feedback_base.html:21
+msgid "Closed"
+msgstr "关闭的"
+
+#: templates/djangovoice/feedback_base.html:22
+msgid "Mine"
+msgstr "我的"
+
+#: templates/djangovoice/feedback_base.html:24
+msgid "Subscribe to the feedback RSS feed"
+msgstr "使用RSS来获得即时更新。"
+
+#: templates/djangovoice/feedback_base.html:39
+msgid "Back to mainpage"
+msgstr "返回首页"
+
+#: templates/djangovoice/feedback_base.html:44
+msgid "Sign out"
+msgstr "登出"
+
+#: templates/djangovoice/feedback_base.html:51
+msgid "Sign in"
+msgstr "登录"
+
+msgid "Overview"
+msgstr "总览"
+
+msgid "New"
+msgstr "新的"
+
+msgid "Accepted"
+msgstr "接受的"
+
+msgid "Submit your feedback"
+msgstr "创建反馈"
+
+msgid "New Feedback"
+msgstr "新建反馈"
+
+msgid "Idea"
+msgstr "想法"
+
+#: templates/djangovoice/feedback_base.html:64
+msgid "Submit feedback"
+msgstr "提交反馈"
+
+#: templates/djangovoice/feedback_base.html:99
+msgid "Powered by YuanToo Tech. Ltd."
+msgstr "远途信息提供技术支持"
+
+#: templates/djangovoice/list.html:38
+#, python-format
+msgid "comment%(comment_count|pluralize)s"
+msgstr "评论 %(comment_count|pluralize)s"
+
+#: templates/djangovoice/list.html:56
+#, python-format
+msgid "on %(create_date)s"
+msgstr "%(create_date)s"
+
+#: templates/djangovoice/list.html:62
+msgid "PRIVATE"
+msgstr "隐私信息"
+
+#: templates/djangovoice/list.html:71
+msgid "first"
+msgstr "最先"
+
+#: templates/djangovoice/list.html:72
+msgid "previous"
+msgstr "前一个"
+
+#: templates/djangovoice/list.html:76
+msgid "Page"
+msgstr "页面"
+
+#: templates/djangovoice/list.html:76
+msgid "of"
+msgstr "/"
+
+#: templates/djangovoice/list.html:80
+msgid "next"
+msgstr "后一个"
+
+#: templates/djangovoice/list.html:81
+msgid "last"
+msgstr "最后"
+
+#: templates/djangovoice/list.html:86
+msgid ""
+"No one has contributed any feedback yet. Be the first and submit some "
+"feedback!"
+msgstr "暂时无人创建反馈。"
+
+#: templates/djangovoice/submit.html:20 templates/djangovoice/widget.html:46
+msgid "Submit"
+msgstr "提交"
+
+#: templates/djangovoice/widget.html:17
+msgid "Share your thoughts with us."
+msgstr "分享你的想法"
+
+#: templates/djangovoice/widget.html:26
+msgid "Title (required)"
+msgstr "标题"
+
+#: templates/djangovoice/widget.html:29
+msgid "Write your feedback here."
+msgstr "请在这里写下你的意见"
+
+#: templates/djangovoice/widget.html:53
+msgid "Please login to use feedback application."
+msgstr "请登录"
+
+#: templates/djangovoice/includes/fields.html:8
+msgid "required"
+msgstr "必须"

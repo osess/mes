@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %} {% trans "plan list" %} {% endblock %}
+
+{% block body %}
+<div>
+    <h2>{% trans "plan list" %}</h2>
+    <table border="1">
+        <tr>
+            <th>{% trans "manufactureplan" %}</th>            
+            
+        </tr>
+        {% for manufactureplan in manufactureplan_objects %}
+        <tr>
+            <td>
+            <a href="{% url generate_plan_report manufactureplan.id %}">{{manufactureplan}}</a>    
+            </td>        
+            
+        </tr>
+        {% endfor %}
+    </table>
+
+</div>
+
+{% endblock %}

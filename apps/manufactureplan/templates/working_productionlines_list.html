@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block head_title %} {% trans "working productionlines list" %} {% endblock %}
+
+{% block center_area %}
+<div class="container">
+	<h1>{% trans "working productionlines list" %}</h1>
+	<div class="bs-yuankong">
+	<table class="table table-bordered table-striped">
+		<thead>
+			<tr>
+				<th> {% trans "attribute name" %} </th>
+				<th> {% trans "operate" %} </th>
+				<th> {% trans "report" %} </th>
+			</tr>
+		</thead>
+		{% for productionline in productionlines %}
+		<tr>
+			<td>{{ productionline.name }}</td>
+			<td><a href="{% url productionline_states_list productionline.id %}"> {% trans "view" %} </a></td>
+			<td>
+				<a href="{% url generate_first_item_report productionline.id %}"> {% trans "generate_first_item_report" %} </a><br>
+				<a href="{% url generate_quality_report productionline.id %}"> {% trans "generate_quality_report" %} </a><br>
+				<a href="{% url generate_reject_project_report productionline.id %}"> {% trans "generate_reject_project_report" %} </a>
+			</td>
+		</tr>
+		{% endfor %}
+	</table>
+	</div>
+</div>
+{% endblock %}

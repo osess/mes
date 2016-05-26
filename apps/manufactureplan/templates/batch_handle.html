@@ -1,0 +1,229 @@
+{% load staticfiles %}
+{% load i18n %}
+
+
+<div id="id-modal-batch" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">×</button>
+            <h3> {{ modal_title }} </h3>
+        </div>
+        {% if is_batch_check %}
+            <form action="" method="post">
+            {% csrf_token %}
+            <div class="modal-body">
+                  {# 批量处理 #}
+                  {% for entry  in current_manufacture_items %}
+                  {% if entry.manufacture_item.current_operation_record.is_status_working or entry.manufacture_item.current_operation_record.is_status_qa_self_record or entry.manufacture_item.current_operation_record.is_status_qa_double_record or entry.manufacture_item.current_operation_record.is_status_qa_inspector_record%}
+
+                      {% if not entry.manufacture_item.excessive %}
+                      <p>
+                          {{ entry.manufacture_item }}
+                          <span class="pull-right">
+                              <label>
+                                  <input type="radio" class="checked_qualified" name="qualified-{{ entry.manufacture_item.id }}" data-mi-id="{{ entry.manufacture_item.id }}" value="2" />{% trans "unqualified" %}
+                              </label>
+                              <label>
+                                  <input type="radio" class="checked_qualified" name="qualified-{{ entry.manufacture_item.id }}" data-mi-id="{{ entry.manufacture_item.id }}" value="1" />{% trans "qualified" %}
+                              </label>
+                              <label>
+                                  <input type="radio" class="checked_qualified" name="qualified-{{ entry.manufacture_item.id }}" data-mi-id="{{ entry.manufacture_item.id }}" checked="checked" value="0" />{% trans "handle later" %}
+                              </label>
+                          </span>
+                      </p>
+                      {% comment %}
+                      <table class="table table-borded">
+                      <tr>
+                          <th>{% trans "attribute name" %}</th>
+                          <th>{% trans "ought" %}</th>
+                          <th>{% trans "real" %}</th>
+                      </tr>
+                      
+                      {% for product_attribute in entry.attributes %}
+                      <tr>
+                          <td>
+                              {{ product_attribute.attribute.name }}({{ product_attribute.attribute.unit }})
+                          </td>
+                          <td>
+                              {{ product_attribute.absolute_value }}({{ product_attribute.upper_deviation }}, {{ product_attribute.lower_deviation }})
+                          </td>
+                          <td>
+                                <input name="qa_fill" type="text" class="form-control" value="" data-mi="{{ entry.manufacture_item.id }}" data-attribute="{{ product_attribute.attribute.id }}" />
+                          </td>
+                      </tr>
+                      {% endfor %}
+                      </table>
+                      {% endcomment %}
+                      {% endif %}
+                  {% endif %}
+                  {% endfor %}
+            </div>
+            <div class="modal-footer">
+              <button class="btn" data-dismiss="modal">{% trans "Close" %}</button>
+              <button class="btn btn-primary form-submit" type="button">{{ modal_title }}</button>
+            </div>
+            </form>
+        {% else %}
+            <form action="{% url handle_batch_work_finished %}" method="post" id="id-form-work-finished">
+            {% csrf_token %}
+            <div class="modal-body">
+                <label>
+                    <input type="checkbox" id="id-check-all"> {% trans "Select All" %}
+                </label>
+
+                <div id="id-mis">
+                {% for mi in current_manufacture_items %}
+                    <p>
+                        <label>
+                            <input type="checkbox" name="mi" value="{{ mi.id }}"> {{ mi }}
+                        </label>
+                    </p>
+                {% endfor %}
+                </div>
+
+                <div class="note">
+                    <div class="title"> {% trans "batch note" %} </div>
+                    <div class="content">
+                        <textarea id="id-batch-note" name="note" class="form-control" rows="5"></textarea>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="modal-footer">
+              <button class="btn" data-dismiss="modal">{% trans "Close" %}</button>
+              <button class="btn btn-primary btn-finished-work" type="button">{{ modal_title }}</button>
+            </div>
+            </form>
+        {% endif %}
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    // 批量 检验
+    $('.form-submit').click(function(){
+        // 点击后禁用按钮
+        if (!$(this).hasClass('disabled')) {
+            $(this)[0].setAttribute("disabled","disabled");
+            $(this).html("正在执行");
+        }
+        // var record_values = new Array();
+        // $('input[name="qa_fill"]').each(function(){
+        //     record_values.push({
+        //       "attribute_id":$(this).data('attribute'),
+        //       "manufacture_item_id":$(this).data('mi'),
+        //       "value":$(this).val()});
+        // });
+        // var json_str = JSON.stringify(record_values);
+        var modal_dialog = $('#id-modal-batch');
+        // console.log(json_str);
+
+        // 合格
+        var qualified_values = new Array();
+        $('.checked_qualified:checked').each(function(){
+            var val = $(this).val();
+            var mi_id = $(this).data("mi-id");
+            qualified_values.push({
+                "mi_id":mi_id,
+                "qualified_value":val
+            });
+        });
+        var json_qualified_values = JSON.stringify(qualified_values);
+        // alert(json_qualified_values);
+        // return;
+
+        // 提交
+        $.ajax({
+            type: "POST",
+            url: "{% url handle_batch_check %}",
+            dataType:"json",
+            data:{
+                // attributes:json_str,
+                qualified_values:json_qualified_values,
+            },
+            success:function(response){
+                if(response.code == '0'){
+                    modal_dialog.modal('hide');
+                    window.location.reload();
+                }
+                else{
+                    alert(response.msg);
+                }
+                
+            },
+            error:function(e){
+                alert(e.msg);
+            }
+        });
+    });
+
+    // 全选
+    $('#id-check-all').on("click",function(){
+        if( $(this).prop("checked")){
+          $('input[name="mi"]').prop("checked",true);
+        }
+        else{
+          $('input[name="mi"]').prop("checked",false);
+        }
+    });
+
+    // 如果单选按钮全部选中，则全选按钮设置为选中
+    $('input[name="mi"]').on("click",function(){
+        var len_checked = $("input[name=mi]:checked").length;
+        var len_all = $("input[name=mi]").length;
+        if( (len_checked == len_all) && (len_all != 0) ){
+            $('#id-check-all').prop("checked",true);
+        }
+        else{
+            $('#id-check-all').prop("checked",false);
+        }
+    });
+
+    // 批量工作
+    $('.btn-finished-work').click(function(){
+        // 获取所有工件号
+        var mi_items = new Array();
+        $("input[name=mi]:checked").each(function(){
+            mi_items.push($(this).val());
+        });
+
+        // 至少选择一项
+        if (mi_items.length  == 0){
+            alert('{% trans "choose one item at least" %}');
+            return;
+        }
+        // 获取note
+        var note = $('#id-batch-note').val();
+
+        var modal_dialog = $('#id-modal-batch');
+
+        // 提交
+        $.ajax({
+            type:"POST",
+            url: "{% url handle_batch_work_finished %}",
+            dataType:"json",
+            traditional: true,
+            data:{
+                "mis":mi_items,
+                'note':note,
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+            success:function(response){
+                if(response.code == '0'){
+                    modal_dialog.modal('hide');
+                    window.location.reload();
+                }
+                else{
+                    alert(response.msg);
+                }
+            },
+            error:function(e){
+                alert(e.msg);
+            }
+        });
+    });
+
+});
+</script>

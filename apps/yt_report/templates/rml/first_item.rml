@@ -1,0 +1,190 @@
+{% load i18n %}
+{% load first_item_content %}
+<!DOCTYPE document SYSTEM "rml.dtd">
+<document filename="example_08.pdf">
+<template showBoundary="0" 
+pageSize="(29.7cm, 21cm)"
+>
+<pageTemplate id="main">
+
+    <frame id="first" x1="2cm" y1="1cm" width="26.7cm" height="19cm"/>
+
+
+</pageTemplate>
+</template>
+<stylesheet>
+<!-- A blockTableStyle tag for styling a table-->
+<blockTableStyle id="blocktablestyle1">
+    <blockFont name="Courier-Bold"/>
+    <blockFont name="Helvetica-BoldOblique" size="8"/>
+    <blockTextColor colorName="green"/>
+
+
+</blockTableStyle>
+
+
+<blockTableStyle id="blocktablestyle2">
+
+    <blockFont name="DejaVuSans" size="8"/>
+
+</blockTableStyle>
+
+    <blockTableStyle id="myBlockTableStyle1">
+      <!-- <blockSpan start="10,3" stop="14,4"/> -->
+      <blockFont name="DejaVuSans" size="8"/>
+      <blockTextColor colorName="black"/>
+      <lineStyle kind="GRID" colorName="black"/>
+
+        <blockSpan start="0,0" stop="1,1"/>
+        <blockSpan start="2,0" stop="3,0"/>
+        <blockSpan start="2,1" stop="3,1"/>
+        <blockSpan start="4,0" stop="7,1"/>
+        <blockSpan start="9,0" stop="11,0"/>
+        <blockSpan start="9,1" stop="11,1"/>
+        <blockSpan start="1,2" stop="2,2"/>
+        <blockSpan start="4,2" stop="5,2"/>
+        <blockSpan start="7,2" stop="8,2"/>
+        <blockSpan start="10,2" stop="11,2"/>
+        <blockSpan start="2,3" stop="9,3"/>
+        <blockSpan start="10,3" stop="11,4"/>
+        <blockSpan start="0,3" stop="0,4"/>
+        <blockSpan start="1,3" stop="1,4"/>
+    </blockTableStyle>
+
+
+    <blockTableStyle id="myBlockTableStyle">
+      <blockFont name="DejaVuSans" size="8"/>
+      <blockTextColor colorName="black"/>
+      <lineStyle kind="GRID" colorName="black"/>
+    </blockTableStyle>
+
+
+    <paraStyle name="textstyle1"
+    fontName="DejaVuSans"
+    fontSize="10"
+    textColor="black"
+    alignment="center" 
+    />
+    <paraStyle name="textstyle2"
+    fontName="DejaVuSans"
+    fontSize="8"
+    textColor="black"
+    alignment="center" 
+    />
+
+</stylesheet>
+<story>
+
+<blockTable style="myBlockTableStyle1"
+colWidths="2cm,2cm,2cm,2cm,2cm,2cm,2cm,2cm,2cm,2cm,2cm,2cm"
+>
+
+      <tr>
+        <td><para style="textstyle1">康春机械</para></td>
+        <td></td>
+        <td>任务编号</td>
+        <td></td>
+        
+            {% if productionline.is_item %}
+                <td><para style="textstyle1">{{ productionline.manufacture_items.all.0.code }} 三检实测数值记录卡</para></td>
+            {% else %}
+                <td><para style="textstyle1">工序首件三检实测数值记录卡</para></td>
+            {% endif %}
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>质控卡编号</td>
+        <td></td>
+        <td></td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td></td>
+        
+        {% if productionline.is_item %}
+            <td>{{ productionline.manufacture_items.all.0.manu_item_group.task_code|default_if_none:"&nbsp;" }}</td>
+        {% else %}
+            <td>{{ productionline.manu_item_groups.all.0.task_code|default_if_none:"&nbsp;" }}</td>
+        {% endif %}
+        
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>合格证编号</td>
+        <td></td>
+      </tr>
+
+      <tr>
+        <td>型号</td>
+        <td>{{ productionline.product.symbol }}</td>
+        <td></td>
+        <td>图号</td>
+        <td>{{ productionline.product.cad_code }}</td>
+        <td></td>
+        <td>名称</td>
+        <td>{{ productionline.product.name }}</td>
+        <td></td>
+        <td>数量</td>
+        {% if productionline.is_item %}
+        <td>1</td>
+        {% else %}
+        <td>{{ productionline.manu_item_groups.all.0.quantity }}</td>
+        {% endif %}
+        <td></td>
+      </tr>
+      <tr>
+        <td >工序</td>
+        <td >工种</td>
+        <td ><para style="textstyle2">三件实测数值记录</para></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+              
+        <td ><para style="textstyle1">检测人</para></td>
+        <td >&nbsp;&nbsp;&nbsp;&nbsp;        </td>  
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td >要求值</td>
+        <td >实测值</td>
+        <td >要求值</td>
+        <td >实测值</td>
+        <td >要求值</td>
+        <td >实测值</td>
+        <td >要求值</td>
+        <td >实测值</td>
+      </tr>
+
+    {% get_first_item_content productionline "rml" %}
+</blockTable>
+
+<blockTable style="myBlockTableStyle"
+colWidths="1cm,2cm,2cm,2cm,1cm,2cm,1cm,2cm,2cm,2cm,1cm,2cm,1cm,2cm,1cm">
+    <tr>
+        <td>编制</td>
+        <td></td>
+        <td>更改标记</td>
+        <td></td>
+        <td>签名</td>
+        <td></td>
+        <td>时间</td>
+        <td ></td>
+        <td>更改标记</td>
+        <td></td>
+        <td>签名</td>
+        <td></td>
+        <td>时间</td>
+        <td></td>
+        <td>共  页</td>
+    </tr>
+</blockTable>
+</story>
+</document>

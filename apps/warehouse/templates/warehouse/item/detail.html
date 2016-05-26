@@ -1,0 +1,11 @@
+{% load whse %}
+<form action="." method="POST">
+<table>
+{{ item_form }}
+</table>
+
+<table>  
+  {% show_locations %}
+  {% show_inventory_locations item %}
+</table>
+

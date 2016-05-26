@@ -1,0 +1,412 @@
+
+{% load i18n %}
+
+
+{% block center_area %}
+    <style type="text/css">
+
+        .selectpicker {
+                width:95px;
+                
+                
+                }
+
+        option  {
+                white-space: pre;
+        }
+        td      {
+                text-align:center;
+                 }
+    </style>
+
+
+
+<!-- Button trigger modal -->
+<!-- <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  Launch demo modal
+</button> -->
+
+
+
+<!-- Modal -->
+<!-- <div> -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">选择刀具</h4>
+      </div>
+      <div class="modal-body">
+<!--         ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<!-- <div class="container"> -->
+
+<table class="table table-bordered table-striped">
+  <tr>
+    <td>刀具类型</td>
+    <td>材质</td>
+    <td>直径</td>
+    <td>Dø</td>
+    <td>R角度</td>
+  </tr>
+
+
+  <tr>
+    <td>
+      <select class="selectpicker" style="width:100px" name="kind_of_knife" id="kind_of_knife" size="4">
+      </select>
+    </td>
+
+
+    <td>
+      <select class="selectpicker select-attribute" name="caizhi" id="caizhi" size="4">
+          <!-- <option value=''>空</option> -->
+      </select>
+    </td>
+
+    <td>
+      <select class="selectpicker select-attribute" name="zhijing" id="zhijing" size="4">
+          <!-- <option value=''>空</option> -->
+      </select>
+    </td>
+
+    <td>
+      <select class="selectpicker select-attribute" name="D" id="D" size="4">
+          <!-- <option value=''>空</option> -->      </select>
+    </td>
+
+    <td>
+      <select class="selectpicker select-attribute" name="R_angle" id="R_angle" size="4">
+          <!-- <option value=''>空</option> -->
+      </select>
+    </td>
+  </tr>
+
+<tr>
+    <td>总长</td>
+    <td>直升位</td>
+    <td>刃长</td>
+    <td>刃数</td>
+    <td>规格</td>
+   </tr>
+
+  <tr>
+    <td>
+      <select class="selectpicker select-attribute" name="total_length" id="total_length" size="4">
+          <!-- <option value=''>空</option> -->
+      </select>
+    </td>
+
+    <td>
+      <select class="selectpicker select-attribute" name="zhishengwei" id="zhishengwei" size="4">
+          <!-- <option value=''>空</option> -->
+      </select>
+    </td>
+
+    <td>
+      <select class="selectpicker select-attribute" name="blade_length" id="blade_length" size="4">
+          <!-- <option value=''>空</option> -->
+      </select>
+    </td>
+
+    <td>
+      <select class="selectpicker select-attribute" name="blade_amount" id="blade_amount" size="4">
+          <!-- <option value=''>空</option> -->
+      </select>
+    </td>
+
+    <td>
+      <select class="selectpicker select-attribute" name="specification" id="specification" size="4">
+          <!-- <option value=''>空</option> -->
+      </select>
+    </td>
+
+
+</tr>
+
+<tr>
+  <td id="knife-amount"></td>
+  <td id="knife-chose" colspan="4" >
+      <select class="selectpicker" style="width:430px;" name="knifes" id="knifes" size="4">
+
+      </select>
+  </td>
+  <!-- <td></td> -->
+</tr>
+
+</table>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" id="close-modal">关闭</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" id="confirm-modal">确定</button>
+      </div>
+
+    </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+
+  $.ajaxSetup({
+    beforeSend: function(xhr, settings) {
+      function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie != '') {
+          var cookies = document.cookie.split(';');
+          for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+              cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+              break;
+            }
+          }
+        }
+        return cookieValue;
+      }
+      if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+        // Only send the token to relative URLs i.e. locally.
+        xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+      }
+    }
+  });
+
+	$("#kind_of_knife").change(function(event) {
+
+      var kind_of_knife =  $('#kind_of_knife').val();
+      var caizhi =  $('#caizhi').val();
+      var zhijing =  $('#zhijing').val();
+      var D =  $('#D').val(); 
+      var R_angle =  $('#R_angle').val(); 
+      var total_length =  $('#total_length').val(); 
+      var zhishengwei =  $('#zhishengwei').val();
+      var blade_length =  $('#blade_length').val();
+      var blade_amount =  $('#blade_amount').val();
+      var specification =  $('#specification').val();
+      var knife_selected =  $('#knifes').val();
+
+	    $.ajax({
+	        type: "POST",
+	        url: "{% url ajax_knife_attribute_data %}",
+            dataType: "jsonp",
+            jsonp: "callback",
+	        jsonpCallback:"yuankong",
+          data: {kind_of_knife:kind_of_knife,
+                caizhi:caizhi,
+                zhijing:zhijing,
+                D:D,
+                R_angle:R_angle,
+                total_length:total_length,
+                zhishengwei:zhishengwei,
+                blade_length:blade_length,
+                blade_amount:blade_amount,
+                specification:specification,
+                knife_selected:knife_selected
+              },
+
+	        success: function(data) {
+
+            $("#caizhi").empty().append(function() {
+              var output = "<option value='empty'>空</option>";
+              $.each(data.caizhi, function(i, val) {
+                  output += '<option>' + val["value"] + '</option>';
+              });
+              return output;
+            });
+
+
+            $("#zhijing").empty().append(function() {
+              var output = "<option value='empty'>空</option>";
+              $.each(data.zhijing, function(i, val) {
+                  output += '<option>' + val["value"] + '</option>';
+              });
+              return output;
+            });
+
+            $("#D").empty().append(function() {
+              var output = "<option value='empty'>空</option>";
+              $.each(data.D, function(i, val) {
+                  output += '<option>' + val["value"] + '</option>';
+              });
+              return output;
+            });
+
+            $("#R_angle").empty().append(function() {
+              var output = "<option value='empty'>空</option>";
+              $.each(data.R_angle, function(i, val) {
+                  output += '<option>' + val["value"] + '</option>';
+              });
+              return output;
+            });
+
+
+            $("#total_length").empty().append(function() {
+              var output = "<option value='empty'>空</option>";
+              $.each(data.total_length, function(i, val) {
+                  output += '<option>' + val["value"] + '</option>';
+              });
+              return output;
+            });
+
+            $("#zhishengwei").empty().append(function() {
+              var output = "<option value='empty'>空</option>";
+              $.each(data.zhishengwei, function(i, val) {
+                  output += '<option>' + val["value"] + '</option>';
+              });
+              return output;
+            });
+
+            $("#blade_length").empty().append(function() {
+              var output = "<option value='empty'>空</option>";
+              $.each(data.blade_length, function(i, val) {
+                  output += '<option>' + val["value"] + '</option>';
+              });
+              return output;
+            });
+
+            $("#blade_amount").empty().append(function() {
+              var output = "<option value='empty'>空</option>";
+              $.each(data.blade_amount, function(i, val) {
+                  output += '<option>' + val["value"] + '</option>';
+              });
+              return output;
+            });                     
+            
+
+            $("#specification").empty().append(function() {
+              var output = "<option value='empty'>空</option>";
+              $.each(data.specification, function(i, val) {
+
+                  var value = val["value"]
+                  value = value.replace(/\s/g, "&nbsp;");
+                  output += '<option><pre>' + value + '</pre></option>';
+              });
+              return output;
+            });          
+
+            $("#knifes").empty();
+            $("#knife-amount").empty();
+	        },
+	        error: function () {
+	            // alert('get attribute fail');
+	        }
+	    });
+	});
+
+
+//return knife
+  $(".select-attribute").change(function(event) {
+
+      var kind_of_knife =  $('#kind_of_knife').val();
+      var caizhi =  $('#caizhi').val();
+      var zhijing =  $('#zhijing').val();
+      var D =  $('#D').val(); 
+      var R_angle =  $('#R_angle').val(); 
+      var total_length =  $('#total_length').val(); 
+      var zhishengwei =  $('#zhishengwei').val();
+      var blade_length =  $('#blade_length').val();
+      var blade_amount =  $('#blade_amount').val();
+      var specification =  $('#specification').val();
+      var knife_selected =  $('#knifes').val();
+
+      $("#knife-amount").html("<img src='/site_media/images/load.gif'>")
+      $("#knifes").html("<td style='text-align:center; padding: 0px;'><img src='/site_media/images/load.gif'></td>")
+
+      $.ajax({
+          type: "POST",
+          url: "{% url ajax_knife_attribute_data %}",
+            dataType: "jsonp",
+            jsonp: "callback",
+          jsonpCallback:"yuankong",
+          data: {kind_of_knife:kind_of_knife,
+                caizhi:caizhi,
+                zhijing:zhijing,
+                D:D,
+                R_angle:R_angle,
+                total_length:total_length,
+                zhishengwei:zhishengwei,
+                blade_length:blade_length,
+                blade_amount:blade_amount,
+                specification:specification,
+                knife_selected:knife_selected,
+ 
+              },
+          // $("#knife-amount").html("<td style='text-align:center; padding: 0px;'><img src='/site_media/images/load.gif'></td>")
+          success: function(data) {
+
+            $("#knifes").empty().append(function() {
+              var output = '';
+              $.each(data.knifes_description, function(i, val) {
+                  output += '<option value=' + val[0] +'>' + val[1]+ '</option>';
+              });
+              return output;
+            });
+
+            var amount_of_knifes = data.knifes_description;
+            $("#knife-amount").text("可选刀数量: " + amount_of_knifes.length);
+            // $("#knife-amount").html(amount_of_knifes.length);
+          },
+          error: function () {
+              // alert('get knife fail');
+          }
+      });
+  });
+
+
+  $("#knifes").change(function(event) {
+
+      var kind_of_knife =  $('#kind_of_knife').val();
+      var caizhi =  $('#caizhi').val();
+      var zhijing =  $('#zhijing').val();
+      var D =  $('#D').val(); 
+      var R_angle =  $('#R_angle').val(); 
+      var total_length =  $('#total_length').val(); 
+      var zhishengwei =  $('#zhishengwei').val();
+      var blade_length =  $('#blade_length').val();
+      var blade_amount =  $('#blade_amount').val();
+      var specification =  $('#specification').val();
+      var knife_selected =  $('#knifes').val();
+
+      $.ajax({
+          type: "POST",
+          url: "{% url ajax_knife_attribute_data %}",
+            dataType: "jsonp",
+            jsonp: "callback",
+          jsonpCallback:"yuankong",
+          data: {kind_of_knife:kind_of_knife,
+                caizhi:caizhi,
+                zhijing:zhijing,
+                D:D,
+                R_angle:R_angle,
+                total_length:total_length,
+                zhishengwei:zhishengwei,
+                blade_length:blade_length,
+                blade_amount:blade_amount,
+                specification:specification,
+                knife_selected:knife_selected
+              },
+
+          success: function(data) {
+
+            $("#confirm-modal").attr("disabled",false);
+
+          },
+          error: function () {
+              // alert('get knife fail');
+          }
+      });
+  });
+
+</script>
+{% endblock %}

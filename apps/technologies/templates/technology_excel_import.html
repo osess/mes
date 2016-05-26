@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block head_title %} {% trans "technology files list" %} {% endblock %}
+
+{% block center_area %}
+<div class="container">
+	<h1>{% trans "technology files list" %}</h1>
+    <a class="btn btn-default active" href="{{redirecturl}}">{% trans '返回' %}</a>
+    <div class="bs-yuankong">
+	<form action="{% url technology_excel_import %}?next={{ redirecturl }}" method="post" enctype="multipart/form-data">
+		{% csrf_token %}
+		<input type="file" name="file" required />
+		<input type="submit" class="btn " value={% trans "upload file" %} />
+	</form>
+    {% if false_objects %}
+        <hr>
+        {% for object in false_objects %}
+            {{ object }}<br>
+        {% endfor %}
+    {% endif %}
+	</div>
+</div>
+{% endblock %}

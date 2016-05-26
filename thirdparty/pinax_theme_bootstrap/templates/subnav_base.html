@@ -1,0 +1,22 @@
+{% extends "site_base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% block extra_head_base %}
+    <!--link href="{% static "css/metro-bootstrap.min.css" %}" rel="stylesheet">
+
+    <script src="{% static "js/metro.min.js" %}"></script-->
+
+    <link href="{% static "bs/css/bootswatch.min.css" %}" rel="stylesheet">
+
+    <script src="{% static "bs/js/bootswatch.js" %}"></script>
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-6" role="main">
+                 {% block center_area %}
+                 {% endblock %}
+        </div>
+    </div>
+{% endblock %}

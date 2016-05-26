@@ -1,0 +1,92 @@
+{% load staticfiles %}
+{% load i18n %}
+
+
+<div id="id-modal-new-qa" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">×</button>
+            <h3 id="id-modal-title"> {{ mi.code }} </h3>
+        </div>
+            <div class="modal-body">
+                {# tabs菜单 #}
+                <!-- ---------------------------------------------------------------- -->
+                <ul class="nav nav-tabs" role="tablist">
+                {% for qa_record in mi.self_records.all %}
+                  {% if forloop.first %}
+                  <li role="presentation" class="active" data-title="{{ qa_record }}" class="ch_title" >
+                  {% else %}
+                  <li role="presentation" data-title="{{ qa_record }}" class="ch_title">
+                  {% endif %}
+                      <a href="#tab-{{ qa_record.id }}" aria-controls="aria-controls-{{ qa_record.id }}" role="tab" data-toggle="tab" title="{{ qa_record.created_at|date:"Y-m-d H:i:s" }}">
+                          {{ qa_record.get_type_display }} 
+                          {# 如果存在不合格的检验记录，tab上显示一个红叉 #}
+                          {% if qa_record.is_excessive_qa_record_attributes_exists %}
+                            <i class="text-danger glyphicon glyphicon-remove"></i>
+                          {% endif %}
+                      </a>
+                  </li>
+                {% endfor %}
+                </ul>
+                <!-- ---------------------------------------------------------------- -->
+
+                {# tabs 内容#}
+                <div class="tab-content">
+                {% for qa_record in mi.self_records.all %}
+                      {% if forloop.first %}
+                      <div role="tabpanel" class="tab-pane active" id="tab-{{ qa_record.id }}">
+                      {% else %}
+                      <div role="tabpanel" class="tab-pane" id="tab-{{ qa_record.id }}">
+                      {% endif %}
+                          <p>
+                              {{ qa_record.created_at|date:"Y-m-d H:i:s" }}
+                          </p>
+                          <table class="table table-bordered">
+                              <tr>
+                                <th>{% trans "attribute name" %}</th>
+                                <th>{% trans "ought" %}</th>
+                                <th>{% trans "real" %}</th>
+                              </tr>
+                              {% for qa_record_attribute in qa_record.qa_record_attributes.all %}
+                              <tr>
+                                  <td> {{ qa_record_attribute.attribute.name }} ({{ qa_record_attribute.attribute.unit }})</td>
+                                  <td>
+                                      {{ qa_record_attribute.product_attribute.absolute_value }}({{ qa_record_attribute.product_attribute.upper_deviation }},{{ qa_record_attribute.product_attribute.lower_deviation }})
+                                  </td>
+                                  {% if qa_record_attribute.excessive %}
+                                  <td bgcolor='#d9534f'>
+                                  {% else %}
+                                  <td>
+                                  {% endif %}
+                                    {{ qa_record_attribute.absolute_value }}
+                                  </td>
+                              </tr>
+                              {% endfor %}
+                          </table>
+                      </div>
+                {% endfor %}
+                </div>
+
+            </div>
+            <div class="modal-footer">
+              <button class="btn" data-dismiss="modal">{% trans "Close" %}</button>
+            </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    // 初始化时，加载 modal 的title 内容
+    var title = $('.modal-body ul li[class="active"]').data('title');
+    $('#id-modal-title').html(title);
+
+
+    // 改变 title 名称
+    $('.ch_title').click(function(){
+        var title = $(this).data('title');
+        $('#id-modal-title').html(title);
+    });
+});
+</script>

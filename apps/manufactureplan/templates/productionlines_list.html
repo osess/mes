@@ -1,0 +1,255 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block head_title %} {% trans "productionlines list" %} {% endblock %}
+
+{% block center_area %}
+
+<link rel="stylesheet" type="text/css" href="/site_media/xadmin/css/themes/bootstrap-xadmin.css" />
+<link href="/site_media/xadmin/vendor/font-awesome/css/font-awesome.css" type="text/css" media="screen" rel="stylesheet" />
+<link href="/site_media/xadmin/css/xadmin.main.css" type="text/css" media="screen" rel="stylesheet" />
+<link href="/site_media/xadmin/css/xadmin.responsive.css" type="text/css" media="screen" rel="stylesheet" />
+<link href="/site_media/xadmin/css/xadmin.form.css" type="text/css" media="screen" rel="stylesheet" />
+
+{% if perms.manufactureplan.change_productionline %}
+<div class="container">
+	<h1>{% trans "productionlines list" %}</h1>
+	<div class="bs-yuankong">
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th> {% trans "name" %} </th>
+                <th> {% trans "product" %} </th>
+                <th> {% trans "数量" %} </th>
+				<th> 分配设备 </th>
+				<th> {% trans "operate" %} </th>
+				<th> {% trans "当前状态" %} </th>
+				<th> {% trans "report" %} </th>
+                <th> {% trans "files" %} </th>
+                <!--{#<th> 炉批号 </th>#}-->
+			</tr>
+		</thead>
+		{% for manufactureplan in manufactureplans %}
+    		<tr>
+                <td colspan='9' bgcolor="#DDDDDD">
+                    <a name="show_manufactureplan_modal" hide="{{manufactureplan.id}}" mname="{{manufactureplan}}" data-toggle="modal" href="#ManufactureplanDetail">{{ manufactureplan }}</a>
+                </td>
+    		</tr>
+    		{% for manu_item_group in manufactureplan.manu_item_groups.all %}
+            {% if manu_item_group.productionline %}
+    		<tr>
+                <td bgcolor='{% if manu_item_group.productionline.is_working %}#FFFF00{% endif %}{% if manu_item_group.productionline.is_finished %}#00FF00{% endif %}'>{{ manu_item_group.productionline }}</td>
+                <td>
+                    {{ manu_item_group.product }}
+                </td>
+                <td>
+                    {{ manu_item_group.quantity }}
+                </td>
+                <td><!--TODO-->
+    				<a href="{% url productionline_view_devices manu_item_group.productionline.id %}?next={{request.path}}" class="text-success">{% trans "查看设备" %}</a>
+                </td>
+    			<td>
+    				<a href="{% url productionline_states_list manu_item_group.productionline.id %}?next={{request.path}}"> {% trans "工步详情" %} </a>
+    			</td>
+    			<td>
+    				{% if manu_item_group.productionline.is_finished %}
+    				    <span class="text-success">{% trans "生产完成" %}</span>
+                    {% else %}
+                        {% if manu_item_group.productionline.is_working %}
+                        <span class="text-warning">{% trans "生产中" %}</span>
+                        {% else %}
+                            {% if not manu_item_group.item_entries_ok %}
+                                {% if manu_item_group.is_item_entries_ready %}
+                                    <a class="cannot_start_workflow btn btn-default text-danger active btn-xs">物品准备已就绪</a>
+                                {% else %}
+                                    <a class="cannot_start_workflow btn btn-default text-danger btn-xs">正在准备物品</a>
+                                {% endif %}
+                                {% if manu_item_group.productionline.has_devices %}
+                                    <a class="cannot_start_workflow btn btn-default text-danger active btn-xs">设备准备已就绪</a>
+                                {% else %}
+                                    <a class="cannot_start_workflow btn btn-default text-danger btn-xs">正在准备设备</a>
+                                {% endif %}
+                            {% else %}
+                                {% if not manu_item_group.productionline.technology.P_file %}
+                                <a id="cannot_start_workflow" class="btn btn-default text-danger active btn-xs" disabled="disabled">请上传程式文件</a>
+                                {% else %}
+                                    {% if manu_item_group.productionline.is_waiting %}
+                                        {% if not manu_item_group.productionline.technology.workflow %}
+                                            <a id="cannot_start_workflow" class="btn btn-default text-danger active btn-xs" disabled="disabled">请初始化工艺</a>
+                                        {% else %}
+                                            <a name="start_workflow" hide="{{manu_item_group.id}}" class="btn btn-primary active btn-xs"> {% trans "开始生产" %}</a>
+                                        {% endif %}
+                                    {% endif %}
+                                {% endif %}
+                            {% endif %}
+                        {% endif %}
+    				{% endif %}
+    			</td>
+    			<td>
+                {% if manu_item_group.productionline.is_working or manu_item_group.productionline.is_finished %}
+                    <a href="{% url generate_first_item_report manu_item_group.productionline.id %}" target="_blank"> {% trans "三检记录卡" %}</a>
+                    <a href="{% url generate_first_item_pdf manu_item_group.productionline.id %}" target="_blank"><span class="label label-success">pdf</span></a>
+    				<a href="{% url generate_quality_report manu_item_group.productionline.id %}" target="_blank"> {% trans "质量控制表" %}</a>
+                    <a href="{% url generate_quality_pdf manu_item_group.productionline.id %}" target="_blank"><span class="label label-success">pdf</span></a>
+    				<a href="{% url generate_reject_project_report manu_item_group.productionline.id %}" target="_blank"> {% trans "质量记录表" %}</a>
+                    <a href="{% url generate_reject_project_pdf manu_item_group.productionline.id %}" target="_blank"><span class="label label-success">pdf</span></a>
+                {% endif %}
+                </td>
+                <td>
+                    {% with file=manu_item_group.productionline.technology.T_file %}
+                      {% if file %}
+                        <a href="{% url download_directory_file file.id %}">下载工艺文件</a>
+                      {% else %}
+                        没有工艺文件
+                      {% endif %}
+                    {% endwith %}
+                </td>
+    		</tr>
+            {% endif %}
+    		{% endfor %}
+		{% endfor %}
+	</table>
+	</div>
+</div>
+{% else %}
+    <h1 class="text-danger">您没有权限访问此页面。</h1>
+{% endif %}
+
+<!-- Modal:AddMIGColumnModal -->
+<div id="AddMIGColumnModal" class="modal fade detail-modal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 id="AddMIGColumnModalTitle" class="modal-title"></h4>
+      </div>
+      <div id="AddMIGColumnModalBody" class="modal-body">
+        <div class="form-container row clearfix" >
+            <div id="column-0" class="formColumn column form-column full col col-sm-12 form-horizontal"  horizontal="True" span="12">
+                <div class="panel panel-default fieldset unsort no_title" id="box-0" >
+                    <div class="panel-body " >
+                        {% csrf_token %}
+                        <div id="div_id_cad_code" class="value form-group row">
+                            <div class="control-label">{% trans 'furnace batch' %}</div>
+                            <div class="controls">
+                                <p class="form-control-static ">
+                                    <input id="id_furnace_batch" type="text" maxlength="30" />
+                                    <input id="id_mig_id" type="hidden" />
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="close_add_column_modal" class="btn btn-default" data-dismiss="modal" aria-hidden="true">{% trans 'Close' %}</button>
+        <button id="ok_add_column_modal" class="btn btn-primary active">确认</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal:ManufactureplanDetail -->
+<div id="ManufactureplanDetail" class="modal fade detail-modal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 id="ManufactureplanDetailTitle" class="modal-title"></h4>
+      </div>
+      <div id="ManufactureplanDetailBody" class="modal-body">
+      </div>
+      <div class="modal-footer">
+        <button id="close_manufactureplan_modal" class="btn btn-default" data-dismiss="modal" aria-hidden="true">{% trans 'Close' %}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+
+    $("[name='add_mig_column_btn']").click(function(event) {
+        var mig_id = $(this).attr('hide');
+        var mname = $(this).attr('mname');
+        var furnace_batch = $(this).attr('fb');
+        $("#id_furnace_batch").val(furnace_batch);
+        $("#AddMIGColumnModalTitle").html(mname);
+        $("#id_mig_id").val(mig_id);
+    });
+    $("#close_add_column_modal").click(function(event) {
+        $("#id_furnace_batch").val("");
+        $("#AddMIGColumnModalTitle").html("");
+        $("#id_mig_id").val("");
+    });
+    $("#ok_add_column_modal").click(function(event) {
+        var mig_id = $("#id_mig_id").val();
+        var furnace_batch = $("#id_furnace_batch").val();
+        $.ajax({
+            type: "GET",
+            data:{furnace_batch:furnace_batch},
+            url: "{% url ajax_update_mig_column 999 %}".replace (999,mig_id),
+            success: function(data) {
+                $('#AddMIGColumnModal').modal('hide');
+                window.location.replace(window.location.pathname);
+            },
+            error: function () {
+                alert('fail');
+                $('#AddMIGColumnModal').modal('hide');
+            }
+        });
+    });
+
+    $("[name='show_manufactureplan_modal']").click(function(event) {
+        var manufactureplan_id = $(this).attr('hide');
+        var mname = $(this).attr('mname');
+        $.ajax({
+            type: "GET",
+            url: "{% url admin:manufactureplan_manufactureplan_changelist %}"+manufactureplan_id+"/detail/?_format=html",
+            success: function(data) {
+              $("#ManufactureplanDetailTitle").html(mname);
+              $("#ManufactureplanDetailBody").html(data);
+            },
+            error: function () {
+                alert('fail');
+            }
+        });
+    });
+    $("#close_manufactureplan_modal").click(function(event) {
+        $("#ManufactureplanDetailTitle").html("");
+        $("#ManufactureplanDetailBody").html("");
+    });
+
+    $("[name='start_workflow']").click(function(event) {
+        if (!$(this).hasClass('disabled')) {
+            $(this)[0].setAttribute("disabled","disabled");
+            $(this).html("正在执行");
+        }
+        var manu_item_group_id = $(this).attr("hide");
+        $('#loading_modal').modal('show');
+        $.ajax({
+            type: "POST",
+            url: "{% url ajax_productionline_start_workflow %}",
+            dataType: "jsonp",
+            jsonp: "callback",
+            jsonpCallback:"yuankong",
+            data: {manu_item_group_id:manu_item_group_id,},
+            success: function(data) {
+                if (data.result !=0 ){
+                    alert(data.state);
+                }else{
+                    window.location.replace(window.location.pathname);
+                }
+                $('#loading_modal').modal('hide');
+            },
+
+            error: function () {
+                $('#loading_modal').modal('hide');
+                alert('fail');
+            }
+        });
+    });
+
+</script>
+
+{% endblock %}

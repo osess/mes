@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %} {% trans "bom detail" %} {% endblock %}
+
+{% block center_area %}
+
+<div class="container">
+	<h1>{% trans "bom detail" %}</h1>
+	<div class="bs-yuankong">
+	<table class="table table-bordered table-striped">
+		<thead>
+	  	<tr>
+		    <th>{% trans "name" %}</th>
+		    <th>{% trans "unit" %}</th>
+		    <th>{% trans "quantity" %}</th>
+		    <th>{% trans "finish time" %}</th>
+		    <th>库存</th>
+		    <th>{% trans "state" %}</th>
+	  	</tr>
+		</thead>
+	  	{% for bom in bom_entry_list %}
+	  	{% if bom.bom_category == 1 %}
+	  	<tr>
+		    <td>{{bom.item.content_object.name}}</td>
+		    <td>{{bom.unit}}</td>
+		    <td>{{bom.qty}}</td>
+		    <td>{{bom.finish_time}}
+		    <td>{{bom.sum_qty}}
+		    <td>{{bom.get_state_display}}</td>
+	  	</tr>
+	  	{% endif %}
+	  	{% endfor %}
+	</table>
+
+	{% if bom_entry_list.0.productionline.manufactureplan_output_status != 'all_output' %}
+		<a class="btn btn-default active" href="{% url bom_output productionline_id %}">{% trans "output all" %}</a>
+		<a class="btn btn-default active" href="#">{% trans "denail" %}</a>
+	{% endif %}
+	<a class="btn btn-default active" href="{{redirecturl}}">{% trans "back" %}</a>
+</div>
+</div>
+
+{% endblock %}

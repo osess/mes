@@ -1,0 +1,35 @@
+{% extends "theme_base.html" %}
+
+{% load metron_tags %}
+{% load i18n %}
+
+{% block main_class %}{% endblock %}
+
+{% block nav %}
+	<li>
+	  <a href="{% url about_us %}"><strong>公司简介</strong></a>
+	</li>
+	<!--li>
+	  <a href="../css/"><strong>通讯录</strong></a>
+	</li-->
+	<li>
+	  <a href="{% url blog %}"><strong>公告栏</strong></a>
+	</li>
+	<li>
+	  <a href="{% url djangovoice_home %}"><strong>意见箱</strong></a>
+	</li>
+    {% if user.is_authenticated %}
+        {% include "includes/yt_menu.html" %}
+        {% include "includes/yt_notification.html" %}
+    {% endif %}
+{% endblock %}
+
+{% block footer %}
+    {% include "includes/yt_loading.html" %}
+    {% include "_footer.html" %}
+{% endblock %}
+
+{% block extra_body_base %}
+    {% analytics %}
+    {% block extra_body %}{% endblock %}
+{% endblock %}

@@ -1,0 +1,89 @@
+{% extends "djangovoice/base.html" %}
+
+{% load i18n %}
+{% load url from future %}
+{% load djangovoice_tags comments %}
+{% load vote_buttons_for from qhonuskan_votes %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block navbottom %}
+  {% include "djangovoice/includes/navbottom.html" with active_tab='overview' %}
+{% endblock %}
+
+{% block content %}
+  <div class="content-spaces">
+    <h1 class="page-title">{{ title }}</h1>
+  </div>
+
+  {% if object_list %}
+    <ul class="feedback-list">
+      {% for object in object_list %}
+        {% get_comment_count for object as comment_count %}
+
+        <li class="feedback-type-{{ object.type.slug }}{% if object.private %} feedback-private{% endif %}">
+          <span class="pull-right feedback-type feedback-type-{{ object.type.slug }}">
+            {% trans object.type.title %}
+          </span>
+          <span class="pull-right feedback-status feedback-status-{{ object.status.slug }}">
+            {% trans object.status.title %}
+          </span>
+          {% if object.private %}
+            <span class="pull-right feedback-type">
+              {% trans "PRIVATE" %}
+            </span>
+          {% endif %}
+
+          {% vote_buttons_for object "djangovoice/includes/vote_buttons.html" %}
+
+          <div class="details">
+            <h3>
+              <a href="{{ object.get_absolute_url }}">
+                {{ object.title }}
+              </a>
+            </h3>
+
+            <p>
+              <span class="feedback-user">
+                {% if object.user %}
+                  {% trans "Submitted by:" %}
+                  <!--a href="{{ object.user.get_absolute_url }}" class="avatar" title="{% trans "View profile" %}">
+                    {% get_user_image object.user 15 %}
+                  </a-->
+
+                  <a href="{{ object.user.get_absolute_url }}" title="View profile">
+                    {{ object.user|display_name }}
+                  </a>
+                {% else %}
+                  {% trans "Submitted anonymously" %}
+                {% endif %}
+              </span>
+
+              <span class="feedback-date">
+                {% blocktrans with object.created|date:"d M Y" as create_date %}on {{ create_date }}{% endblocktrans %}
+              </span>
+
+              <span class="feedback-comments">
+                <a href="{{ object.get_absolute_url }}">
+                  {% blocktrans count counter=comment_count %}
+                    {{ counter }} comment
+                  {% plural %}
+                    {{ counter }} comments
+                  {% endblocktrans %}
+                </a>
+              </span>
+            </p>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p class="content-spaces">
+      {% trans "No one has contributed any feedback yet. Be the first and submit some feedback!" %}
+    </p>
+  {% endif %}
+{% endblock %}
+
+{% block sidebar %}
+  {% include "djangovoice/includes/sidebar.html" %}
+{% endblock %}

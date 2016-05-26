@@ -1,0 +1,366 @@
+<!DOCTYPE document SYSTEM "rml.dtd">
+<document filename="example_08.pdf">
+<template showBoundary="0" 
+pageSize="(29.7cm, 21cm)"
+>
+
+<pageTemplate id="main">
+    <frame id="first" x1="1.5cm" y1="1cm" width="26.7cm" height="18.5cm"/>
+</pageTemplate>
+</template>
+<stylesheet>
+
+
+
+    <blockTableStyle id="myBlockTableStyle">
+      <blockFont name="DejaVuSans" size="7"/>
+      <blockTextColor colorName="black"/>
+      <lineStyle kind="GRID" colorName="black"/>
+    </blockTableStyle>
+
+    <blockTableStyle id="myBlockTableStyle1">
+      <blockSpan start="12,0" stop="13,1"/>
+
+     <blockSpan start="0,0" stop="0,1"/>
+      <blockSpan start="1,0" stop="2,1"/>
+      <blockSpan start="4,0" stop="5,0"/>
+      <blockSpan start="6,0" stop="7,0"/>
+      <blockSpan start="8,0" stop="9,0"/>
+
+      <blockSpan start="4,1" stop="5,1"/>
+      <blockSpan start="6,1" stop="7,1"/>
+      <blockSpan start="8,1" stop="9,1"/>
+
+      <blockSpan start="0,4" stop="2,4"/>      
+      <blockSpan start="3,4" stop="4,4"/> 
+      <blockSpan start="5,4" stop="8,4"/>      
+      <blockSpan start="9,4" stop="13,4"/> 
+
+      <blockBottomPadding length="25" start="0,0" stop="0,0"/>
+      <blockBottomPadding length="18" start="1,0" stop="1,0"/>
+      <blockFont name="DejaVuSans" size="7"/>
+      <blockTextColor colorName="black"/>
+      <lineStyle kind="GRID" colorName="black"/>
+    </blockTableStyle>
+
+    <blockTableStyle id="myBlockTableStyle2">
+      <blockSpan start="0,2" stop="0,3"/> 
+      <blockSpan start="1,2" stop="1,3"/> 
+
+      <blockFont name="DejaVuSans" size="7"/>
+      <blockTextColor colorName="black"/>
+      <lineStyle kind="GRID" colorName="black"/>
+
+    </blockTableStyle>
+
+
+
+    <paraStyle name="textstyle1"
+    fontName="DejaVuSans"
+    fontSize="10"
+    textColor="black"
+    alignment="center" 
+    />
+
+    <paraStyle name="textstyle2"
+    fontName="DejaVuSans"
+    fontSize="8"
+    textColor="black"
+    alignment="center" 
+    />
+
+    <paraStyle name="textstyle3"
+    fontName="DejaVuSans"
+    fontSize="12    "
+    textColor="black"
+    alignment="center" 
+    />
+
+</stylesheet>
+<story>
+
+<blockTable style="myBlockTableStyle1"
+colWidths="3cm,1.5cm,1.5cm,2cm,1.5cm,1.5cm,3cm,1.5cm,2cm,2cm,2cm,2cm,2cm,2.2cm"
+>
+
+            <tr>
+                <td ><para style="textstyle3">康 春 机 械</para></td>
+                <td ><para style="textstyle1">机械加工工艺<br />过程卡</para></td>
+                <td></td>
+                <td >产品代号</td>
+                <td >图号</td>
+                <td></td>
+                <td >零、部、组(整体)件名称</td>
+                <td></td>
+                <td>工艺文件编号</td>
+                <td></td>
+                <td >发放号</td>
+                <td >版本号</td>
+                <td>
+                <illustration 
+                width="145" height="50"
+                >
+                    <image src="{{ barcode }}"
+                    x="0" y="0"
+                    width="4.8cm" height="1.3cm"
+                    />
+                </illustration>
+                </td>
+                <td></td>
+                <!-- <td></td> -->
+            </tr>
+
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td >{{ technology.product.symbol }}</td>
+                <td >{{ technology.product.cad_code }}</td>
+                <td></td>
+                <td >{{ technology.product.name }}</td>
+                <td></td>
+                <td>{{ technology.file_code }}</td>
+                <td>{{ technology.publish_code }}</td>
+                <td>{{ technology.publish_code }}</td>
+                <td>{{ technology.rev_order }}</td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <td>机械加工工艺过程卡</td>
+                <td></td>
+                <td>页</td>
+                <td>工艺附图卡</td>
+                <td></td>
+                <td>页</td>
+                <td >零件、辅助材料明细表</td>
+                <td></td>
+                <td>页</td>
+                <td>模线样版清单</td>
+                <td></td>
+                <td>页</td>
+                <td>总页数</td>
+            </tr>
+
+            <tr>
+                <td>机械加工工艺规程</td>
+                <td></td>
+                <td>页</td>
+                <td>工艺状态表</td>
+                <td></td>
+                <td>页</td>
+                <td >工艺装备明细表</td>
+                <td></td>
+                <td>页</td>
+                <td>工艺文件(封面)</td>
+                <td></td>
+                <td>页</td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <td><para style="textstyle2">零件数量</para></td>
+                <td></td>
+                <td></td>
+                <td><para style="textstyle2">零件质量</para></td>
+                <td></td>
+                <td><para style="textstyle2">材料</para></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><para style="textstyle2">毛坯</para></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <td>每个产品</td>
+                <td>备件</td>
+                <td>总计</td>
+                <td>单件</td>
+                <td>全套</td>
+                <td>牌号</td>
+                <td>标准代号</td>
+                <td>硬度</td>
+                <td>种类</td>
+                <td>剖面尺寸</td>
+                <td>长度</td>
+                <td>数量</td>
+                <td>单件质量kg</td>
+                <td>全套质量kg</td>
+            </tr>
+
+            <tr>
+                <td>{{ technology.each_product|default_if_none:"&nbsp;" }}</td>
+                <td>{{ technology.spare_part|default_if_none:"&nbsp;" }}</td>
+                <td>{{ technology.total|default_if_none:"&nbsp;" }}</td>
+                <td>{{ technology.one_piece|default_if_none:"&nbsp;" }}</td>
+                <td>{{ technology.complete_set|default_if_none:"&nbsp;" }}</td>
+                <td>{{ technology.workblank_mark|default_if_none:"&nbsp;" }}</td>
+                <td>{{ technology.workblank_standard_code|default_if_none:"&nbsp;" }}</td>
+                <td>{{ technology.workblank_hardness|default_if_none:"&nbsp;" }}</td>
+                <td>{{ technology.workblank_species|default_if_none:"&nbsp;" }}</td>
+                <td>{{ technology.workblank_sectional_dimensions|default_if_none:"&nbsp;" }}</td>
+                <td>{{ technology.workblank_length|default_if_none:"&nbsp;" }}</td>
+                <td>{{ technology.workblank_quantity|default_if_none:"&nbsp;" }}</td>
+                <td>{{ technology.workblank_single_weight_kg|default_if_none:"&nbsp;" }}</td>
+                <td>{{ technology.workblank_full_weight_kg|default_if_none:"&nbsp;" }}</td>
+            </tr>
+
+</blockTable>
+
+{% for table in total_table %}
+<blockTable style="myBlockTableStyle"
+colWidths="9.5cm,8.5cm,9.7cm">
+
+
+<tr>
+<td>
+<blockTable style="myBlockTableStyle"
+colWidths="2cm,3cm,4cm">
+            <tr>          
+                <td>工序号</td>
+                <td>工种</td>
+                <td>工序名称</td>
+            </tr>
+
+        {% for operation_group in table.0 %}
+            <tr>                 
+                <td>{{ operation_group.order }}&nbsp;</td>
+                <td>{{ operation_group.Job.position.name }}&nbsp;</td>
+                <td>{{ operation_group.name }}&nbsp;</td>
+            </tr>
+        {% endfor %}
+</blockTable>
+</td>
+
+<td>
+<blockTable style="myBlockTableStyle"
+colWidths="2cm,3cm,3cm">
+
+            <tr>
+                <td>工序号</td>
+                <td>工种</td>
+                <td>工序名称</td>
+            </tr>
+
+        {% for operation_group in table.1 %}
+            <tr>
+                <td>{{ operation_group.order }}&nbsp;</td>
+                <td>{{ operation_group.Job.position.name }}&nbsp;</td>
+                <td>{{ operation_group.name }}&nbsp;</td>
+            </tr>
+        {% endfor %}
+
+</blockTable>
+</td>
+
+<td>
+<blockTable style="myBlockTableStyle"
+colWidths="2cm,3cm,4cm">
+
+            <tr>
+                <td>工序号</td>
+                <td>工种</td>
+                <td>工序名称</td>
+            </tr>
+
+        {% for operation_group in table.2 %}
+            <tr>
+                <td>{{ operation_group.order }}&nbsp;</td>
+                <td>{{ operation_group.Job.position.name }}&nbsp;</td>
+                <td>{{ operation_group.name }}&nbsp;</td>
+            </tr>
+        {% endfor %}
+
+</blockTable>
+
+</td>
+</tr>
+</blockTable>
+{% endfor %}
+
+
+ <blockTable style="myBlockTableStyle2"
+colWidths="1cm,2cm,2cm,1.5cm,1.5cm,2cm,2cm,1.5cm,2cm,2cm,2cm,2cm,2cm,2cm,2.2cm"
+ >
+        <tr>
+            <td>会签</td>
+        </tr>
+        <tr>
+            <td>描图</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>阶段标记</td>
+        </tr>
+
+        <tr>
+            <td >描较</td>
+            <td ></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>编制</td>
+            <td>审核</td>
+            <td>标准化</td>
+            <td>会签</td>
+            <td>批准</td>
+            <td></td>
+        </tr>
+
+        <tr>
+        
+            <td>&nbsp;</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>{{ technology.bianzhi.executor.last_name }}{{ technology.bianzhi.executor.first_name }}</td>
+            <td>{{ technology.shenhe.executor.last_name }}{{ technology.shenhe.executor.first_name }}</td>
+            <td>{{ technology.biaozhunhua.executor.last_name }}{{ technology.biaozhunhua.executor.first_name }}</td>
+            <td>{{ technology.huiqian.executor.last_name }}{{ technology.huiqian.executor.first_name }}</td>
+            <td>{{ technology.pizhun.executor.last_name }}{{ technology.pizhun.executor.first_name }}</td>
+            <td></td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td>更改标记</td>
+            <td>更改单号</td>
+            <td>签名</td>
+            <td>日期</td>
+            <td>更改标记</td>
+            <td>更改单号</td>
+            <td>签名</td>
+            <td>日期</td>
+            <td>{{ technology.bianzhi.date_added.date|date:"Y-m-d" }}</td>
+            <td>{{ technology.shenhe.date_added.date|date:"Y-m-d" }}</td>
+            <td>{{ technology.biaozhunhua.date_added.date|date:"Y-m-d" }}</td>
+            <td>{{ technology.huiqian.date_added.date|date:"Y-m-d" }}</td>
+            <td>{{ technology.pizhun.date_added.date|date:"Y-m-d" }}</td>
+            <td></td>
+        </tr>
+    </blockTable>
+</story>
+</document>

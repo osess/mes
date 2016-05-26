@@ -1,0 +1,13 @@
+{% load trans from i18n %}
+{% load url from future %}
+
+{% if user.is_staff or user == feedback.user %}
+  <div class="sidebar-box">
+    <h4>{% trans "Actions" %}</h4>
+
+    <ul>
+      <li><a href="{% url 'djangovoice_edit' feedback.id %}">{% trans "Edit" %}</a></li>
+      <li><a href="{% url 'djangovoice_delete' feedback.id %}">{% trans "Delete" %}</a></li>
+    </ul>
+  </div>
+{% endif %}

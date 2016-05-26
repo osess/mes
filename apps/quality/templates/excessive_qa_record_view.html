@@ -1,0 +1,338 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %} {% trans "excessive_qa_record_view" %} {% endblock %}
+
+{% block center_area %}
+<div class="container">
+  <h1>{{ qa_record }}</h1>
+{% if perms.manufactureplan.quality_dispaly %}
+  {% with technology=qa_record.operation_record.operation.operation_group.technology %}
+    {% if technology.T_file %}
+      <a class="btn btn-primary active" href="{% url download_directory_file technology.T_file.id %}">下载工艺文件</a>
+    {% else %}
+      <a class="btn btn-default active" disabled="disabled">没有工艺文件</a>
+    {% endif %}
+  {% endwith %}
+  <div class="bs-yuankong">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>{% trans "name" %}</th>
+          <th>{% trans "ought" %}</th>
+          <th>{% trans "real" %}</th>
+          <!--{#<th>{% trans "action" %}</th>#}-->
+        </tr>
+      </thead>
+      {% for qa_record_attribute in qa_record_attributes %}
+      <tr>
+        <td>{{ qa_record_attribute.attribute.name }}({{ qa_record_attribute.attribute.unit }})</td>
+        <td>{{ qa_record_attribute.product_attribute.absolute_value }}({{ qa_record_attribute.product_attribute.upper_deviation }}, {{ qa_record_attribute.product_attribute.lower_deviation }})</td>
+        {% if qa_record_attribute.excessive %}
+          {% ifequal qa_record_attribute.qa_decision 2 %}
+            <td bgcolor='#00FF00'>{{ qa_record_attribute.absolute_value }}</td>
+          {% else %}
+            {% ifequal qa_record_attribute.qa_decision 3 %}
+              <td bgcolor='#FF0000'>{{ qa_record_attribute.absolute_value }}</td>
+            {% else %}
+              <td bgcolor='#FFFF00'>{{ qa_record_attribute.absolute_value }}</td>
+            {% endifequal %}
+          {% endifequal %}
+        {% else %}
+          <td>{{ qa_record_attribute.absolute_value }}</td>
+        {% endif %}
+        <!--{#
+        <td>
+          {% if qa_record_attribute.excessive %}
+            {% ifequal qa_record_attribute.qa_excessive_status 3 %}
+              <button class="btn btn-default active" name="btn_decision" hide="{{qa_record_attribute.id}}" disabled="disabled">{% trans "pass" %}</button>
+              <button class="btn btn-default active" name="btn_decision" hide="{{qa_record_attribute.id}}" disabled="disabled">{% trans "no pass" %}</button>
+              {% trans 'note: ' %}{{ qa_record_attribute.note }}
+            {% else %}
+              {% ifequal qa_record_attribute.qa_excessive_status 4 %}
+                <button class="btn btn-default active" name="btn_decision" hide="{{qa_record_attribute.id}}" disabled="disabled">{% trans "pass" %}</button>
+                <button class="btn btn-default active" name="btn_decision" hide="{{qa_record_attribute.id}}" disabled="disabled">{% trans "no pass" %}</button>
+                {% trans 'note: ' %}{{ qa_record_attribute.note }}
+              {% else %}
+                  <button class="btn btn-default active" name="btn_decision" hide="{{qa_record_attribute.id}}" type="3">{% trans "pass" %}</button>
+                  <button class="btn btn-default active" name="btn_decision" hide="{{qa_record_attribute.id}}" type="4">{% trans "no pass" %}</button>
+              {% endifequal %}
+            {% endifequal %}
+          {% endif %}
+        </td>
+        #}-->
+      </tr>
+      {% endfor %}
+    </table>
+    {% if qa_record.excessive %}
+      {% with reject_product_record=qa_record.self_reject_product_record %}
+    <h3>质 量 记 录</h3>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>编号</th>
+            <th>零件</th>
+            <th>工序</th>
+            <th>工种</th>
+            <th>质 量 问 题</th>
+            <th>原 因 分 析</th>
+            <th>处 理 结 果</th>
+            <th>检验员</th>
+        </tr>
+        </thead>
+        <tr>
+            <td>{{reject_product_record.code}}</td>
+            <td>{{reject_product_record.qa_record.manufacture_item}}</td>
+            <td>{{reject_product_record.qa_record.operation_record.oper_group_record.operation_group.name}}</td>
+            <td>{{reject_product_record.qa_record.operation_record.oper_group_record.operation_group.Job.position}}</td>
+            <td>{{reject_product_record.quality_problems}}</td>
+            <td>{{reject_product_record.reason_analysis}}</td>
+            <td>{{reject_product_record.processing_result}}</td>
+            <td>{{reject_product_record.qa_record.decider.last_name}}{{reject_product_record.qa_record.decider.first_name}}</td>
+        </tr>
+    </table>
+{% if perms.manufactureplan.quality_manufactureitem %}
+    {% if qa_record.item_fail %}
+      {% ifequal reject_product_record.todo_type 1 %}
+        <button class="btn btn-success active" name="btn_fail_record_decision" hide="2">{% trans "Rework" %}</button>
+        <button class="btn btn-warning active" name="btn_fail_record_decision" hide="3">{% trans "Degrade" %}</button>
+        <button class="btn btn-danger active" name="btn_fail_record_decision" hide="4">{% trans "Scrap" %}</button>
+      {% else %}
+        <h2>这个零件已经{{ reject_product_record.get_todo_type_display }}, 处理人:{{ reject_product_record.decider }}</h2>
+      {% endifequal %}
+    {% endif %}
+{% endif %}
+      {% endwith %}
+    {% endif %}
+{% if perms.manufactureplan.quality_manufactureitem %}
+    {% if qa_record.can_to_do %}
+      <button class="btn btn-success active" name="btn_record_decision" data-toggle="modal" href="#qa_record_pass">{% trans "pass" %}</button>
+      <button class="btn btn-danger active" name="btn_record_decision" data-toggle="modal" href="#qa_record_fail">{% trans "fail" %}</button>
+    {% endif %}
+{% endif %}
+  </div>
+  {% else %}
+    <h1 class="text-danger">您没有权限访问此页面。</h1>
+  {% endif %}
+</div>
+
+<!--{# Modal:qa_record_attribute_decision
+<div class="modal fade" id="qa_record_decision" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="qa_record_decision_label">{% trans "please fill the note" %}</h4>
+            </div>
+            <div class="modal-body">
+                <textarea id="note" name="note" class="form-control" rows="5"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="btn_cancel" name="cancel">{% trans "cancel" %}</button>
+                <button type="button" class="btn btn-primary" id="btn_decision_ok" name="ok">{% trans "ok" %}</button>
+            </div>
+        </div>
+    </div>
+</div>#}-->
+
+<!-- Modal:qa_record_fail -->
+<div class="modal fade" id="qa_record_fail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="qa_record_fail_label">{% trans "please fill the note" %}</h4>
+            </div>
+            <div class="modal-body">
+                <label id="quality_problems">{% trans 'quality_problems' %}</label>
+                <textarea id="quality_problems_note" name="note" class="form-control" rows="3"></textarea>
+                <label id="reason_analysis">{% trans 'reason_analysis' %}</label>
+                <textarea id="reason_analysis_note" name="note" class="form-control" rows="3"></textarea>
+                <label id="reason_analysis">{% trans '处理结果' %}</label>
+                <textarea id="processing_result_note" name="note" class="form-control" rows="3"></textarea>
+                <!--{#
+                <label id="todo_type">{% trans 'todo_type' %}</label>
+                <select id="todo_type_select" name="select" class="form-control">
+                    <option value="{{ 2 }}">{% trans 'Rework' %}</option>
+                    <option value="{{ 3 }}">{% trans 'Degrade' %}</option>
+                    <option value="{{ 4 }}">{% trans 'Scrap' %}</option>
+                </select>#}-->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="btn_cancel" name="cancel">{% trans "cancel" %}</button>
+                <button type="button" class="btn btn-primary" id="btn_fail_ok" name="ok">{% trans "ok" %}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal:qa_record_pass -->
+<div class="modal fade" id="qa_record_pass" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="qa_record_pass_label">{% trans "please fill the note" %}</h4>
+            </div>
+            <div class="modal-body">
+                <textarea id="pass_note" name="note" class="form-control" rows="5"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="btn_cancel" name="cancel">{% trans "cancel" %}</button>
+                <button type="button" class="btn btn-primary" id="btn_pass_ok" name="ok">{% trans "ok" %}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+    $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+            function getCookie(name) {
+                var cookieValue = null;
+                if (document.cookie && document.cookie != '') {
+                    var cookies = document.cookie.split(';');
+                    for (var i = 0; i < cookies.length; i++) {
+                        var cookie = jQuery.trim(cookies[i]);
+                        // Does this cookie string begin with the name we want?
+                        if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+            if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+                // Only send the token to relative URLs i.e. locally.
+                xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+            }
+        }
+    });
+
+  // $("[name='btn_decision']").click(function() {
+  //   var qa_record_attribute_id = $(this).attr("hide");
+  //   var qa_record_attribute_type = $(this).attr("type");
+  //   $('#qa_record_decision').find("#btn_decision_ok")[0].setAttribute('hide',qa_record_attribute_id);
+  //   $('#qa_record_decision').find("#btn_decision_ok")[0].setAttribute('type',qa_record_attribute_type);
+  //   $('#qa_record_decision').modal('show');
+  // });
+
+  // $("#btn_decision_ok").click(function() {
+  //     var qa_record_attribute_id = $(this).attr("hide");
+  //     var qa_record_attribute_type = $(this).attr("type");
+  //     var note_dom = $(this).parent().parent().find("#note");
+  //     var modal_dialog = $(this).parent().parent().parent().parent();
+  //     $.ajax({
+  //         type: "POST",
+  //         url: "{% url ajax_qa_record_attribute_decision %}",
+  //         dataType: "jsonp",
+  //         jsonp: "callback",
+  //         jsonpCallback:"yuankong",
+  //         data: {
+  //           qa_record_attribute_id:qa_record_attribute_id,
+  //           type:qa_record_attribute_type,
+  //           note:note_dom.val(),
+  //         },
+  //         success: function(data) {
+  //             modal_dialog.modal('hide');
+  //             if (data.result !=0){
+  //                 alert(data.state);
+  //             }else{
+  //               window.location.replace(window.location.pathname);
+  //             }
+  //         },
+
+  //         error: function () {
+  //             alert('fail:'+data.result+' | '+data.msg);
+  //         }
+  //     });
+  // });
+
+  $("#btn_fail_ok").click(function() {
+      var modal_dialog = $(this).parent().parent().parent().parent();
+      $.ajax({
+          type: "POST",
+          url: "{% url ajax_excessive_qa_record_fail %}",
+          dataType: "jsonp",
+          jsonp: "callback",
+          jsonpCallback:"yuankong",
+          data: {
+            qa_record_id:"{{ qa_record.id }}",
+            quality_problems_note:$("#quality_problems_note").val(),
+            reason_analysis_note:$("#reason_analysis_note").val(),
+            processing_result_note:$("#processing_result_note").val(),
+          },
+          success: function(data) {
+              modal_dialog.modal('hide');
+              if (data.result != 0){
+                  alert(data.state);
+              }else{
+                window.location.replace('{{redirecturl}}');
+              }
+          },
+
+          error: function () {
+              alert('fail:'+data.result+' | '+data.msg);
+          }
+      });
+  });
+
+
+  $("#btn_pass_ok").click(function() {
+      var modal_dialog = $(this).parent().parent().parent().parent();
+      $.ajax({
+          type: "POST",
+          url: "{% url ajax_excessive_qa_record_pass %}",
+          dataType: "jsonp",
+          jsonp: "callback",
+          jsonpCallback:"yuankong",
+          data: {
+            qa_record_id:"{{ qa_record.id }}",
+            pass_note:$("#pass_note").val(),
+          },
+          success: function(data) {
+              modal_dialog.modal('hide');
+              if (data.result != 0){
+                  alert(data.state);
+              }else{
+                window.location.replace('{{redirecturl}}');
+              }
+          },
+
+          error: function () {
+              alert('fail:'+data.result+' | '+data.msg);
+          }
+      });
+  });
+
+  $("[name='btn_fail_record_decision']").click(function() {
+      var fail_record_todo_type = $(this).attr('hide');
+      $.ajax({
+          type: "POST",
+          url: "{% url ajax_decision_fail_qa_record %}",
+          dataType: "jsonp",
+          jsonp: "callback",
+          jsonpCallback:"yuankong",
+          data: {
+            qa_record_id:"{{ qa_record.id }}",
+            todo_type:fail_record_todo_type,
+          },
+          success: function(data) {
+              if (data.result != 0){
+                  alert(data.state);
+              }else{
+                window.location.replace('{{redirecturl}}');
+              }
+          },
+
+          error: function () {
+              alert('fail:'+data.result+' | '+data.msg);
+          }
+      });
+  });
+
+</script>
+
+{% endblock %}

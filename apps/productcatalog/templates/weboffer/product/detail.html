@@ -1,0 +1,21 @@
+{% extends "weboffer/base_site.html" %}
+
+{% block content %}
+<div id="ProductPage">
+    <div class="product-header">
+	    <h2>{{ product.name }}</h2>
+	    <div class="picture">{% include "weboffer/product/_picture.html" %}</div>
+	    <div class="short-description">{{ product.short_desc }}</div>
+    </div>
+    <div class="product-details">
+	    <div class="long-description">
+        <h3>Opis produktu</h3>
+        {{ product.long_desc }}
+        </div>
+        <div class="section">
+        <h3>Specyfikacja</h3>
+        {% include "weboffer/product/_show_attributes.html" %}
+        </div>
+    </div>
+</div>
+{% endblock %}

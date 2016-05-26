@@ -1,0 +1,23 @@
+{% extends "pinax/blog/blog_base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{{ SITE_NAME }}{% endblock %}
+
+{% block content %}
+    <!--h1>公告栏</h1-->
+    {% if posts %}
+        <div class="post-list">
+            {% for post in posts %}
+                <div class="post">
+                    <h2><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
+                    {% include "pinax/blog/dateline.html" %}
+                    <div class="teaser">{{ post.teaser_html|safe }}</div>
+                    <p class="more"><a href="{{ post.get_absolute_url }}" class="post-link">{% trans "read more" %}...</a></p>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="alert alert-info lead">No blog posts have been published.</p>
+    {% endif %}
+{% endblock %}

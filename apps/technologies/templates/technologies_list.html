@@ -1,0 +1,268 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load manufactureplan_tags %}
+{% block head_title %} {% trans "technologies list" %} {% endblock %}
+
+{% block center_area %}
+
+<link rel="stylesheet" type="text/css" href="/site_media/xadmin/css/themes/bootstrap-xadmin.css" />
+<link href="/site_media/xadmin/vendor/font-awesome/css/font-awesome.css" type="text/css" media="screen" rel="stylesheet" />
+<link href="/site_media/xadmin/css/xadmin.main.css" type="text/css" media="screen" rel="stylesheet" />
+<link href="/site_media/xadmin/css/xadmin.responsive.css" type="text/css" media="screen" rel="stylesheet" />
+<link href="/site_media/xadmin/css/xadmin.form.css" type="text/css" media="screen" rel="stylesheet" />
+
+{% if perms.technologies.view_technology %}
+<div class="container">
+	<h1>{% trans "technologies list" %}</h1>
+	<div class="bs-yuankong">
+        <a href="{{ technology_template_xls_url }}" class="pull-right btn btn-primary active btn-xs">
+            {% trans "technology template download" %}
+        </a>
+        {% if perms.technologies.start_technology_workflow %}
+        <div class="pull-right">&nbsp;&nbsp;&nbsp;&nbsp;</div>
+        <!--{#<a class="pull-right btn btn-primary active btn-xs" href="{% url create_technology %}?next={{request.path}}" class="text-success">创建工艺</a>#}-->
+        <a class="pull-right btn btn-primary active btn-xs" href="{% url technology_excel_import %}?next={{request.path}}" class="text-success">导入工艺</a>
+        {% endif %}
+        <div class="pull-right">&nbsp;&nbsp;&nbsp;&nbsp;</div>
+        <a id='create_technology' class="pull-right btn btn-primary active btn-xs" value="create_technology" href="{% url create_technology %}">{% trans 'Create' %}{% trans 'technology' %}</a>
+        
+		<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<th> {% trans "technology name" %} </th>
+                    <th> 图号 </th>
+                    <th> {% trans "rev order" %} </th>
+					<th> {% trans "operate" %} </th>
+					<th> {% trans "审核记录" %} </th>
+					<th> {% trans "status" %} </th>
+					<th> {% trans "初始化" %} </th>
+                    <th> {% trans "report" %} </th>
+                    <th> {% trans "files" %} </th>
+                    <th> {% trans "status" %} </th>
+                    <th> {% trans "action" %} </th>
+				</tr>
+			</thead>
+			<tbody>
+			{% for technology in technologies %}
+				<tr>
+					<td><a href="{% url view_technology technology.id %}">{{ technology.name }}</a></td>
+                    <td>{{ technology.product.cad_code }}</td>
+                    <td>{{ technology.rev_order }}</td>
+					<td><a href="{% url technology_states_list technology.id %}">{% trans 'view' %}</a></td>
+					<td>
+                    {# 判断是否有工步属性没有创建 #}
+                    {% if technology.operations_attribute_needs %}
+                        {% trans 'start' %}
+                        <a data-toggle="modal" class="action-create-attribute" data-res-uri="{% url view_operation_attribute_needs technology.id %}">
+                             (需要创建工步属性)
+                        </a>
+                    {% else %}
+                    {% switch technology.technology_workflow_status %}
+                      {% case 0 %}
+                        {% if perms.technologies.start_technology_workflow %}
+                            <a href="{% url technology_start_workflow technology.id %}?next={{request.path}}">{% trans 'start' %}</a>
+                        {% else %}
+                            {% trans 'start (no permission)' %}
+                        {% endif %}
+                      {% case 3 %}
+                            {% trans 'start' %}
+                            <a href="{% url admin:technologies_technology_changelist %}?_p_id={{ technology.id }}">
+                                (请先上传工艺文件)
+                            </a>
+                      {% else %}
+                        {% if perms.technologies.show_technology_workflow %}
+                            <a href="{% url technology_workflow technology.id %}?next={{request.path}}">{% trans 'view' %}</a>
+                        {% else %}
+                            {% trans 'view (no permission)' %}
+                        {% endif %}
+                    {% endswitch %}
+                    {% endif %}
+					</td>
+					<td>
+                    {% switch technology.technology_workflow_status %}
+                        {% case 0 %}
+                            {% trans 'wait for start' %}
+                        {% case 1 %}
+                            {% trans 'started' %}
+                        {% case 2 %}
+                            {% trans 'finished' %}
+                        {% case 3 %}
+                            请先上传工艺文件
+                    {% endswitch %}
+					</td>
+					<td>
+						{% ifequal technology.init_workflow_status 0 %}
+                            {% if perms.technologies.start_technology_workflow %}
+    							<a name="init_workflow" class="btn btn-primary active btn-xs" hide="{{technology.id}}" title="只有初始化后，才能按该工艺开始生产">初始化生产流程</a>
+                            {% else %}
+                                开始初始化{% trans '(no permission)' %}
+                            {% endif %}
+						{% endifequal %}
+                        {% ifequal technology.init_workflow_status 1 %}
+                            {% ifequal technology.technology_workflow_status 3 %}
+                                请先上传工艺文件
+                                {% else %}
+    							工艺审批中
+                            {% endifequal %}
+                        {% endifequal %}
+						{% ifequal technology.init_workflow_status 2 %}
+							生产流程初始化成功
+						{% endifequal %}
+					</td>
+					<td>
+						<a href="{% url generate_technology_report technology.id %}" target="_blank">机械加工过程卡</a>
+                        <a class="pull-right" href="{% url generate_technology_pdf technology.id %}" target="_blank"><span class="label label-success">{% trans 'download single pdf' %}</span></a>
+                        <a class="pull-right" href="{% url merge_pdf technology.id %}" target="_blank"><span class="label label-success">{% trans 'download all pdf' %}</span></a>
+                    </td>
+                    <td>
+                        {% if technology.T_file %}
+                            <a href="{% url download_directory_file technology.T_file.id %}">下载工艺文件</a>
+                        {% else %}
+                            没有工艺文件
+                        {% endif %}
+                    </td>
+                    <td>
+                        {{ technology.get_status_display }}
+                    </td>
+                    <td>
+                    {% if technology.technology_workflow_status == 2 and technology.is_latest_rev %}
+                        <a name="btn_update_reversion" hide="{{technology.id}}" mname="{{technology}}" data-toggle="modal" href="#UpdateReversion">升级</a>
+                    {% else %}
+                        升级
+                    {% endif %}
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+		</table>
+	</div>
+</div>
+{% else %}
+    <h1 class="text-danger">您没有权限访问此页面。</h1>
+{% endif %}
+
+<!-- Modal:UpdateReversion -->
+<div id="UpdateReversion" class="modal fade detail-modal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 id="UpdateReversionTitle" class="modal-title"></h4>
+      </div>
+      <div id="UpdateReversionBody" class="modal-body">
+        <div class="form-container row clearfix" >
+            <div id="column-0" class="formColumn column form-column full col col-sm-12 form-horizontal"  horizontal="True" span="12">
+                <div class="panel panel-default fieldset unsort no_title" id="box-0" >
+                    <div class="panel-body " >
+                        {% csrf_token %}
+                        {% for f in form %}
+                        <div id="div_id_cad_code" class="value form-group row">
+                            <div class="control-label">{{f.label}}</div>
+                            <div class="controls">
+                                <p class="form-control-static ">{{f}}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        <input id="id_technology_id" type="hidden" />
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="close_update_modal" class="btn btn-default" data-dismiss="modal" aria-hidden="true">{% trans 'Close' %}</button>
+        <button id="ok_update_modal" href='javascript:void(0)' class="btn btn-primary active">确认</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="id-modal-result"></div>
+
+<script type="text/javascript">
+    $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+            function getCookie(name) {
+                var cookieValue = null;
+                if (document.cookie && document.cookie != '') {
+                    var cookies = document.cookie.split(';');
+                    for (var i = 0; i < cookies.length; i++) {
+                        var cookie = jQuery.trim(cookies[i]);
+                        // Does this cookie string begin with the name we want?
+                        if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+            if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+                // Only send the token to relative URLs i.e. locally.
+                xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+            }
+        }
+    });
+
+    $("[name='btn_update_reversion']").click(function(event) {
+        var technology_id = $(this).attr('hide');
+        var mname = $(this).attr('mname');
+        // alert(18019489110);
+        $("#UpdateReversionTitle").html(mname);
+        $("#id_technology_id").val(technology_id);
+    });
+    $("#close_update_modal").click(function(event) {
+        $("#UpdateReversionTitle").html("");
+        $("#id_technology_id").val("");
+    });
+    $("#ok_update_modal").click(function(event) {
+        var technology_id = $("#id_technology_id").val();
+        var id_code = $("#id_code").val();
+        var id_note = $("#id_note").val();
+        $('#UpdateReversion').modal('hide');
+        $.ajax({
+            type: "POST",
+            data:{code:id_code,note:id_note},
+            url: "{% url ajax_technology_update_reversion 999 %}".replace (999,technology_id),
+            success: function(data) {
+                window.location.replace(window.location.pathname);
+            },
+            error: function () {
+                alert('fail');
+            }
+        });
+    });
+
+    $("[name='init_workflow']").click(function() {
+        var technology_id = $(this).attr("hide");
+        $.ajax({
+            type: "POST",
+            url: "{% url ajax_init_workflow %}",
+            dataType: "jsonp",
+            jsonp: "callback",
+            jsonpCallback:"yuankong",
+            data: {technology_id:technology_id,},
+            success: function(data) {
+                if (data.result != 0){
+                    alert(data.msg);
+                }else{
+                    window.location.replace(window.location.pathname);
+                }
+            },
+
+            error: function () {
+                alert('fail:'+data.result+' | '+data.msg);
+            }
+        });
+    });
+
+    $('.action-create-attribute').click(function(e){
+        e.preventDefault();
+        var url = $(this).data('res-uri');
+        $('#id-modal-result').load(url,function(response){
+            console.log(response);
+            $('#id-attribute-modal').modal({show:true});
+        });
+    });
+</script>
+{% endblock %}

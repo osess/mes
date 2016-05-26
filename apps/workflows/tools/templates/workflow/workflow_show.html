@@ -1,0 +1,12 @@
+{% extends "hr/base.html" %}
+{% load i18n %}
+{% block title %} {% trans "workflow show" %} {% endblock %}
+{% block extjs_center_area %}
+<div class="container-fluid">
+	<legend>
+		<h1>{{ workflow.name }}</h1>
+	</legend>
+	<img style='display:block; ' id='base64image' src="{{file_data}}"/>
+	
+</div>
+{% endblock %}

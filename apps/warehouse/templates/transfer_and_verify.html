@@ -1,0 +1,24 @@
+{% extends "subnav_base.html" %}
+{% load i18n %}
+{% load bootstrap_tags %}
+{% block container %}
+<div class="form-container row clearfix" >
+    <div id="column-0" class="formColumn column form-column full col col-sm-12 form-horizontal"  horizontal="True" span="12">
+        <div class="panel panel-default fieldset unsort no_title" id="box-0" >
+            <div class="panel-body " >
+                
+                <form action="" method="post">
+                {% csrf_token %}
+                <table class="table table-bordered">
+                    {{ form.as_table }}
+                </table>
+                
+                <br>
+                <input class="btn btn-primary" type="submit" value="确认"/>
+                </from>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

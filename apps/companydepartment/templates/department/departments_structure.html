@@ -1,0 +1,88 @@
+{% extends "hr/base.html" %}
+{% load i18n %}
+{% block title %} {% trans "structure" %} {% endblock %}
+
+{% block header_js %}
+
+{% endblock %}
+
+{% block extjs_center_area %}
+<div class="container-fluid">
+	<legend>
+		<h1>{{ company.name }}</h1>
+	</legend>
+	
+	<div class="btn-group">
+		<a class="btn dropdown-toggle" data-toggle="dropdown" href="#"> other companys <span class="caret"></span> </a>
+		<ul class="dropdown-menu">
+			{% for company in companys %}
+			<li>
+				<a href="{% url departmentsstructure company.id %}">{{ company.name }}</a>
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+	
+	<div id="departments_area"></div>
+	
+</div>
+{% endblock %}
+
+{% block jsblock %}
+<script type="text/javascript">
+	Ext.onReady(function() {
+
+		Ext.define('Department', {
+			extend : 'Ext.data.Model',
+			fields : [{
+				name : 'name',
+				type : 'string'
+			}, {
+				name : 'description',
+				type : 'string'
+			}],
+			proxy : {
+				type : 'ajax',
+				api : {
+					read : '{% url departmentsjson company_id %}',
+				},
+			}
+		});
+
+		var store = Ext.create('Ext.data.TreeStore', {
+			model : 'Department',
+			root : {
+				name : '股份公司',
+				description : '介绍',
+				leaf:false,
+				//children:[{text:'部门',description : '介绍',leaf:true}]
+			}
+		});
+
+		Ext.create('Ext.tree.Panel', {
+			title : '部门结构树',
+			width : 500,
+			height : 450,
+			store : store,
+			rootVisible : false,
+			animate: true,
+			collapsible: true,
+			expanded : true,
+			renderTo : 'departments_area',
+			fields : ['name', 'description'],
+			columns : [{
+				xtype : 'treecolumn',
+				header : 'Name',
+				dataIndex : 'name',
+				flex : 2,
+				sortable : true
+			}, {
+				text : 'Description',
+				dataIndex : 'description',
+				flex : 3,
+				sortable : true
+			}],
+		});
+	}); 
+</script>
+{% endblock %}

@@ -1,0 +1,343 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load staticfiles %}
+{% load manufactureplan_tags %}
+{% block title %} {% trans "create transportlist" %} {% endblock %}
+
+{% block center_area %}
+<script src="{% static "js/validate.min.js" %}"></script>
+<script src="{% static "js/validate_helper.min.js" %}"></script>
+
+<div class="container">
+  <h3>创建{{ LIST_CATEGORY.1 }}{{ TRANSPORT_CATEGORY.1 }}单</h3>
+  <a class="btn btn-default active" href="{{redirecturl}}">{% trans 'back' %}</a>
+  <div id="load"></div>
+  <div id="verification"></div>
+  <div class="bs-yuankong col-xs-12">
+    <form id="create_form" class="form-horizontal col-xs-12" action='{% url create_transportlist list_category transport_category %}' method="post">
+      {% csrf_token %}
+      <table class="table">
+        <tr>
+          <td class="col-md-2">
+            <label for="internal_code" class="col-md-12">出\入库单号:</label>
+          </td>
+          <td class="col-md-2">
+            <input id="internal_code" type="text" class="form-control col-md-12" />
+          </td>
+          <td class="col-md-2">
+            <label for="applicat" class="col-md-12">申请人:</label>
+          </td>
+          <td class="col-md-2">
+            <input id="applicat" type="password" class="form-control col-md-12" />
+          </td>
+          <td class="col-md-2">
+            <label for="accept_date" class="col-md-12">创建时间:</label>
+          </td>
+          <td class="col-md-2">
+            <div id="timer"></div>
+            <script>
+            setInterval("timeStr=new Date().toLocaleString();timer.innerText=timeStr;",1000)
+            </script>
+            <!--{#<input id="accept_date" type="text" class="form-control col-md-12" />#}-->
+          </td>
+        </tr>
+      </table>
+
+      <table id='form' class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th class="col-xs-4">{% trans "Item" %}</th>
+            <th class="col-xs-2">{% trans "location" %}</th>
+            <th class="col-xs-1">{% trans "qty" %}</th>
+            <th class="col-xs-3">{% trans "Note" %}</th>
+            <th class="col-xs-1"><a id="add-row" href="javascript:void(0)">添加行</a></th>
+          </tr>
+        </thead>
+        <tr class='form_field'>
+          <td>
+            {% if list_category == '3' %}
+              {% include "chained_selected.html" %}
+              <input id="item_id_0" name="item" type="text" class="form-control get-modal" placeholder="请选择刀具..." data-toggle="modal" data-target="#myModal"/>
+            {% else %}
+              <select name="item" class="form-control">
+              {% for item in items %}
+                <option value="{{ item.id }}">{{ item }}</option>
+              {% endfor %}
+              </select>
+            {% endif %}
+          </td>
+          <td>
+            <select name="location" class="form-control">
+              {% if transport_category == '2' or transport_category == '5' %}
+                {% for location in locations %}
+                  <option value="{{ location.id }}">{{ location }}</option>
+                {% endfor %}
+              {% endif %}
+            </select>
+          </td>
+          <td><input name="qty" type="text" class="form-control" value=""/></td>
+          <td><input name="note" type="text" class="form-control" value=""/></td>
+          <td><a name="del-row" href="javascript:void(0)" style="display: none;">删除行</a></td>
+        </tr>
+      </table>
+      
+      <br />
+      <div>
+        <a id='btn_submit' class="pull-right btn btn-primary active" value="Confirm">{% trans 'Confirm' %}</a>
+      </div>
+    </form>
+	</div>
+</div>
+
+<script type="text/javascript">
+  $.ajaxSetup({
+    beforeSend: function(xhr, settings) {
+      function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie != '') {
+          var cookies = document.cookie.split(';');
+          for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+              cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+              break;
+            }
+          }
+        }
+        return cookieValue;
+      }
+      if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+        // Only send the token to relative URLs i.e. locally.
+        xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+      }
+    }
+  });
+
+
+var dom_item_id
+var selectValues
+var item_id_i = 1
+
+// by lxy
+$(document).ready(function(){
+  if("{{list_category}}" == "3"){
+    $("#load").html("<img src='/site_media/images/load.gif'>");
+
+    $.ajax({
+        type: "POST",
+        url: "{% url ajax_load_global_data %}",
+        dataType: "jsonp",
+        jsonp: "callback",
+        jsonpCallback:"yuankong",
+        data: {transport_category:"{{ transport_category }}"},
+
+        success: function(data) {
+            $("#load").empty();
+            selectValues = data.selectValues;
+        },
+        error: function () {
+        }
+    });
+  }
+});
+
+
+  $("#add-row").click(function(event) {
+    form_fields = $(this).parent().parent().parent().parent().find('.form_field').first();
+    new_fields = form_fields.clone(true).appendTo("#form");
+    if({{list_category}} == 3){
+      new_fields.find("[name='item']").val('');
+      new_fields.find("[name='location']").val('');
+    }
+    new_fields.find("[name='qty']").val('');
+    new_fields.find("[name='note']").val('');
+    new_fields.find("[name='del-row']")[0].removeAttribute("style");
+    new_fields.find("[name='item']")[0].setAttribute("id","item_id_"+item_id_i);
+    item_id_i += 1;
+  });
+
+  $("[name='del-row']").click(function(event) {
+    form_field = $(this).parent().parent();
+    form_field.remove();
+  });
+
+  $(function() {
+    if("{{transport_category}}" != "2" && "{{transport_category}}" != "5"){
+      var selectValues = {{ selectValues|safe }};
+      $("[name='item']").change(function() {
+        var vendor = $(this);
+        var model = vendor.parent().parent().find("[name='location']");
+        model.empty().append(function() {
+          var output = '';
+          $.each(selectValues[vendor.val()], function(key, value) {
+            output += "<option value=" + key + ">" + value + "</option>";
+          });
+          return output;
+        });
+      }).change();
+    }
+  });
+
+  $("#btn_submit").click(function() {
+    var forms_value = new Array();
+    var applicat = $("#applicat").val();
+    var internal_code = $("#internal_code").val();
+    $("#form").find(".form_field").each(function(){
+      var item = $(this).find("[name='item'] option:selected");
+      var qty = $(this).find("[name='qty']");
+      var location = $(this).find("[name='location'] option:selected");
+      var note = $(this).find("[name='note']");
+      var item_id = item.val();
+      if("{{list_category}}" == "3"){
+        item_id = $(this).find("[name='item']").attr("hide");
+      }
+      forms_value.push({
+        "item_id":item_id,
+        "qty_val":qty.val(),
+        "location_id":location.val(),
+        "note_val":note.val()
+      });
+    });
+    var json_str = JSON.stringify(forms_value);
+    
+    $.ajax({
+      type: "POST",
+      url: "{% url ajax_create_transportlist_verification %}",
+      dataType: "jsonp",
+      jsonp: "callback",
+      jsonpCallback:"yuankong",
+      data: {
+        item_values:json_str,
+        applicat:applicat,
+        internal_code:internal_code,
+        transport_category:"{{transport_category}}"
+      },
+      success: function(data) {
+        if(data.result==0){
+          $.ajax({
+            type: "POST",
+            url: "{% url create_transportlist list_category transport_category %}",
+            dataType: "jsonp",
+            jsonp: "callback",
+            jsonpCallback:"yuankong",
+            data: {item_values:json_str,internal_code:internal_code,applicat:applicat},
+            success: function(data) {
+              if(data.result==0){
+                window.location.replace("{{redirecturl}}");
+              }else{
+                alert(data.msg)
+              }
+            },
+            error: function () {
+              alert('fail');
+            },
+          });
+        }else{
+          $("#verification").html("<div class='alert alert-danger alert-dismissable'>" + "<button type='button' class='close' data-dismiss='alert'>&times;</button>" + data.msg + "</div>");
+        }
+      },
+      error: function () {
+        alert('fail');
+      },
+    });
+
+  });
+
+$(".get-modal").click(function(event) {
+
+    dom_item_id = $(this).attr('id');
+    $(".selectpicker").empty();
+    $("#knife-amount").empty();
+    $("#kind_of_knife").html("<td style='text-align:center; padding: 0px;'><img src='/site_media/images/load.gif'></td>");
+
+    $.ajax({
+        type: "POST",
+        url: "{% url ajax_chained_selected_modal %}",
+        dataType: "jsonp",
+        jsonp: "callback",
+        jsonpCallback:"yuankong",
+        data: {transport_category:"{{ transport_category }}"},
+
+        success: function(data) {
+
+          $("#kind_of_knife").empty().append(function() {
+            var output = '';
+            $.each(data.kind_of_knife, function(i, val) {
+                output += '<option>' + val["name"] + '</option>';
+            });
+            return output;
+          });
+          $("#confirm-modal").attr("disabled",true);
+
+        },
+        error: function () {
+            // alert('get knife fail');
+        }
+    });
+});
+
+$("#confirm-modal").click(function(event) {
+
+      var kind_of_knife   =  $('#kind_of_knife').val();
+      var caizhi          =  $('#caizhi').val();
+      var zhijing         =  $('#zhijing').val();
+      var D               =  $('#D').val(); 
+      var R_angle         =  $('#R_angle').val(); 
+      var total_length    =  $('#total_length').val(); 
+      var zhishengwei     =  $('#zhishengwei').val();
+      var blade_length    =  $('#blade_length').val();
+      var blade_amount    =  $('#blade_amount').val();
+      var specification   =  $('#specification').val();
+      var knife_selected  =  $('#knifes').val();
+
+      $.ajax({
+          type: "POST",
+          url: "{% url ajax_knife_attribute_data %}",
+          dataType: "jsonp",
+          jsonp: "callback",
+          jsonpCallback:"yuankong",
+          data: {
+            kind_of_knife:kind_of_knife,
+            caizhi:caizhi,
+            zhijing:zhijing,
+            D:D,
+            R_angle:R_angle,
+            total_length:total_length,
+            zhishengwei:zhishengwei,
+            blade_length:blade_length,
+            blade_amount:blade_amount,
+            specification:specification,
+            knife_selected:knife_selected
+          },
+
+          success: function(data) {
+            var item_id;
+            var item_str;
+            item_id = data.item_selected_id;
+            item_str = data.item_selected_str;
+
+            // by xxd
+            var vendor = $("#"+dom_item_id);
+            vendor.val(item_str);
+            vendor[0].setAttribute("hide",item_id);
+            if("{{transport_category}}" != "2" && "{{transport_category}}" != "5"){
+              var model = vendor.parent().parent().find("[name='location']");
+              model.empty().append(function() {
+                var output = '';
+                $.each(selectValues[vendor.attr("hide")], function(key, value) {
+                  output += "<option value=" + key + ">" + value + "</option>";
+                });
+                return output;
+              });
+            }
+
+          },
+          error: function () {
+              // alert('get knife fail');
+          }
+      });
+  });
+
+</script>
+{% endblock %}

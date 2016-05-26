@@ -1,0 +1,19 @@
+{% extends "djangovoice/base.html" %}
+
+{% load trans from i18n %}
+{% load url from future %}
+
+{% block content %}
+  <div id="signin" class="content-spaces">
+    <form action="" method="POST">
+      {% csrf_token %}
+
+      <ul>
+        {{ form.as_ul }}
+      </ul>
+
+      <input class="btn btn-primary" type="submit" value="{% trans "Login" %}" />
+      <input type="hidden" name="next" value="{% url 'djangovoice_list' list='all' %}" />
+    </form>
+  </div>
+{% endblock %}

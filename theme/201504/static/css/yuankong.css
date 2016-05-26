@@ -1,0 +1,1969 @@
+/*
+ * Scaffolding
+ *
+ * Update the basics of our documents to prep for docs content.
+ */
+
+.table-col-hidden{ 
+            display: none; 
+        }
+
+
+.formset .row-deleted{
+    background: #ffa8a8  !important;
+}
+
+
+body {
+  position: relative; /* For scrollyspy */
+  padding-top: 0px; /* Account for fixed navbar */
+
+}
+
+/* Keep code small in tables on account of limited space */
+.table code {
+  font-size: 13px;
+  font-weight: normal;
+
+
+}
+
+/* Outline button for use within the docs */
+.btn-outline {
+  color: #563d7c;
+  background-color: #fff;
+  border-color: #e5e5e5;
+}
+.btn-outline:hover,
+.btn-outline:focus,
+.btn-outline:active {
+  color: #fff;
+  background-color: #563d7c;
+  border-color: #563d7c;
+}
+
+/* Inverted outline button (white on dark) */
+.btn-outline-inverse {
+  color: #aaa;
+  background-color: transparent;
+  border-color: #cdbfe3;
+}
+.btn-outline-inverse:hover,
+.btn-outline-inverse:focus,
+.btn-outline-inverse:active {
+  color: #563d7c;
+  text-shadow: none;
+  background-color: #fff;
+  border-color: #fff;
+}
+
+
+/*
+ * Main navigation
+ *
+ * Turn the `.navbar` at the top of the docs purple.
+ */
+
+.bs-docs-nav {
+  text-shadow: 0 -1px 0 rgba(0,0,0,.15);
+  background-color: #563d7c;
+  border-color: #463265;
+  box-shadow: 0 1px 0 rgba(255,255,255,.1);
+}
+.bs-docs-nav .navbar-collapse {
+  border-color: #463265;
+}
+.bs-docs-nav .navbar-brand {
+  color: #fff;
+}
+.bs-docs-nav .navbar-nav > li > a {
+  color: #cdbfe3;
+}
+.bs-docs-nav .navbar-nav > li > a:hover {
+  color: #fff;
+}
+.bs-docs-nav .navbar-nav > .active > a,
+.bs-docs-nav .navbar-nav > .active > a:hover {
+  color: #fff;
+  background-color: #463265;
+}
+.bs-docs-nav .navbar-toggle {
+  border-color: #563d7c;
+}
+.bs-docs-nav .navbar-toggle:hover {
+  background-color: #463265;
+  border-color: #463265;
+}
+
+
+/*
+ * Footer
+ *
+ * Separated section of content at the bottom of all pages, save the homepage.
+ */
+
+.bs-footer {
+  padding-top: 40px;
+  padding-bottom: 30px;
+  margin-top: 100px;
+  color: #777;
+  text-align: center;
+  border-top: 1px solid #e5e5e5;
+}
+.footer-links {
+  margin: 10px 0;
+  padding-left: 0;
+}
+.footer-links li {
+  display: inline;
+  padding: 0 2px;
+}
+.footer-links li:first-child {
+  padding-left: 0;
+}
+
+@media (min-width: 768px) {
+  .bs-footer {
+    text-align: left;
+  }
+  .bs-footer p {
+    margin-bottom: 0;
+  }
+}
+
+
+/*
+ * Social buttons
+ *
+ * Twitter and GitHub social action buttons (for homepage and footer).
+ */
+
+.bs-social {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.bs-social-buttons {
+  display: inline-block;
+  margin-bottom: 0;
+  padding-left: 0;
+  list-style: none;
+}
+.bs-social-buttons li {
+  display: inline-block;
+  line-height: 1;
+  padding: 5px 8px;
+}
+.bs-social-buttons .twitter-follow-button {
+  width: 225px !important;
+}
+.bs-social-buttons .twitter-share-button {
+  width: 98px !important;
+}
+/* Style the GitHub buttons via CSS instead of inline attributes */
+.github-btn {
+  border: 0;
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .bs-social {
+    text-align: left;
+  }
+  .bs-social-buttons li:first-child {
+    padding-left: 0;
+  }
+}
+
+
+/*
+ * Topography, yo!
+ *
+ * Apply the map background via base64 and relevant colors where we need 'em.
+ */
+
+.bs-docs-home,
+.bs-header {
+  color: #cdbfe3;
+  /*background-color: #563d7c;*/
+  background-color: #F8F8F8;
+  /*background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAAAgCAMAAADt/IAXAAAAA3NCSVQICAjb4U/gAAAAM1BMVEUzMzP///+ZmZlMTEzMzMxycnLZ2dmlpaXy8vJmZmY/Pz+/v7+MjIzl5eVZWVmysrJ/f3+09IEGAAAAEXRSTlP/AP///////////////////wXeTzgAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAAWdEVYdENyZWF0aW9uIFRpbWUAMTIvMTkvMTOFkvAWAAAAHHRFWHRTb2Z0d2FyZQBBZG9iZSBGaXJld29ya3MgQ1M0BrLToAAAAfNJREFUWIXtlsl2wyAMRQXGjGb4/6+tBuwS26el7WnaRVgER3mSLiARg/rjAS+AF8AL4L8BaK37k9HazEQwu4ebdPgEAEDi+QjRz0RAD54bQJly+BhAFQBL8waQpiJ0gG/mvwJYDCTTOhdBAL6b/6YI5RACH4DRlU0646evawirozRoN/ilHgBD/tRC2LgYRpXyLoRmJdLHAGrBQ3AAlYMHFgEGzGinQYk0RH7eOsCQv4lKvN9VvogdznV6A2AAQpTMI8AKUZu0cmxMGmvCmAwDmHTxx/6tqRb2OKtMmwOg+oOYzwBF2oMnzZVq9zTDyiKXjl9oGlWRvbc5AHQHp84AvDlpiwJQDjsBlL1nbe8hB/FBhXZaUZ4DOFr7AcDrXgT60a7p/CuIxXRPngfVbv8JQKCVBqS4AniuPfdrALlvIh/LHYCSY7Ms5etrg+VB5cWevg7QV8dryGq/Ja4ABEidsHA/2gjtvH8lq1y+CkBRdYC+hmXbFmnrGwCsO6r8RLIWuYtGFfJDmLwHBgC5VgK7Va7AJVBp3wEouSK6zKpTD6V4RPocIJtDhpdnUsZQj2VHz55+y4abje2HGH8ha64kkzDvKpNxtn4S4BeGlLCDS75nAeDmN6qm9lcAVm6xcPnLft47YcK3PXs1/7uX0hfA08cbr+UZTiaVceMAAAAASUVORK5CYII=);
+  */
+}
+
+
+/*
+ * Homepage
+ *
+ * Tweaks to the custom homepage and the masthead (main jumbotron).
+ */
+
+ /* Masthead (headings and download button) */
+ .bs-masthead {
+  position: relative;
+  padding: 30px 15px;
+  text-align: center;
+  text-shadow: 0 1px 0 rgba(0,0,0,.15);
+}
+.bs-masthead h1 {
+  font-size: 50px;
+  line-height: 1;
+  color: #015A80;
+}
+.bs-masthead .btn-outline-inverse {
+  margin: 10px;
+}
+
+/* Links to project-level content like the repo, Expo, etc */
+.bs-masthead-links {
+  margin-top: 20px;
+  margin-bottom: 40px;
+  padding: 0 15px;
+  list-style: none;
+  text-align: center;
+}
+.bs-masthead-links li {
+  display: inline;
+}
+.bs-masthead-links li + li {
+  margin-left: 20px;
+}
+.bs-masthead-links a {
+  color: #aaa;
+}
+
+@media (min-width: 768px) {
+  .bs-masthead {
+    text-align: left;
+    padding-top:    140px;
+    padding-bottom: 140px;
+  }
+  .bs-masthead h1 {
+    font-size: 100px;
+  }
+  .bs-masthead .lead {
+    margin-right: 25%;
+    font-size: 30px;
+  }
+  .bs-masthead .btn-outline-inverse {
+    width: auto;
+    margin: 20px 5px 20px 0;
+    padding: 18px 24px;
+    font-size: 21px;
+  }
+  .bs-masthead-links {
+    padding: 0;
+    text-align: left;
+  }
+}
+
+
+/*
+ * Page headers
+ *
+ * Jumbotron-esque headers at the top of every page that's not the homepage.
+ */
+
+
+/* Page headers */
+.bs-header {
+  padding: 30px 15px 40px; /* side padding builds on .container 15px, so 30px */
+  font-size: 16px;
+  text-align: center;
+  text-shadow: 0 1px 0 rgba(0,0,0,.15);
+}
+.bs-header h1 {
+  color: #fff;
+}
+.bs-header p {
+  font-weight: 300;
+  line-height: 1.5;
+}
+.bs-header .container {
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  .bs-header {
+    font-size: 21px;
+    text-align: left;
+  }
+  .bs-header h1 {
+    font-size: 60px;
+    line-height: 1;
+  }
+}
+
+@media (min-width: 992px) {
+  .bs-header h1,
+  .bs-header p {
+    margin-right: 380px;
+  }
+}
+
+
+/*
+ * Carbon ads
+ *
+ * Single display ad that shows on all pages (except homepage) in page headers.
+ * The hella `!important` is required for any pre-set property.
+ */
+
+.carbonad {
+  width: auto !important;
+  margin: 50px -30px -40px !important;
+  padding: 20px !important;
+  overflow: hidden; /* clearfix */
+  height: auto !important;
+  font-size: 13px !important;
+  line-height: 16px !important;
+  text-align: left;
+  background: #463265 !important;
+  border: 0 !important;
+  box-shadow: inset 0 3px 5px rgba(0,0,0,.075);
+}
+.carbonad-img {
+  margin: 0 !important;
+}
+.carbonad-text,
+.carbonad-tag {
+  float: none !important;
+  display: block !important;
+  width: auto !important;
+  height: auto !important;
+  margin-left: 145px !important;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+}
+.carbonad-text {
+  padding-top: 0 !important;
+}
+.carbonad-tag {
+  color: #cdbfe3 !important;
+  text-align: left !important;
+}
+.carbonad-text a,
+.carbonad-tag a {
+  color: #fff !important;
+}
+.carbonad #azcarbon > img {
+  display: none; /* hide what I assume are tracking images */
+}
+
+@media (min-width: 768px) {
+  .carbonad {
+    margin: 0 !important;
+    border-radius: 4px;
+    box-shadow: inset 0 3px 5px rgba(0,0,0,.075), 0 1px 0 rgba(255,255,255,.1);
+  }
+}
+
+@media (min-width: 992px) {
+  .carbonad {
+    position: absolute;
+    top: 20px;
+    right: 15px; /* 15px instead of 0 since box-sizing */
+    padding: 15px !important;
+    width: 330px !important;
+  }
+}
+
+/* Homepage variations */
+.bs-docs-home .carbonad {
+  margin: 0 -15px 40px !important;
+}
+@media (min-width: 480px) {
+  .bs-docs-home .carbonad {
+    width: 330px !important;
+    margin: 0 auto 40px !important;
+    border-radius: 4px;
+  }
+}
+@media (min-width: 768px) {
+  .bs-docs-home .carbonad {
+    float: left;
+    width: 330px !important;
+    margin: 0 0 30px !important;
+  }
+  .bs-docs-home .bs-social,
+  .bs-docs-home .bs-masthead-links {
+    margin-left: 350px;
+  }
+  .bs-docs-home .bs-social {
+    margin-bottom: 10px;
+  }
+  .bs-docs-home .bs-masthead-links {
+    margin-top: 10px;
+  }
+}
+@media (min-width: 992px) {
+  .bs-docs-home .carbonad {
+    position: static;
+  }
+}
+@media (min-width: 1170px) {
+  .bs-docs-home .carbonad {
+    margin-top: -25px !important;
+  }
+}
+
+
+/*
+ * Callout for 2.3.2 docs
+ *
+ * Only appears below page headers (not on the homepage). The homepage gets its
+ * own link with the masthead links.
+ */
+
+.bs-old-docs {
+  padding: 15px 20px;
+  color: #777;
+  background-color: #fafafa;
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #e5e5e5;
+}
+.bs-old-docs strong {
+  color: #555;
+}
+
+
+/*
+ * Side navigation
+ *
+ * Scrollspy and affixed enhanced navigation to highlight sections and secondary
+ * sections of docs content.
+ */
+
+/* By default it's not affixed in mobile views, so undo that */
+.bs-sidebar.affix {
+  position: static;
+}
+
+/* First level of nav */
+.bs-sidenav {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding-top:    10px;
+  padding-bottom: 10px;
+  text-shadow: 0 1px 0 #fff;
+  background-color: #f7f5fa;
+  border-radius: 5px;
+}
+
+/* All levels of nav */
+.bs-sidebar .nav > li > a {
+  display: block;
+  color: #716b7a;
+  padding: 5px 20px;
+}
+.bs-sidebar .nav > li > a:hover,
+.bs-sidebar .nav > li > a:focus {
+  text-decoration: none;
+  background-color: #e5e3e9;
+  border-right: 1px solid #dbd8e0;
+}
+.bs-sidebar .nav > .active > a,
+.bs-sidebar .nav > .active:hover > a,
+.bs-sidebar .nav > .active:focus > a {
+  font-weight: bold;
+  color: #563d7c;
+  background-color: transparent;
+  border-right: 1px solid #563d7c;
+}
+
+/* Nav: second level (shown on .active) */
+.bs-sidebar .nav .nav {
+  display: none; /* Hide by default, but at >768px, show it */
+  margin-bottom: 8px;
+}
+.bs-sidebar .nav .nav > li > a {
+  padding-top:    3px;
+  padding-bottom: 3px;
+  padding-left: 30px;
+  font-size: 90%;
+}
+
+/* Show and affix the side nav when space allows it */
+@media (min-width: 992px) {
+  .bs-sidebar .nav > .active > ul {
+    display: block;
+  }
+  /* Widen the fixed sidebar */
+  .bs-sidebar.affix,
+  .bs-sidebar.affix-bottom {
+    width: 213px;
+  }
+  .bs-sidebar.affix {
+    position: fixed; /* Undo the static from mobile first approach */
+    top: 80px;
+  }
+  .bs-sidebar.affix-bottom {
+    position: absolute; /* Undo the static from mobile first approach */
+  }
+  .bs-sidebar.affix-bottom .bs-sidenav,
+  .bs-sidebar.affix .bs-sidenav {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+@media (min-width: 1200px) {
+  /* Widen the fixed sidebar again */
+  .bs-sidebar.affix-bottom,
+  .bs-sidebar.affix {
+    width: 263px;
+  }
+}
+
+
+/*
+ * Docs sections
+ *
+ * Content blocks for each component or feature.
+ */
+
+/* Space things out */
+.bs-docs-section + .bs-docs-section {
+  padding-top: 40px;
+}
+
+/* Janky fix for preventing navbar from overlapping */
+h1[id] {
+  padding-top: 80px;
+  margin-top: -45px;
+}
+
+
+/*
+ * Callouts
+ *
+ * Not quite alerts, but custom and helpful notes for folks reading the docs.
+ * Requires a base and modifier class.
+ */
+
+/* Common styles for all types */
+.bs-callout {
+  margin: 20px 0;
+  padding: 20px;
+  border-left: 3px solid #eee;
+}
+.bs-callout h4 {
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+.bs-callout p:last-child {
+  margin-bottom: 0;
+}
+
+/* Variations */
+.bs-callout-danger {
+  background-color: #fdf7f7;
+  border-color: #eed3d7;
+}
+.bs-callout-danger h4 {
+  color: #b94a48;
+}
+.bs-callout-warning {
+  background-color: #faf8f0;
+  border-color: #faebcc;
+}
+.bs-callout-warning h4 {
+  color: #8a6d3b;
+}
+.bs-callout-info {
+  background-color: #f4f8fa;
+  border-color: #bce8f1;
+}
+.bs-callout-info h4 {
+  color: #34789a;
+}
+
+
+/*
+ * Team members
+ *
+ * Avatars, names, and usernames for core team.
+ */
+
+.bs-team .team-member {
+  color: #555;
+  line-height: 32px;
+}
+.bs-team .team-member:hover {
+  color: #333;
+  text-decoration: none;
+}
+.bs-team .github-btn {
+  float: right;
+  margin-top: 6px;
+  width: 120px;
+  height: 20px;
+}
+.bs-team img {
+  float: left;
+  width: 32px;
+  margin-right: 10px;
+  border-radius: 4px;
+}
+
+
+/*
+ * Grid yuankongs
+ *
+ * Highlight the grid columns within the docs so folks can see their padding,
+ * alignment, sizing, etc.
+ */
+
+.show-grid {
+  margin-bottom: 15px;
+}
+.show-grid [class^="col-"] {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #eee;
+  border: 1px solid #ddd;
+  background-color: rgba(86,61,124,.15);
+  border: 1px solid rgba(86,61,124,.2);
+}
+
+
+/*
+ * Examples
+ *
+ * Isolated sections of yuankong content for each component or feature. Usually
+ * followed by a code snippet.
+ */
+
+.bs-yuankong {
+  position: relative;
+  padding: 45px 15px 15px;
+  margin: 0 -15px 15px;
+  background-color: #fafafa;
+  box-shadow: inset 0 3px 6px rgba(0,0,0,.05);
+  border-color: #e5e5e5 #eee #eee;
+  border-style: solid;
+  border-width: 1px 0;
+}
+/* Echo out a label for the yuankong */
+.bs-yuankong:after {
+  content: "YuanKong";
+  position: absolute;
+  top:  15px;
+  left: 15px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #bbb;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Tweak display of the code snippets when following an yuankong */
+.bs-yuankong + .highlight {
+  margin: -15px -15px 15px;
+  border-radius: 0;
+  border-width: 0 0 1px;
+}
+
+/* Make the yuankongs and snippets not full-width */
+@media (min-width: 768px) {
+  .bs-yuankong {
+    margin-left: 0;
+    margin-right: 0;
+    background-color: #fff;
+    border-width: 1px;
+    /*lxy*/
+    /*border-color: #ddd;*/
+    border-color: #777 !important;
+    border-radius: 4px 4px 0 0;
+    box-shadow: none;
+  }
+  .bs-yuankong + .highlight {
+    margin-top: -16px;
+    margin-left: 0;
+    margin-right: 0;
+    border-width: 1px;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+  }
+
+  /*lxy modifed for bootstrap*/
+  .table-bordered {
+    border: 1px solid #777 !important;
+  }
+
+
+  .table-bordered > thead > tr > th,
+  .table-bordered > tbody > tr > th,
+  .table-bordered > tfoot > tr > th,
+  .table-bordered > thead > tr > td,
+  .table-bordered > tbody > tr > td,
+  .table-bordered > tfoot > tr > td {
+    border: 1px solid #777 !important;
+  }
+
+
+  /*lxy modifed for bootstrap*/
+  .form-group {
+    border: 1px solid #777 !important;
+  }
+
+    /*lxy added*/
+  .table {
+    border: 1px solid #777 !important;
+  }
+
+  .nowrap-table {
+    white-space: nowrap !important;
+  }
+
+
+  /*lxy aaded*/
+  .table > thead > tr > th,
+  .table > tbody > tr > th,
+  .table > tfoot > tr > th,
+  .table > thead > tr > td,
+  .table > tbody > tr > td,
+  .table > tfoot > tr > td {
+    border: 1px solid #777 !important;
+  }
+
+
+
+  /*lxy xadmin.form.css added*/
+.controls {
+  padding: 5px 15px 5px 15px !important;
+  border-left: 1px solid #777 !important;
+
+ }
+
+
+
+
+
+}
+
+/* Undo width of container */
+.bs-yuankong .container {
+  width: auto;
+}
+
+/* Tweak content of yuankongs for optimum awesome */
+.bs-yuankong > p:last-child,
+.bs-yuankong > ul:last-child,
+.bs-yuankong > ol:last-child,
+.bs-yuankong > blockquote:last-child,
+.bs-yuankong > .form-control:last-child,
+.bs-yuankong > .table:last-child,
+.bs-yuankong > .navbar:last-child,
+.bs-yuankong > .jumbotron:last-child,
+.bs-yuankong > .alert:last-child,
+.bs-yuankong > .panel:last-child,
+.bs-yuankong > .list-group:last-child,
+.bs-yuankong > .well:last-child,
+.bs-yuankong > .progress:last-child,
+.bs-yuankong > .table-responsive:last-child > .table {
+  margin-bottom: 0;
+}
+.bs-yuankong > p > .close {
+  float: none;
+}
+
+/* Typography */
+.bs-yuankong-type .table .info {
+  color: #999;
+  vertical-align: middle;
+}
+.bs-yuankong-type .table td {
+  padding: 15px 0;
+  border-color: #eee;
+}
+.bs-yuankong-type .table tr:first-child td {
+  border-top: 0;
+}
+.bs-yuankong-type h1,
+.bs-yuankong-type h2,
+.bs-yuankong-type h3,
+.bs-yuankong-type h4,
+.bs-yuankong-type h5,
+.bs-yuankong-type h6 {
+  margin: 0;
+}
+
+/* Images */
+.bs-yuankong > .img-circle,
+.bs-yuankong > .img-rounded,
+.bs-yuankong > .img-thumbnail {
+  margin: 5px;
+}
+
+/* Tables */
+.bs-yuankong > .table-responsive > .table {
+  background-color: #fff;
+}
+
+/* Buttons */
+.bs-yuankong > .btn,
+.bs-yuankong > .btn-group {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.bs-yuankong > .btn-toolbar + .btn-toolbar {
+  margin-top: 10px;
+}
+
+/* Forms */
+.bs-yuankong-control-sizing select,
+.bs-yuankong-control-sizing input[type="text"] + input[type="text"] {
+  margin-top: 10px;
+}
+.bs-yuankong-form .input-group {
+  margin-bottom: 10px;
+}
+.bs-yuankong > textarea.form-control {
+  resize: vertical;
+}
+
+/* List groups */
+.bs-yuankong > .list-group {
+  max-width: 400px;
+}
+
+/* Navbars */
+.bs-yuankong .navbar:last-child {
+  margin-bottom: 0;
+}
+.bs-navbar-top-yuankong,
+.bs-navbar-bottom-yuankong {
+  z-index: 1;
+  padding: 0;
+  overflow: hidden; /* cut the drop shadows off */
+}
+.bs-navbar-top-yuankong .navbar-header,
+.bs-navbar-bottom-yuankong .navbar-header {
+  margin-left: 0;
+}
+.bs-navbar-top-yuankong .navbar-fixed-top,
+.bs-navbar-bottom-yuankong .navbar-fixed-bottom {
+  position: relative;
+  margin-left: 0;
+  margin-right: 0;
+}
+.bs-navbar-top-yuankong {
+  padding-bottom: 45px;
+}
+.bs-navbar-top-yuankong:after {
+  top: auto;
+  bottom: 15px;
+}
+.bs-navbar-top-yuankong .navbar-fixed-top {
+  top: -1px;
+}
+.bs-navbar-bottom-yuankong {
+  padding-top: 45px;
+}
+.bs-navbar-bottom-yuankong .navbar-fixed-bottom {
+  bottom: -1px;
+}
+.bs-navbar-bottom-yuankong .navbar {
+  margin-bottom: 0;
+}
+@media (min-width: 768px) {
+  .bs-navbar-top-yuankong .navbar-fixed-top,
+  .bs-navbar-bottom-yuankong .navbar-fixed-bottom {
+    position: absolute;
+  }
+  .bs-navbar-top-yuankong {
+    border-radius: 0 0 4px 4px;
+  }
+  .bs-navbar-bottom-yuankong {
+    border-radius: 4px 4px 0 0;
+  }
+}
+
+/* Pagination */
+.bs-yuankong .pagination {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+/* Pager */
+.bs-yuankong > .pager {
+  margin-top: 0;
+}
+
+/* Example modals */
+.bs-yuankong-modal {
+  background-color: #f5f5f5;
+}
+.bs-yuankong-modal .modal {
+  position: relative;
+  top: auto;
+  right: auto;
+  left: auto;
+  bottom: auto;
+  z-index: 1;
+  display: block;
+}
+.bs-yuankong-modal .modal-dialog {
+  left: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Example dropdowns */
+.bs-yuankong > .dropdown > .dropdown-menu {
+  position: static;
+  display: block;
+  margin-bottom: 5px;
+}
+
+/* Example tabbable tabs */
+.bs-yuankong-tabs .nav-tabs {
+  margin-bottom: 15px;
+}
+
+/* Tooltips */
+.bs-yuankong-tooltips {
+  text-align: center;
+}
+.bs-yuankong-tooltips > .btn {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+/* Popovers */
+.bs-yuankong-popover {
+  padding-bottom: 24px;
+  background-color: #f9f9f9;
+}
+.bs-yuankong-popover .popover {
+  position: relative;
+  display: block;
+  float: left;
+  width: 260px;
+  margin: 20px;
+}
+
+/* Scrollspy demo on fixed height div */
+.scrollspy-yuankong {
+  position: relative;
+  height: 200px;
+  margin-top: 10px;
+  overflow: auto;
+}
+
+
+/*
+ * Code snippets
+ *
+ * Generated via Pygments and Jekyll, these are snippets of HTML, CSS, and JS.
+ */
+
+.highlight {
+  display: none; /* hidden by default, until >480px */
+  padding: 9px 14px;
+  margin-bottom: 14px;
+  background-color: #f7f7f9;
+  border: 1px solid #e1e1e8;
+  border-radius: 4px;
+}
+.highlight pre {
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  background-color: transparent;
+  border: 0;
+  white-space: nowrap;
+}
+.highlight pre code {
+  font-size: inherit;
+  color: #333; /* Effectively the base text color */
+}
+.highlight pre .lineno {
+  display: inline-block;
+  width: 22px;
+  padding-right: 5px;
+  margin-right: 10px;
+  text-align: right;
+  color: #bebec5;
+}
+
+/* Show code snippets when we have the space */
+@media (min-width: 481px) {
+  .highlight {
+    display: block;
+  }
+}
+
+
+/*
+ * Responsive tests
+ *
+ * Generate a set of tests to show the responsive utilities in action.
+ */
+
+/* Responsive (scrollable) doc tables */
+.table-responsive .highlight pre {
+  white-space: normal;
+}
+
+/* Utility classes table  */
+.bs-table th small,
+.responsive-utilities th small {
+  display: block;
+  font-weight: normal;
+  color: #999;
+}
+.responsive-utilities tbody th {
+  font-weight: normal;
+}
+.responsive-utilities td {
+  text-align: center;
+}
+.responsive-utilities td.is-visible {
+  color: #468847;
+  background-color: #dff0d8 !important;
+}
+.responsive-utilities td.is-hidden {
+  color: #ccc;
+  background-color: #f9f9f9 !important;
+}
+
+/* Responsive tests */
+.responsive-utilities-test {
+  margin-top: 5px;
+}
+.responsive-utilities-test .col-xs-6 {
+  margin-bottom: 10px;
+}
+.responsive-utilities-test span {
+  padding: 15px 10px;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1.1;
+  text-align: center;
+  border-radius: 4px;
+}
+.visible-on .col-xs-6 .hidden-xs,
+.visible-on .col-xs-6 .hidden-sm,
+.visible-on .col-xs-6 .hidden-md,
+.visible-on .col-xs-6 .hidden-lg,
+.hidden-on .col-xs-6 .hidden-xs,
+.hidden-on .col-xs-6 .hidden-sm,
+.hidden-on .col-xs-6 .hidden-md,
+.hidden-on .col-xs-6 .hidden-lg {
+  color: #999;
+  border: 1px solid #ddd;
+}
+.visible-on .col-xs-6 .visible-xs,
+.visible-on .col-xs-6 .visible-sm,
+.visible-on .col-xs-6 .visible-md,
+.visible-on .col-xs-6 .visible-lg,
+.hidden-on .col-xs-6 .visible-xs,
+.hidden-on .col-xs-6 .visible-sm,
+.hidden-on .col-xs-6 .visible-md,
+.hidden-on .col-xs-6 .visible-lg {
+  color: #468847;
+  background-color: #dff0d8;
+  border: 1px solid #d6e9c6;
+}
+
+
+/*
+ * Glyphicons
+ *
+ * Special styles for displaying the icons and their classes in the docs.
+ */
+
+.bs-glyphicons {
+  padding-left: 0;
+  padding-bottom: 1px;
+  margin-bottom: 20px;
+  list-style: none;
+  overflow: hidden;
+}
+.bs-glyphicons li {
+  float: left;
+  width: 25%;
+  height: 115px;
+  padding: 10px;
+  margin: 0 -1px -1px 0;
+  font-size: 12px;
+  line-height: 1.4;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+.bs-glyphicons .glyphicon {
+  margin-top: 5px;
+  margin-bottom: 10px;
+  font-size: 24px;
+}
+.bs-glyphicons .glyphicon-class {
+  display: block;
+  text-align: center;
+  word-wrap: break-word; /* Help out IE10+ with class names */
+}
+.bs-glyphicons li:hover {
+  background-color: rgba(86,61,124,.1);
+}
+
+@media (min-width: 768px) {
+  .bs-glyphicons li {
+    width: 12.5%;
+  }
+}
+
+@media print {
+
+  .table-bordered th,
+  .table-bordered td {
+    border: 1px solid #000 !important;
+
+  }
+
+
+}
+
+
+/*
+ * Customizer
+ *
+ * Since this is so form control heavy, we have quite a few styles to customize
+ * the display of inputs, headings, and more. Also included are all the download
+ * buttons and actions.
+ */
+
+.bs-customizer .toggle {
+  float: right;
+  margin-top: 85px; /* On account of ghetto navbar fix */
+}
+
+/* Headings and form contrls */
+.bs-customizer label {
+  margin-top: 10px;
+  font-weight: 500;
+  color: #555;
+}
+.bs-customizer h2 {
+  margin-top: 0;
+  margin-bottom: 5px;
+  padding-top: 30px;
+}
+.bs-customizer h3 {
+  margin-bottom: 0;
+}
+.bs-customizer h4 {
+  margin-top: 15px;
+  margin-bottom: 0;
+}
+.bs-customizer .bs-callout h4 {
+  margin-top: 0; /* lame, but due to specificity we have to duplicate */
+  margin-bottom: 5px;
+}
+.bs-customizer input[type="text"] {
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+  background-color: #fafafa;
+}
+.bs-customizer .help-block {
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+/* For the variables, use regular weight */
+#less-section label {
+  font-weight: normal;
+}
+
+/* Downloads */
+.bs-customize-download .btn-outline {
+  padding: 20px;
+}
+
+/* Error handling */
+.bs-customizer-alert {
+  position: fixed;
+  top: 51px;
+  left: 0;
+  right: 0;
+  z-index: 1030;
+  padding: 15px 0;
+  color: #fff;
+  background-color: #d9534f;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.25);
+  border-bottom: 1px solid #b94441;
+}
+.bs-customizer-alert .close {
+  margin-top: -4px;
+  font-size: 24px;
+}
+.bs-customizer-alert p {
+  margin-bottom: 0;
+}
+.bs-customizer-alert .glyphicon {
+  margin-right: 5px;
+}
+.bs-customizer-alert pre {
+  margin: 10px 0 0;
+  color: #fff;
+  background-color: #a83c3a;
+  border-color: #973634;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,.05), 0 1px 0 rgba(255,255,255,.1);
+}
+
+
+/*
+ * Miscellaneous
+ *
+ * Odds and ends for optimum docs display.
+ */
+
+ /* About page */
+ .bs-about {
+  font-size: 16px;
+ }
+
+/* Examples gallery: space out content better */
+.bs-yuankongs h4 {
+  margin-bottom: 5px;
+}
+.bs-yuankongs p {
+  margin-bottom: 20px;
+}
+
+/* Pseudo :focus state for showing how it looks in the docs */
+#focusedInput {
+  border-color: rgba(82,168,236,.8);
+  outline: 0;
+  outline: thin dotted \9; /* IE6-9 */
+  -moz-box-shadow: 0 0 8px rgba(82,168,236,.6);
+       box-shadow: 0 0 8px rgba(82,168,236,.6);
+}
+
+/* Better spacing on download options in getting started */
+.bs-docs-dl-options h4 {
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+
+.breadcrumb {
+  font-size: 12px;
+}
+
+.dropdown-toggle {
+  font-size: 14px;
+}
+
+/* YuanToo Customized */
+.dropdown-menu li a {
+  padding: 3px;
+}
+
+
+/*lxy convert special character*/
+.inlinetable {
+  display: inline-block;
+  border-collapse: collapse; 
+  margin: 0 auto; 
+  width: auto !important;
+}
+
+/*
+ * Sidebar
+ */
+
+/* Hide for mobile, show later */
+.sidebar {
+  display: none;
+}
+@media (min-width: 768px) {
+  .sidebar {
+    /*position: fixed;*/
+    top: -10px;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    display: block;
+    padding: 20px;
+    width:130px;
+    overflow-x: hidden;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+    background-color: #f5f5f5;
+    border-right: 1px solid #eee;
+    height:100vh;
+  }
+}
+
+/* Sidebar navigation */
+.nav-sidebar {
+  margin-right: -21px; /* 20px padding + 1px border */
+  margin-bottom: 20px;
+  margin-left: -20px;
+}
+.nav-sidebar > li > a {
+  padding-right: 20px;
+  padding-left: 20px;
+}
+.nav-sidebar > .active > a,
+.nav-sidebar > .active > a:hover,
+.nav-sidebar > .active > a:focus {
+  color: #fff;
+  background-color: #428bca;
+}
+
+/*
+ * Main content
+ */
+
+.main {
+  padding: 20px;
+}
+@media (min-width: 768px) {
+  .main {
+    padding-right: 40px;
+    padding-left: 40px;
+  }
+}
+.main .page-header {
+  margin-top: 0;
+}
+
+
+/*
+ * Placeholder dashboard ideas
+ */
+
+.placeholders {
+  margin-bottom: 30px;
+  text-align: center;
+}
+.placeholders h4 {
+  margin-bottom: 0;
+}
+.placeholder {
+  margin-bottom: 20px;
+}
+.placeholder img {
+  display: inline-block;
+  border-radius: 50%;
+}
+
+.popover-content {
+  background-color: #FFF !important;
+  border:3px solid #AAA;
+}
+
+.popover a{
+  font-size:15px;
+}
+/**Menu*********************************************************/
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+.clearfix {
+    *zoom: 1;
+}
+
+.nav-container {
+    position: relative;
+    margin: 0px auto;
+    padding: 5px 0;
+    clear: both;
+}
+@media only screen and (min-width: 1200px) {
+    .nav-container {
+        width: 1210px;
+    }
+}
+
+@media only screen and (min-width: 960px) and (max-width: 1199px) {
+    .nav-container {
+        width: 1030px;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 959px) {
+    .nav-container {
+        width: 682px;
+    }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+    .nav-container {
+        width: 428px;
+        margin: 0 auto;
+    }
+}
+
+@media only screen and (max-width: 479px) {
+    .nav-container {
+        width: 320px;
+        margin: 0 auto;
+    }
+}
+
+
+  
+.mcd-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background: #FFF;
+  /*height: 100px;*/
+  border-radius: 2px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  
+  /* == */
+  width: 180px;
+  /* == */
+}
+.mcd-menu li {
+  position: relative;
+  /*float:left;*/
+}
+.mcd-menu li a {
+  display: block;
+  text-decoration: none;
+  padding: 12px 20px;
+  color: #777;
+  /*text-align: center;
+  border-right: 1px solid #E7E7E7;*/
+  
+  /* == */
+  text-align: left;
+  height: 36px;
+  position: relative;
+  border-bottom: 1px solid #EEE;
+  /* == */
+}
+.mcd-menu li a i {
+  /*display: block;
+  font-size: 30px;
+  margin-bottom: 10px;*/
+  
+  /* == */
+  float: left;
+  font-size: 20px;
+  margin: 0 10px 0 0;
+  /* == */
+  
+}
+/* == */
+.mcd-menu li a p {
+  float: left;
+  margin: 0 ;
+}
+/* == */
+
+.mcd-menu li a strong {
+  display: block;
+  text-transform: uppercase;
+}
+.mcd-menu li a small {
+  display: block;
+  font-size: 10px;
+}
+
+.mcd-menu li a i, .mcd-menu li a strong, .mcd-menu li a small {
+  position: relative;
+  
+  transition: all 300ms linear;
+  -o-transition: all 300ms linear;
+  -ms-transition: all 300ms linear;
+  -moz-transition: all 300ms linear;
+  -webkit-transition: all 300ms linear;
+}
+.mcd-menu li:hover > a i {
+    opacity: 1;
+    /*-webkit-animation: moveFromTop 300ms ease-in-out;
+    -moz-animation: moveFromTop 300ms ease-in-out;
+    -ms-animation: moveFromTop 300ms ease-in-out;
+    -o-animation: moveFromTop 300ms ease-in-out;
+    animation: moveFromTop 300ms ease-in-out;*/
+}
+.mcd-menu li:hover a strong {
+    opacity: 1;
+    /*-webkit-animation: moveFromLeft 300ms ease-in-out;
+    -moz-animation: moveFromLeft 300ms ease-in-out;
+    -ms-animation: moveFromLeft 300ms ease-in-out;
+    -o-animation: moveFromLeft 300ms ease-in-out;
+    animation: moveFromLeft 300ms ease-in-out;*/
+}
+.mcd-menu li:hover a small {
+    opacity: 1;
+    /*-webkit-animation: moveFromRight 300ms ease-in-out;
+    -moz-animation: moveFromRight 300ms ease-in-out;
+    -ms-animation: moveFromRight 300ms ease-in-out;
+    -o-animation: moveFromRight 300ms ease-in-out;
+    animation: moveFromRight 300ms ease-in-out;*/
+}
+
+.mcd-menu li:hover > a {
+  color: #e67e22;
+}
+.mcd-menu li a.active {
+  position: relative;
+  color: #e67e22;
+  border:0;
+  /*border-top: 4px solid #e67e22;
+  border-bottom: 4px solid #e67e22;
+  margin-top: -4px;*/
+  box-shadow: 0 0 5px #DDD;
+  -moz-box-shadow: 0 0 5px #DDD;
+  -webkit-box-shadow: 0 0 5px #DDD;
+  
+  /* == */
+  border-left: 4px solid #e67e22;
+  border-right: 4px solid #e67e22;
+  margin: 0 -4px;
+  /* == */
+}
+.mcd-menu li a.active:before {
+  content: "";
+  position: absolute;
+  /*top: 0;
+  left: 45%;
+  border-top: 5px solid #e67e22;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;*/
+  
+  /* == */
+  top: 42%;
+  left: 0;
+  border-left: 5px solid #e67e22;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  /* == */
+}
+
+/* == */
+.mcd-menu li a.active:after {
+  content: "";
+  position: absolute;
+  top: 42%;
+  right: 0;
+  border-right: 5px solid #e67e22;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+}
+/* == */
+
+@-webkit-keyframes moveFromTop {
+    from {
+        opacity: 0;
+        -webkit-transform: translateY(200%);
+        -moz-transform: translateY(200%);
+        -ms-transform: translateY(200%);
+        -o-transform: translateY(200%);
+        transform: translateY(200%);
+    }
+    to {
+        opacity: 1;
+        -webkit-transform: translateY(0%);
+        -moz-transform: translateY(0%);
+        -ms-transform: translateY(0%);
+        -o-transform: translateY(0%);
+        transform: translateY(0%);
+    }
+}
+@-webkit-keyframes moveFromLeft {
+    from {
+        opacity: 0;
+        -webkit-transform: translateX(200%);
+        -moz-transform: translateX(200%);
+        -ms-transform: translateX(200%);
+        -o-transform: translateX(200%);
+        transform: translateX(200%);
+    }
+    to {
+        opacity: 1;
+        -webkit-transform: translateX(0%);
+        -moz-transform: translateX(0%);
+        -ms-transform: translateX(0%);
+        -o-transform: translateX(0%);
+        transform: translateX(0%);
+    }
+}
+@-webkit-keyframes moveFromRight {
+    from {
+        opacity: 0;
+        -webkit-transform: translateX(-200%);
+        -moz-transform: translateX(-200%);
+        -ms-transform: translateX(-200%);
+        -o-transform: translateX(-200%);
+        transform: translateX(-200%);
+    }
+    to {
+        opacity: 1;
+        -webkit-transform: translateX(0%);
+        -moz-transform: translateX(0%);
+        -ms-transform: translateX(0%);
+        -o-transform: translateX(0%);
+        transform: translateX(0%);
+    }
+}
+
+
+
+.mcd-menu li ul,
+.mcd-menu li ul li ul {
+  position: absolute;
+  height: auto;
+  min-width: 200px;
+  padding: 0;
+  margin: 0;
+  background: #FFF;
+  /*border-top: 4px solid #e67e22;*/
+  opacity: 0;
+  visibility: hidden;
+  transition: all 300ms linear;
+  -o-transition: all 300ms linear;
+  -ms-transition: all 300ms linear;
+  -moz-transition: all 300ms linear;
+  -webkit-transition: all 300ms linear;
+  /*top: 130px;*/
+  z-index: 1000;
+  
+  /* == */
+  left:280px;
+  top: 0px;
+  border-left: 4px solid #e67e22;
+  /* == */
+}
+.mcd-menu li ul:before {
+  content: "";
+  position: absolute;
+  /*top: -8px;
+  left: 23%;
+  border-bottom: 5px solid #e67e22;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;*/
+  
+  /* == */
+  top: 25px;
+  left: -9px;
+  border-right: 5px solid #e67e22;
+  border-bottom: 5px solid transparent;
+  border-top: 5px solid transparent;
+  /* == */
+}
+.mcd-menu li:hover > ul,
+.mcd-menu li ul li:hover > ul {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+  /*top: 100px;*/
+  
+  /* == */
+  left:133px;
+  /* == */
+}
+/*.mcd-menu li ul li {
+  float: none;
+}*/
+.mcd-menu li ul li a {
+  padding: 3px;
+  text-align: left;
+  border: 0;
+  border-bottom: 1px solid #EEE;
+  
+  /* == */
+  height: auto;
+  /* == */
+}
+.mcd-menu li ul li a i {
+  font-size: 16px;
+  display: inline-block;
+  margin: 0 10px 0 0;
+}
+.mcd-menu li ul li ul {
+  left: 230px;
+  top: 0;
+  border: 0;
+  border-left: 4px solid #e67e22;
+}  
+.mcd-menu li ul li ul:before {
+  content: "";
+  position: absolute;
+  top: 15px;
+  /*left: -14px;*/
+  /* == */
+  left: -9px;
+  /* == */
+  border-right: 5px solid #e67e22;
+  border-bottom: 5px solid transparent;
+  border-top: 5px solid transparent;
+}
+.mcd-menu li ul li:hover > ul {
+  top: 0px;
+  left: 200px;
+}
+
+
+
+/*.mcd-menu li.float {
+  float: right;
+}*/
+.mcd-menu li a.search {
+  /*padding: 29px 20px 30px 10px;*/
+  padding: 10px 10px 15px 10px;
+  clear: both;
+}
+.mcd-menu li a.search i {
+  margin: 0;
+  display: inline-block;
+  font-size: 18px;
+}
+.mcd-menu li a.search input {
+  border: 1px solid #EEE;
+  padding: 10px;
+  background: #FFF;
+  outline: none;
+  color: #777;
+  
+  /* == */
+  width:170px;
+  float:left;
+  /* == */
+}
+.mcd-menu li a.search button {
+  border: 1px solid #e67e22;
+  /*padding: 10px;*/
+  background: #e67e22;
+  outline: none;
+  color: #FFF;
+  margin-left: -4px;
+  
+  /* == */
+  float:left;
+  padding: 10px 10px 11px 10px;
+  /* == */
+}
+.mcd-menu li a.search input:focus {
+  border: 1px solid #e67e22;
+}
+
+
+.search-mobile { 
+  display:none !important;
+  background:#e67e22;
+  border-left:1px solid #e67e22;
+  border-radius:0 3px 3px 0;
+}
+.search-mobile i { 
+  color:#FFF; 
+  margin:0 !important;
+}
+
+
+@media only screen and (min-width: 960px) and (max-width: 1199px) {
+    .mcd-menu {
+    margin-left:10px;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 959px) {
+    .mcd-menu {
+    width: 200px;
+  }
+  .mcd-menu li a {
+    height:30px;
+  }
+  .mcd-menu li a i {
+    font-size: 22px;
+  }
+  .mcd-menu li a strong {
+    font-size: 12px;
+  }
+  .mcd-menu li a small {
+    font-size: 10px;
+  } 
+  .mcd-menu li a.search input {
+    width: 120px;
+    font-size: 12px;
+  }
+  .mcd-menu li a.search buton{
+    padding: 8px 10px 9px 10px;
+  }
+  .mcd-menu li > ul {
+    min-width:180px;
+  }
+  .mcd-menu li:hover > ul {
+    min-width:180px;
+    left:200px;
+  }
+  .mcd-menu li ul li > ul, .mcd-menu li ul li ul li > ul {
+    min-width:150px;
+  }
+  .mcd-menu li ul li:hover > ul {
+    left:180px;
+    min-width:150px;
+  }
+  .mcd-menu li ul li ul li:hover > ul {
+    left:150px;
+    min-width:150px;
+  }
+  .mcd-menu li ul a {
+    font-size:12px;
+  }
+  .mcd-menu li ul a i {
+    font-size:14px;
+  }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+  
+  .mcd-menu { 
+    width: 50px;
+  }
+  .mcd-menu li a { 
+    position: relative;
+    padding: 12px 16px;
+    height:20px;
+  }
+  .mcd-menu li a small { 
+    display: none;
+  }
+  .mcd-menu li a strong { 
+    display: none;
+  }
+  .mcd-menu li a:hover strong,.mcd-menu li a.active strong {
+    display:block;
+    font-size:10px;
+    padding:3px 0;
+    position:absolute;
+    bottom:0px;
+    left:0;
+    background:#e67e22;
+    color:#FFF;
+    min-width:100%;
+    text-transform:lowercase;
+    font-weight:normal;
+    text-align:center;
+  }
+  .mcd-menu li .search { 
+    display: none;
+  }
+  
+  .mcd-menu li > ul {
+    min-width:180px;
+    left:70px;
+  }
+  .mcd-menu li:hover > ul {
+    min-width:180px;
+    left:50px;
+  }
+  .mcd-menu li ul li > ul, .mcd-menu li ul li ul li > ul {
+    min-width:150px;
+  }
+  .mcd-menu li ul li:hover > ul {
+    left:180px;
+    min-width:150px;
+  }
+  .mcd-menu li ul li ul li > ul {
+    left:35px;
+    top: 45px;
+    border:0;
+    border-top:4px solid #e67e22;
+  }
+  .mcd-menu li ul li ul li > ul:before {
+    left:30px;
+    top: -9px;
+    border:0;
+    border-bottom:5px solid #e67e22;
+    border-left:5px solid transparent;
+    border-right:5px solid transparent;
+  }
+  .mcd-menu li ul li ul li:hover > ul {
+    left:30px;
+    min-width:150px;
+    top: 35px;
+  }
+  .mcd-menu li ul a {
+    font-size:12px;
+  }
+  .mcd-menu li ul a i {
+    font-size:14px;
+  }
+  
+}
+
+@media only screen and (max-width: 479px) {
+    .mcd-menu { 
+    width: 50px;
+  }
+  .mcd-menu li a { 
+    position: relative;
+    padding: 12px 16px;
+    height:20px;
+  }
+  .mcd-menu li a small { 
+    display: none;
+  }
+  .mcd-menu li a strong { 
+    display: none;
+  }
+  .mcd-menu li a:hover strong,.mcd-menu li a.active strong {
+    display:block;
+    font-size:10px;
+    padding:3px 0;
+    position:absolute;
+    bottom:0px;
+    left:0;
+    background:#e67e22;
+    color:#FFF;
+    min-width:100%;
+    text-transform:lowercase;
+    font-weight:normal;
+    text-align:center;
+  }
+  .mcd-menu li .search { 
+    display: none;
+  }
+  
+  .mcd-menu li > ul {
+    min-width:180px;
+    left:70px;
+  }
+  .mcd-menu li:hover > ul {
+    min-width:180px;
+    left:50px;
+  }
+  .mcd-menu li ul li > ul, .mcd-menu li ul li ul li > ul {
+    min-width:150px;
+  }
+  .mcd-menu li ul li:hover > ul {
+    left:180px;
+    min-width:150px;
+  }
+  .mcd-menu li ul li ul li > ul {
+    left:35px;
+    top: 45px;
+    border:0;
+    border-top:4px solid #e67e22;
+  }
+  .mcd-menu li ul li ul li > ul:before {
+    left:30px;
+    top: -9px;
+    border:0;
+    border-bottom:5px solid #e67e22;
+    border-left:5px solid transparent;
+    border-right:5px solid transparent;
+  }
+  .mcd-menu li ul li ul li:hover > ul {
+    left:30px;
+    min-width:150px;
+    top: 35px;
+  }
+  .mcd-menu li ul a {
+    font-size:12px;
+  }
+  .mcd-menu li ul a i {
+    font-size:14px;
+  }
+    
+}

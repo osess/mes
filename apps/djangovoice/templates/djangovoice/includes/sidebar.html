@@ -1,0 +1,39 @@
+{% load trans from i18n %}
+{% load url from future %}
+{% load get_type_list get_status_list from djangovoice_tags %}
+
+<h4>{% trans "Status" %}</h4>
+{% get_status_list list %}
+
+<ul>
+  <li{% ifequal status "all" %} class="active"{% endifequal %}>
+    <a href="{% url 'djangovoice_list_type_status' list=list type=type status='all' %}">
+      {% trans "All" %}
+    </a>
+  </li>
+
+  {% for s in status_list %}
+    <li{% ifequal status s.slug %} class="active"{% endifequal %}>
+      <a href="{% url 'djangovoice_list_type_status' list=list type=type status=s.slug %}">
+        {% trans s.title %}
+      </a>
+    </li>
+  {% endfor %}
+</ul>
+
+<h4>{% trans "Type" %}</h4>
+<ul>
+  <li{% ifequal type "all" %} class="active"{% endifequal %}>
+    <a href="{% url 'djangovoice_list_type' list=list type='all' %}">
+      {% trans "All" %}
+    </a>
+  </li>
+
+  {% for t in type_list %}
+    <li{% ifequal type t.slug %} class="active"{% endifequal %}>
+      <a href="{% url 'djangovoice_list_type' list=list type=t.slug %}">
+        {{ t.title }}
+      </a>
+    </li>
+  {% endfor %}
+</ul>

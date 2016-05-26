@@ -1,0 +1,77 @@
+{% load i18n %}   
+    <ul class="nav bs-sidenav">
+        <li>
+            <a href="{% url technologies_list %}"><i class="icon-cog "></i> {% trans "流程设置" %} </a>
+        </li>
+        <li>
+            <a href="{% url operation_working_start 1 %}"><i class="icon-cog "></i> {% trans "operation" %} </a>
+        </li>
+        <li>
+            <a href="http://192.168.128.118:8080/xadmin/warehouse/itementry/?_p_journal__id__exact=1"><i class="icon-cog "></i> {% trans "仓库总量" %} </a>
+        </li>
+        <li>
+            <a href="http://192.168.128.118:8080/xadmin/warehouse/itementry/?_p_journal__id__exact=2"><i class="icon-cog "></i> {% trans "仓库出入" %} </a>
+        </li>
+        <li>
+            <a href="http://192.168.128.118:8080/warehouse/bom_list/"><i class="icon-cog "></i> {% trans "Bom" %} </a>
+        </li>
+        <li>
+            <a href="#"><i class="icon-cog "></i> {% trans "机构设置" %} </a>
+            <ul class="nav">
+                <li><a href="#overview-doctype">HTML5 doctype</a></li>
+                <li><a href="#overview-mobile">Mobile first</a></li>
+                <li><a href="#overview-responsive-images">Responsive images</a></li>
+                <li><a href="#overview-type-links">Typography and links</a></li>
+                <li><a href="#overview-normalize">Normalize</a></li>
+                <li><a href="#overview-container">Containers</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#"><i class="icon-cog "></i> {% trans "部门设置" %} </a>
+        </li>
+        <li>
+            <a href="#"><i class="icon-cog "></i> {% trans "职员设置" %} </a>
+        </li>
+        <hr />
+        <li>
+            <a href="#"><i class="icon-cog "></i> {% trans "仓库设置" %} </a>
+        </li>
+        <li>
+            <a href="#"><i class="icon-cog "></i> {% trans "物料设置" %} </a>
+        </li>
+        <li>
+            <a href="#"><i class="icon-cog "></i> {% trans "产品设置" %} </a>
+        </li>
+        <hr />
+        <li>
+            <a href="#"><i class="icon-cog "></i> {% trans "角色设置" %} </a>
+        </li>
+        <li>
+            <a href="#"><i class="icon-cog "></i> {% trans "用户设置" %} </a>
+        </li>
+        <hr />
+        <li>
+            <a href="#"><i class="icon-cog "></i> {% trans "设备设置" %} </a>
+        </li>
+        <li>
+            <a href="#"><i class="icon-cog "></i> {% trans "刀库设置" %} </a>
+        </li>
+        <hr />
+        <li>
+            <a href="#"><i class="icon-cog "></i> {% trans "生产设置" %} </a>
+        </li>
+        <hr />
+        <li>
+            <a href="#"><i class="icon-cog "></i> {% trans "质量控制" %} </a>
+        </li>
+        <li>
+            <a href="#"><i class="icon-cog "></i> {% trans "报表设置" %} </a>
+        </li>
+        <li>
+            <a href="#"><i class="icon-cog "></i> {% trans "工艺设置" %} </a>
+        </li>
+        <li>
+            <a href="#"><i class="icon-cog "></i> {% trans "工序设置" %} </a>
+        </li>
+        
+    </ul>

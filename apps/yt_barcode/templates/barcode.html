@@ -1,0 +1,27 @@
+{% extends "empty_page.html" %}
+{% load i18n %}
+{% block title %} {% trans "barcode" %} {% endblock %}
+
+
+{% block body %}
+
+<div>
+	<!--table border="1">
+
+		{% for barcode in barcode_list %}
+
+	  	<tr style="padding:0px;">
+		    <th>{{barcode.name}}</th>		    
+	  	</tr>
+	  	
+	  	<tr>
+	  		<td nowrap="nowrap" align="center">{{barcode.name}}<br><img src="data:image/jpeg;base64,{{barcode.base64_code}}"/> </td>		  
+	  	</tr>
+	  	{% endfor %}
+	</table-->
+	{{ html|safe }}
+
+</div>
+
+{% endblock %}
+

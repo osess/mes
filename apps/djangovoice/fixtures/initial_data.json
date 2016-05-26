@@ -1,0 +1,10 @@
+[
+    {"pk": 1, "model": "djangovoice.status", "fields": {"default": 1, "status": "open", "slug": "new", "title": "New"}},
+    {"pk": 2, "model": "djangovoice.status", "fields": {"default": 0, "status": "open", "slug": "accepted", "title": "Accepted"}},
+    {"pk": 3, "model": "djangovoice.status", "fields": {"default": 0, "status": "closed", "slug": "done", "title": "Done"}},
+    {"pk": 4, "model": "djangovoice.status", "fields": {"default": 0, "status": "closed", "slug": "wont-do", "title": "Won't do"}},
+    {"pk": 1, "model": "djangovoice.type", "fields": {"slug": "idea", "title": "想法"}},
+    {"pk": 2, "model": "djangovoice.type", "fields": {"slug": "problem", "title": "难题"}},
+    {"pk": 3, "model": "djangovoice.type", "fields": {"slug": "question", "title": "问题"}},
+    {"pk": 4, "model": "djangovoice.type", "fields": {"slug": "general", "title": "通用"}}
+]

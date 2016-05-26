@@ -1,0 +1,360 @@
+# Django-voice Finnish translation.
+# Copyright (C) 2012
+# This file is distributed under the same license as the django-voice package.
+# Juho Rutila juho.rutila@iki.fi, 2012.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-07-02 07:53+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#: models.py:7
+msgctxt "status"
+msgid "Open"
+msgstr "Avoin"
+
+#: models.py:8
+msgctxt "status"
+msgid "Closed"
+msgstr "Suljettu"
+
+#: models.py:17
+msgid "New feedback will have this status"
+msgstr "Uudella palautteella on tämä tila"
+
+#: models.py:37
+msgid "status"
+msgstr "Tilat"
+
+#: models.py:38
+msgid "statuses"
+msgstr "Tilat"
+
+#: models.py:50 templates/djangovoice/sidebar.html:13
+msgid "Type"
+msgstr "Tyyppi"
+
+#: models.py:51
+msgid "Title"
+msgstr ""
+
+#: models.py:53
+msgid "Description"
+msgstr "Kuvaus"
+
+#: models.py:55
+msgid ""
+"This will be viewable by other people - do not include any private details "
+"such as passwords or phone numbers here."
+msgstr ""
+"Tämä näkyy kaikille käyttäjille. Älä kirjoita mitään henkilökohtaista "
+"tietoa  (puhelinnumero, salasana) tähän kenttään."
+
+#: models.py:58
+msgid "Anonymous"
+msgstr "Nimetön"
+
+#: models.py:59
+msgid "Do not show who sent this"
+msgstr "Älä näytä kuka tämän lähetti"
+
+#: models.py:61
+msgid "Private"
+msgstr "Yksityinen"
+
+#: models.py:63
+msgid ""
+"Hide from public pages. Only site administrators will be able to view and "
+"respond to this"
+msgstr ""
+"Älä näytä julkisesti. Vain sivuston ylläpitäjät voivat nähdä ja vastata "
+"tähän."
+
+#: models.py:66
+msgid "User"
+msgstr "Käyttäjä"
+
+#: models.py:67
+msgid "E-mail"
+msgstr ""
+
+#: models.py:68
+msgid ""
+"You must provide your e-mail so we can answer to you. Alternatively you can "
+"bookmark next page and checkout for an answer later."
+msgstr ""
+"Kirjoita sähköpostiosoitteesi, jotta voimme vastata sinulle. Vaihtoehtoisesti "
+"voit tallentaa seuraavan sivun osoitteen, jolla pääset lukemaan vastauksen."
+
+#: models.py:74 templates/djangovoice/sidebar.html:3
+msgid "Status"
+msgstr "Tila"
+
+#: models.py:76
+msgid "Duplicate"
+msgstr "Duplikaatti"
+
+#: models.py:101 models.py:102 templates/djangovoice/tags/widget.html:17
+msgid "feedback"
+msgstr "palautteet"
+
+#: views.py:53
+msgid "Open Feedback"
+msgstr "Avoimet palautteet"
+
+#: views.py:56
+msgid "Closed Feedback"
+msgstr "Suljetut palautteet"
+
+#: views.py:59
+msgid "My Feedback"
+msgstr "Minun palautteeni"
+
+#: views.py:62 templates/djangovoice/detail.html:4
+#: templates/djangovoice/feedback_base.html:16
+#: templates/djangovoice/submit.html:4 templates/djangovoice/submit.html:9
+#: templates/djangovoice/widget.html:9
+msgid "Feedback"
+msgstr "Palaute"
+
+#: views.py:116
+msgid "Thanks for feedback."
+msgstr "Kiitos palautteestasi."
+
+#: views.py:122
+msgid "Form is invalid."
+msgstr "Lomake on puutteellinen"
+
+#: templates/djangovoice/container.html:12
+msgid "DjangoVoice"
+msgstr ""
+
+#: templates/djangovoice/delete.html:4 templates/djangovoice/detail.html:9
+msgid "Delete"
+msgstr "Poista"
+
+#: templates/djangovoice/delete.html:7
+msgid ""
+"Are you sure you wish to delete this feedback item completely, and all of "
+"the comments associated with it?"
+msgstr ""
+"Oletko varma, että haluat poistaa tämän palautteen ja kaikki sen kommentit "
+"lopullisesti?"
+
+#: templates/djangovoice/delete.html:8
+msgid "There is <strong>no way to undo this!</strong>"
+msgstr "Toimintoa <strong>ei pysty perumaan!</strong>"
+
+#: templates/djangovoice/delete.html:12
+msgid "Delete Permenantly"
+msgstr "Poista lopullisesti"
+
+#: templates/djangovoice/delete.html:12
+msgid "or"
+msgstr "tai"
+
+#: templates/djangovoice/delete.html:12
+msgid "leave everything as it is"
+msgstr "tai jätä kaikki ennalleen"
+
+#: templates/djangovoice/detail.html:8 templates/djangovoice/edit.html:4
+msgid "Edit"
+msgstr "Muokkaa"
+
+#: templates/djangovoice/detail.html:16
+msgid "Duplicate of"
+msgstr "Vastaava:"
+
+#: templates/djangovoice/detail.html:24
+#, python-format
+msgid ""
+"\n"
+"        from %(score.num_votes)s Vote%(score.num_votes|pluralize)s\n"
+"        "
+msgstr ""
+"\n"
+"        from %(score.num_votes)s Vote%(score.num_votes|pluralize)s\n"
+"        "
+
+#: templates/djangovoice/detail.html:53 templates/djangovoice/list.html:44
+msgid "Submitted by:"
+msgstr "Tekijä:"
+
+#: templates/djangovoice/detail.html:54 templates/djangovoice/detail.html:55
+#: templates/djangovoice/list.html:45
+msgid "View profile"
+msgstr "Näytä profiili"
+
+#: templates/djangovoice/detail.html:57 templates/djangovoice/list.html:51
+msgid "Submitted anonymously"
+msgstr "Anonyymi tekijä"
+
+#: templates/djangovoice/detail.html:60 templates/djangovoice/detail.html:98
+msgid "on"
+msgstr "pvm"
+
+#: templates/djangovoice/detail.html:69
+#, python-format
+msgid ""
+"\n"
+"    Comments (%(comment_count)s)\n"
+"    "
+msgstr ""
+"\n"
+"    Kommentit (%(comment_count)s)\n"
+"    "
+
+#: templates/djangovoice/detail.html:86
+msgid "Staff"
+msgstr ""
+
+#: templates/djangovoice/detail.html:91
+msgid "From:"
+msgstr "Lähettäjä:"
+
+#: templates/djangovoice/detail.html:93
+msgid "you"
+msgstr "sinä"
+
+#: templates/djangovoice/detail.html:98
+msgid "at"
+msgstr "klo"
+
+#: templates/djangovoice/detail.html:108
+msgid "No one has commented. Have your say."
+msgstr "Kukaan ei ole kommentoinut. Kommentoi jotain."
+
+#: templates/djangovoice/detail.html:112
+msgid "Leave a comment"
+msgstr "Jätä kommentti"
+
+#: templates/djangovoice/detail.html:123
+msgid "Post comment"
+msgstr "Lähetä kommentti"
+
+#: templates/djangovoice/edit.html:15
+msgid "Save"
+msgstr "Tallenna"
+
+#: templates/djangovoice/feedback_base.html:8
+msgid "Latest feedback"
+msgstr "Viimeisimmät palautteet"
+
+#: templates/djangovoice/feedback_base.html:19
+#: templates/djangovoice/sidebar.html:7 templates/djangovoice/sidebar.html:17
+msgid "All"
+msgstr "Kaikki"
+
+#: templates/djangovoice/feedback_base.html:20
+msgid "Open"
+msgstr "Avoimet"
+
+#: templates/djangovoice/feedback_base.html:21
+msgid "Closed"
+msgstr "Suljetut"
+
+#: templates/djangovoice/feedback_base.html:22
+msgid "Mine"
+msgstr "Minun"
+
+#: templates/djangovoice/feedback_base.html:24
+msgid "Subscribe to the feedback RSS feed"
+msgstr "Tilaa RSS-syöte."
+
+#: templates/djangovoice/feedback_base.html:39
+msgid "Back to mainpage"
+msgstr "Takaisin pääsivulle"
+
+#: templates/djangovoice/feedback_base.html:44
+msgid "Sign out"
+msgstr "Kirjaudu ulos"
+
+#: templates/djangovoice/feedback_base.html:51
+msgid "Sign in"
+msgstr "Kirjaudu sisään"
+
+#: templates/djangovoice/feedback_base.html:64
+msgid "Submit feedback"
+msgstr "Lähetä palaute"
+
+#: templates/djangovoice/feedback_base.html:99
+msgid "Powered by django-voice"
+msgstr ""
+
+#: templates/djangovoice/list.html:38
+#, python-format
+msgid "comment%(comment_count|pluralize)s"
+msgstr "kommentit%(comment_count|pluralize)s"
+
+#: templates/djangovoice/list.html:56
+#, python-format
+msgid "on %(create_date)s"
+msgstr "%(create_date)s"
+
+#: templates/djangovoice/list.html:62
+msgid "PRIVATE"
+msgstr "YKSITYINEN"
+
+#: templates/djangovoice/list.html:71
+msgid "first"
+msgstr "ensimmäinen"
+
+#: templates/djangovoice/list.html:72
+msgid "previous"
+msgstr "edellinen"
+
+#: templates/djangovoice/list.html:76
+msgid "Page"
+msgstr "Sivu"
+
+#: templates/djangovoice/list.html:76
+msgid "of"
+msgstr "/"
+
+#: templates/djangovoice/list.html:80
+msgid "next"
+msgstr "seuraava"
+
+#: templates/djangovoice/list.html:81
+msgid "last"
+msgstr "viimeinen"
+
+#: templates/djangovoice/list.html:86
+msgid ""
+"No one has contributed any feedback yet. Be the first and submit some "
+"feedback!"
+msgstr "Kukaan ei ole vielä antanut palautetta. Ole ensimmäinen!"
+
+#: templates/djangovoice/submit.html:20 templates/djangovoice/widget.html:46
+msgid "Submit"
+msgstr "Lähetä"
+
+#: templates/djangovoice/widget.html:17
+msgid "Share your thoughts with us."
+msgstr "Jaa ajatuksesi kanssamme."
+
+#: templates/djangovoice/widget.html:26
+msgid "Title (required)"
+msgstr "Otsikko (pakollinen)"
+
+#: templates/djangovoice/widget.html:29
+msgid "Write your feedback here."
+msgstr "Kirjoita palautteesi tähän."
+
+#: templates/djangovoice/widget.html:53
+msgid "Please login to use feedback application."
+msgstr "Sinun täytyy kirjautua sisään lähettääksesi palautetta."
+
+#: templates/djangovoice/includes/fields.html:8
+msgid "required"
+msgstr "pakollinen"
